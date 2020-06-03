@@ -30,13 +30,13 @@ subcollection: blockchain-sw-25
 </div>
 
 
-You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
+You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3.
 {:shortdesc}
 
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-ocp-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|
@@ -52,12 +52,12 @@ If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2
 ## Upgrading platforms
 {: #upgrade-ocp-platform}
 
-If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or V2.1.1 on the OpenShift Container Platform 3.11, you can upgrade your network to run on OpenShift Container Platform 4.2. Because the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 cannot run on OpenShift Container Platform 4.x, you need to upgrade your blockchain network before you upgrade your cluster. First, follow the steps to [upgrade your network to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5](#upgrade-ocp-steps). You can then migrate your OpenShift cluster from 3.11 to 4.2. You cannot migrate your OpenShift cluster from 3.11 to 4.1. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).
+If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or V2.1.1 on the OpenShift Container Platform 3.11, you can upgrade your network to run on OpenShift Container Platform 4.2. Because the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 cannot run on OpenShift Container Platform 4.x, you need to upgrade your blockchain network before you upgrade your cluster. First, follow the steps to [upgrade your network to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3](#upgrade-ocp-steps). You can then migrate your OpenShift cluster from 3.11 to 4.2. You cannot migrate your OpenShift cluster from 3.11 to 4.1. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).
 
 Updating the Operator triggers a restart of all components managed by this installation of the {{site.data.keyword.blockchainfull_notm}} Platform including Fabric nodes. To avoid disruption of service, a multiregion setup is recommended.
 {: important}
 
-## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5
+## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3
 {: #upgrade-ocp-steps}
 
 You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by using the following steps:
@@ -309,7 +309,7 @@ docker login --username cp --password <KEY> cp.icr.io
 
 - Replace `<KEY>` with your entitlement key.
 
-After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform v2.5:
+After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3:
 ```
 docker pull cp.icr.io/cp/ibp-operator:2.1.3-20200520-amd64
 docker pull cp.icr.io/cp/ibp-init:2.1.3-20200520-amd64

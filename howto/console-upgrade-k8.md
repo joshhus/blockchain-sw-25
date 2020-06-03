@@ -30,13 +30,13 @@ subcollection: blockchain-sw-25
 </div>
 
 
-You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
+You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3.
 {:shortdesc}
 
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-k8-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|

@@ -40,7 +40,7 @@ subcollection: blockchain-sw-25
 
 
 
-If you have not already deployed your {{site.data.keyword.blockchainfull_notm}} Platform console to a Kubernetes cluster, see [Getting started with {{site.data.keyword.blockchainfull_notm}} Platform v2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp).
+If you have not already deployed your {{site.data.keyword.blockchainfull_notm}} Platform console to a Kubernetes cluster, see [Getting started with {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp).
 
 You need to pay close attention to the resources at your disposal when you choose to deploy nodes and create channels. It is your responsibility to manage your Kubernetes cluster and deploy additional resources if necessary. For more information about component sizings and how the console interacts with your Kubernetes cluster, see [Allocating resources](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-allocate-resources).
 

@@ -2,7 +2,7 @@
 {:topicgroup: .topicgroup}
 
 {: .toc subcollection="blockchain-sw-25" category="app_services,databases" audience="service" href="/docs/blockchain-sw-25/index.html" path="blockchain-sw-25"}
-IBM Blockchain Platform v2.5
+IBM Blockchain Platform 2.1.3
 
 	{: .navgroup id="learn"}
 	index.md
