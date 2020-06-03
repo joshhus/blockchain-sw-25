@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: high availability, HA, failures, zone failure, region failure, component failure, worker node failure
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -23,18 +23,18 @@ subcollection: blockchain-sw-213
 # High availability (HA)
 {: #ibp-console-ha}
 
-<blockchain-sw-213><div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-console-ha">2.1.2</a>
     </p>
 </div>
-</blockchain-sw-213>
+
 
 Use the built-in Kubernetes features along with {{site.data.keyword.blockchainfull}} Platform component deployment strategies to make your blockchain networks more highly available and protect your network from downtime when a failure occurs in your cluster.
 {:shortdesc}
 
-**Target audience:** This topic is designed for architects and system administrators who are responsible for planning and configuring {{site.data.keyword.blockchainfull_notm}}  <blockchain-sw-213>v2.1.x on a Kubernetes cluster</blockchain-sw-213>.
+**Target audience:** This topic is designed for architects and system administrators who are responsible for planning and configuring {{site.data.keyword.blockchainfull_notm}}  v2.1.x on a Kubernetes cluster.
 
 High availability is a core discipline in an IT infrastructure to keep your apps up and running, even after a partial or full site failure. The main purpose of high availability is to eliminate potential points of failures in an IT infrastructure. For example, you can prepare for the failure of one system by adding redundancy and setting up failover mechanisms.
 
@@ -42,13 +42,13 @@ You can achieve high availability on different levels in your IT infrastructure 
 
 
 
-<blockchain-sw-213>
+
 Before proceeding, we recommend that you review the platform-specific guidance for HA:
 
 - If you are running on OpenShift Container Platform, you should review
 [HA on OpenShift Container Platform](https://docs.openshift.com/container-platform/3.11/admin_guide/high_availability.html){: external}.
 - If you are using {{site.data.keyword.cloud_notm}} Private, review [Implementing HA on {{site.data.keyword.cloud_notm}} Private](https://www.ibm.com/cloud/garage/practices/manage/high-availability-ibm-cloud-private){: external}.  
-</blockchain-sw-213>
+
 
 Then, you can use this topic for details on blockchain-specific HA guidance along with the recommendations from the platform-specific topic above.
 
@@ -73,7 +73,7 @@ Finally, your peer redundancy strategy needs to take into account your chaincode
 ### Ordering service considerations
 {: #ibp-console-ha-ordering-service}
 
-{{site.data.keyword.blockchainfull_notm}} Platform <blockchain-sw-213>v2.1.3</blockchain-sw-213> is built upon Hyperledger Fabric <blockchain hlf>v1.4.6</blockchain hlf> <blockchain-sw-213 hlf>v1.4.6</blockchain-sw-213 hlf> that includes the Raft ordering service. Raft is a crash fault tolerant (CFT) ordering service based on an implementation of [Raft protocol](https://raft.github.io/raft.pdf){: external}. By design, Raft ordering nodes automatically synchronize data between them using Raft-based consensus. In {{site.data.keyword.blockchainfull_notm}} Platform, an organization network operator can choose to stand up either a single node Raft-based orderer, with no HA, or five orderers in a single region that are automatically configured for HA via Raft.
+{{site.data.keyword.blockchainfull_notm}} Platform v2.5 is built upon Hyperledger Fabric  v1.4.6 that includes the Raft ordering service. Raft is a crash fault tolerant (CFT) ordering service based on an implementation of [Raft protocol](https://raft.github.io/raft.pdf){: external}. By design, Raft ordering nodes automatically synchronize data between them using Raft-based consensus. In {{site.data.keyword.blockchainfull_notm}} Platform, an organization network operator can choose to stand up either a single node Raft-based orderer, with no HA, or five orderers in a single region that are automatically configured for HA via Raft.
 
 
 ### Certificate Authority (CA) considerations
@@ -207,13 +207,13 @@ All nodes must be [stopped](#ibp-console-ha-stop-nodes) in order to ensure a rel
 
 
 
-<blockchain-sw-213>
+
 | Storage solution provider | Guidance |
 |----------|---------|
 | OpenShift Container Platform | You can leverage the capability that is provided by the OpenShift Container platform to [backup persistent volume claims](https://docs.openshift.com/container-platform/4.2/backup_and_restore/disaster_recovery/about-disaster-recovery.html){: external}. |
 | Portworx | While a [snapshot capability](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/ibm/#prerequisites){: external} is available for taking backups without stopping the nodes, in order to get a reliable backup, the nodes must be stopped.|
 {: caption="Table 2. Backup recommendations for storage" caption-side="top"}
-</blockchain-sw-213>
+
 
 When you need to restore a backup, the backups would need to be restored on every component across your network.
 

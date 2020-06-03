@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: HSM, Gemalto, IBM Cloud
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -382,13 +382,13 @@ After the local test in the previous step is successful, you are ready to deploy
   ```
   kubectl create ns hsm
   ```
-  {: codeblock}<blockchain-sw-213>
+  {: codeblock}
 
   If your cluster is on OpenShift, you need to run the command:
   ```
   oc new-project hsm
   ```
-  {: codeblock}</blockchain-sw-213>
+  {: codeblock}
 
 2. <img src="../images/icon-hsm-client.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> Create a Kubernetes secret in the `hsm` namespace:  
   Create an image pull secret named `docker-pull-secret` for pulling the image from DockerHub which allows you to deploy containers to Kubernetes namespaces other than `default`. You will use the name of this secret in the `deployment.yaml` file in a subsequent step.

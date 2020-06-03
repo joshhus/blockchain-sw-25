@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: intermediate CA, root CA, parent server, Certificate Authority
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 

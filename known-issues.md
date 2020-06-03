@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: catalina, chrome, external CA, TLS, orderer, error
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -22,7 +22,7 @@ subcollection: blockchain-sw-213
 # Known issues
 {: #sw-known-issues}
 
-This page describes known issues that you might encounter when you use {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3.
+This page describes known issues that you might encounter when you use {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
 {:shortdesc}
 
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
@@ -36,16 +36,16 @@ This page describes known issues that you might encounter when you use {{site.da
 ## Certicicate Authority patch install fails
 {: #sw-known-issues-ca-upgrade}
 
-After upgrading from {{site.data.keyword.blockchainfull_notm}} Platform v2.1.2 to v2.1.3, installing the patch on a CA node fails. To resolve this problem see the [Troubleshooting](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting#ibp-v2-troubleshooting-ca-upgrade-fails) topic.
+After upgrading from {{site.data.keyword.blockchainfull_notm}} Platform v2.1.2 to v2.1.3, installing the patch on a CA node fails. To resolve this problem see the [Troubleshooting](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-ca-upgrade-fails) topic.
 
-<blockchain-sw-213>
+
 ## Chrome browser on Mac OS Catalina
 {: #sw-known-issues-catalina}
 
 The console will not work in the Chrome browser on Mac OS Catalina when the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 is deployed with the default configuration that uses self-signed certificates. There are three ways to resolve this problem:
 
-1.  Use a different [supported browser](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#deploy-ocp-browsers) with Catalina.
-2. Use your own [TLS certificates when deploying on OpenShift Container Platform](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#use-your-own-tls-certificates-optional-) or [TLS certificates when deploying on Kubernetes or {{site.data.keyword.cloud_notm}} Private](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8#use-your-own-tls-certificates-optional-).
+1.  Use a different [supported browser](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers) with Catalina.
+2. Use your own [TLS certificates when deploying on OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#use-your-own-tls-certificates-optional-) or [TLS certificates when deploying on Kubernetes or {{site.data.keyword.cloud_notm}} Private](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#use-your-own-tls-certificates-optional-).
 3. Run the following commands to generate a new key and certificate pair for the console that will fix the problem.
    1. Run the following command to get the pod that corresponds to the console:
       ```
@@ -68,5 +68,5 @@ The console will not work in the Chrome browser on Mac OS Catalina when the {{si
       ```
       {: codeblock}
     When the pod restart completes, you should now be able to log in to your console URL from a Chrome Browser.
-</blockchain-sw-213>
+
 

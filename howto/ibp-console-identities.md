@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: create identities, manage identities, Certificate Authorities, register, enroll, TLS CA, wallet, certificate expiration
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -21,13 +21,13 @@ subcollection: blockchain-sw-213
 # Creating and managing identities
 {: #ibp-console-identities}
 
-<blockchain-sw-213><div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-console-identities">2.1.2</a>
     </p>
 </div>
-</blockchain-sw-213>
+
 
 
 The nodes of the {{site.data.keyword.blockchainfull_notm}} Platform are based on Hyperledger Fabric and builds permissioned blockchain networks. This means that all participants of the blockchain consortium need to have identities that are continuously verified by Public Key Infrastructure. The {{site.data.keyword.blockchainfull_notm}} Platform console allows you to create these identities by using your organization's Certificate Authorities (CAs). You need to store these identities in your console wallet so you can use them to operate your network.
@@ -76,7 +76,7 @@ The first step in creating an identity is known as **registration**. During regi
 You need to enter the following information when you register a new identity with your CA.
 
 - **Enroll ID** and **Enroll Secret**: This identity has an ID and secret, which is analogous to a username and password, that you specify during the deployment of your CA. You can use this admin ID and secret to create certificates with this identity by using this console or the Fabric CA client.
-- **Type**: When the CA was deployed, the administrator specified the types of identities issued by the CA. Common examples of identity types would include peer, orderer, admin, and client (applications). Select the identity type for this user from the list of available types.
+- **Type**: When the CA was deployed, the administrator specified the types of identities issued by the CA. Common examples of identity types include peer, orderer, admin, and client (applications). Select the identity type for this user from the list of available types.
 - **Affiliation**: (Optional) Advanced users only. This field is only visible if affiliations are defined for your CA. An affiliation is the part of an organization that you want to associate with this user. For example, this could be a department or unit that operates an application or a peer. It is possible to restrict a particular CA admin to be able to register only users within their own department within an organization by setting their affiliation. CA affiliations are defined by using the Fabric CA [Affiliation Command](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/clientcli.html#affiliation-command){: external}.
 - **Maximum Enrollments**: Optionally, enter the number of times that you can enroll or generate certificates by using this identity. Specifying a limited number of enrollments helps protect the security of your nodes and applications. It defaults to unlimited enrollments.
 - **Attributes**: Optionally, you can specify any [attribute-based access control](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html#attribute-based-access-control){: external} attributes for the user. For example, you can use this section to [create another CA admin](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-identities#ibp-console-identities-ca-identity) with authority to register and enroll new identities. You can see a full list of available Fabric CA attributes in the [Registering a new identity](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html#registering-a-new-identity){: external} section of the Fabric CA users guide.
@@ -86,7 +86,7 @@ to a CA admin that has the ability to register new users before you attempt this
 
 Clicking **Register user** opens a series of side panels:
 1. On the first side panel, enter the **Enroll ID** and **Enroll Secret** of the new identity. **Save these values**, as they are not stored by the console.
-2. Select the identity **Type**. The drop-down list contains the list of types that this CA supports.
+2. Select the identity **Type**. The drop-down list contains the list of types that the CA supports. If you are registering an identity that will serve as an admin of a node, select type `admin`. If you are registering a peer identity select `peer` and likewise for an ordering node identity select `orderer`. When you need to register an identity for a client application select the type `client`. 
 3. If affiliations are defined for this CA, you can associate an affiliation with the user. Otherwise, the affiliations drop-down list is not shown. Check the **Use root affiliation** checkbox for the user if you want them to have the root affiliation and be able to see all other users registered with this CA. When you uncheck **Use root affiliation**, you can select a specific affiliation from the list to associate with this user.
 4. Enter the **Maximum Enrollments** allowed for this identity. If not specified, the value defaults to unlimited enrollments.
 5. On the last side panel, add the **Attributes** of the identity you are creating.

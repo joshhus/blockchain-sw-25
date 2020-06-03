@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -30,34 +30,34 @@ subcollection: blockchain-sw-213
 </div>
 
 
-You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3.
+You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
 {:shortdesc}
 
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-ocp-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|
-| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.3](/docs/blockchain-sw-213?topic=blockchain-sw-213-whats-new#whats-new-03-24-2020) | 24 March 2020| **Console and tools** <ul><li>2.1.3-20200520-amd64</li><li>2.1.3-20200416-amd64</li><li>2.1.3-20200324-amd64</li></ul> **Fabric nodes** <ul><li>1.4.6-20200520-amd64</li><li>1.4.6-20200416-amd64</li><li>1.4.6-20200324-amd64</li></ul> **CouchDB** <ul><li>2.3.1-20200520-amd64</li><li>2.3.1-20200416-amd64</li><li>2.3.1-20200324-amd64</li></ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.6</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 4.2 on LinuxONE (s390x)</ul> **Improvements to the Console UI** <ul><li>Hardware Security Module (HSM) support for node identities</li><li>Ability to override CA, peer, and ordering node configuration</li><li>Ability to add and remove Raft ordering nodes</li><li>Java smart contract instantiation</li><li>Updated create channel and create organization panels</ul> |
-| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.2](/docs/blockchain-sw-213?topic=blockchain-sw-213-whats-new#whats-new-12-17-2019) | 17 December 2019 | **Console and tools** <ul><li>2.1.2-20191217-amd64</li><li>2.1.2-20200213-amd64</li></ul> **Fabric nodes** <ul><li>1.4.4-20191217-amd64</li><li>1.4.4-20200213-amd64</li></ul> **CouchDB** <ul><li>2.3.1-20191217-amd64</li><li>2.3.1-20200213-amd64</li></ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.4</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 4.1 and 4.2</ul> **Improvements to the Console UI** <ul><li>Simplified component creation flows</li><li>Zone selection for ordering nodes</li><li>Add peer to a channel from Channels tab</li><li>Anchor peer during join</li><li>Export/Import all</ul> |
-| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.1]( /docs/blockchain-sw-213?topic=blockchain-sw-213-whats-new#whats-new-11-08-2019)| 8 November 2019 | **Console and tools** <ul><li>2.1.1-20191108-amd64</ul> **Fabric nodes** <ul><li>1.4.3-20191108-amd64</ul> **CouchDB** <ul><li>2.3.1-20191108-amd64</ul> | **Additional platforms** <ul><li>Platform can be deployed on Kubernetes v1.14 - v1.16</li><li>Platform can be deployed on {{site.data.keyword.cloud_notm}} Private 3.2.1</li></ul> |
-| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.0](/docs/blockchain-sw-213?topic=blockchain-sw-213-whats-new#whats-new-9-24-2019) | 24 September 2019 | **Console and tools** <ul><li>2.1.0-20190918-amd64</ul> **Fabric nodes** <ul><li>1.4.3-20190918-amd64</ul> **CouchDB** <ul><li>2.3.1-20190918-amd64</ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.3</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 3.11</ul> |
+| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.3](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-03-24-2020) | 24 March 2020| **Console and tools** <ul><li>2.1.3-20200520-amd64</li><li>2.1.3-20200416-amd64</li><li>2.1.3-20200324-amd64</li></ul> **Fabric nodes** <ul><li>1.4.6-20200520-amd64</li><li>1.4.6-20200416-amd64</li><li>1.4.6-20200324-amd64</li></ul> **CouchDB** <ul><li>2.3.1-20200520-amd64</li><li>2.3.1-20200416-amd64</li><li>2.3.1-20200324-amd64</li></ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.6</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 4.2 on LinuxONE (s390x)</ul> **Improvements to the Console UI** <ul><li>Hardware Security Module (HSM) support for node identities</li><li>Ability to override CA, peer, and ordering node configuration</li><li>Ability to add and remove Raft ordering nodes</li><li>Java smart contract instantiation</li><li>Updated create channel and create organization panels</ul> |
+| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.2](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-12-17-2019) | 17 December 2019 | **Console and tools** <ul><li>2.1.2-20191217-amd64</li><li>2.1.2-20200213-amd64</li></ul> **Fabric nodes** <ul><li>1.4.4-20191217-amd64</li><li>1.4.4-20200213-amd64</li></ul> **CouchDB** <ul><li>2.3.1-20191217-amd64</li><li>2.3.1-20200213-amd64</li></ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.4</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 4.1 and 4.2</ul> **Improvements to the Console UI** <ul><li>Simplified component creation flows</li><li>Zone selection for ordering nodes</li><li>Add peer to a channel from Channels tab</li><li>Anchor peer during join</li><li>Export/Import all</ul> |
+| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.1]( /docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-11-08-2019)| 8 November 2019 | **Console and tools** <ul><li>2.1.1-20191108-amd64</ul> **Fabric nodes** <ul><li>1.4.3-20191108-amd64</ul> **CouchDB** <ul><li>2.3.1-20191108-amd64</ul> | **Additional platforms** <ul><li>Platform can be deployed on Kubernetes v1.14 - v1.16</li><li>Platform can be deployed on {{site.data.keyword.cloud_notm}} Private 3.2.1</li></ul> |
+| [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.0](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-9-24-2019) | 24 September 2019 | **Console and tools** <ul><li>2.1.0-20190918-amd64</ul> **Fabric nodes** <ul><li>1.4.3-20190918-amd64</ul> **CouchDB** <ul><li>2.3.1-20190918-amd64</ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.3</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 3.11</ul> |
 {: caption="Table 1. {{site.data.keyword.blockchainfull_notm}} Platform versions" caption-side="bottom"}
 
-If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1, you cannot access the console from the Chrome browser on Mac OS Catalina when the console is deployed with the default configuration that uses self-signed certificates. For more information on how you can resolve this problem, see [Chrome browser on Mac OS Catalina](/docs/blockchain-sw-213?topic=blockchain-sw-213-sw-known-issues#sw-known-issues-catalina) in Known Issues.
+If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1, you cannot access the console from the Chrome browser on Mac OS Catalina when the console is deployed with the default configuration that uses self-signed certificates. For more information on how you can resolve this problem, see [Chrome browser on Mac OS Catalina](/docs/blockchain-sw-25?topic=blockchain-sw-25-sw-known-issues#sw-known-issues-catalina) in Known Issues.
 {:note}
 
 ## Upgrading platforms
 {: #upgrade-ocp-platform}
 
-If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or V2.1.1 on the OpenShift Container Platform 3.11, you can upgrade your network to run on OpenShift Container Platform 4.2. Because the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 cannot run on OpenShift Container Platform 4.x, you need to upgrade your blockchain network before you upgrade your cluster. First, follow the steps to [upgrade your network to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3](#upgrade-ocp-steps). You can then migrate your OpenShift cluster from 3.11 to 4.2. You cannot migrate your OpenShift cluster from 3.11 to 4.1. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).
+If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or V2.1.1 on the OpenShift Container Platform 3.11, you can upgrade your network to run on OpenShift Container Platform 4.2. Because the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 cannot run on OpenShift Container Platform 4.x, you need to upgrade your blockchain network before you upgrade your cluster. First, follow the steps to [upgrade your network to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5](#upgrade-ocp-steps). You can then migrate your OpenShift cluster from 3.11 to 4.2. You cannot migrate your OpenShift cluster from 3.11 to 4.1. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).
 
 Updating the Operator triggers a restart of all components managed by this installation of the {{site.data.keyword.blockchainfull_notm}} Platform including Fabric nodes. To avoid disruption of service, a multiregion setup is recommended.
 {: important}
 
-## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3
+## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.5
 {: #upgrade-ocp-steps}
 
 You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by using the following steps:
@@ -81,7 +81,7 @@ You can roll back an upgrade after you use the console to operate your network. 
 
 ## Before you begin
 
-To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#deploy-ocp-entitlement-key) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#deploy-ocp-docker-registry-secret) to store the key on your OpenShift project. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
+To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) to store the key on your OpenShift project. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
 
 Occasionally, a five node ordering service that was deployed using v2.1.2 will be deleted by the Kubernetes garbage collector because it considers the nodes a resource that needs to be cleaned up. This process is both random and unrecoverable --- if the ordering service is deleted, all of the channels hosted on it are permanently lost. To prevent this, the `ownerReferences` field in the configuration of each ordering node must be removed **before upgrading to v2.1.3**. For the steps about how to pull the configuration file, remove `ordererReferences`, and apply the change, see [Known issues](https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-sw-known-issues#sw-known-issues-ordering-service-delete) in the v2.1.2 documentation.
 {:important}
@@ -267,7 +267,7 @@ ibp-operator   1/1       1            1           1m
 ibpconsole     1/1       1            1           4m
 ```
 
-If you experience a problem while you are upgrading the operator, go to this [troubleshooting topic](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
+If you experience a problem while you are upgrading the operator, go to this [troubleshooting topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
 
 ## Step three: Upgrade your blockchain nodes
 {: #upgrade-ocp-nodes}
@@ -294,7 +294,7 @@ You can continue to submit transactions to your network while you are upgrading 
 ### Before you begin
 {: #upgrade-ocp-begin-firewall}
 
-To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#deploy-ocp-docker-registry-secret) to store the key on your OpenShift project. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
+To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) to store the key on your OpenShift project. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
 
 ### Step one: Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images
 {: #upgrade-ocp-images-firewall}
@@ -309,7 +309,7 @@ docker login --username cp --password <KEY> cp.icr.io
 
 - Replace `<KEY>` with your entitlement key.
 
-After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3:
+After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform v2.5:
 ```
 docker pull cp.icr.io/cp/ibp-operator:2.1.3-20200520-amd64
 docker pull cp.icr.io/cp/ibp-init:2.1.3-20200520-amd64
@@ -548,7 +548,7 @@ ibp-operator   1/1       1            1           1m
 ibpconsole     1/1       1            1           4m
 ```
 
-If you experience a problem while you are upgrading the operator, go to this [troubleshooting topic](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems.
+If you experience a problem while you are upgrading the operator, go to this [troubleshooting topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems.
 
 If your console experiences an image pull error, you may need to update the console deployment spec with the local registry that you used to download the images.
 ```

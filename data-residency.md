@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: IBM Blockchain Platform, Data residency, world state, channels
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -22,13 +22,13 @@ subcollection: blockchain-sw-213
 # Data residency
 {: #console-icp-about-data-residency}
 
-<blockchain-sw-213><div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-console-icp-about-data-residency">2.1.2</a>
     </p>
 </div>
-</blockchain-sw-213>
+
 
 Because blockchain networks are oblivious to the type of data that is processed, extra steps must sometimes be taken to keep certain kinds of data secure. The most common requirement on data residency is associated with laws within certain countries, which mandate that all data that is processed and stored in an IT system must remain within a specific country’s borders. Similarly, some companies in highly regulated industries, such as government, healthcare, and financial services, require that data must be stored entirely behind their firewall.
 {:shortdesc}
@@ -53,8 +53,8 @@ Peers maintain a separate ledger for each channel that they join. Only organizat
 
 If in-country data residency is a requirement, you need to consider the location of your peers, the ordering service, as well as your client applications. You also need to know the location of the peers that belong to other organizations on your channels.
 
-<blockchain-sw-213>If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, you can find the list of [OpenShift regions and locations on {{site.data.keyword.cloud_notm}}](/docs/openshift?topic=openshift-regions-and-zones) where you and the members of your consortium can deploy your components.
-</blockchain-sw-213>
+If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, you can find the list of [OpenShift regions and locations on {{site.data.keyword.cloud_notm}}](/docs/openshift?topic=openshift-regions-and-zones) where you and the members of your consortium can deploy your components.
+
 ## A use case for data residency
 {: #console-icp-about-data-residency-use-case}
 
@@ -114,9 +114,9 @@ Creating a channel with all of the components in one country ensures that all of
 {: #console-icp-about-data-residency-considerations}
 
 
-<blockchain-sw-213>
+
 When you deploy the {{site.data.keyword.blockchainfull_notm}} Platform, an instance of the {{site.data.keyword.blockchainfull_notm}} Platform console is installed on your OpenShift cluster.
-</blockchain-sw-213>
+
 When you use your console to view the channel details, ledger data is visible in your browser. The ledger data is transmitted directly from the Kubernetes cluster to your browser.
 
 Therefore, to preserve data residency, the end user's browser and the Kubernetes cluster must reside in the same country.

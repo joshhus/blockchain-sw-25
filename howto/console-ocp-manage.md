@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -38,7 +38,7 @@ After you install the console on your cluster, you can use the console to add or
 ## Managing users from the console
 {: #console-icp-manage-users}
 
-The user who provisions the {{site.data.keyword.blockchainfull_notm}} Platform console is considered the console administrator. The administrator can then add and grant other users access to the console from the **Users** tab. Every user that accesses the console must be assigned an access policy with a user role defined. The policy determines what actions the user can perform within the console. By default, the console administrator is given the **Manager** role for the console. Other users can be assigned with **Manager**, **Writer**, or **Reader** roles when a console manager adds them to the console. Note that the users can also be managed with [APIs](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-apis#console-icp-manage-users-apis)
+The user who provisions the {{site.data.keyword.blockchainfull_notm}} Platform console is considered the console administrator. The administrator can then add and grant other users access to the console from the **Users** tab. Every user that accesses the console must be assigned an access policy with a user role defined. The policy determines what actions the user can perform within the console. By default, the console administrator is given the **Manager** role for the console. Other users can be assigned with **Manager**, **Writer**, or **Reader** roles when a console manager adds them to the console. Note that the users can also be managed with [APIs](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#console-icp-manage-users-apis)
 
 ### Role to permission mapping
 {: #console-icp-manage-role-mapping}

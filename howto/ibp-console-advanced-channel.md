@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: network components, Kubernetes, batch timeout, channel update, channels, governance, channel configuration, access control
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -22,13 +22,13 @@ subcollection: blockchain-sw-213
 # Advanced channel deployment and management
 {: #ibp-console-govern}
 
-<blockchain-sw-213><div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-console-govern">2.1.2</a>
     </p>
 </div>
-</blockchain-sw-213>
+
 
 
 When you create a channel, there are a number of advanced options that allow you fine tune the configuration of your channel to fit your use case. In this topic we'll discuss how to edit those options as part of creating a channel or when editing a channel after it has been created.

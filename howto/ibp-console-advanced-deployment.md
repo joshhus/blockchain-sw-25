@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: deployment, advanced, CouchDB, LevelDB, external CA, HSM, resource allocation
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -59,7 +59,7 @@ The Build a network tutorial is useful for learning how to set up a basic networ
 Because your instance of the {{site.data.keyword.blockchainfull_notm}} Platform console and your Kubernetes cluster do not communicate directly about the resources that are available, the process for deploying components by using the console must follow this pattern:
 
 1. **Size the deployment that you want to make**. The **Resource allocation** panels for the CA, peer, and ordering node in the console offer default CPU, memory, and storage allocations for each node. You may need to adjust these values according to your use case. If you are unsure, start with default allocations and adjust them as you understand your needs. Similarly, the **Resource reallocation** panel displays the existing resource allocations. For a sense of how much storage and compute you will need in your cluster, refer to the chart after step 3 that contains the current defaults for the peer, orderer, and CA:
-2. **Check whether you have enough resources in your Kubernetes cluster**.  If you do not have enough space in your cluster to deploy or resize resources, you need to increase the size of your cluster. <blockchain-sw-213>Check the documentation of your cloud provider to learn how to scale clusters.</blockchain-sw-213> If you have enough space in your cluster, you can continue with step 3.
+2. **Check whether you have enough resources in your Kubernetes cluster**.  If you do not have enough space in your cluster to deploy or resize resources, you need to increase the size of your cluster. Check the documentation of your cloud provider to learn how to scale clusters. If you have enough space in your cluster, you can continue with step 3.
 3. **Use the console to deploy or resize your node**. If your Kubernetes pod is large enough to accommodate the new size of the node, the reallocation should proceed smoothly. If the worker node that the pod is running on is running out of resources, you can add a new larger worker node to your cluster and then delete the existing working node.
 
 | **Component** (all containers) | CPU**  | Memory (GB) | Storage (GB) |
@@ -67,8 +67,8 @@ Because your instance of the {{site.data.keyword.blockchainfull_notm}} Platform 
 | **Peer**                       | 1.1           | 2.8                   | 200 (includes 100GB for peer and 100GB for state database)|
 | **CA**                         | 0.1           | 0.2                   | 20                     |
 | **Ordering node**              | 0.35          | 0.7                   | 100                    |
-| **Operator**                   | 0.1           | 0.2                   | 0                      |<blockchain-sw-213>
-| **Console**                    | 1.2           | 2.4                   | 10                     |</blockchain-sw-213>
+| **Operator**                   | 0.1           | 0.2                   | 0                      |
+| **Console**                    | 1.2           | 2.4                   | 10                     |
 
 {: caption="Table 2. Default resources for nodes on {{site.data.keyword.blockchainfull_notm}} Platform" caption-side="bottom"}
 ** Actual VPC allocations are visible in the blockchain console when a node is deployed.
@@ -82,12 +82,12 @@ While the figures in this topic endeavor to be precise, be aware that there are 
 
 The **Resource allocation** panel in the console provides default values for the various fields that are involved in creating a node. These values are chosen because they represent a good way to get started. However, every use case is different. While this topic provides guidance for ways to think about these values, it ultimately falls to the user to monitor their nodes and find sizings that work for them. Therefore, barring situations in which users are certain that they need values different from the defaults, a practical strategy is to use these defaults at first and adjust them later. For an overview of performance and scale of Hyperledger Fabric, which the {{site.data.keyword.blockchainfull_notm}} Platform is based on, see [Answering your questions on Hyperledger Fabric performance and scale](https://www.ibm.com/blogs/blockchain/2019/01/answering-your-questions-on-hyperledger-fabric-performance-and-scale/){: external}.
 
-After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as <blockchain-sw-213>[Sysdig](https://sysdig.com/platform/){: external}</blockchain-sw-213> to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
+After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as [Sysdig](https://sysdig.com/platform/){: external} to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
 {: important}
 
-All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see <blockchain-sw-213>[storage](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#deploy-ocp-storage).</blockchain-sw-213> 
+All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-storage). 
 
-You are responsible for monitoring your CPU, memory, and storage consumption in your cluster. If you do happen to request more resources for a blockchain node than are available, the node will not start. However, existing nodes will not be affected. <blockchain-sw-213>For information about how to increase the CPU, memory, and storage, consult the documentation of your cloud provider.</blockchain-sw-213>
+You are responsible for monitoring your CPU, memory, and storage consumption in your cluster. If you do happen to request more resources for a blockchain node than are available, the node will not start. However, existing nodes will not be affected. For information about how to increase the CPU, memory, and storage, consult the documentation of your cloud provider.
 {:note}
 
 Every node has a gRPC web proxy container that bootstraps the communication layer between the console and a node. This container has fixed resource values and is included on the Resource allocation panel to provide an accurate estimate of how much space is required on your Kubernetes cluster in order for the node to deploy. Because the values for this container cannot be changed, we will not discuss the gRPC web proxy in the following sections.
@@ -554,7 +554,7 @@ Because the data is modeled differently in a Couch database than in a Level data
 
 If your Kubernetes cluster is configured across multiple zones, when you deploy a peer you have the option of selecting which zone the peer is deployed to. Check the Advanced deployment option that is labeled **Kubernetes zone selection** to see the list of zones that are currently configured for your Kubernetes cluster.
 
-If you are deploying a redundant node (that is, another peer when you already have one), it is a best practice to deploy this node into a different zone. You can determine the zone that the other node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy a peer or orderer to a specific zone. For more information on how to do this with the APIs, see <blockchain-sw-213>[Creating a node within a specific zone](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-apis#ibp-v2-apis-zone)</blockchain-sw-213>.
+If you are deploying a redundant node (that is, another peer when you already have one), it is a best practice to deploy this node into a different zone. You can determine the zone that the other node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy a peer or orderer to a specific zone. For more information on how to do this with the APIs, see [Creating a node within a specific zone](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-zone).
 
 
 
@@ -579,7 +579,7 @@ As we noted in our section on [Considerations before you deploy a node](#ibp-con
 | **CouchDB (ledger data) storage** | When you expect high throughput on many channels and don't plan to use indexes. However, like the peer storage, the default CouchDB storage is 100G, which is significant. |
 | **Smart contract container CPU and memory** | When you expect a high throughput on a channel, especially in cases where multiple smart contracts will be invoked at the same time. You should also increase the resource allocation of your peers if your smart contracts are written in JavaScript or TypeScript.|
 
-The {{site.data.keyword.blockchainfull_notm}} Platform supports smart contracts that are written in JavaScript, TypeScript, Java, and Go. When you are allocating resources to your peer node, it is important to note that JavaScript and TypeScript smart contracts require more resources than contracts written in Go. The default memory allocation for the peer container is sufficient for most smart contracts. However, when you instantiate a smart contract, you should actively monitor the resource consumption of the peer containers by using a tool like <blockchain-sw-213>[Sysdig](https://sysdig.com/platform/){: external}</blockchain-sw-213> to ensure that adequate resources are available.
+The {{site.data.keyword.blockchainfull_notm}} Platform supports smart contracts that are written in JavaScript, TypeScript, Java, and Go. When you are allocating resources to your peer node, it is important to note that JavaScript and TypeScript smart contracts require more resources than contracts written in Go. The default memory allocation for the peer container is sufficient for most smart contracts. However, when you instantiate a smart contract, you should actively monitor the resource consumption of the peer containers by using a tool like [Sysdig](https://sysdig.com/platform/){: external} to ensure that adequate resources are available.
 {: important}
 
 
@@ -910,7 +910,7 @@ However many nodes a user chooses to deploy, they have the ability to add more n
 
 If your Kubernetes cluster is configured across multiple zones, when you deploy an ordering node you have the option of selecting which zone the node is deployed to. Check the Advanced deployment option that is labeled **Kubernetes zone selection** to see the list of zones that are currently configured for your Kubernetes cluster.
 
-For a five node ordering service, these nodes will be distributed into multiple zones by default, depending on the relative space available in each zone. You also have the ability to distribute a five node ordering service yourself by clearing the default option to have the zones that are chosen for you and distributing these nodes into the zones you have available. You can check which zone a node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy an ordering node to a specific zone. For more information on how to do this with the APIs, see <blockchain-sw-213>[Creating a node within a specific zone](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-apis#ibp-v2-apis-zone)</blockchain-sw-213>.
+For a five node ordering service, these nodes will be distributed into multiple zones by default, depending on the relative space available in each zone. You also have the ability to distribute a five node ordering service yourself by clearing the default option to have the zones that are chosen for you and distributing these nodes into the zones you have available. You can check which zone a node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy an ordering node to a specific zone. For more information on how to do this with the APIs, see [Creating a node within a specific zone](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-zone).
 
 
 
@@ -1130,7 +1130,7 @@ Now that you have gathered all the necessary certificates, you are ready to crea
 ### Option 2: Create a five node ordering service using certificates from an external CA
 {: #ibp-console-adv-deployment-create-five-node}
 
- <blockchain-sw-213>You </blockchain-sw-213> have the additional option of deploying a five node ordering service that uses the Raft consensus protocol. Before you deploy a five node ordering service, you need to build a `JSON` file that contains all of the certificates for the five nodes by using the following instructions:
+ You  have the additional option of deploying a five node ordering service that uses the Raft consensus protocol. Before you deploy a five node ordering service, you need to build a `JSON` file that contains all of the certificates for the five nodes by using the following instructions:
 
 #### Create the certificates JSON file
 {: #ibp-console-adv-deployment-create-certs-file}
@@ -1257,7 +1257,7 @@ After you create the `JSON` file with all of the certificates for the ordering n
 4. In **Number of ordering nodes**, select **Five ordering nodes**. Then select **External Certificate Authority configuration** and click **Next**.
 5. Click **Add file** to upload the `JSON` file that contains all of the certificates.
 6. Select the **Organization MSP** definition that you imported.
-7.  <blockchain-sw-213>On</blockchain-sw-213> the next panel, you have the opportunity to configure resource allocation for the nodes. The selections that you make here are applied to all five ordering nodes. If you want to learn more about how to allocate resources to your node, see this topic on [Allocating resources](#ibp-console-adv-deployment-allocate-resources).
+7.  On the next panel, you have the opportunity to configure resource allocation for the nodes. The selections that you make here are applied to all five ordering nodes. If you want to learn more about how to allocate resources to your node, see this topic on [Allocating resources](#ibp-console-adv-deployment-allocate-resources).
 8. Review the summary and click **Add ordering service**.
 9. After you have created the ordering service, you can upload the orderer admin identity to the {{site.data.keyword.blockchainfull_notm}} console. On the **Wallet** tab, click **Add identity**:
   - In the **Name** field, enter an identity name that is used for your reference only.
@@ -1444,13 +1444,13 @@ kubectl create ns hsm
 ```
 {: codeblock}
 
-<blockchain-sw-213>
+
 If your cluster is on OpenShift, you need to run the command:
 ```
 oc new-project hsm
 ```
 {: codeblock}
-</blockchain-sw-213>
+
 
 ##### **Step two:** Create a Kubernetes secret
 {: #ibp-console-adv-deployment-pkcs11-proxy-deploy-s2}

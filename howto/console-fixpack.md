@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -22,7 +22,7 @@ subcollection: blockchain-sw-213
 # Installing the v2.1.3 Fix Pack
 {: #install-fixpack}
 
-Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 before May 20, 2020 should install the v2.1.3 Fix Pack. The Fix Pack contains important bug fixes and should be applied to your network as soon as possible. For more information, see the [May 20, 2020 Release notes](/docs/blockchain-sw-213?topic=blockchain-sw-213-release-notes-saas-20#05-20-2020). If you installed the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 after May 20, 2020, the platform will contain all the bug fixes and improvements provided by the Fix Pack, and you do not need to apply the Fix Pack.
+Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 before May 20, 2020 should install the v2.1.3 Fix Pack. The Fix Pack contains important bug fixes and should be applied to your network as soon as possible. For more information, see the [May 20, 2020 Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#05-20-2020). If you installed the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 after May 20, 2020, the platform will contain all the bug fixes and improvements provided by the Fix Pack, and you do not need to apply the Fix Pack.
 {:shortdesc}
 
 You can install the Fix Pack by updating the {{site.data.keyword.blockchainfull_notm}} Platform deployment on your Kubernetes cluster to pull the latest images from the {{site.data.keyword.IBM_notm}} Entitlement registry. You can apply the Fix Pack by using the following steps:
@@ -35,7 +35,7 @@ You can use these steps if you deployed the platform on the OpenShift Container 
 
 ## Before you begin
 
-To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8#deploy-k8-entitlement-key) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8#deploy-k8-docker-registry-secret) to store the key on your namespace. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
+To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-entitlement-key) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-docker-registry-secret) to store the key on your namespace. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
 
 ## Step one: Update the {{site.data.keyword.blockchainfull_notm}} operator
 {: #install-fixpack-operator}
@@ -70,7 +70,7 @@ NAME           READY     UP-TO-DATE   AVAILABLE   AGE
 ibp-operator   1/1       1            1           1m
 ```
 
-If you experience a problem while you are updating the operator, go to this [troubleshooting topic](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
+If you experience a problem while you are updating the operator, go to this [troubleshooting topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
 
 ## Step two: Update the {{site.data.keyword.blockchainfull_notm}} console
 {: #install-fixpack-console}
@@ -132,7 +132,7 @@ You can continue to submit transactions to your network while you are upgrading 
 ### Before you begin
 {: #install-fixpack-begin-firewall}
 
-To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8-firewall#deploy-k8-entitlement-key-firewall) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8#deploy-k8-docker-registry-secret) to store the key on your namespace. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
+To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-entitlement-key-firewall) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-docker-registry-secret) to store the key on your namespace. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
 
 ### Step one: Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images
 {: #install-fixpack-images-firewall}
@@ -243,7 +243,7 @@ NAME           READY     UP-TO-DATE   AVAILABLE   AGE
 ibp-operator   1/1       1            1           1m
 ```
 
-If you experience a problem while you are updating the operator, go to this [troubleshooting topic](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
+If you experience a problem while you are updating the operator, go to this [troubleshooting topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
 
 ### Step three: Update the {{site.data.keyword.blockchainfull_notm}} console
 {: #install-fixpack-console-firewall}

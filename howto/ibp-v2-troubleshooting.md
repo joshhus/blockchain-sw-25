@@ -5,7 +5,7 @@ copyright:
 lastupdated: "2020-06-03"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -25,27 +25,27 @@ subcollection: blockchain-sw-213
 # Troubleshooting
 {: #ibp-v2-troubleshooting}
 
-<blockchain-sw-213><div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-v2-troubleshooting">2.1.2</a>
     </p>
 </div>
-</blockchain-sw-213>
+
 
 General problems may occur when using the console to manage nodes, channels, or smart contracts. In many cases, you can recover from these problems by following a few easy steps.
 {:shortdesc}
 
-This topic describes common issues that can occur when using the {{site.data.keyword.blockchainfull_notm}} Platform console.  <blockchain-sw-213>
+This topic describes common issues that can occur when using the {{site.data.keyword.blockchainfull_notm}} Platform console.  
 
 **Issues during Deployment**
 - [My deployment fails when I try apply the security and access policies to my namespace](#ibp-v2-troubleshooting-deployment-policies)
-- [My deployment fails when I try apply the custom resource definition of the console or operator](#ibp-v2-troubleshooting-deployment-cr)</blockchain-sw-213>
+- [My deployment fails when I try apply the custom resource definition of the console or operator](#ibp-v2-troubleshooting-deployment-cr)
 
 **Issues with the Console**
-- [Why are my console actions failing in my Chrome browser Version 77.0.3865.90 (Official Build) (64-bit)?](#ibp-v2-troubleshooting-chrome-v77)<blockchain-sw-213>
+- [Why are my console actions failing in my Chrome browser Version 77.0.3865.90 (Official Build) (64-bit)?](#ibp-v2-troubleshooting-chrome-v77)
 - [Why am I not able to log in to the console from my Chrome browser on Mac OS Catalina?](#ibp-v2-troubleshooting-console-catalina)
-- [Why is my channel creation failing or I am unable to add a new organization to my ordering service with the error "Unable to get system channel"?](#ibp-v2-troubleshooting-accept-tls)</blockchain-sw-213>
+- [Why is my channel creation failing or I am unable to add a new organization to my ordering service with the error "Unable to get system channel"?](#ibp-v2-troubleshooting-accept-tls)
 - [When I hover over my node, the status is `Status unavailable`, what does this mean?](#ibp-v2-troubleshooting-status-unavailable)
 - [When I hover over my node, the status is `Status undetectable`, what does this mean?](#ibp-v2-troubleshooting-status-undetectable)
 - [Why did my smart contract installation, instantiation or upgrade fail?](#ibp-console-smart-contracts-troubleshoot-entry1)
@@ -62,18 +62,18 @@ This topic describes common issues that can occur when using the {{site.data.key
 - [Why does my peer or ordering node fail to start?](#ibp-console-build-network-troubleshoot-entry2)
 - [What is the proper way to clean up a failed node deployment?](#ibp-v2-troubleshooting-cleanup)
 - [How can I view my smart contract container logs?](#ibp-console-smart-contracts-troubleshoot-entry2)
-- [Why is my CA, peer, or ordering node that is configured to use HSM not working?](#ibp-v2-troubleshooting-hsm-proxy)<blockchain-sw-213>
-- [My CA failed to upgrade, how can I fix it?](#ibp-v2-troubleshooting-ca-upgrade-fails)</blockchain-sw-213>
+- [Why is my CA, peer, or ordering node that is configured to use HSM not working?](#ibp-v2-troubleshooting-hsm-proxy)
+- [My CA failed to upgrade, how can I fix it?](#ibp-v2-troubleshooting-ca-upgrade-fails)
 - [Why are my transactions returning an endorsement policy error: signature set did not satisfy policy?](#ibp-v2-troubleshooting-endorsement-sig-failure)
 - [Why are the transactions I submit from VS Code failing with a No endorsement plan available error?](#ibp-v2-troubleshooting-anchor-peer)
 - [Why are the transactions I submit from VS Code failing with an endorsement failure?](#ibp-v2-troubleshooting-endorsement)
 
-<blockchain-sw-213>
+
 ## My deployment fails when I try apply the security and access policies to my namespace
 {: #ibp-v2-troubleshooting-deployment-policies}
 {: troubleshoot}
 
-When I try to deploy the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 and apply the Security Context Constraint, clusterRole, or ClusterRoleBinding to my namespace, I encounter one of the following errors.
+When I try to deploy the {{site.data.keyword.blockchainfull_notm}} Platform v2.5 and apply the Security Context Constraint, clusterRole, or ClusterRoleBinding to my namespace, I encounter one of the following errors.
 
 When I apply the file, I receive a user forbidden error:
 {: tsSymptoms}
@@ -100,7 +100,7 @@ This problem occurs when there is a problem with the indents in your file. Refer
 {: #ibp-v2-troubleshooting-deployment-cr}
 {: troubleshoot}
 
-When I try to deploy the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 and apply the custom resource definition of the operator or the console, I encounter one of the following errors:
+When I try to deploy the {{site.data.keyword.blockchainfull_notm}} Platform v2.5 and apply the custom resource definition of the operator or the console, I encounter one of the following errors:
 
 When I apply the custom resource file, I receive an image pull or image pull back-off error:
 {: tsSymptoms}
@@ -122,7 +122,7 @@ error: error parsing console.yaml: error converting YAML to JSON: yaml: line 11:
 
 This problem occurs when there is a problem with the indents in your file. Refer to the documentation for the correct format for the custom resource files of the console and operator.
 {: tsCauses}
-</blockchain-sw-213>
+
 
 ## Why are my console actions failing in my Chrome browser Version 77.0.3865.90 (Official Build) (64-bit)?
 {: #ibp-v2-troubleshooting-chrome-v77}
@@ -134,10 +134,10 @@ The console has been working successfully, but requests have started to fail. Fo
 This problem can be caused by a [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=1006243){: external} introduced by the Chrome browser `Version 77.0.3865.90 (Official Build) (64-bit)` that causes actions from the browser to fail.
 {: tsCauses}
 
-To resolve this problem, open the console in a new browser tab in Chrome. Any identities that you saved in your console wallet will persist in the new browser tab. To avoid this problem you can upgrade your Chrome browser version. Ensure you have downloaded all of your wallet identities to your local machine before closing your browser. <blockchain-sw-213>If this solution does not resolve your problem see [Why is my channel creation failing or I am unable to add a new organization to my ordering service with the error "Unable to get system channel"?](#ibp-v2-troubleshooting-accept-tls).</blockchain-sw-213>
+To resolve this problem, open the console in a new browser tab in Chrome. Any identities that you saved in your console wallet will persist in the new browser tab. To avoid this problem you can upgrade your Chrome browser version. Ensure you have downloaded all of your wallet identities to your local machine before closing your browser. If this solution does not resolve your problem see [Why is my channel creation failing or I am unable to add a new organization to my ordering service with the error "Unable to get system channel"?](#ibp-v2-troubleshooting-accept-tls).
 {: tsResolve}
 
-<blockchain-sw-213>
+
 ## Why am I not able to log in to the console from my Chrome browser on Mac OS Catalina?
 {: #ibp-v2-troubleshooting-console-catalina}
 {: troubleshoot}
@@ -147,8 +147,8 @@ The console has been working successfully, but after I upgraded my Mac OS to Cat
 
 There are three ways to resolve this problem:
 {: tsResolve}
-1.  Use a different [supported browser](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#deploy-ocp-browsers) with Catalina.
-2. Use your own [TLS certificates when deploying on OpenShift Contain Platform](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#use-your-own-tls-certificates-optional-) or [TLS certificates when deploying on Kubernetes or {{site.data.keyword.cloud_notm}} Private](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8#use-your-own-tls-certificates-optional-).
+1.  Use a different [supported browser](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers) with Catalina.
+2. Use your own [TLS certificates when deploying on OpenShift Contain Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#use-your-own-tls-certificates-optional-) or [TLS certificates when deploying on Kubernetes or {{site.data.keyword.cloud_notm}} Private](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#use-your-own-tls-certificates-optional-).
 3. Run the following commands to generate a new key and certificate pair for the console that will fix the problem.
    1. Run the following command to get the pod that corresponds to the ibp console:
       ```
@@ -179,7 +179,7 @@ There are three ways to resolve this problem:
 If you are not using your own TLS certificates to secure communications in your blockchain network, you need to accept the self-signed certificate that was generated for you. Otherwise, when you try to create a channel or add an organization to an ordering service the action fails. Channel creation fails with the error `An error occurred when creating channel. submit config update failed: grpc code ???= response contains no code or message`. Or, when you click on your ordering service, you see `Unable to get system channel. If you associated an identity without administrative privilege on the ordering service node, you will not be able to view or manage ordering service details`.
 {: tsSymptoms}
 
-This problem occurs when the blockchain console is deployed without the advanced deployment option to [use your own TLS certificates](/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp#use-your-own-tls-certificates-optional-).
+This problem occurs when the blockchain console is deployed without the advanced deployment option to [use your own TLS certificates](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#use-your-own-tls-certificates-optional-).
 {: tsCauses}
 
 To resolve this problem, you need to accept the self-signed certificate in your browser.
@@ -191,7 +191,7 @@ To resolve this problem, you need to accept the self-signed certificate in your 
 4. Accept the certificate.
 
 You need to accept the certificate from this url to communicate with your nodes from your console and then log in as usual. When you switch to a new machine or a new browser, you need to repeat these steps.
-</blockchain-sw-213>
+
 
 ## When I hover over my node, the status is `Status unavailable` or `Status unknown`, what does this mean?
 {: #ibp-v2-troubleshooting-status-unavailable}
@@ -204,7 +204,7 @@ This problem can occur if the node is newly created and the deployment process h
 {: tsCauses}
 
 If this is a new node, wait a few more minutes for the deployment to complete. You can try reloading the page in your browser to refresh the status. If the node is not new,
- <blockchain-sw-213>[examine the associated node logs](/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage#console-icp-manage-console-logs)</blockchain-sw-213> for errors to determine the cause.
+ [examine the associated node logs](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-console-logs) for errors to determine the cause.
 {: tsResolve}
 
 ## When I hover over my node, the status is `Status undetectable`, what does this mean?
@@ -246,7 +246,7 @@ You may receive this error if this version of the smart contract already exists 
 
 - Open your Kubernetes dashboard and ensure the peer status is `Running`.
 - Open the peer node and ensure the smart contract version does not already exist on the peer and try again with the proper version.
-- If you are still experiencing problems after the node is up,  <blockchain-sw-213>[check your node logs](/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage#console-icp-manage-node-logs)</blockchain-sw-213> for errors.
+- If you are still experiencing problems after the node is up,  [check your node logs](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-node-logs) for errors.
 {: tsResolve}
 
 ## Why is the smart contract that I installed on the peer not listed in the UI?
@@ -368,10 +368,10 @@ After creating a new peer or ordering service, depending on your cluster storage
 
 
 
-<blockchain-sw-213>
-Check your Kubernetes dashboard and ensure the peer or node status is `Running`. Then try your action again. If you are still experiencing problems after the node is up, [check your node logs](/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage#console-icp-manage-node-logs) for errors.
+
+Check your Kubernetes dashboard and ensure the peer or node status is `Running`. Then try your action again. If you are still experiencing problems after the node is up, [check your node logs](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-node-logs) for errors.
 {: tsResolve}
-</blockchain-sw-213>
+
 
 ## Why does my peer or ordering node fail to start?
 {: #ibp-console-build-network-troubleshoot-entry2}
@@ -418,10 +418,10 @@ Do not attempt to use Kubernetes commands to remove the node. Instead, it is ext
 You may need to view your smart contract, or chaincode, container logs to debug a smart contract issue.
 {: tsSymptoms}
 
-<blockchain-sw-213>
-Follow these [instructions](/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage#console-icp-manage-container-logs) to view your smart contract container logs.
+
+Follow these [instructions](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-container-logs) to view your smart contract container logs.
 {: tsResolve}
-</blockchain-sw-213>
+
 
 
 
@@ -449,8 +449,8 @@ To re-establish communications between the node and the proxy, restart the faili
 - Delete the pod: `kubectl delete pod -n <NAMESPACE> <PODNAME>`  
 
 Replace:
-- `<NAMESPACE>` with the namespace <blockchain-sw-213>or project, if using Openshift Container Platform, where the  {{site.data.keyword.blockchainfull_notm}} Platform was deployed in your Kubernetes cluster.</blockchain-sw-213>
-- `<PODNAME>` with the **Name** of the failing pod that is visible in the list of pods returned by the previous command.<blockchain-sw-213>
+- `<NAMESPACE>` with the namespace or project, if using Openshift Container Platform, where the  {{site.data.keyword.blockchainfull_notm}} Platform was deployed in your Kubernetes cluster.
+- `<PODNAME>` with the **Name** of the failing pod that is visible in the list of pods returned by the previous command.
 
 ## My CA failed to upgrade, how can I fix it?
 {: #ibp-v2-troubleshooting-ca-upgrade-fails}
@@ -479,7 +479,7 @@ To resolve this problem, you need to restart the Operator pod in your cluster.
     kubectl delete po <CONSOLE-POD>
     ```
     {: codeblock}
-After the operator pod restarts, the CA node is successfully upgraded.</blockchain-sw-213>
+After the operator pod restarts, the CA node is successfully upgraded.
 
 ## Why are my transactions returning an endorsement policy error: signature set did not satisfy policy?
 {: #ibp-v2-troubleshooting-endorsement-sig-failure}
@@ -527,7 +527,7 @@ UTC [discovery] chaincodeQuery -> ERRO 23c Failed constructing descriptor for ch
 This error occurs when the peer's enroll id type does not match the smart contract endorsement policy that was configured when the smart contract was instantiated on the channel.
 {: tsCauses}
 
-The only way to resolve this error is to delete the peer and create a new one with an enroll id that has the correct type `peer`. You can use the enroll id and secret from an existing user of type `peer` from the peer's CA or register a new user with type `peer`. Follow the instructions in the [Build a network tutorial](/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-build-network#ibp-console-build-network-create-peer-org1) to create a new peer identity with the correct type and peer.
+The only way to resolve this error is to delete the peer and create a new one with an enroll id that has the correct type `peer`. You can use the enroll id and secret from an existing user of type `peer` from the peer's CA or register a new user with type `peer`. Follow the instructions in the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peer-org1) to create a new peer identity with the correct type and peer.
 {: tsResolve}
 
 

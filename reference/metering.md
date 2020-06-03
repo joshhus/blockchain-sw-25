@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: metering, licensing service, license consumption, license tracking
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 

@@ -6,7 +6,7 @@ lastupdated: "2020-06-03"
 
 keywords: best practices, develop applications, connectivity, availability, mutual TLS, CouchDB
 
-subcollection: blockchain-sw-213
+subcollection: blockchain-sw-25
 
 ---
 
@@ -26,13 +26,13 @@ subcollection: blockchain-sw-213
 {: help}
 {: support}
 
-<blockchain-sw-213><div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-best-practices-app">2.1.2</a>
     </p>
 </div>
-</blockchain-sw-213>
+
 
 This guide is for users who understand the basics of application development and are ready to scale their solution. Follow these best practices to maximize the performance of your network, and avoid application downtime.
 {:shortdesc}
