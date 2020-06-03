@@ -68,7 +68,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 - **Unified operation**. The {{site.data.keyword.blockchainfull_notm}} Platform console allows you to deploy and manage all of your organizations and nodes in **one console**. You can also add or remove members from a blockchain consortium, create and join channels, and install and instantiate smart contracts from your console.
 - **Dynamic signature collection** that allows better control over collaborative governance over channel configurations.
 - **Manage access** of the users who can administer or monitor your nodes.
-- **Interact directly with your pods** using <blockchain-sw-w213>your Kubernetes service</blockchain-sw-w213>.
+- **Interact directly with your pods** using your Kubernetes service.
 - **Direct access to the logs** of your nodes from your  Kubernetes service. Use  any supported third-party service to extract and analyze your logs.
 - **Kubernetes service integration.** Leverage services such as LogDNA for logging and Prometheus and Sysdig for monitoring.
 
@@ -77,8 +77,6 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 - **Scale** up and down the resources in your Kubernetes cluster, paying for only what you need. For more information, see  [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing).
 - **Disaster recovery and multi-region high availability (HA).** This option duplicates your Kubernetes deployment across  regions, enabling high availability (HA) of your components and disaster recovery (DR).
 - **Connect to other Fabric networks**: Join {{site.data.keyword.blockchainfull_notm}} Platform peers to any network running Hyperledger Fabric components. Similarly, you can invite Fabric peers to join channels hosted on an ordering service deployed on the {{site.data.keyword.blockchainfull_notm}} Platform. Note that you will need to use Hyperledger Fabric APIs or the CLI.
-
-
 
 
 Check out this [blog](https://www.ibm.com/blogs/blockchain/2020/03/the-latest-in-multicloud-support-distributed-consensus-security-and-more/){: external} on taking the next step towards multicloud support and distributed consensus.
@@ -101,7 +99,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3 can be deployed wit
 | IBM Cloud Private on LinuxONE | 3.2.1 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
 | Kubernetes ***    | v1.14 - v1.17 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 {: caption="Table 1. Supported platforms" caption-side="bottom"}
-*** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform v2.1.3 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).  
+*** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform 2.1.3 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).  
 
 
 If you are running on Azure Kubernetes Service, Amazon Elastic Kubernetes Service, or IBM Kubernetes Service, then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}. For more information, see [Considerations when using Kubernetes distributions](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#console-deploy-k8-considerations).
