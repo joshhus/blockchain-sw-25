@@ -192,6 +192,7 @@ rules:
   - "*"
   resources:
   - pods
+  - pods/log
   - services
   - endpoints
   - persistentvolumeclaims
