@@ -635,7 +635,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: cp.icr.io/cp/ibp-operator:2.5-20200618-amd64
+          image: cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always
@@ -711,7 +711,7 @@ When the operator is running on your namespace, you can apply a custom resource 
 Save the custom resource definition below as `ibp-console.yaml` on your local system. If you changed the name of the entitlement key secret, then you need to edit the field of `name: docker-key-secret`.
 
 ```yaml
-apiVersion: ibp.com/v1alpha1
+apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
@@ -723,7 +723,8 @@ spec:
   email: "<EMAIL>"
   password: "<PASSWORD>"
   registryURL: cp.icr.io/cp
-  imagePullSecret: "docker-key-secret"
+  imagePullSecrets:
+    - "docker-key-secret"
   networkinfo:
     domain: <DOMAIN>
   storage:
@@ -775,7 +776,7 @@ Replace `<PROJECT_NAME>` with the name of your project. The console can take a f
 Before you deploy the console, you can edit the `ibp-console.yaml` file to allocate more resources to your console or use zones for high availability in a multizone cluster. To take advantage of these deployment options, you can use the console resource definition with the `resources:` and `clusterdata:` sections added:
 
 ```yaml
-apiVersion: ibp.com/v1alpha1
+apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
@@ -788,7 +789,8 @@ metadata:
     email: "<EMAIL>"
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
-    imagePullSecret: "docker-key-secret"
+    imagePullSecrets:
+      - "docker-key-secret"
     networkinfo:
         domain: <DOMAIN>
     storage:
@@ -877,8 +879,9 @@ kubectl create secret generic console-tls-secret --from-file=tls.crt=./tlscert.p
 {:codeblock}
 
 After you create the secret, add the `tlsSecretName` field to the `spec:` section of `ibp-console.yaml` with one indent added, at the same level as the `resources:` and `clusterdata:` sections of the advanced deployment options. You must provide the name of the TLS secret that you created to the field. The following example deploys a console with the TLS certificate and key stored in a secret named `"console-tls-secret"`:
+
 ```yaml
-apiVersion: ibp.com/v1alpha1
+apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
@@ -891,7 +894,8 @@ metadata:
     email: "<EMAIL>"
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
-    imagePullSecret: "docker-key-secret"
+    imagePullSecrets:
+      - "docker-key-secret"
     networkinfo:
         domain: <DOMAIN>
     storage:

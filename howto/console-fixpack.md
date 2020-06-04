@@ -50,7 +50,7 @@ kubectl get deployment ibp-operator -n <namespace> -o yaml > operator.yaml
 
 Open `operator.yaml` in a text editor and save a new copy of the file as `operator-fixpack.yaml`. You need to update the `image:` field with the new operator image. You can find the name and tag of the latest operator image below:
 ```
-cp.icr.io/cp/ibp-operator:2.5-20200618-amd64
+cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -149,35 +149,35 @@ docker login --username cp --password <KEY> cp.icr.io
 
 After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform 2.5:
 ```
-docker pull cp.icr.io/cp/ibp-operator:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-init:2.5-20200618-amd64
+docker pull cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-init:2.5.0-20200618-amd64
 docker pull cp.icr.io/cp/ibp-peer:1.4.6-20200618-amd64
 docker pull cp.icr.io/cp/ibp-orderer:1.4.6-20200618-amd64
 docker pull cp.icr.io/cp/ibp-ca:1.4.6-20200618-amd64
 docker pull cp.icr.io/cp/ibp-dind:1.4.6-20200618-amd64
-docker pull cp.icr.io/cp/ibp-console:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-grpcweb:2.5-20200618-amd64
+docker pull cp.icr.io/cp/ibp-console:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-grpcweb:2.5.0-20200618-amd64
 docker pull cp.icr.io/cp/ibp-utilities:1.4.6-20200618-amd64
 docker pull cp.icr.io/cp/ibp-couchdb:2.3.1-20200618-amd64
-docker pull cp.icr.io/cp/ibp-deployer:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-fluentd:2.5-20200618-amd64
+docker pull cp.icr.io/cp/ibp-deployer:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-fluentd:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
 After you download the images, you must change the image tags to refer to your docker registry. Replace `<LOCAL_REGISTRY>` with the url of your local registry and run the following commands:
 ```
-docker tag cp.icr.io/cp/ibp-operator:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-init:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-init:2.5-20200618-amd64
+docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-init:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200618-amd64
 docker tag cp.icr.io/cp/ibp-peer:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-peer:1.4.6-20200618-amd64
 docker tag cp.icr.io/cp/ibp-orderer:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-orderer:1.4.6-20200618-amd64
 docker tag cp.icr.io/cp/ibp-ca:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-ca:1.4.6-20200618-amd64
 docker tag cp.icr.io/cp/ibp-dind:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-dind:1.4.6-20200618-amd64
-docker tag cp.icr.io/cp/ibp-console:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-console:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-grpcweb:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-grpcweb:2.5-20200618-amd64
+docker tag cp.icr.io/cp/ibp-console:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-console:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-grpcweb:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20200618-amd64
 docker tag cp.icr.io/cp/ibp-utilities:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.6-20200618-amd64
 docker tag cp.icr.io/cp/ibp-couchdb:2.3.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20200618-amd64
-docker tag cp.icr.io/cp/ibp-deployer:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-deployer:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-fluentd:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-fluentd:2.5-20200618-amd64
+docker tag cp.icr.io/cp/ibp-deployer:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-fluentd:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -193,18 +193,18 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the url of your local registry.
 ```
-docker push <LOCAL_REGISTRY>/ibp-operator:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-init:2.5-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-peer:1.4.6-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-orderer:1.4.6-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-ca:1.4.6-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-dind:1.4.6-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-console:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-grpcweb:2.5-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-console:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-utilities:1.4.6-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-deployer:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-fluentd:2.5-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -223,7 +223,7 @@ kubectl get deployment ibp-operator -n <namespace> -o yaml > operator.yaml
 
 Open `operator.yaml` in a text editor and save a new copy of the file as `operator-fixpack.yaml`. You need to update the `image:` field with the new operator image. You can find the name and tag of the latest operator image below:
 ```
-cp.icr.io/cp/ibp-operator:2.5-20200618-amd64
+cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
 ```
 {:codeblock}
 

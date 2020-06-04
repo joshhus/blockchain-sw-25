@@ -82,6 +82,10 @@ docker login --username cp --password <KEY> cp.icr.io
 
 After you log in, use the following command to pull the {{site.data.keyword.blockchainfull_notm}} images:
 ```
+docker pull cp.icr.io/cp/ibp-ccenv:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-goenv:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-nodeenv:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200618-amd64
 docker pull cp.icr.io/cp/ibp-peer:1.4.6-20200618-amd64
 docker pull cp.icr.io/cp/ibp-orderer:1.4.6-20200618-amd64
 docker pull cp.icr.io/cp/ibp-ca:1.4.6-20200618-amd64
@@ -96,7 +100,7 @@ docker pull cp.icr.io/cp/ibp-nodeenv:1.4.6-20200618-amd64
 If you want to import a node that you deploy into an {{site.data.keyword.blockchainfull_notm}} Platform console, you can pull the image of the gRPC web proxy.
 
 ```
-docker pull cp.icr.io/cp/ibp-grpcweb:2.5-20200618-amd64
+docker pull cp.icr.io/cp/ibp-grpcweb:2.5.0-20200618-amd64
 ```
 
 ## Getting started
@@ -485,7 +489,7 @@ After we deploy a network, we can use the gRPC web proxy to import a peer or ord
   services:
     web_proxy.peer0.org1.example.com:
       container_name: web_proxy.peer0.org1.example.com
-      image: cp.icr.io/cp/ibp-grpcweb:2.5-20200618-amd64
+      image: cp.icr.io/cp/ibp-grpcweb:2.5.0-20200618-amd64
       environment:
         - LICENSE=accept
         - BACKEND_ADDRESS=peer0.org1.example.com:7051

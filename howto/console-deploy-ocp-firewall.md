@@ -108,18 +108,27 @@ docker login --username cp --password <KEY> cp.icr.io
 
 After you log in, use the following command to pull all of the component images of the {{site.data.keyword.blockchainfull_notm}} Platform:
 ```
-docker pull cp.icr.io/cp/ibp-operator:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-init:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-peer:1.4.6-20200618-amd64
-docker pull cp.icr.io/cp/ibp-orderer:1.4.6-20200618-amd64
-docker pull cp.icr.io/cp/ibp-ca:1.4.6-20200618-amd64
-docker pull cp.icr.io/cp/ibp-dind:1.4.6-20200618-amd64
-docker pull cp.icr.io/cp/ibp-console:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-grpcweb:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-utilities:1.4.6-20200618-amd64
+docker pull cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-init:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-console:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-grpcweb:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-deployer:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-fluentd:2.5.0-20200618-amd64
 docker pull cp.icr.io/cp/ibp-couchdb:2.3.1-20200618-amd64
-docker pull cp.icr.io/cp/ibp-deployer:2.5-20200618-amd64
-docker pull cp.icr.io/cp/ibp-fluentd:2.5-20200618-amd64
+docker pull cp.icr.io/cp/ibp-peer:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-orderer:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-ca:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-dind:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-utilities:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-peer:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-orderer:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-ca:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-utilities:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64
 ```
 {:codeblock}
 
@@ -128,18 +137,27 @@ If you are deploying the platform on LinuxONE on s390x, replace `amd64` in the i
 
 After you download the images, you must change the image tags to refer to your docker registry. Replace `<LOCAL_REGISTRY>` with the url of your local registry and run the following commands:
 ```
-docker tag cp.icr.io/cp/ibp-operator:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-init:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-init:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-peer:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-peer:1.4.6-20200618-amd64
-docker tag cp.icr.io/cp/ibp-orderer:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-orderer:1.4.6-20200618-amd64
-docker tag cp.icr.io/cp/ibp-ca:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-ca:1.4.6-20200618-amd64
-docker tag cp.icr.io/cp/ibp-dind:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-dind:1.4.6-20200618-amd64
-docker tag cp.icr.io/cp/ibp-console:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-console:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-grpcweb:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-grpcweb:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-utilities:1.4.6-20200618-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.6-20200618-amd64
+docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-init:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-console:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-console:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-grpcweb:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-deployer:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-fluentd:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20200618-amd64
 docker tag cp.icr.io/cp/ibp-couchdb:2.3.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20200618-amd64
-docker tag cp.icr.io/cp/ibp-deployer:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-deployer:2.5-20200618-amd64
-docker tag cp.icr.io/cp/ibp-fluentd:2.5-20200618-amd64 <LOCAL_REGISTRY>/ibp-fluentd:2.5-20200618-amd64
+docker tag cp.icr.io/cp/ibp-peer:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-peer:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-orderer:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-orderer:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-ca:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-ca:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-dind:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-dind:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-utilities:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-peer:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-orderer:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-ca:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ca:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-utilities:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
 ```
 {:codeblock}
 
@@ -155,18 +173,27 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the url of your local registry.
 ```
-docker push <LOCAL_REGISTRY>/ibp-operator:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-init:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-peer:1.4.6-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-orderer:1.4.6-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-ca:1.4.6-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-dind:1.4.6-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-console:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-grpcweb:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-utilities:1.4.6-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-console:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-deployer:2.5-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-fluentd:2.5-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-peer:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-orderer:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-ca:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-dind:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-ca:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
 ```
 {:codeblock}
 
@@ -717,7 +744,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: <LOCAL_REGISTRY>/ibp-operator:2.5-20200618-amd64
+          image: <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always
@@ -793,7 +820,7 @@ When the operator is running on your namespace, you can apply a custom resource 
 Save the custom resource definition below as `ibp-console.yaml` on your local system. If you changed the name of the entitlement key secret, then you need to edit the field of `name: docker-key-secret`.
 
 ```yaml
-apiVersion: ibp.com/v1alpha1
+apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
@@ -805,7 +832,8 @@ spec:
   email: "<EMAIL>"
   password: "<PASSWORD>"
   registryURL: cp.icr.io/cp
-  imagePullSecret: "docker-key-secret"
+  imagePullSecrets:
+    - "docker-key-secret"
   networkinfo:
     domain: <DOMAIN>
   storage:
@@ -857,7 +885,7 @@ Replace `<PROJECT_NAME>` with the name of your project. Before you install the c
 You can edit the `ibp-console.yaml` file to allocate more resources to your console or use zones for high availability in a multizone cluster. To take advantage of these deployment options, you can use the console resource definition with the `resources:` and `clusterdata:` sections added:
 
 ```yaml
-apiVersion: ibp.com/v1alpha1
+apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
@@ -958,8 +986,9 @@ kubectl create secret generic console-tls-secret --from-file=tls.crt=./tlscert.p
 {:codeblock}
 
 After you create the secret, add the `tlsSecretName` field to the `spec:` section of `ibp-console.yaml` with one indent added, at the same level as the `resources:` and `clusterdata:` sections of the advanced deployment options. You must provide the name of the TLS secret that you created to the field. The following example deploys a console with the TLS certificate and key stored in a secret named `"console-tls-secret"`:
+
 ```yaml
-apiVersion: ibp.com/v1alpha1
+apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
@@ -972,7 +1001,8 @@ metadata:
     email: "<EMAIL>"
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
-    imagePullSecret: "docker-key-secret"
+    imagePullSecrets:
+      - "docker-key-secret"
     networkinfo:
         domain: <DOMAIN>
     storage:
