@@ -22,7 +22,7 @@ subcollection: blockchain-sw-25
 # Known issues
 {: #sw-known-issues}
 
-This page describes known issues that you might encounter when you use {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3.
+This page describes known issues that you might encounter when you use {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 {:shortdesc}
 
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">

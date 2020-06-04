@@ -19,10 +19,10 @@ subcollection: blockchain-sw-25
 {:tip: .tip}
 {:pre: .pre}
 
-# Installing the v2.1.3 Fix Pack
+# Installing the 2.5 Fix Pack
 {: #install-fixpack}
 
-Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 before May 20, 2020 should install the v2.1.3 Fix Pack. The Fix Pack contains important bug fixes and should be applied to your network as soon as possible. For more information, see the [May 20, 2020 Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#05-20-2020). If you installed the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 after May 20, 2020, the platform will contain all the bug fixes and improvements provided by the Fix Pack, and you do not need to apply the Fix Pack.
+Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 before May 20, 2020 should install the 2.5 Fix Pack. The Fix Pack contains important bug fixes and should be applied to your network as soon as possible. For more information, see the [May 20, 2020 Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#05-20-2020). If you installed the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after May 20, 2020, the platform will contain all the bug fixes and improvements provided by the Fix Pack, and you do not need to apply the Fix Pack.
 {:shortdesc}
 
 You can install the Fix Pack by updating the {{site.data.keyword.blockchainfull_notm}} Platform deployment on your Kubernetes cluster to pull the latest images from the {{site.data.keyword.IBM_notm}} Entitlement registry. You can apply the Fix Pack by using the following steps:
@@ -31,7 +31,7 @@ You can install the Fix Pack by updating the {{site.data.keyword.blockchainfull_
 2. [Update the {{site.data.keyword.blockchainfull_notm}} console](#install-fixpack-console)
 3. [Update your blockchain nodes](#install-fixpack-nodes)
 
-You can use these steps if you deployed the platform on the OpenShift Container Platform, {{site.data.keyword.cloud_notm}} Private, or open source Kubernetes. You will need to apply the Fix Pack for each v2.1.3 network that runs on a separate namespace. If you experience any problems, see the instructions for [rolling back the Fix Pack installation](#install-fixpack-rollback).  If you deployed your network behind a firewall, without access to the external internet, see the separate set of instructions for [Installing the v2.1.3 Fix Pack behind a firewall](#install-fixpack-firewall). You can install the Fix Pack without disrupting a running network. However, you cannot use the console to deploy new nodes, install or instantiate smart contracts, or create new channels during the process.
+You can use these steps if you deployed the platform on the OpenShift Container Platform, {{site.data.keyword.cloud_notm}} Private, or open source Kubernetes. You will need to apply the Fix Pack for each 2.5 network that runs on a separate namespace. If you experience any problems, see the instructions for [rolling back the Fix Pack installation](#install-fixpack-rollback).  If you deployed your network behind a firewall, without access to the external internet, see the separate set of instructions for [Installing the 2.5 Fix Pack behind a firewall](#install-fixpack-firewall). You can install the Fix Pack without disrupting a running network. However, you cannot use the console to deploy new nodes, install or instantiate smart contracts, or create new channels during the process.
 
 ## Before you begin
 
@@ -89,7 +89,7 @@ kubectl delete deployment -n <namespace> ibpconsole
 ```
 {:codeblock}
 
-After you delete the console deployment and ConfigMap, the console will restart and download the new images and configuration settings provided by the v2.1.3 Fix Pack from the updated operator. You can use the following commands to confirm that the console has been updated with the latest images and configuration. The new images used by the console and your blockchain nodes will have the tags with the date `20200618`.
+After you delete the console deployment and ConfigMap, the console will restart and download the new images and configuration settings provided by the 2.5 Fix Pack from the updated operator. You can use the following commands to confirm that the console has been updated with the latest images and configuration. The new images used by the console and your blockchain nodes will have the tags with the date `20200618`.
 ```
 kubectl get deployment -n <namespace> ibpconsole -o yaml
 kubectl get configmap -n <namespace> ibpconsole-deployer -o yaml
@@ -117,10 +117,10 @@ When you apply the Fix Pack to your operator, it saves the secrets, deployment s
 
 You can roll back an upgrade after you use the console to operate your network. However, after you use the console to upgrade your blockchain nodes, you can no longer roll back your console to a previous version of the platform.
 
-## Installing the v2.1.3 Fix Pack behind a firewall
+## Installing the 2.5 Fix Pack behind a firewall
 {: #install-fixpack-firewall}
 
-If you deployed the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the external internet, you can install the  v2.1.3 Fix Pack by using the following steps:
+If you deployed the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the external internet, you can install the  2.5 Fix Pack by using the following steps:
 
 1. [Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images](#install-fixpack-firewall)
 2. [Update the {{site.data.keyword.blockchainfull_notm}} Platform operator](#install-fixpack-operator-firewall)
@@ -147,7 +147,7 @@ docker login --username cp --password <KEY> cp.icr.io
 
 - Replace `<KEY>` with your entitlement key.
 
-After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3:
+After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform 2.5:
 ```
 docker pull cp.icr.io/cp/ibp-operator:2.5-20200618-amd64
 docker pull cp.icr.io/cp/ibp-init:2.5-20200618-amd64
@@ -262,7 +262,7 @@ kubectl delete deployment -n <namespace> ibpconsole
 ```
 {:codeblock}
 
-After you delete the console deployment and ConfigMap, the console will restart and download the new images and configuration settings provided by the v2.1.3 Fix Pack from the updated operator. You can use the following commands to confirm that the console has been updated with the latest images and configuration. The new images used by the console and your blockchain nodes will have the tags with the date `20200618`.
+After you delete the console deployment and ConfigMap, the console will restart and download the new images and configuration settings provided by the 2.5 Fix Pack from the updated operator. You can use the following commands to confirm that the console has been updated with the latest images and configuration. The new images used by the console and your blockchain nodes will have the tags with the date `20200618`.
 ```
 kubectl get deployment -n <namespace> ibpconsole -o yaml
 kubectl get configmap -n <namespace> ibpconsole-deployer -o yaml

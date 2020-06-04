@@ -19,7 +19,7 @@ subcollection: blockchain-sw-25
 {:tip: .tip}
 {:pre: .pre}
 
-# Deploying {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3
+# Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #deploy-ocp}
 
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
@@ -30,12 +30,12 @@ subcollection: blockchain-sw-25
 </div>
 
 
-You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform v2.1.3 onto a Kubernetes cluster that is running on OpenShift Container Platform 3.11, 4.1, or 4.2. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 onto a Kubernetes cluster that is running on OpenShift Container Platform 3.11, 4.1, or 4.2. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 {:shortdesc}
 
 The following diagram shows the steps that a cluster administrator needs to take on the OpenShift Container Platform to deploy the {{site.data.keyword.blockchainfull_notm}} Platform.
 
-![{{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 deployment overview](../images/OCP_deploy_flow.svg "{{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 deployment overview"){: caption="Figure 1. Deployment process on OpenShift"  caption-side="bottom"}
+![{{site.data.keyword.blockchainfull_notm}} Platform 2.5 deployment overview](../images/OCP_deploy_flow.svg "{{site.data.keyword.blockchainfull_notm}} Platform 2.5 deployment overview"){: caption="Figure 1. Deployment process on OpenShift"  caption-side="bottom"}
 
 ## Resources required
 {: #deploy-ocp-resources-required}

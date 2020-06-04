@@ -30,7 +30,7 @@ You can watch the getting started video series to learn more about how to use {{
 
 
 
-## Getting started with {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3
+## Getting started with {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 
 {: #ibp-videos-ibp-v2}
 
