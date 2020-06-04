@@ -47,9 +47,9 @@ Leveraging the Fabric v2 **external chaincode launcher** capability, when you de
 
 **Multizone-capable storage**
 
-If your Kubernetes cluster is configured to use multizone-capable storage, new peer and ordering nodes can be deployed that leverage multizone storage, effectively extending their high availability across cluster zones. See [Multizone-capable Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-deploy-iks#ibp-console-storage-multizone) for more information.
+If your Kubernetes cluster is configured to use multizone-capable storage, new peer and ordering nodes can be deployed that leverage multizone storage, effectively extending their high availability across cluster zones.See [Multizone-capable Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha##ibp-console-ha-multi-zone-storage) for more information.
 
-**Peer and ordering node patch 1.4.6-3**
+**Peer and ordering node patch 1.4.7-1**
 
 Miscellaneous bug fixes and security patches.
 
