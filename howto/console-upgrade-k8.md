@@ -30,13 +30,13 @@ subcollection: blockchain-sw-25
 </div>
 
 
-You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3.
+You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3.
 {:shortdesc}
 
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-k8-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|
@@ -50,7 +50,7 @@ You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3 
 If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1, you cannot access the console from the Chrome browser on Mac OS Catalina when the console is deployed with the default configuration that uses self-signed certificates. For more information on how you can resolve this problem, see [Chrome browser on Mac OS Catalina](/docs/blockchain-sw-25?topic=blockchain-sw-25-sw-known-issues#sw-known-issues-catalina) in Known Issues.
 {:note}
 
-## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.3
+## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3
 {: #upgrade-k8-steps}
 
 You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by using the following steps:

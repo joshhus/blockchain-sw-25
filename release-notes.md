@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-03"
+lastupdated: "2020-06-04"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -29,7 +29,7 @@ subcollection: blockchain-sw-25
 </div>
 
 
-Use these release notes that are grouped by date to learn about the latest changes to {{site.data.keyword.blockchainfull}} Platform 2.1.3.
+Use these release notes that are grouped by date to learn about the latest changes to {{site.data.keyword.blockchainfull}} Platform v2.1.3.
 {:shortdesc}
 
 See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#ibp-console-manage-patch) for instructions on how to apply patches to your existing nodes.
