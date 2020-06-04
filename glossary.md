@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-03"
+lastupdated: "2020-06-04"
 
 keywords: IBM Blockchain, IBM Blockchain Platform, terms, Fabric, Raft, CouchDB, consortium
 
@@ -23,7 +23,8 @@ subcollection: blockchain-sw-25
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-glossary">2.1.2</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-glossary">2.1.2</a>,
+    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-glossary">2.1.3</a>
     </p>
 </div>
 
