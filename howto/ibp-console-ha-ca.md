@@ -26,7 +26,7 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-console-build-ha-ca">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-ibp-console-build-ha-ca">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-build-ha-ca">2.1.3</a>
     </p>
 </div>
 

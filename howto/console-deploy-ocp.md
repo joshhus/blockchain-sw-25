@@ -26,17 +26,21 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-deploy-ocp">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-deploy-ocp">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-ocp">2.1.3</a>
     </p>
 </div>
 
 
-You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 onto a Kubernetes cluster that is running on OpenShift Container Platform 3.11, 4.1, or 4.2. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 onto a Kubernetes cluster that is running on OpenShift Container Platform 3.11, 4.1, or 4.2. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. After the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 {:shortdesc}
+
 
 The following diagram shows the steps that a cluster administrator needs to take on the OpenShift Container Platform to deploy the {{site.data.keyword.blockchainfull_notm}} Platform.
 
 ![{{site.data.keyword.blockchainfull_notm}} Platform 2.5 deployment overview](../images/OCP_deploy_flow.svg "{{site.data.keyword.blockchainfull_notm}} Platform 2.5 deployment overview"){: caption="Figure 1. Deployment process on OpenShift"  caption-side="bottom"}
+
+If you prefer to automate the installation of the service, check out the [Ansible Playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp) that can be used to complete all of these steps for you.
+{: tip}
 
 ## Resources required
 {: #deploy-ocp-resources-required}
@@ -991,4 +995,6 @@ The administrator who provisions the console can grant access to other users and
 
 When you access your console, you can view the **nodes** tab of your console UI. You can use this screen to deploy components on the cluster where you deployed the console. See the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network) to get started with the console. You can also use this tab to operate nodes that are created on other clouds. For more information, see [Importing nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes).
 
-To learn how to manage the users that can access the console, view the logs of your console and your blockchain components, see [Administering your console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage).
+To learn how to manage the users that can access the console, view the logs of your console and your blockchain components, see [Administering your console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage).  
+
+Ready to automate the entire deployment process? Check out the [Ansible Playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp) that can be used to complete all of the steps  in this topic for you.

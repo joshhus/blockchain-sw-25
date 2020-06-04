@@ -27,12 +27,12 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-console-ocp-about">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-console-ocp-about">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-console-ocp-about">2.1.3</a>
     </p>
 </div>
 
 
-The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network on-premises, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.6 and supports deployment on multiple Kubernetes distributions.
+The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network on-premises, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.7 and v2.x and supports deployment on multiple Kubernetes distributions.
 {:shortdesc}
 
 ## What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers
@@ -55,7 +55,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 **BUILD ---- Integrated developer experience**
 - **Easily code** your smart contracts in Node.js, Golang, Java, or JavaScript, write client applications using the new {{site.data.keyword.blockchainfull_notm}} VS Code extension, leverage **SDK integration** with the console, and learn from our rich tutorials and samples.
 - **Simplified DevOps** allows you to move from development to test to production in a single environment by scaling up your Kubernetes resources to add more components.
-- **Up-to-date Fabric key features**. Leverage the latest features of Hyperledger Fabric v1.4.6:
+- **Up-to-date Fabric key features**. Leverage the latest features of Hyperledger Fabric v1.4.7 and v2.x:
   - [Raft ordering service](https://hyperledger-fabric.readthedocs.io/en/release-1.4/orderer/ordering_service.html#raft){: external}
   - [Private data collections](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-private-data) that provide increased data privacy by ensuring that ledger data is shared to only authorized peers via the gossip protocol.
   - [Fabric Node OUs](https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html#node-ou-roles-and-msps){: external}
@@ -127,7 +127,7 @@ For more information, see [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-2
 - Users of this offering must manage their own security and infrastructure. The {{site.data.keyword.blockchainfull_notm}} Platform does not provision or provide those services.
 - Persistent storage is required. Host-local storage volumes are not supported.
 - You must have the cluster admin role in order to deploy the product.
-- The console creates nodes based on the Hyperledger Fabric v1.4.6 node images.
+- The console creates nodes based on the Hyperledger Fabric v1.4.7 and v2.x node images.
 - You can deploy only one {{site.data.keyword.blockchainfull_notm}} Platform console per Kubernetes namespace. If you plan to create multiple blockchain networks, for example to create different environments for development, staging, and production, you should create a unique project or namespace for each environment.
 - You cannot upgrade a deployed network from {{site.data.keyword.blockchainfull_notm}} Platform for Multicloud to {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x.
 - {{site.data.keyword.blockchainfull_notm}} Platform is not supported on OpenShift Online.

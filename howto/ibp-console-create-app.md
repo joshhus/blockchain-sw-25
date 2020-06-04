@@ -27,7 +27,7 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-console-app">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-ibp-console-app">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-app">2.1.3</a>
     </p>
 </div>
 
@@ -295,7 +295,7 @@ git clone https://github.com/hyperledger/fabric-samples.git
 ```
 {:codeblock}
 
-After you download the Fabric Samples, run the following commands to ensure that you are using the version of the samples compatible with Fabric v1.4.6.
+After you download the Fabric Samples, run the following commands to ensure that you are using the version of the samples compatible with Fabric v1.4.7 and v2.x.
 
 ```
 cd fabric-samples

@@ -26,13 +26,16 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-deploy-k8">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-deploy-k8">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8">2.1.3</a>
     </p>
 </div>
 
 
 You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 on any x86_64 Kubernetes cluster running at v1.14 - v1.16 or on s390x on {{site.data.keyword.cloud_notm}} Private v3.2.1 running LinuxONE. Use these instructions if you are using distributions such as Rancher or {{site.data.keyword.cloud_notm}} Private. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 {:shortdesc}
+
+If you prefer to automate the installation of the service, check out the [Ansible Playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp) that can be used to complete all of the deployment steps for you.
+{: tip}
 
 ## Resources required
 {: #deploy-k8-resources-required}
@@ -987,7 +990,9 @@ The administrator who provisions the console can grant access to other users and
 
 When you access your console, you can view the **nodes** tab of your console UI. You can use this screen to deploy components on the cluster where you deployed the console. See the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network) to get started with the console. You can also use this tab to operate nodes that are created on other clouds. For more information, see [Importing nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes).
 
-To learn how to manage the users that can access the console, view the logs of your console and your blockchain components, see [Administering your console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage).
+To learn how to manage the users that can access the console, view the logs of your console and your blockchain components, see [Administering your console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage).  
+
+Ready to automate the entire deployment process? Check out the [Ansible Playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp) that can be used to complete all of the steps  in this topic for you.
 
 ## Considerations when using Kubernetes distributions
 {: #console-deploy-k8-considerations}

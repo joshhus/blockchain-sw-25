@@ -28,7 +28,7 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-console-icp-manage">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-console-icp-manage">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage">2.1.3</a>
     </p>
 </div>
 
@@ -374,10 +374,42 @@ Component logs can be viewed from the command line by using the [kubectl CLI com
 ### Viewing your smart contract container logs
 {: #console-icp-manage-container-logs}
 
-If you encounter issues with your smart contract, you can view the smart contract, or chaincode, container logs to debug an issue. You can run the following command to view the smart contract container logs:
+If you encounter issues with your smart contract, you can view the smart contract, or chaincode, container logs to debug an issue.
+
+Replace `<peer_pod>` with the name of the peer pod where the chaincode is running. Use the command `kubectl get po` to get the list of running pods.
+
+<img src="../images/2-x_Pill.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> If your peer is based on the **Hyperleder Fabric v2.x image**, you can run the following commands to view the smart contract container logs. First get a list of all of the chaincode pods running in your cluster:
 
 ```
-kubectl  logs -f <peer_ped> -c chaincode-logs
+kubectl  get po | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl get po {} --show-labels
+```
+{:codeblock}
+
+You should see results similar to:
+```
+NAME                                                       READY   STATUS            RESTARTS   AGE   LABELS
+chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4   1/1     Running   0          14s   chaincode-id=javacc-1.1,peer-id=org1peer1
+NAME                                                       READY   STATUS    RESTARTS   AGE   LABELS
+chaincode-execution-f3cc736f-94ef-454d-8da3-362a50c653d9   1/1     Running   0          4m    chaincode-id=nodecc-1.1,peer-id=org1peer1
+```
+
+Then, to view the logs for a specific pod, run the command:
+```
+kubectl  logs -f <smart_contract_pod>
+```
+{:codeblock}
+
+Replace `<smart_contract_pod>` with the name of the pod where the chaincode is running. For example:
+```
+kubectl  logs -f chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4
+
+```
+{:codeblock}
+
+<img src="../images/1-4_Pill.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> If your peer is based on the **Hyperledger Fabric v1.4 image**, you can run the following command to view the smart contract container logs.
+
+```
+kubectl  logs -f <peer_pod> -c chaincode-logs
 ```
 {:codeblock}
 

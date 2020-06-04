@@ -26,7 +26,7 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-blockchain-images">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-blockchain-images">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-images">2.1.3</a>
     </p>
 </div>
 
@@ -44,7 +44,7 @@ Although you can deploy the {{site.data.keyword.blockchainfull_notm}} images on 
 
 ## Supported Fabric versions
 
-The {{site.data.keyword.blockchainfull_notm}} Docker images are based on Hyperledger Fabric v1.4.6. You can use this documentation to install and deploy the latest version of Fabric used by the {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
+The {{site.data.keyword.blockchainfull_notm}} Docker images are based on Hyperledger Fabric v1.4.7 and v2.x. You can use this documentation to install and deploy the latest version of Fabric used by the {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 
 See the [My Support](https://www.ibm.com/support/pages/support-ibm-blockchain-platform-v21x){: external} page for details on what is supported.
 
@@ -154,7 +154,7 @@ In addition to using the Fabric tools, you can also use the tools that are provi
 ### Configuring the gRPC web proxy (optional)
 {: #getting-started-proxy}
 
-If you want to manage your nodes using the {{site.data.keyword.blockchainfull_notm}} Platform console, you can deploy an instance of the gRPC web proxy and then connect it to a node that you deployed with the {{site.data.keyword.blockchainfull_notm}} images. You can then import the node into a console that was deployed by using the {{site.data.keyword.blockchainfull_notm}} Platform 2.1.x or {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. You need to deploy a separate web proxy for each node.
+If you want to manage your nodes using the {{site.data.keyword.blockchainfull_notm}} Platform console, you can deploy an instance of the gRPC web proxy and then connect it to a node that you deployed with the {{site.data.keyword.blockchainfull_notm}} images. You can then import the node into a console that was deployed by using the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 or {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. You need to deploy a separate web proxy for each node.
 
 To deploy the proxy, you need to set the following environment variables inside the container.
 ```
@@ -567,7 +567,7 @@ After we deploy a network, we can use the gRPC web proxy to import a peer or ord
   web_proxy.peer0.org1.example.com    | time="2020-01-29T22:18:37Z" level=info msg="listening for http on: [::]:8080"
   ```
 
-You can now view the node from a console by importing the ``peer0.org1.json`` file into an {{site.data.keyword.blockchainfull_notm}} Platform console deployed on {{site.data.keyword.cloud_notm}} or your own cluster using {{site.data.keyword.blockchainfull_notm}} Platform 2.1.x. In order for the console to access your nodes, the URL of the web proxy, the peer, and the operations URL needs be externally accessbile.
+You can now view the node from a console by importing the ``peer0.org1.json`` file into an {{site.data.keyword.blockchainfull_notm}} Platform console deployed on {{site.data.keyword.cloud_notm}} or your own cluster using {{site.data.keyword.blockchainfull_notm}} Platform 2.5. In order for the console to access your nodes, the URL of the web proxy, the peer, and the operations URL needs be externally accessbile.
 
 You need to complete these steps for each node that you want to import into an instance of the {{site.data.keyword.blockchainfull_notm}} Platform console.
 

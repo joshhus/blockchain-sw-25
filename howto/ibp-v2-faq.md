@@ -28,7 +28,7 @@ subcollection: blockchain-sw-25
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-ibp-v2-faq">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-213-ibp-v2-faq">2.1.3</a>
+    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-faq">2.1.3</a>
     </p>
 </div>
 
@@ -93,7 +93,7 @@ View the Support page by clicking the question mark icon <img src="../images/sup
 {: #ibp-v2-faq-v2-Hyperledger-Fabric-3-1}
 {: faq}
 
-{{site.data.keyword.blockchainfull_notm}} Platform 2.5 uses Hyperledger Fabric v1.4.6 while {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 and 2.1.1 use Hyperledger Fabric 1.4.3.
+{{site.data.keyword.blockchainfull_notm}} Platform 2.5 uses Hyperledger Fabric v1.4.7 and v2.x while {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 and 2.1.1 use Hyperledger Fabric 1.4.3.
 
 ## What database do the peers use for their ledger?
 {: #ibp-v2-faq-v2-IBP-Overview-1-3}
