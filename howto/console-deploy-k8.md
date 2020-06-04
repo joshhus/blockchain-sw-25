@@ -334,7 +334,7 @@ kubectl apply -f image-policy.yaml -n <NAMESPACE>
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
 
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the OpenShift CLI.
+The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
 
 ### CA custom resource definition
 {: #deploy-crd-ca}
