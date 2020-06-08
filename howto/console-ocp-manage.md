@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-05"
+lastupdated: "2020-06-08"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -374,7 +374,7 @@ Component logs can be viewed from the command line by using the [kubectl CLI com
 ### Viewing your smart contract container logs
 {: #console-icp-manage-container-logs}
 
-If you encounter issues with your smart contract, you can view the smart contract, or chaincode, container logs to debug an issue.
+If you encounter issues with your smart contract, you can view the smart contract, or chaincode, logs to debug an issue.
 
 <img src="../images/2-x_Pill.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> **Hyperleder Fabric v2.x peer image**  
 
@@ -383,30 +383,37 @@ If your peer is based on the Fabric v2.x image, you can run the following comman
 First get a list of all of the chaincode pods running in your cluster:
 
 ```
-kubectl  get po | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl get po {} --show-labels
+kubectl get po -n <NAMESPACE> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl get po {} -n <NAMESPACE> --show-labels
 ```
 {:codeblock}
+Replacing `<NAMESPACE>` with the name of your cluster namespace or OpenShift project.  
 
 You should see results similar to:
 ```
 NAME                                                       READY   STATUS            RESTARTS   AGE   LABELS
-chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4   1/1     Running   0          14s   chaincode-id=javacc-1.1,peer-id=org1peer1
+chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4   1/1     Running   0          14s   chaincode-id=myjavacc-1.1,peer-id=org1peer1
 NAME                                                       READY   STATUS    RESTARTS   AGE   LABELS
-chaincode-execution-f3cc736f-94ef-454d-8da3-362a50c653d9   1/1     Running   0          4m    chaincode-id=nodecc-1.1,peer-id=org1peer1
+chaincode-execution-f3cc736f-94ef-454d-8da3-362a50c653d9   1/1     Running   0          4m    chaincode-id=mynodecc-1.1,peer-id=org1peer1
 ```
 
-Then, to view the logs for a specific pod, run the command:
+Your smart contract name and version is visible next to the `chaincode-id`.
+
+Then, to view the logs for a specific smart contract pod, run the command:
 ```
-kubectl  logs -f <smart_contract_pod>
+kubectl logs -f <SMART_CONTRACT_POD> -n <NAMESPACE>
 ```
 {:codeblock}
 
-Replace `<smart_contract_pod>` with the name of the pod where the chaincode is running. For example:
+Replace
+- `<SMART_CONTRACT_POD>` with the name of the pod where the chaincode is running.
+- `<NAMESPACE>` with the name of your cluster namespace.
+
+For example:
 ```
-kubectl  logs -f chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4
+kubectl  logs -f chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4 -n na0513
 
 ```
-{:codeblock}
+
 <br><br>
 
 <img src="../images/1-4_Pill.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> **Hyperledger Fabric v1.4 peer image**  
@@ -414,11 +421,13 @@ kubectl  logs -f chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4
 If your peer is based on the Fabric v1.4 image, you can run the following kubectl command to view the smart contract container logs.
 
 ```
-kubectl  logs -f <peer_pod> -c chaincode-logs
+kubectl  logs -f <PEER_POD> -c chaincode-logs -n <NAMESPACE>
 ```
 {:codeblock}
 
-Replace `<peer_pod>` with the name of the peer pod where the chaincode is running. Use the command `kubectl get po` to get the list of running pods.
+Replace
+- `<PEER_POD>` with the name of the peer pod where the chaincode is running. Use the command `kubectl get po` to get the list of running pods.
+- `<NAMESPACE>` with the name of the cluster namespace or OpenShift project.
 
 ## Installing patches for your nodes
 {: #ibp-console-manage-patch}
