@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-08"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -100,7 +100,6 @@ You need to update the ClusterRole that is applied to your project. Copy the fol
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  creationTimestamp: null
   name: <PROJECT_NAME>
 rules:
 - apiGroups:
@@ -411,7 +410,6 @@ You need to update the ClusterRole that is applied to your project. Copy the fol
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  creationTimestamp: null
   name: <PROJECT_NAME>
 rules:
 - apiGroups:

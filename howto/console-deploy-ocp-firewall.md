@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-08"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -331,7 +331,6 @@ Copy the following text to a file on your local system and save the file as `ibp
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  creationTimestamp: null
   name: <PROJECT_NAME>
 rules:
 - apiGroups:
