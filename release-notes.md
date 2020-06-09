@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-09"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -38,13 +38,13 @@ See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-i
 ## 18 June 2020
 {: #06-18-2020}
 
-**Peer and ordering node binaries**
+**Fabric peer and ordering node images**
 
-The platform introduces the capability to deploy new peer and ordering nodes based on either Hyperledger Fabric v1.4 or v2.x. Deploying peer and ordering nodes with the latest Fabric binaries is recommended to ensure that you have access to current Fabric fixes and features. It is not currently possible to migrate existing nodes to Fabric v2 binaries.
+The platform introduces the capability to deploy new peer and ordering nodes based on either Hyperledger Fabric v1.4 or v2.x. Deploying peer and ordering nodes with the latest Fabric images is recommended to ensure that you have access to current Fabric fixes and features. It is not currently possible to migrate existing nodes to Fabric v2 images.
 
 **Elimination of Docker daemon dependency**
 
-Leveraging the Fabric v2 **external chaincode launcher** capability, when you deploy a peer based on the Fabric v2.1.1 binary, smart contracts are deployed into their own pod rather than inside a container on the peer pod.
+Leveraging the Fabric v2 **external chaincode launcher** capability, when you deploy a peer based on the Fabric v2.1.1 image, smart contracts are deployed into their own pod rather than inside a container on the peer pod.
 
 **Multizone-capable storage**
 
