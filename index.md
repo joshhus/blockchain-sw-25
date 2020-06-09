@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-09"
 
 keywords: Kubernetes, IBM Cloud Private, OCP, OpenShift Container Platform, IBM Blockchain Platform
 
@@ -31,7 +31,7 @@ subcollection: blockchain-sw-25
 </div>
 
 
-{{site.data.keyword.blockchainfull}} Platform provides a managed and full stack blockchain-as-a-service (BaaS) offering that allows you to deploy blockchain components on many platforms including Kubernetes, Openshift Container Platform, and {{site.data.keyword.cloud_notm}} Private. For details of what is supported, see [Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-prerequisites). This offering is ideal for the customers who want to deploy their components, store their data, or run their workloads on their own infrastructure or across public and private clouds for security, risk mitigation, preference, or compliance reasons. Clients can build, operate, and grow their blockchain networks with an offering that can be used from development through production.
+{{site.data.keyword.blockchainfull}} Platform provides a managed and full stack blockchain-as-a-service (BaaS) offering that allows you to deploy blockchain components on many platforms including open source Kubernetes, distributions such as Rancher, Openshift Container Platform. For details of what is supported, see [Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-prerequisites). This offering is ideal for the customers who want to deploy their components, store their data, or run their workloads on their own infrastructure or across public and private clouds for security, risk mitigation, preference, or compliance reasons. Clients can build, operate, and grow their blockchain networks with an offering that can be used from development through production.
 {:shortdesc}
 
 Your entitlement includes the flexible management console for deploying and managing your blockchain network. Use the console or {{site.data.keyword.blockchainfull_notm}} Platform APIs to build a consortium of organizations to easily transact on the same network, regardless of each client's cloud preference. By installing the {{site.data.keyword.blockchainfull_notm}} Platform console, users can create components in their clusters and connect them to components deployed on other clusters, forming a distributed, multi-organizational blockchain network.
@@ -50,7 +50,7 @@ With this offering, you are responsible for purchasing and provisioning your own
 
 Check out the following topics for instructions on how to upgrade:
 - [Upgrading your console and components on the OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp)
-- [Upgrading your console and components on Kubernetes or {{site.data.keyword.cloud_notm}} Private 3.2.1](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-k8)
+- [Upgrading your console and components on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-k8)
 - [Upgrading the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
 
 ## Is {{site.data.keyword.blockchainfull_notm}} Platform 2.5 suitable for you?
@@ -85,7 +85,7 @@ Are you a developer? Check out the [**{{site.data.keyword.blockchainfull_notm}} 
 
 2. Install a Kubernetes cluster and log in to your cluster. If you are using OpenShift, see the [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the CLI. If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, use these instructions to [Install the OpenShift Origin CLI](/docs/openshift?topic=openshift-openshift-cli#cli_oc).
 
-3. If you are _not_ running the platform on Red Hat OpenShift Container Platform, Red Hat Open Kubernetes Distribution, or {{site.data.keyword.cloud_notm}} Private, you need to setup the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
+3. If you are _not_ running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution, you need to setup the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
 
 4. Get the entitlement key from your MyIBM account in order to install the platform. For more information, see [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key).
 
@@ -96,7 +96,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operat
 
 -  If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform on the OpenShift Container Platform, you can deploy the platform by using the steps in the [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on the OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp).
 
-- If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform on another Kubernetes distribution, such as Rancher or {{site.data.keyword.cloud_notm}} Private, use the steps described in the [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8).
+- If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform on open source Kubernetes or a distribution such as Rancher, use the steps described in the [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8).
 
 - If you are an experienced Hyperledger Fabric customer and prefer to only use the {{site.data.keyword.blockchainfull_notm}} images, see [Using the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images). Consult the Fabric documentation for further deployment, configuration, and management instructions. The rest of the steps in this topic do not apply when using the images.
 

@@ -97,8 +97,6 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with 
 | OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 3.11, 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
 | OpenShift Container Platform on LinuxONE | 4.2 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| IBM Cloud Private  | 3.2.1 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| IBM Cloud Private on LinuxONE | 3.2.1 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
 | Kubernetes ***    | v1.14 - v1.17 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 {: caption="Table 1. Supported platforms" caption-side="bottom"}
 *** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform 2.5 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).  

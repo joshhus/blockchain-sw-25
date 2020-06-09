@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-09"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -80,7 +80,7 @@ If you are a user with a manager role, you can remove a user's access to the con
 ## Using the {{site.data.keyword.blockchainfull_notm}} APIs
 {: #console-icp-manage-apis}
 
-The {{site.data.keyword.blockchainfull_notm}} Platform exposes RESTful APIs that allow you to import, edit, and remove blockchain nodes from your console. You can also use APIs to manage the settings, logging, and notifications of your console. Use the instructions below to use the APIs provided by a console deployed on {{site.data.keyword.cloud_notm}} Private.
+The {{site.data.keyword.blockchainfull_notm}} Platform exposes RESTful APIs that allow you to import, edit, and remove blockchain nodes from your console. You can also use APIs to manage the settings, logging, and notifications of your console.
 
 ### Prerequisites
 {: #console-icp-manage-prereqs}
@@ -298,7 +298,7 @@ curl -X DELETE \
 
 You can view the complete set of APIs that are available in the [{{site.data.keyword.blockchainfull_notm}} Platform API reference](https://cloud.ibm.com/apidocs/blockchain).
 
-Because you are using the APIs to communicate with your console on {{site.data.keyword.cloud_notm}} Private, you need to use the authorization that is provided by {{site.data.keyword.cloud_notm}} with the authentication that is provided by your console. Replace the `Bearer Auth` in the API reference with  `-u <api_key>:<api_secret>`. You also need to add a `-k` or ``--insecure`` flag to the command, or download the console TLS certificate by using your browser. You cannot use the **Try it out** tab to test the APIs for networks on {{site.data.keyword.cloud_notm}} Private.
+Because you are using the APIs to communicate with your console on your own cluster, you need to replace the authorization that is provided by {{site.data.keyword.cloud_notm}} with the authentication that is provided by your console. Replace the `Bearer Auth` in the API reference with  `-u <api_key>:<api_secret>`. You also need to add a `-k` or ``--insecure`` flag to the command, or download the console TLS certificate by using your browser.
 
 As an example, the API call below returns information about all of your components running on a service instance of the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}.
 ```
@@ -306,14 +306,6 @@ curl -X GET \
   https://d456fcd8ee0e4ddfb1ad9bf45986e546-optools.bp01.blockchain.cloud.ibm.com/ak/api/v2/components \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer eyJraWQ.....zJPsw
-```
-The same API call would resemble the request below for a console deployed on {{site.data.keyword.cloud_notm}} Private.
-```
-curl -X GET \
-https://9.30.252.107:31212/ak/api/v2/components \
-  -H 'Content-Type: application/json' \
-  -u kO25ME32Nu8TikR_:buYImbg0co8SxneoBWzHueYwrf9Xhg5f \
-  -k
 ```
 
 You can use the APIs to create nodes on the cluster where your console is deployed, and to import nodes from other clusters or {{site.data.keyword.cloud_notm}}. For more information, see [Build a network by using APIs](/docs/blockchain?topic=blockchain-ibp-v2-apis#ibp-v2-apis-build-with-apis) and [Import a network by using APIs](/docs/blockchain?topic=blockchain-ibp-v2-apis#ibp-v2-apis-import-with-apis).

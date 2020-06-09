@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-09"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises
 
@@ -34,7 +34,7 @@ subcollection: blockchain-sw-25
 You can use these instructions to deploy {{site.data.keyword.blockchainfull_notm}} Platform 2.5 behind a firewall without internet connectivity. If you are deploying the platform on a cluster with access to the external internet, use the main instructions for [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8).
 {:shortdesc}
 
-You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 on any x86_64 Kubernetes cluster running at v1.14 - v1.16 or on s390x on {{site.data.keyword.cloud_notm}} Private v3.2.1 running LinuxONE. Use these instructions if you are using distributions such as Rancher or {{site.data.keyword.cloud_notm}} Private. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 on any x86_64 Kubernetes cluster running at v1.14 - v1.16. Use these instructions if you are using open source Kubernetes or distributions such as Rancher. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 
 ## Need to Know
 
@@ -90,9 +90,9 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the [Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-prerequisites){: external}.
 
-2. You need to install and connect to your cluster by using the [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl){: external} to deploy the platform. If you are using {{site.data.keyword.cloud_notm}} Private, install the [{{site.data.keyword.cloud_notm}} Private CLI 3.2.1](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.1/manage_cluster/install_cli.html){: external}. The {{site.data.keyword.cloud_notm}} Private CLI includes the kubectl CLI.
+2. You need to install and connect to your cluster by using the [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl){: external} to deploy the platform.
 
-3. If you are not running the platform on Red Hat OpenShift Container Platform, Red Hat Open Kubernetes Distribution, or {{site.data.keyword.cloud_notm}} Private then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
+3. If you are not running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution, then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
 
 ## Pull the {{site.data.keyword.blockchainfull_notm}} Platform images
 
@@ -204,13 +204,7 @@ After you complete these steps, you can use the following instructions to deploy
 ## Log in to your Kubernetes cluster
 {: #deploy-k8s-login-firewall}
 
-Before you can complete the next steps, you need to log in to your cluster by using the kubectl CLI. Follow the instructions for logging in to your cluster. If you are using {{site.data.keyword.cloud_notm}} Private, you can log in to your cluster by using the following command:
-```
-cloudctl login -a https://<cluster_CA_domain>:8443 --skip-ssl-validation
-```
-{: codeblock}
-
-If the command is successful, you can see the list of the namespaces in your cluster from your terminal by running the following command:
+Before you can complete the next steps, you need to log in to your cluster by using the kubectl CLI. Follow the instructions for logging in to your cluster. If the command is successful, you can see the list of the namespaces in your cluster from your terminal by running the following command:
 ```
 kubectl get pods
 ```
@@ -440,239 +434,12 @@ kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_R
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
 
-## ({{site.data.keyword.cloud_notm}} Private only) Create an image policy
-{: #deploy-k8-firewall-icp-img-policy}
-
-If you are deploying on {{site.data.keyword.cloud_notm}} Private, you must also create an image policy. Copy the following text to a file on your local system and save the file as `image-policy.yaml`.
-  ```
-  apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
-  kind: ImagePolicy
-  metadata:
-    name: image-policy
-  spec:
-    repositories:
-    - name: cp.icr.io/cp/*
-      policy: null
-  ```
-  {: codeblock}
-
-Then, use the kubectl CLI to add the image policy to your namespace.
-```
-kubectl apply -f image-policy.yaml -n <NAMESPACE>
-```
-{: codeblock}
-
-## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
-{: #deploy-crd}
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-### CA custom resource definition
-{: #deploy-crd-ca}
-
-Copy the following text to a file on your local system and save the file as `ibpca-crd.yaml`.
-```yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: ibpcas.ibp.com
-  labels:
-    release: "operator"
-    helm.sh/chart: "ibm-ibp"
-    app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
-    app.kubernetes.io/managed-by: "ibp-operator"
-spec:
-  group: ibp.com
-  names:
-    kind: IBPCA
-    listKind: IBPCAList
-    plural: ibpcas
-    singular: ibpca
-  scope: Namespaced
-  subresources:
-    status: {}
-  versions:
-  - name: v210
-    served: false
-    storage: false
-  - name: v1alpha2
-    served: true
-    storage: true
-  - name: v212
-    served: false
-    storage: false
-  - name: v1alpha1
-    served: true
-    storage: false
-```
-{:codeblock}
-
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
-
-```
-kubectl apply -f ibpca-crd.yaml -n <NAMESPACE>
-```
-{:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
-
-You should see the following output when it is successful:
-```
-customresourcedefinition.apiextensions.k8s.io/ibpcas.ibp.com created
-```
-
-### Peer custom resource definition
-{: #deploy-crd-peer}
-
-Copy the following text to a file on your local system and save the file as `ibppeer-crd.yaml`.
-```yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: ibppeers.ibp.com
-  labels:
-    release: "operator"
-    helm.sh/chart: "ibm-ibp"
-    app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
-    app.kubernetes.io/managed-by: "ibp-operator"
-spec:
-  group: ibp.com
-  names:
-    kind: IBPPeer
-    listKind: IBPPeerList
-    plural: ibppeers
-    singular: ibppeer
-  scope: Namespaced
-  subresources:
-    status: {}
-  versions:
-  - name: v1alpha2
-    served: true
-    storage: true
-  - name: v1alpha1
-    served: true
-    storage: false
-```
-{:codeblock}
-
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
-
-```
-kubectl apply -f ibppeer-crd.yaml -n <NAMESPACE>
-```
-{:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
-
-
-You should see the following output when it is successful:
-```
-customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
-```
-
-### Orderer custom resource definition
-{: #deploy-crd-orderer}
-
-Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.
-```yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: ibporderers.ibp.com
-  labels:
-    release: "operator"
-    helm.sh/chart: "ibm-ibp"
-    app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
-    app.kubernetes.io/managed-by: "ibp-operator"
-spec:
-  group: ibp.com
-  names:
-    kind: IBPOrderer
-    listKind: IBPOrdererList
-    plural: ibporderers
-    singular: ibporderer
-  scope: Namespaced
-  subresources:
-    status: {}
-  versions:
-  - name: v1alpha2
-    served: true
-    storage: true
-  - name: v1alpha1
-    served: true
-    storage: false
-```
-{:codeblock}
-
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
-
-```
-kubectl apply -f ibporderer-crd.yaml -n <NAMESPACE>
-```
-{:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
-
-You should see the following output when it is successful:
-```
-customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
-```
-### Console custom resource definition
-{: #deploy-crd-console}
-
-Copy the following text to a file on your local system and save the file as `ibpconsole-crd.yaml`.
-```yaml
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: ibpconsoles.ibp.com
-  labels:
-    release: "operator"
-    helm.sh/chart: "ibm-ibp"
-    app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
-    app.kubernetes.io/managed-by: "ibp-operator"
-spec:
-  group: ibp.com
-  names:
-    kind: IBPConsole
-    listKind: IBPConsoleList
-    plural: ibpconsoles
-    singular: ibpconsole
-  scope: Namespaced
-  subresources:
-    status: {}
-  versions:
-  - name: v1alpha2
-    served: true
-    storage: true
-  - name: v1alpha1
-    served: true
-    storage: false
-```
-{:codeblock}
-
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
-
-```
-kubectl apply -f ibpconsole-crd.yaml -n <NAMESPACE>
-```
-{:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
-
-You should see the following output when it is successful:
-```
-customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
-```
-
-
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator
 {: #deploy-k8-operator-firewall}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses an operator to install the {{site.data.keyword.blockchainfull_notm}} Platform console. You can deploy the operator on your cluster by adding a custom resource to your namespace by using the kubectl CLI. The custom resource pulls the operator image from the Docker registry and starts it on your cluster.
 
-Copy the following text to a file on your local system and save the file as `ibp-operator.yaml`. You need to make different edits to the file depending on whether you are using open source Kubernetes and Rancher or whether you are using {{site.data.keyword.cloud_notm}} Private.
-
+Copy the following text to a file on your local system and save the file as `ibp-operator.yaml`.
 
 ```yaml
 apiVersion: apps/v1
@@ -777,10 +544,6 @@ spec:
 {:codeblock}
 
 - Replace `<CLUSTER_TYPE>` with `K8S` if you are deploying the platform on open source Kubernetes or Rancher.
-- Replace `<CLUSTER_TYPE>` with `ICP` if you are deploying the platform on {{site.data.keyword.cloud_notm}} Private.
-- If you are using {{site.data.keyword.cloud_notm}} Private on LinuxONE (s390x), you need to make the following additional customizations:
-   1. In the `spec.affinity` section, change `amd64` to `s390x`.
-   2. In the `spec.containers` section, replace `amd64` in the operator `images` tag with `s390x`.
 - If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
 
 Then, use the kubectl CLI to add the custom resource to your namespace.
@@ -830,55 +593,11 @@ spec:
 You need to specify the external endpoint information of the console in the `ibp-console.yaml` file:
 - Replace `<DOMAIN>` with the name of your cluster domain. You need to make sure that this domain is pointed to the load balancer of your cluster.
 
-If you are deploying the platform on **{{site.data.keyword.cloud_notm}} Private**, you need to use a different console resource definition. Save the file below as `ibp-console.yaml` on your local system.
-
-```yaml
-apiVersion: ibp.com/v1alpha2
-kind: IBPConsole
-metadata:
-  name: ibpconsole
-spec:
-  arch:
-  - amd64
-  license: accept
-  serviceAccountName: default
-  email: "<EMAIL>"
-  password: "<PASSWORD>"
-  registryURL: <LOCAL_REGISTRY>
-  imagePullSecrets:
-    - "docker-key-secret"
-  networkinfo:
-    domain: <DOMAIN>
-    consolePort: <CONSOLE_PORT>
-    proxyPort: <PROXY_PORT>
-  storage:
-    console:
-      class: default
-      size: 10Gi
-```
-{:codeblock}
-
-You need to provide the following values to this file:
-- Replace `<DOMAIN>` with the Proxy IP address your cluster. You  can retrieve the value your Proxy IP address from the {{site.data.keyword.cloud_notm}} Private console. **Note:** You need to be a [Cluster administrator](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/user_management/assign_role.html){: external} to access your proxy IP. Log in to the {{site.data.keyword.cloud_notm}} Private cluster. In the left navigation panel, click **Platform** and then **Nodes** to view the nodes that are defined in the cluster. Click the node with the role `proxy` and then copy the value of the `Host IP` from the table.
-- Replace `<CONSOLE_PORT>` with a number between 30000 and 32767. This port is used to access the Console UI from your browser.
-- Replace `<PROXY_PORT>` with a number between 30000 and 32767. Select a different port than the one you selected for your console port. This port is used by the console to communicate with your blockchain nodes.
-
-If you are deploying on {{site.data.keyword.cloud_notm}} Private on LinuxONE (s390x), you need to replace the `arch:` field in the in the `spec:` section:
-```yaml
-arch:
-- amd64
-```
-with:
-```yaml
-arch:
-- s390x
-```
-
-For all platforms, you need to provide the user name and password that is used to access the console for the first time:
+You also need to provide the user name and password that is used to access the console for the first time:
 - Replace `<EMAIL>` with the email address of the console administrator.
 - Replace `<PASSWORD>` with the password of your choice. This password also becomes the default password of the console until it is changed.
 
-You also need to make additional edits to the file depending on your choices in the deployment process:
+You may need to make additional edits to the file depending on your choices in the deployment process:
 - If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecret:` field.
 - If you created a new storage class for your network, provide the storage class that you created to the `class:` field.
 
@@ -1087,18 +806,6 @@ https://<NAMESPACE>-ibpconsole-console.<DOMAIN>:443
 Your console URL looks similar to the following example:
 ```
 https://blockchain-project-ibpconsole-console.xyz.abc.com:443
-```
-
-If you are deploying the platform on **{{site.data.keyword.cloud_notm}} Private**, you can access the console by browsing to  the following URL:
-```
-https://<DOMAIN>:<CONSOLE_PORT>
-```
-- Replace `<DOMAIN>` with the value of the `domain:` field in the `ibp-console.yaml` file.
-- Replace `<CONSOLE_PORT>` with the port that you specified in the `consolePort:` in the `ibp-console.yaml` file.
-
-Your console URL looks similar to the following example:
-```
-https://9.30.252.107:32615
 ```
 
 If you navigate to the console URL in your browser, you can see the console log in screen:

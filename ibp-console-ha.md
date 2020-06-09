@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-09"
 
 keywords: high availability, HA, failures, zone failure, region failure, component failure, worker node failure
 
@@ -47,8 +47,7 @@ You can achieve high availability on different levels in your IT infrastructure 
 Before proceeding, we recommend that you review the platform-specific guidance for HA:
 
 - If you are running on OpenShift Container Platform, you should review
-[HA on OpenShift Container Platform](https://docs.openshift.com/container-platform/3.11/admin_guide/high_availability.html){: external}.
-- If you are using {{site.data.keyword.cloud_notm}} Private, review [Implementing HA on {{site.data.keyword.cloud_notm}} Private](https://www.ibm.com/cloud/garage/practices/manage/high-availability-ibm-cloud-private){: external}.  
+[HA on OpenShift Container Platform](https://docs.openshift.com/container-platform/3.11/admin_guide/high_availability.html){: external}. 
 
 
 Then, you can use this topic for details on blockchain-specific HA guidance along with the recommendations from the platform-specific topic above.
