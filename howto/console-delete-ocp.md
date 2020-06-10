@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-10"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -37,16 +37,83 @@ If your organization is participating in an active blockchain network, you shoul
 {: important}
 
 ## Step one: Use the console to delete your blockchain nodes
+{: #Removing-ocp-step-one}
 
-You can use your console to remove your blockchain node and any accompanying artifacts from your OpenShift cluster. These artifacts include your ledger data in persistent storage and the keys that are stored in Kubernetes secrets. Log in to your console and go to the node overview page. Click the **Delete** under the node name and enter the node name on the slider to permanently remove the node from the cluster. Note that you can delete a node only by using the console that created the node. You cannot use your console to delete nodes that are deployed on other clusters. You can also delete nodes by using the {{site.data.keyword.blockchainfull_notm}} Platform APIs.
+The best practice for deleting components is to delete them using the console. This will also delete all of the artifacts associated with a node including your ledger data in persistent storage and the keys that are stored as secrets. This will not, however, delete your smart contracts, which must be deleted separately. Deleting a component is usually achieved by logging onto the console where a component was created or installed, clicking on the component and finding the related **trash can** icon. You will typically be prompted to type the name of the component and to confirm your decision. You can also delete nodes by using the {{site.data.keyword.blockchainfull_notm}} Platform APIs.
 
-If you cannot use your console or the APIs to remove your nodes, you can manually remove all of the nodes from your cluster by using the OpenShift CLI. Navigate to your OpenShift Project:
+However, there are cases in which this type of deletion will not be successful. For example, occasionally when a node fails to deploy it will not be possible to delete it using the console. The same can be true when the console loses connection with the cluster.
+
+In these cases, it will be necessary to delete the node or relevant pods manually. Your Kubernetes cluster on {{site.data.keyword.cloud_notm}} manager of choice might have a UI that allows you to delete pods. Check the documentation for your cluster for instructions.
+
+Note that because smart contracts are deployed into their own pods and not directly into the peer container, they will not be deleted when a peer is deleted. They will have to be deleted either using the UI of your cluster or by issuing kubectl commands.
+
+If you are deleting a smart contract, you will first have to figure out the name of your smart contract pod.
+
+
+
+
+First, navigate to your OpenShift Project:
+
 ```
 oc project <PROJECT_NAME>
 ```
 {:codeblock}
 
-Then run the following commands to delete all of your blockchain nodes:
+Next, get a list of all of the smart contract pods running in your cluster:
+
+```
+kubectl get po -n <PROJECT_NAME> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl get po {} -n <PROJECT_NAME> --show-labels
+```
+
+Replacing <PROJECT> with the name of your project on your Kubernetes cluster on {{site.data.keyword.cloud_notm}}.
+
+You should see results similar to:
+
+```
+NAME                                                       READY   STATUS            RESTARTS   AGE   LABELS
+chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4   1/1     Running   0          14s   chaincode-id=javacc-1.1,peer-id=org1peer1
+NAME                                                       READY   STATUS    RESTARTS   AGE   LABELS
+chaincode-execution-f3cc736f-94ef-454d-8da3-362a50c653d9   1/1     Running   0          4m    chaincode-id=nodecc-1.1,peer-id=org1peer1
+```
+
+Your smart contract name and version is visible next to the chaincode-id.
+
+
+
+
+
+To delete a pod, first navigate to the correct project:
+
+```
+oc project <PROJECT_NAME>
+```
+
+Then run the following command to list the pods:
+
+```
+oc get pods
+```
+
+And finally, run the command to delete the pod:
+
+```
+oc delete pod <PODNAME>
+```
+
+
+
+
+
+If you cannot use your console or the APIs to remove your nodes, you can manually remove all of the nodes from your cluster by using the OpenShift CLI. Navigate to your OpenShift Project:
+
+```
+oc project <PROJECT_NAME>
+```
+{:codeblock}
+
+
+Then run the following commands to delete all of your blockchain nodes.
+
 ```
 kubectl delete ibpca --all
 kubectl delete ibppeer --all
@@ -54,7 +121,12 @@ kubectl delete ibporderer --all
 ```
 {:codeblock}
 
+You may also choose to only delete all peers within a namespace, for example, by only issuing `kubectl delete ibppeer --all`.
+{: tip}
+
+
 ## Step two: Delete the {{site.data.keyword.blockchainfull_notm}} Platform operator
+{: #Removing-ocp-step-two}
 
 You can use the OpenShift CLI to remove the {{site.data.keyword.blockchainfull_notm}} Platform operator. When the operator is no longer running on your cluster, you can delete the console and any remaining nodes without them being restarted.
 
@@ -75,6 +147,7 @@ You can use the OpenShift CLI to remove the {{site.data.keyword.blockchainfull_n
   {:codeblock}
 
 ## Step Three: Delete the {{site.data.keyword.blockchainfull_notm}} Platform console
+{: #Removing-ocp-step-three}
 
 After you remove the operator, you can then delete the console without it being restarted. When you are logged in to your cluster and are operating from your project, you can delete the console by issuing the following command:
 
@@ -84,6 +157,7 @@ kubectl delete ibpconsole --all
 {:codeblock}
 
 ## Step Four: Remove policies and secrets
+{: #Removing-ocp-step-four}
 
 If you are done working with the {{site.data.keyword.blockchainfull_notm}} Platform on your OpenShift cluster, you can delete your OpenShift project.
 
