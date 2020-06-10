@@ -39,7 +39,92 @@ If your organization is participating in an active blockchain network, you shoul
 ## Step one: Use the console to delete your blockchain nodes
 {: #Removing-ocp-step-one}
 
-{[pg-delete-components-ocp.md]}
+The best practice for deleting components is to delete them using the console. This will also delete all of the artifacts associated with a node including your ledger data in persistent storage and the keys that are stored as secrets. This will not, however, delete your smart contracts, which must be deleted separately. Deleting a component is usually achieved by logging onto the console where a component was created or installed, clicking on the component and finding the related **trash can** icon. You will typically be prompted to type the name of the component and to confirm your decision. You can also delete nodes by using the {{site.data.keyword.blockchainfull_notm}} Platform APIs.
+
+However, there are cases in which this type of deletion will not be successful. For example, occasionally when a node fails to deploy it will not be possible to delete it using the console. The same can be true if the console loses connection with the cluster for some reason.
+
+In these cases, it will be necessary to delete the node or relevant pods manually. Your Kubernetes cluster on {{site.data.keyword.cloud_notm}} manager of choice might have a UI that allows you to delete pods. Check the documentation for your cluster for instructions.
+
+Note that because smart contracts are deployed into their own pods and not directly into the peer container, they will not be deleted when a peer is deleted. They will have to be deleted either using the UI of your cluster or by issuing kubectl commands.
+{: important}
+
+
+If you are using OpenShift, you have the option to use either the `kubectl` CLI (which is native to Kubernetes), or the `oc` CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the `kubectl` CLI. In this topic, we'll use both CLIs.
+{: tip}
+
+
+
+
+If you want to delete all of your smart contract pods, you can issue this command:
+
+
+
+
+```
+kubectl get po -n <PROJECT_NAME> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl delete po {} -n <PROJECT_NAME>
+```
+{:codeblock}
+
+Where `<PROJECT_NAME>` is the name of your OpenShift project.
+
+
+If you want to delete a single smart contract pod, you will first have to figure out the name of your smart contract pod.
+
+
+
+
+First, get a list of all of the smart contract pods running in your cluster:
+
+```
+kubectl get po -n <PROJECT_NAME> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl get po {} -n <PROJECT_NAME> --show-labels
+```
+
+You should see results similar to:
+
+```
+NAME                                                       READY   STATUS    RESTARTS   AGE   LABELS
+chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4   1/1     Running   0          14s   chaincode-id=javacc-1.1,peer-id=org1peer1
+NAME                                                       READY   STATUS    RESTARTS   AGE   LABELS
+chaincode-execution-f3cc736f-94ef-454d-8da3-362a50c653d9   1/1     Running   0          4m    chaincode-id=nodecc-1.1,peer-id=org1peer1
+```
+
+Your smart contract name and version is visible next to the chaincode-id.
+
+
+
+
+
+To delete a single pod, issue this command, substituting the `<POD_NAME>` for the name of your pod, for example the smart contract pod `chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4`, as well as your `<PROJECT_NAME>`:
+
+```
+oc delete pod <POD_NAME> -n <PROJECT_NAME>
+```
+{:codeblock}
+
+
+
+
+
+If you cannot use your console or the APIs to remove your nodes, you can manually remove all of the nodes from your cluster by using the OpenShift CLI. Navigate to your OpenShift Project:
+
+```
+oc project <PROJECT_NAME>
+```
+{:codeblock}
+
+
+Then run the following commands to delete all of your blockchain nodes:
+
+```
+kubectl delete ibpca --all
+kubectl delete ibppeer --all
+kubectl delete ibporderer --all
+```
+{:codeblock}
+
+You may also choose to only delete all of a single type of node within a namespace, for example, by only issuing `kubectl delete ibppeer --all`.
+{: tip}
+
 
 ## Step two: Delete the {{site.data.keyword.blockchainfull_notm}} Platform operator
 {: #Removing-ocp-step-two}
