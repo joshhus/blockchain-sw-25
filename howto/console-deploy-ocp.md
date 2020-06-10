@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-10"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -159,6 +159,225 @@ You can also use the CLI to find the available storage classes for your namespac
 kubectl get storageclasses
 ```
 {:codeblock}
+
+## Deploying the webhook to your Kubernetes cluster
+{: #webhook}
+
+The {{site.data.keyword.blockchainfull_}} Platform 2.5 requires a Kubernetes conversion webhook. Because the platform has updated the apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, this webhook is required to update the CA, peer, operator, and console to the new api versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+
+Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
+
+This webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
+{: important}
+
+### Step one: Create the `ibpinfra` project for the webhook
+{: #webhook-ibminfra}
+
+Use the kubectl CLI to run the following command to create the project:
+```
+oc new-project ibpinfra
+```
+{:codeblock}
+
+This command creates the project and switches your CLI to use that project for all subsequent commands.
+
+### Step two: Configure role-based access control (RBAC) for the webhook
+{: #webhook-rbac}
+
+Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webhook
+  namespace: ibpinfra
+---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: webhook
+  rules:
+  - apiGroups:
+    - "*"
+    resources:
+    - secrets
+    verbs:
+    - "*"
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ibpinfra
+subjects:
+- kind: ServiceAccount
+  name: webhook
+  namespace: ibpinfra
+roleRef:
+  kind: Role
+  name: webhook
+  apiGroup: rbac.authorization.k8s.io
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -f rbac.yaml
+```
+{:codeblock}
+
+When the command completes successfully you should should see something similar to:
+```
+serviceaccount/webhook created
+role.rbac.authorization.k8s.io/webhook created
+rolebinding.rbac.authorization.k8s.io/ibpinfra created
+```
+
+## Step three: Deploy the webhook
+{: #webhook-deploy}
+
+In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
+
+**deployment.yaml**  
+
+Copy the following text to a file on your local system and save the file as `deployment.yaml`.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "ibp-webhook"
+  labels:
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "ibp-webhook"
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: "ibm-ibp"
+        app.kubernetes.io/name: "ibp"
+        app.kubernetes.io/instance: "ibp-webhook"
+      annotations:
+        productName: "IBM Blockchain Platform"
+        productID: "54283fa24f1a4e8589964e6e92626ec4"
+        productVersion: "2.5.0"
+    spec:
+      serviceAccountName: webhook
+      imagePullSecrets:
+        - name: docker-key-secret
+        - name: ibp-ibmregistry
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+      containers:
+        - name: "ibp-webhook"
+          image: "us.icr.io/crd-conversion-webhook/crd-conversion-webhook:mrshah-amd64"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+              - ALL
+              add:
+              - NET_BIND_SERVICE
+          env:
+            - name: "LICENSE"
+              value: "accept"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - name: server
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 26
+            timeoutSeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 0.1
+              memory: "100Mi"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f deployment.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+deployment.apps/ibp-webhook created
+```
+
+**service.yaml**  
+
+Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: "ibp-webhook"
+  labels:
+    type: "webhook"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+    helm.sh/chart: "ibm-ibp"
+spec:
+  type: ClusterIP
+  ports:
+    - name: server
+      port: 443
+      targetPort: server
+      protocol: TCP
+  selector:
+    app.kubernetes.io/instance: "ibp-webhook"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f service.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+service/ibp-webhook created
+```
+
 
 ## Add security and access policies
 {: #deploy-ocp-scc}
@@ -392,14 +611,26 @@ Copy the following text to a file on your local system and save the file as `ibp
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
-  name: ibpcas.ibp.com
   labels:
-    release: "operator"
-    helm.sh/chart: "ibm-ibp"
-    app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
-    app.kubernetes.io/managed-by: "ibp-operator"
+    app.kubernetes.io/instance: ibpca
+    app.kubernetes.io/managed-by: ibp-operator
+    app.kubernetes.io/name: ibp
+    helm.sh/chart: ibm-ibp
+    release: operator
+  name: ibpcas.ibp.com
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
   group: ibp.com
   names:
     kind: IBPCA
@@ -407,8 +638,6 @@ spec:
     plural: ibpcas
     singular: ibpca
   scope: Namespaced
-  subresources:
-    status: {}
   versions:
   - name: v210
     served: false
@@ -424,6 +653,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -454,6 +685,18 @@ metadata:
     app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
   group: ibp.com
   names:
     kind: IBPPeer
@@ -472,6 +715,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -502,6 +747,18 @@ metadata:
     app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
   group: ibp.com
   names:
     kind: IBPOrderer
@@ -520,6 +777,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -549,6 +808,18 @@ metadata:
     app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true
   group: ibp.com
   names:
     kind: IBPConsole
@@ -556,8 +827,6 @@ spec:
     plural: ibpconsoles
     singular: ibpconsole
   scope: Namespaced
-  subresources:
-    status: {}
   versions:
   - name: v1alpha2
     served: true
@@ -567,6 +836,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 

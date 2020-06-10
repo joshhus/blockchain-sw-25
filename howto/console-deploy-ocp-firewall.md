@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-10"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -497,14 +497,26 @@ Copy the following text to a file on your local system and save the file as `ibp
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
-  name: ibpcas.ibp.com
   labels:
-    release: "operator"
-    helm.sh/chart: "ibm-ibp"
-    app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
-    app.kubernetes.io/managed-by: "ibp-operator"
+    app.kubernetes.io/instance: ibpca
+    app.kubernetes.io/managed-by: ibp-operator
+    app.kubernetes.io/name: ibp
+    helm.sh/chart: ibm-ibp
+    release: operator
+  name: ibpcas.ibp.com
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
   group: ibp.com
   names:
     kind: IBPCA
@@ -512,8 +524,6 @@ spec:
     plural: ibpcas
     singular: ibpca
   scope: Namespaced
-  subresources:
-    status: {}
   versions:
   - name: v210
     served: false
@@ -529,6 +539,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -559,6 +571,18 @@ metadata:
     app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
   group: ibp.com
   names:
     kind: IBPPeer
@@ -577,6 +601,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -607,6 +633,18 @@ metadata:
     app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
   group: ibp.com
   names:
     kind: IBPOrderer
@@ -625,6 +663,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -654,6 +694,18 @@ metadata:
     app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true
   group: ibp.com
   names:
     kind: IBPConsole
@@ -661,8 +713,6 @@ spec:
     plural: ibpconsoles
     singular: ibpconsole
   scope: Namespaced
-  subresources:
-    status: {}
   versions:
   - name: v1alpha2
     served: true
@@ -672,6 +722,8 @@ spec:
     storage: false
 ```
 {:codeblock}
+
+Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
