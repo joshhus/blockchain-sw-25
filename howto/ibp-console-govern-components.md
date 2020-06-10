@@ -69,25 +69,35 @@ In these cases, it will be necessary to delete the node or relevant pods manuall
 
 Note that because smart contracts are deployed into their own pods and not directly into the peer container, they will not be deleted when a peer is deleted. They will have to be deleted either using the UI of your cluster or by issuing kubectl commands.
 
-If you are deleting a smart contract, you will first have to figure out the name of your smart contract pod.
+
+If you are using OpenShift, you have the option to use either the `kubectl` CLI (which is native to Kubernetes), or the `oc` CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the `kubectl` CLI.
+{: tip}
 
 
 
 
-First, navigate to your OpenShift Project:
+If you want to delete all of your smart contract pods, you can issue this command:
+
+
+
 
 ```
-oc project <PROJECT_NAME>
+kubectl get po -n <PROJECT_NAME> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl delete po {} -n <PROJECT_NAME>
 ```
-{:codeblock}
 
-Next, get a list of all of the smart contract pods running in your cluster:
+Where <PROJECT_NAME> is the name of your OpenShift project.
+
+
+If you want to delete a single smart contract pod, you will first have to figure out the name of your smart contract pod.
+
+
+
+
+First, get a list of all of the smart contract pods running in your cluster:
 
 ```
 kubectl get po -n <PROJECT_NAME> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl get po {} -n <PROJECT_NAME> --show-labels
 ```
-
-Replacing <PROJECT> with the name of your project on your Kubernetes cluster on {{site.data.keyword.cloud_notm}}.
 
 You should see results similar to:
 
@@ -104,23 +114,12 @@ Your smart contract name and version is visible next to the chaincode-id.
 
 
 
-To delete a pod, first navigate to the correct project:
+To delete a single pod, issue this command, substituting the <POD_NAME> for the name of your pod, for example the smart contract pod `chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4`, as well as your <PROJECT_NAME>:
 
 ```
-oc project <PROJECT_NAME>
+oc delete pod <POD_NAME> -n <PROJECT_NAME>
 ```
-
-Then run the following command to list the pods:
-
-```
-oc get pods
-```
-
-And finally, run the command to delete the pod:
-
-```
-oc delete pod <PODNAME>
-```
+{:codeblock}
 
 
 
@@ -143,7 +142,7 @@ kubectl delete ibporderer --all
 ```
 {:codeblock}
 
-You may also choose to only delete all peers within a namespace, for example, by only issuing `kubectl delete ibppeer --all`.
+You may also choose to only delete all of a single type of node within a namespace, for example, by only issuing `kubectl delete ibppeer --all`.
 {: tip}
 
 
