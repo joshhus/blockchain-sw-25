@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-10"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
 
@@ -66,7 +66,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 **OPERATE --- Total control of your deployments**
 - **Host or join a network**. Deploy peers that are hosted in your cluster to multiple channels on multiple clouds, or invite other organizations to join your consortium or channels while the organizations manage their nodes independently across infrastructures.
 - **Maintain complete control of your identities**. Store and manage the keys that are used to administer your nodes. Optionally, use an [Hardware Security Module (HSM)](#x6704988){: term} to generate and store the private key of your nodes.
-- **Run Anywhere**. Thanks to the **unified codebase** of the {{site.data.keyword.blockchainfull_notm}} Platform console, it is possible to run your components on any Kubernetes v1.14 - v1.16 container platform on x86_64 or s390x.
+- **Run Anywhere**. Thanks to the **unified codebase** of the {{site.data.keyword.blockchainfull_notm}} Platform console, it is possible to run your components on any Kubernetes v1.15 - v1.18 container platform on x86_64 or s390x.
 - **Unified operation**. The {{site.data.keyword.blockchainfull_notm}} Platform console allows you to deploy and manage all of your organizations and nodes in **one console**. You can also add or remove members from a blockchain consortium, create and join channels, and install and instantiate smart contracts from your console.
 - **Dynamic signature collection** that allows better control over collaborative governance over channel configurations.
 - **Manage access** of the users who can administer or monitor your nodes.
@@ -92,15 +92,13 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with 
 |----|----|----|-----|
 | OpenShift Container Platform | 3.11 | x86_64 |  |
 | OpenShift Container Platform | 4.1 |  x86_64 |  |
-| OpenShift Container Platform | 4.2 |  x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | OpenShift Container Platform | 4.3 |  x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 3.11, 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
 | OpenShift Container Platform on LinuxONE | 4.2 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| Kubernetes ***    | v1.14 - v1.17 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
+| Kubernetes ***    | v1.15 - v1.18 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 {: caption="Table 1. Supported platforms" caption-side="bottom"}
-*** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform 2.5 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).  
-
+*** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform 2.5 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).    
 
 If you are running on Azure Kubernetes Service, Amazon Elastic Kubernetes Service, or IBM Kubernetes Service, then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}. For more information, see [Considerations when using Kubernetes distributions](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#console-deploy-k8-considerations).
 {: important}

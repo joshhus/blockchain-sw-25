@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-10"
 
 keywords: Kubernetes, IBM Cloud Private, OCP, OpenShift Container Platform, IBM Blockchain Platform
 
@@ -76,7 +76,7 @@ Check out the following topics for instructions on how to upgrade:
 ### Developer Tools
 {: ##get-started-console-ocp-dev-tools}
 
-Are you a developer? Check out the [**{{site.data.keyword.blockchainfull_notm}} Platform Extension for VS Code**](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode), a free IDE that provides an explorer and commands accessible from the command palette for developing smart contracts quickly.
+Are you a developer? Check out the [**{{site.data.keyword.blockchainfull_notm}} Platform Developer Tools**](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode), a free IDE that provides an explorer and commands accessible from the command palette for developing smart contracts quickly. Install it locally or run it from the cloud using Red Hat CodeReady Workspaces.
 
 ## Before you begin
 {: #get-started-console-ocp-set-up-ocp}

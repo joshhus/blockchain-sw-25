@@ -142,7 +142,7 @@ oc new-project <PROJECT_NAME>
 ```
 {:codeblock}
 
-Replace `<PROJECT_NAME>` with the name of your project.
+Replace `<PROJECT_NAME>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 It is required that you create a new OpenShift project for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique project for each environment. Each project creates a new Kubernetes namespace. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each project.
 {: important}
@@ -160,10 +160,10 @@ kubectl get storageclasses
 ```
 {:codeblock}
 
-## Deploying the webhook to your Kubernetes cluster
+## Deploy the webhook to your OpenShift cluster
 {: #webhook}
 
-The {{site.data.keyword.blockchainfull_}} Platform 2.5 requires a Kubernetes conversion webhook. Because the platform has updated the apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, this webhook is required to update the CA, peer, operator, and console to the new api versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
 
@@ -222,7 +222,7 @@ roleRef:
 
 Run the following command to add the file to your cluster definition:
 ```
-kubectl apply -f rbac.yaml
+kubectl apply -f rbac.yaml -n ibpinfra
 ```
 {:codeblock}
 
@@ -233,12 +233,13 @@ role.rbac.authorization.k8s.io/webhook created
 rolebinding.rbac.authorization.k8s.io/ibpinfra created
 ```
 
-## Step three: Deploy the webhook
+### Step three: Deploy the webhook
 {: #webhook-deploy}
 
 In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
 
-**deployment.yaml**  
+#### deployment.yaml
+{: #webhook-deployment-yaml}
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
@@ -342,7 +343,8 @@ When it completes successfully you should see something similar to:
 deployment.apps/ibp-webhook created
 ```
 
-**service.yaml**  
+#### service.yaml
+{: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
 ```
@@ -426,12 +428,13 @@ volumes:
 ```
 {:codeblock}
 
-After you save and edit the file, run the following commands to add the file to your cluster and add the policy to your project. Replace `<PROJECT_NAME>` with your project.
+After you save and edit the file, run the following commands to add the file to your cluster and add the policy to your project.
 ```
-oc apply -f ibp-scc.yaml
+oc apply -f ibp-scc.yaml -n <PROJECT_NAME>
 oc adm policy add-scc-to-user <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 If the command is successful, you can see a response that is similar to the following example:
 ```
@@ -454,9 +457,14 @@ rules:
   resources:
   - persistentvolumeclaims
   - persistentvolumes
-  - customresourcedefinitions
   verbs:
   - '*'
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - 'get'
 - apiGroups:
   - "*"
   resources:
@@ -513,17 +521,6 @@ rules:
   - ibp.com
   resources:
   - '*'
-  - ibpservices
-  - ibpcas
-  - ibppeers
-  - ibpfabproxies
-  - ibporderers
-  verbs:
-  - '*'
-- apiGroups:
-  - ibp.com
-  resources:
-  - '*'
   verbs:
   - '*'
 - apiGroups:
@@ -537,10 +534,11 @@ rules:
 
 After you save and edit the file, run the following commands. Replace `<PROJECT_NAME>` with your project.
 ```
-oc apply -f ibp-clusterrole.yaml
+oc apply -f ibp-clusterrole.yaml -n <PROJECT_NAME>
 oc adm policy add-scc-to-group <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 If successful, you can see a response that is similar to the following example:
 ```
@@ -568,12 +566,13 @@ roleRef:
 ```
 {:codeblock}
 
-After you save and edit the file, run the following commands. Replace `<PROJECT_NAME>` with your project.
+After you save and edit the file, run the following commands:
 ```
-oc apply -f ibp-clusterrolebinding.yaml
+oc apply -f ibp-clusterrolebinding.yaml -n <PROJECT_NAME>
 oc adm policy add-cluster-role-to-user <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 If successful, you can see a response that is similar to the following example:
 ```
@@ -971,6 +970,7 @@ Then, use the `kubectl` CLI to add the custom resource to your project.
 kubectl apply -f ibp-operator.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You can confirm that the operator deployed by running the command `kubectl get deployment -n <PROJECT_NAME>`. If your operator deployment is successful, then you can see the following tables with four ones displayed. The operator takes about a minute to deploy.
 ```
@@ -1042,8 +1042,7 @@ After you update the file, you can use the CLI to install the console.
 kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-
-Replace `<PROJECT_NAME>` with the name of your project. The console can take a few minutes to deploy.
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project. The console can take a few minutes to deploy.
 
 ### Advanced deployment options
 {: #console-deploy-ocp-advanced}
@@ -1112,6 +1111,7 @@ metadata:
   kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
   ```
   {:codeblock}
+  Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 - If you plan to use the console with a multizone Kubernetes cluster, you need to add the zones to the `clusterdata.zones:` section of the file. When zones are provided to the deployment, you can select the zone that a node is deployed to using the console or the APIs. As an example, if you are deploying to a cluster across the zones of dal10, dal12, and dal13, you would add the zones to the file by using the format below.
   ```yaml
@@ -1128,6 +1128,7 @@ metadata:
   kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
   ```
   {:codeblock}
+  Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 Unlike the resource allocation, you cannot add zones to a running network. If you have already deployed a console and used it to create nodes on your cluster, you will lose your previous work. After the console restarts, you need to deploy new nodes.    
 {: Important}
@@ -1142,9 +1143,9 @@ This step needs to be performed before the console is deployed.
 You can use a Certificate Authority or tool to create the TLS certificates for the console. The TLS certificate needs to include the hostname of the console and the proxy in the subject name or the alternative domain names. The console and proxy hostname are in the following format:
 
 **Console hostname:** ``<PROJECT_NAME>-ibpconsole-console.<DOMAIN>``  
-**Proxy hostname:** ``<PROJECT_NAME>-ibpconsole-proxy.<DOMAIN>``
+**Proxy hostname:** ``<PROJECT_NAME>-ibpconsole-proxy.<DOMAIN>``  
 
-- Replace `<PROJECT_NAME>` with the name of the OpenShift project that you created.
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 - Replace `<DOMAIN>` with the name of your cluster domain. You can find this value by using the OpenShift web console. Use the dropdown menu next to **OpenShift Container Platform** at the top of the page to switch from **Service Catalog** to **Cluster Console**. Examine the url for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after removing `console` and `/k8s/cluster/projects`.
 
 Navigate to the TLS certificates that you plan to use on your local system. Name the TLS certificate `tlscert.pem` and the corresponding private key `tlskey.pem`. Run the following command to create the Kubernetes secret and add it to your OpenShift project. The TLS certificate and key need to be in PEM format.
@@ -1152,6 +1153,7 @@ Navigate to the TLS certificates that you plan to use on your local system. Name
 kubectl create secret generic console-tls-secret --from-file=tls.crt=./tlscert.pem --from-file=tls.key=./tlskey.pem -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 After you create the secret, add the `tlsSecretName` field to the `spec:` section of `ibp-console.yaml` with one indent added, at the same level as the `resources:` and `clusterdata:` sections of the advanced deployment options. You must provide the name of the TLS secret that you created to the field. The following example deploys a console with the TLS certificate and key stored in a secret named `"console-tls-secret"`:
 
@@ -1191,6 +1193,7 @@ When you finish editing the file, you can apply it to your cluster in order to s
 kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 ### Verifying the console installation
 
@@ -1212,12 +1215,14 @@ If there is an issue with your deployment, you can view the logs from one of the
 kubectl get pods -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 Then, use the following command to get the logs from one of the four containers listed above:
 ```
 kubectl logs -f <pod_name> <container_name> -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 As an example, a command to get the logs from the UI container would look like the following example:
 ```
@@ -1235,7 +1240,7 @@ https://<PROJECT_NAME>-ibpconsole-console.<DOMAIN>
 ```
 {: codeblock}
 
-- Replace `<PROJECT_NAME>` with the name of the OpenShift project that you created.
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 - Replace `<DOMAIN>` with the name of your cluster domain. You passed this value to the `DOMAIN:` field of the `ibp-console.yaml` file.
 
 Your console URL looks similar to the following example:
@@ -1245,10 +1250,13 @@ https://blockchain-project-ibpconsole-console.xyz.abc.com
 ```
 {: codeblock}
 
-You can also find your console URL by logging in to your OpenShift cluster and running the following command. Replace `<PROJECT_NAME>` with the name of your project:
+You can also find your console URL by logging in to your OpenShift cluster and running the following command:
 ```
 oc get routes -n <PROJECT_NAME>
 ```
+{:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
 In the output of the command, you can see the URLs for the proxy and the console. You need to add `https://` to the beginning console URL to access the console. You do not need to add a port to the URL.
 
 In your browser, you can see the console login screen:

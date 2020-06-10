@@ -31,7 +31,7 @@ subcollection: blockchain-sw-25
 </div>
 
 
-You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 on any x86_64 Kubernetes cluster running at v1.14 - v1.16 or on s390x on OpenShift Container Platform running LinuxONE. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 on any x86_64 Kubernetes cluster running at v1.15 - v1.18 or on s390x on OpenShift Container Platform running LinuxONE. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 {:shortdesc}
 
 If you prefer to automate the installation of the service, check out the [Ansible Playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp) that can be used to complete all of the deployment steps for you.
@@ -107,7 +107,7 @@ kubectl create namespace <NAMESPACE>
 ```
 {:codeblock}
 
-Replace `<NAMESPACE>` with the name of your namespace.
+Replace `<NAMESPACE>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 It is required that you create a namespace for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique namespace for each environment. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each namespace.
 {: important}
@@ -118,10 +118,10 @@ kubectl get storageclasses
 ```
 {:codeblock}
 
-## Deploying the webhook to your Kubernetes cluster
+## Deploy the webhook to your Kubernetes cluster
 {: #webhook}
 
-The {{site.data.keyword.blockchainfull_}} Platform 2.5 requires a Kubernetes conversion webhook. Because the platform has updated the apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5,  this webhook is required to update the CA, peer, operator, and console to the new api versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this topic. The webhook is deployed to its own Kubernetes namespace, referred to `ibpinfra` throughout these instructions.
 
@@ -180,7 +180,7 @@ roleRef:
 
 Run the following command to add the file to your cluster definition:
 ```
-kubectl apply -f rbac.yaml
+kubectl apply -f rbac.yaml -n ibpinfra
 ```
 {:codeblock}
 
@@ -191,12 +191,13 @@ role.rbac.authorization.k8s.io/webhook created
 rolebinding.rbac.authorization.k8s.io/ibpinfra created
 ```
 
-## Step three: Deploy the webhook
+### Step three: Deploy the webhook
 {: #webhook-deploy}
 
 In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
 
-**deployment.yaml**  
+#### deployment.yaml
+{: #webhook-deployment-yaml}
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
@@ -300,7 +301,8 @@ When it completes successfully you should see something similar to:
 deployment.apps/ibp-webhook created
 ```
 
-**service.yaml**  
+#### service.yaml
+{: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
 ```
@@ -336,8 +338,6 @@ When it completes successfully you should see something similar to:
 service/ibp-webhook created
 ```
 
-
-Save the value of this string. Later, you will need to insert this certificate in the console, peer, CA, and orderer custom resource definitions.
 
 ## Add security and access policies
 {: #deploy-k8-scc}
@@ -387,9 +387,10 @@ spec:
 
 After you save and edit the file, run the following command to add the file to your cluster and add the policy to your namespace.
 ```
-kubectl apply -f ibp-psp.yaml
+kubectl apply -f ibp-psp.yaml -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Apply the ClusterRole
 
@@ -412,6 +413,7 @@ rules:
   - "*"
   resources:
   - pods
+  - pods/log
   - services
   - endpoints
   - persistentvolumeclaims
@@ -444,18 +446,6 @@ rules:
   resources:
   - persistentvolumeclaims
   - persistentvolumes
-  - customresourcedefinitions
-  verbs:
-  - '*'
-- apiGroups:
-  - ibp.com
-  resources:
-  - '*'
-  - ibpservices
-  - ibpcas
-  - ibppeers
-  - ibpfabproxies
-  - ibporderers
   verbs:
   - '*'
 - apiGroups:
@@ -478,13 +468,17 @@ rules:
 
 After you save and edit the file, run the following commands.
 ```
-kubectl apply -f ibp-clusterrole.yaml
+kubectl apply -f ibp-clusterrole.yaml n <NAMESPACE>
+```
+{:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
 ```
 {:codeblock}
 
 ### Apply the ClusterRoleBinding
 
-Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<NAMESPACE>` with the name of your namespace.
+Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ```yaml
 kind: ClusterRoleBinding
@@ -504,9 +498,10 @@ roleRef:
 
 After you save and edit the file, run the following commands.
 ```
-kubectl apply -f ibp-clusterrolebinding.yaml
+kubectl apply -f ibp-clusterrolebinding.yaml n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Create the role binding
 
@@ -515,6 +510,7 @@ After applying the policies, you must grant your service account the required le
 kubectl -n <NAMESPACE> create rolebinding ibp-operator-rolebinding --clusterrole=<NAMESPACE> --group=system:serviceaccounts:<NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 
 ## Create a secret for your entitlement key
@@ -529,7 +525,7 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 {:codeblock}
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
-- Replace `<NAMESPACE>` with the name of your namespace.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
@@ -925,6 +921,7 @@ Then, use the kubectl CLI to add the custom resource to your namespace.
 kubectl apply -f ibp-operator.yaml -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 You can confirm that the operator deployed by running the command `kubectl get deployment -n <NAMESPACE>`. If your operator deployment is successful, then you can see the following tables with four ones displayed. The operator takes about a minute to deploy.
 ```
@@ -984,7 +981,7 @@ kubectl apply -f ibp-console.yaml -n <NAMESPACE>
 ```
 {:codeblock}
 
-Replace `<NAMESPACE>` with the name of your namespace. Before you install the console, you might want to review the advanced deployment options in the next section. The console can take a few minutes to deploy.
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace. Before you install the console, you might want to review the advanced deployment options in the next section. The console can take a few minutes to deploy.
 
 ### Advanced deployment options
 {: #console-deploy-k8-advanced}
@@ -1052,6 +1049,8 @@ metadata:
   kubectl apply -f ibp-console.yaml -n <NAMESPACE>
   ```
   {:codeblock}
+  Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
 
 - If you plan to use the console with a multizone Kubernetes cluster, you need to add the zones to the `clusterdata.zones:` section of the file. When zones are provided to the deployment, you can select the zone that a node is deployed to using the console or the APIs. As an example, if you are deploying to a cluster across the zones of dal10, dal12, and dal13, you would add the zones to the file by using the format below.
   ```yaml
@@ -1068,6 +1067,8 @@ metadata:
   kubectl apply -f ibp-console.yaml -n <NAMESPACE>
   ```
   {:codeblock}
+  Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
 
 Unlike the resource allocation, you cannot add zones to a running network. If you have already deployed a console and used it to create nodes on your cluster, you will lose your previous work. After the console restarts, you need to deploy new nodes.
 {: Important}
@@ -1084,7 +1085,7 @@ You can use a Certificate Authority or tool to create the TLS certificates for t
 **Console hostname:** ``<NAMESPACE>-ibpconsole-console.<DOMAIN>``  
 **Proxy hostname:** ``<NAMESPACE>-ibpconsole-proxy.<DOMAIN>``
 
-- Replace `<NAMESPACE>` with the name of the Kubernetes namespace that you created.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 - Replace `<DOMAIN>` with the name of your cluster domain.
 
 Navigate to the TLS certificates that you plan to use on your local system. Name the TLS certificate `tlscert.pem` and the corresponding private key `tlskey.pem`. Run the following command to create the Kubernetes secret and add it to your Kubernetes namespace. The TLS certificate and key need to be in PEM format.
@@ -1092,6 +1093,8 @@ Navigate to the TLS certificates that you plan to use on your local system. Name
 kubectl create secret generic console-tls-secret --from-file=tls.crt=./tlscert.pem --from-file=tls.key=./tlskey.pem -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
 
 After you create the secret, add the `tlsSecretName` field to the `spec:` section of `ibp-console.yaml` with one indent added, at the same level as the `resources:` and `clusterdata:` sections of the advanced deployment options. You must provide the name of the TLS secret that you created to the field. The following example deploys a console with the TLS certificate and key stored in a secret named `"console-tls-secret"`:
 
@@ -1133,6 +1136,7 @@ When you finish editing the file, you can apply it to your cluster in order to s
 kubectl apply -f ibp-console.yaml -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Verifying the console installation
 
@@ -1154,12 +1158,16 @@ If there is an issue with your deployment, you can view the logs from one of the
 kubectl get pods -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
 
 Then, use the following command to get the logs from one of the four containers listed above:
 ```
 kubectl logs -f <pod_name> <container_name> -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
 
 As an example, a command to get the logs from the UI container would look like the following example:
 ```
@@ -1176,7 +1184,7 @@ You can use your browser to access the console by using the console URL:
 https://<NAMESPACE>-ibpconsole-console.<DOMAIN>:443
 ```
 
-- Replace `<NAMESPACE>` with the name of the namespace that you created.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 - Replace `<DOMAIN>` with the name of your cluster domain. You passed this value to the `DOMAIN:` field of the `ibp-console.yaml` file.
 
 Your console URL looks similar to the following example:
