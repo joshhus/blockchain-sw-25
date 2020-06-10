@@ -48,7 +48,7 @@ In these cases, it will be necessary to delete the node or relevant pods manuall
 Note that because smart contracts are deployed into their own pods and not directly into the peer container, they will not be deleted when a peer is deleted. They will have to be deleted either using the UI of your cluster or by issuing kubectl commands.
 
 
-If you are using OpenShift, you have the option to use either the `kubectl` CLI (which is native to Kubernetes), or the `oc` CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the `kubectl` CLI.
+If you are using OpenShift, you have the option to use either the `kubectl` CLI (which is native to Kubernetes), or the `oc` CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the `kubectl` CLI. In this topic, we'll use both CLIs.
 {: tip}
 
 
