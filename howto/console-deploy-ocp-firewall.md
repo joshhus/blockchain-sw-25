@@ -49,11 +49,13 @@ Ensure that your OpenShift cluster has sufficient resources for the {{site.data.
 
 | **Component** (all containers) | CPU**  | Memory (GB) | Storage (GB) |
 |--------------------------------|---------------|-----------------------|------------------------|
-| **Peer**                       | 1.1           | 2.8                   | 200 (includes 100 GB for peer and 100 GB for state DB)|
+| **Peer (Hyperledger Fabric v1.4)**                       | 1.1           | 2.8                   | 200 (includes 100GB for peer and 100GB for state database)|
+| **Peer (Hyperledger Fabric v2.x)**                       | 0.7           | 2.0                   | 200 (includes 100GB for peer and 100GB for state database)|
 | **CA**                         | 0.1           | 0.2                   | 20                     |
 | **Ordering node**              | 0.35          | 0.7                   | 100                    |
-| **Console**                    | 1.2           | 2.4                   | 10                     |
 | **Operator**                   | 0.1           | 0.2                   | 0                      |
+| **Console**                    | 1.2           | 2.4                   | 10                     |
+
 {: caption="Table 1. Default resource allocations" caption-side="bottom"}
 
 ** These values can vary slightly. Actual VPC allocations are visible in the blockchain console when a node is deployed.  
@@ -234,7 +236,227 @@ kubectl get pods
 ```
 {:codeblock}
 
-## Create a new project
+## Deploy the webhook to your OpenShift cluster
+{: #webhook}
+Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+
+Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
+
+This webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
+{: important}
+
+### 1. Create the `ibpinfra` project for the webhook
+{: #webhook-ibminfra}
+
+Use the kubectl CLI to run the following command to create the project. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+```
+oc new-project ibpinfra
+```
+{:codeblock}
+
+This command creates the project and switches your CLI to use that project for all subsequent commands.
+
+### 2. Configure role-based access control (RBAC) for the webhook
+{: #webhook-rbac}
+
+Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webhook
+  namespace: ibpinfra
+---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: webhook
+  rules:
+  - apiGroups:
+    - "*"
+    resources:
+    - secrets
+    verbs:
+    - "*"
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ibpinfra
+subjects:
+- kind: ServiceAccount
+  name: webhook
+  namespace: ibpinfra
+roleRef:
+  kind: Role
+  name: webhook
+  apiGroup: rbac.authorization.k8s.io
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -f rbac.yaml -n ibpinfra
+```
+{:codeblock}
+
+When the command completes successfully you should should see something similar to:
+```
+serviceaccount/webhook created
+role.rbac.authorization.k8s.io/webhook created
+rolebinding.rbac.authorization.k8s.io/ibpinfra created
+```
+
+### 3. Deploy the webhook
+{: #webhook-deploy}
+
+In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
+
+#### deployment.yaml
+{: #webhook-deployment-yaml}
+
+Copy the following text to a file on your local system and save the file as `deployment.yaml`.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "ibp-webhook"
+  labels:
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "ibp-webhook"
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: "ibm-ibp"
+        app.kubernetes.io/name: "ibp"
+        app.kubernetes.io/instance: "ibp-webhook"
+      annotations:
+        productName: "IBM Blockchain Platform"
+        productID: "54283fa24f1a4e8589964e6e92626ec4"
+        productVersion: "2.5.0"
+    spec:
+      serviceAccountName: webhook
+      imagePullSecrets:
+        - name: docker-key-secret
+        - name: ibp-ibmregistry
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+      containers:
+        - name: "ibp-webhook"
+          image: "us.icr.io/crd-conversion-webhook/crd-conversion-webhook:mrshah-amd64"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+              - ALL
+              add:
+              - NET_BIND_SERVICE
+          env:
+            - name: "LICENSE"
+              value: "accept"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - name: server
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 26
+            timeoutSeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 0.1
+              memory: "100Mi"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f deployment.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+deployment.apps/ibp-webhook created
+```
+
+#### service.yaml
+{: #webhook-service-yaml}
+
+Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: "ibp-webhook"
+  labels:
+    type: "webhook"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+    helm.sh/chart: "ibm-ibp"
+spec:
+  type: ClusterIP
+  ports:
+    - name: server
+      port: 443
+      targetPort: server
+      protocol: TCP
+  selector:
+    app.kubernetes.io/instance: "ibp-webhook"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f service.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+service/ibp-webhook created
+```
+
+
+## Create a new project for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
 {: #deploy-ocp-project-firewall}
 
 After you connect to your cluster, create a new project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
@@ -312,10 +534,11 @@ volumes:
 
 After you save and edit the file, run the following commands to add the file to your cluster and add the policy to your project. Replace `<PROJECT_NAME>` with your project.
 ```
-oc apply -f ibp-scc.yaml
+oc apply -f ibp-scc.yaml -n <PROJECT_NAME>
 oc adm policy add-scc-to-user <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 If the command is successful, you can see a response that is similar to the following example:
 ```
@@ -338,9 +561,14 @@ rules:
   resources:
   - persistentvolumeclaims
   - persistentvolumes
-  - customresourcedefinitions
   verbs:
   - '*'
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - 'get'
 - apiGroups:
   - "*"
   resources:
@@ -397,17 +625,6 @@ rules:
   - ibp.com
   resources:
   - '*'
-  - ibpservices
-  - ibpcas
-  - ibppeers
-  - ibpfabproxies
-  - ibporderers
-  verbs:
-  - '*'
-- apiGroups:
-  - ibp.com
-  resources:
-  - '*'
   verbs:
   - '*'
 - apiGroups:
@@ -421,10 +638,11 @@ rules:
 
 After you save and edit the file, run the following commands. Replace `<PROJECT_NAME>` with your project.
 ```
-oc apply -f ibp-clusterrole.yaml
+oc apply -f ibp-clusterrole.yaml -n <PROJECT_NAME>
 oc adm policy add-scc-to-group <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 If successful, you can see a response that is similar to the following example:
 ```
@@ -454,10 +672,11 @@ roleRef:
 
 After you save and edit the file, run the following commands. Replace `<PROJECT_NAME>` with your project.
 ```
-oc apply -f ibp-clusterrolebinding.yaml
+oc apply -f ibp-clusterrolebinding.yaml -n <PROJECT_NAME>
 oc adm policy add-cluster-role-to-user <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 If successful, you can see a response that is similar to the following example:
 ```
@@ -480,9 +699,27 @@ kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_R
 - Replace `<EMAIL>` with your email address.
 - Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
 - Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
+
+Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
+
+```
+kubectl get secret docker-key-secret -n <PROJECT_NAME> -o json | jq -r .data.\"cert.pem\"
+```
+{: codeblock}
+
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+- Again, if you used a different name for the secret, replace `docker-key-secret` with that name before running the command.
+
+The output of this command is a base64 encoded string and looks similar to:
+```
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+```
+
+Save the base64 encoded string that is returned by this command to be used in the next section.
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
@@ -861,6 +1098,7 @@ Then, use the `kubectl` CLI to add the custom resource to your project.
 kubectl apply -f ibp-operator.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You can confirm that the operator deployed by running the command `kubectl get deployment -n <PROJECT_NAME>`. If your operator deployment is successful, then you can see the following tables with four ones displayed. The operator takes about a minute to deploy.
 ```
@@ -887,7 +1125,7 @@ spec:
   serviceAccountName: default
   email: "<EMAIL>"
   password: "<PASSWORD>"
-  registryURL: cp.icr.io/cp
+  registryURL: <LOCAL_REGISTRY>
   imagePullSecrets:
     - docker-key-secret
   networkinfo:
@@ -931,6 +1169,7 @@ After you update the file, you can use the CLI to install the console.
 kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 Replace `<PROJECT_NAME>` with the name of your project. Before you install the console, you might want to review the advanced deployment options in the next section. The console can take a few minutes to deploy.
 
@@ -952,7 +1191,7 @@ spec:
   serviceAccountName: default
   email: "<EMAIL>"
   password: "<PASSWORD>"
-  registryURL: cp.icr.io/cp
+  registryURL: <LOCAL_REGISTRY>
   imagePullSecrets:
     - docker-key-secret
   networkinfo:
@@ -961,37 +1200,37 @@ spec:
     console:
       class: default
       size: 10Gi
-    clusterdata:
-      zones:
-    resources:
-      console:
-        requests:
-          cpu: 500m
-          memory: 1000Mi
-        limits:
-          cpu: 500m
-          memory: 1000Mi
-      configtxlator:
-        limits:
-          cpu: 25m
-          memory: 50Mi
-        requests:
-          cpu: 25m
-          memory: 50Mi
-      couchdb:
-        limits:
-          cpu: 500m
-          memory: 1000Mi
-        requests:
-          cpu: 500m
-          memory: 1000Mi
-      deployer:
-        limits:
-          cpu: 100m
-          memory: 200Mi
-        requests:
-          cpu: 100m
-          memory: 200Mi
+  clusterdata:
+    zones:
+  resources:
+    console:
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+      limits:
+        cpu: 500m
+        memory: 1000Mi
+    configtxlator:
+      limits:
+        cpu: 25m
+        memory: 50Mi
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    couchdb:
+      limits:
+        cpu: 500m
+        memory: 1000Mi
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+    deployer:
+      limits:
+        cpu: 100m
+        memory: 200Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
 ```
 {:codeblock}
 
@@ -1000,6 +1239,7 @@ spec:
   kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
   ```
   {:codeblock}
+  Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 - If you plan to use the console with a multizone Kubernetes cluster, you need to add the zones to the `clusterdata.zones:` section of the file. When zones are provided to the deployment, you can select the zone that a node is deployed to using the console or the APIs. As an example, if you are deploying to a cluster across the zones of dal10, dal12, and dal13, you would add the zones to the file by using the format below.
   ```yaml
@@ -1016,6 +1256,7 @@ spec:
   kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
   ```
   {:codeblock}
+  Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 Unlike the resource allocation, you cannot add zones to a running network. If you have already deployed a console and used it to create nodes on your cluster, you will lose your previous work. After the console restarts, you need to deploy new nodes.    
 {: Important}
@@ -1055,7 +1296,7 @@ spec:
   serviceAccountName: default
   email: "<EMAIL>"
   password: "<PASSWORD>"
-  registryURL: cp.icr.io/cp
+  registryURL: <LOCAL_REGISTRY>
   imagePullSecrets:
     - docker-key-secret
   networkinfo:
@@ -1064,12 +1305,12 @@ spec:
     console:
       class: default
       size: 10Gi
-    tlsSecretName: "console-tls-secret"
-    clusterdata:
-      zones:
-        - dal10
-        - dal12
-        - dal13
+  tlsSecretName: "console-tls-secret"
+  clusterdata:
+    zones:
+      - dal10
+      - dal12
+      - dal13
 ```
 {:codeblock}
 
@@ -1078,6 +1319,7 @@ When you finish editing the file, you can apply it to your cluster in order to s
 kubectl apply -f ibp-console.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 ### Verifying the console installation
 
