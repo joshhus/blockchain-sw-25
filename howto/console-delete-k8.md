@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-10"
+lastupdated: "2020-06-11"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, delete, remove
 
@@ -47,10 +47,10 @@ In these cases, it will be necessary to delete the node or relevant pods manuall
 
 Note that because smart contracts are deployed into their own pods and not directly into the peer container, they will not be deleted when a peer is deleted. They will have to be deleted either using the UI of your cluster or by issuing kubectl commands.
 
-If you are using OpenShift, you have the option to use either the `kubectl` CLI (which is native to Kubernetes), or the `oc` CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the `kubectl` CLI.
+If you are using OpenShift, you have the option to use either the kubectl CLI (which is native to Kubernetes), or the OpenShift cluster (oc) CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the kubectl CLI.
 {: tip}
 
-If you don't already know it, you need to find your Kubernetes cluster namespace. From the console, open any CA node and click the **Info and Usage** icon. View the value of the API URL. For example: https://nf85a2a-soorg10524.ibpv2-cluster.us-south.containers.appdomain.cloud:7054. The namespace is the first part of the url beginning with the letter `n` and followed by a random string of six alphanumeric characters. So in the example above the value of the namespace is `nf85a2a`.
+Because deployments are organized in Kubernetes by their "namespace", you need to know your Kubernetes cluster namespace before you can delete components using the kubectl CLI. From the console, open any CA node and click the **Info and Usage** icon. View the value of the API URL. For example: https://nf85a2a-soorg10524.ibpv2-cluster.us-south.containers.appdomain.cloud:7054. The namespace is the first part of the url beginning with the letter `n` and followed by a random string of six alphanumeric characters. So in the example above the value of the namespace is `nf85a2a`.
 
 If you want to delete all of your smart contract pods, you can issue this command:
 
@@ -58,7 +58,7 @@ If you want to delete all of your smart contract pods, you can issue this comman
 kubectl get po -n <NAMESPACE> | grep chaincode-execution | cut -d" " -f1 | xargs -I {} kubectl delete po {} -n <NAMESPACE>
 ```
 
-Where <NAMESPACE> is the name of your namespace.
+Where `<NAMESPACE>` is the name of your namespace.
 
 If you want to delete a single smart contract pod, you will first have to figure out the name of your smart contract pod.
 
@@ -79,7 +79,7 @@ chaincode-execution-f3cc736f-94ef-454d-8da3-362a50c653d9   1/1     Running   0  
 
 Your smart contract name and version is visible next to the chaincode-id.
 
-To delete a single pod, issue this command, substituting the <POD_NAME> for the name of your pod, for example the smart contract pod `chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4`, as well as your <NAMESPACE>:
+To delete a single pod, issue this command, substituting the `<POD_NAME>` for the name of your pod, for example the smart contract pod `chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4`, as well as your `<NAMESPACE>`:
 
 ```
 oc delete pod <POD_NAME> -n <NAMESPACE>

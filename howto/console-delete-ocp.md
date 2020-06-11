@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-10"
+lastupdated: "2020-06-11"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -49,7 +49,7 @@ Note that because smart contracts are deployed into their own pods and not direc
 {: important}
 
 
-If you are using OpenShift, you have the option to use either the `kubectl` CLI (which is native to Kubernetes), or the `oc` CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the `kubectl` CLI. In this topic, we'll use both CLIs.
+If you are using OpenShift, you have the option to use either the kubectl CLI (which is native to Kubernetes), or the OpenShift cluster (oc) CLI. The commands should be largely the same, except that OpenShift uses "projects" instead of "namespaces". If you are running any cluster type other than OpenShift, you will have to use the kubectl CLI. In this topic, we'll use both CLIs.
 {: tip}
 
 
