@@ -540,7 +540,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -548,7 +548,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpca-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.   
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -602,7 +602,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -610,7 +610,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibppeer-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -664,7 +664,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -672,7 +672,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibporderer-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -723,7 +723,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -731,7 +731,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpconsole-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -909,7 +909,7 @@ You need to provide the user name and password that is used to access the consol
 - Replace `<PASSWORD>` with the password of your choice. This password also becomes the default password of the console until it is changed.
 
 You also need to make additional edits to the file depending on your choices in the deployment process:
-- If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecret:` field.
+- If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecrets:` field.
 - If you created a new storage class for your network, provide the storage class that you created to the `class:` field.
 
 If you are deploying on OpenShift Container Platform v4.2 on LinuxONE, you need to replace:
@@ -945,22 +945,22 @@ apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
-  spec:
-    arch:
-    - amd64
-    license: accept
-    serviceAccountName: default
-    proxyIP:
-    email: "<EMAIL>"
-    password: "<PASSWORD>"
-    registryURL: <LOCAL_REGISTRY>
-    imagePullSecret: docker-key-secret
-    networkinfo:
-        domain: <DOMAIN>
-    storage:
-      console:
-        class: default
-        size: 10Gi
+spec:
+  arch:
+  - amd64
+  license: accept
+  serviceAccountName: default
+  email: "<EMAIL>"
+  password: "<PASSWORD>"
+  registryURL: cp.icr.io/cp
+  imagePullSecrets:
+    - docker-key-secret
+  networkinfo:
+    domain: <DOMAIN>
+  storage:
+    console:
+      class: default
+      size: 10Gi
     clusterdata:
       zones:
     resources:
@@ -1048,23 +1048,22 @@ apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
-  spec:
-    arch:
-    - amd64
-    license: accept
-    serviceAccountName: default
-    proxyIP:
-    email: "<EMAIL>"
-    password: "<PASSWORD>"
-    registryURL: cp.icr.io/cp
-    imagePullSecrets:
-      - docker-key-secret
-    networkinfo:
-        domain: <DOMAIN>
-    storage:
-      console:
-        class: default
-        size: 10Gi
+spec:
+  arch:
+  - amd64
+  license: accept
+  serviceAccountName: default
+  email: "<EMAIL>"
+  password: "<PASSWORD>"
+  registryURL: cp.icr.io/cp
+  imagePullSecrets:
+    - docker-key-secret
+  networkinfo:
+    domain: <DOMAIN>
+  storage:
+    console:
+      class: default
+      size: 10Gi
     tlsSecretName: "console-tls-secret"
     clusterdata:
       zones:

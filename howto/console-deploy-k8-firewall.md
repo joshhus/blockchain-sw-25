@@ -602,7 +602,7 @@ You also need to provide the user name and password that is used to access the c
 - Replace `<PASSWORD>` with the password of your choice. This password also becomes the default password of the console until it is changed.
 
 You may need to make additional edits to the file depending on your choices in the deployment process:
-- If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecret:` field.
+- If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecrets:` field.
 - If you created a new storage class for your network, provide the storage class that you created to the `class:` field.
 
 Because you can only run the following command once, you should review the [Advanced deployment options](#console-deploy-k8-advanced-firewall) in case any of the options are relevant to your configuration before you install the console.  For example, if you are deploying your console on a multizone cluster, you need to configure that before you run the following step to install the console.

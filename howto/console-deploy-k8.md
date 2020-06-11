@@ -103,7 +103,7 @@ Before you can complete the next steps, you need to log in to your cluster by us
 
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
-Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this topic. The webhook is deployed to its own Kubernetes namespace, referred to `ibpinfra` throughout these instructions.
+Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own Kubernetes namespace, referred to `ibpinfra` throughout these instructions.
 
 The webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
 {: important}
@@ -472,13 +472,11 @@ rules:
 
 After you save and edit the file, run the following commands.
 ```
-kubectl apply -f ibp-clusterrole.yaml n <NAMESPACE>
+kubectl apply -f ibp-clusterrole.yaml -n <NAMESPACE>
 ```
 {:codeblock}
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
-```
-{:codeblock}
 
 ### Apply the ClusterRoleBinding
 
@@ -502,7 +500,7 @@ roleRef:
 
 After you save and edit the file, run the following commands.
 ```
-kubectl apply -f ibp-clusterrolebinding.yaml n <NAMESPACE>
+kubectl apply -f ibp-clusterrolebinding.yaml -n <NAMESPACE>
 ```
 {:codeblock}
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
@@ -548,7 +546,7 @@ The output of this command is a base64 encoded string and looks similar to:
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 ```
 
-Save this value to be used in the in the next section.
+Save the value that is returned by this command to be used in the in the next section.
 
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
@@ -607,7 +605,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -615,7 +613,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpca-crd.yaml -n <NAMESPACE>
 ```
 {:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -669,7 +667,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -677,8 +675,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibppeer-crd.yaml -n <NAMESPACE>
 ```
 {:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
-
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -733,7 +730,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -741,7 +738,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibporderer-crd.yaml -n <NAMESPACE>
 ```
 {:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -792,14 +789,14 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
 ```
 kubectl apply -f ibpconsole-crd.yaml -n <NAMESPACE>
 ```
 {:codeblock}
-Replace `<NAMESPACE>` with the name of your project.  
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -944,7 +941,6 @@ When the operator is running on your namespace, you can apply a custom resource 
 
 Save the custom resource definition below as `ibp-console.yaml` on your local system.
 
-
 ```yaml
 apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
@@ -977,7 +973,7 @@ You also need to provide the user name and password that is used to access the c
 - Replace `<PASSWORD>` with the password of your choice. This password also becomes the default password of the console until it is changed.
 
 You may need to make additional edits to the file depending on your choices in the deployment process:
-- If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecret:` field.
+- If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecrets:` field.
 - If you created a new storage class for your network, provide the storage class that you created to the `class:` field.
 
 Because you can only run the following command once, you should review the [Advanced deployment options](#console-deploy-k8-advanced) in case any of the options are relevant to your configuration, before you install the console.  For example, if you are deploying your console on a multizone cluster, you need to configure that before you run the following step to install the console.
@@ -1001,54 +997,54 @@ apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
-  spec:
-    arch:
-    - amd64
-    license: accept
-    serviceAccountName: default
-    proxyIP:
-    email: "<EMAIL>"
-    password: "<PASSWORD>"
-    registryURL: cp.icr.io/cp
-    imagePullSecrets:
-      - docker-key-secret
-    networkinfo:
-        domain: <DOMAIN>
-    storage:
-      console:
-        class: default
-        size: 10Gi
-    clusterdata:
-      zones:
-    resources:
-      console:
-        requests:
-          cpu: 500m
-          memory: 1000Mi
-        limits:
-          cpu: 500m
-          memory: 1000Mi
-      configtxlator:
-        limits:
-          cpu: 25m
-          memory: 50Mi
-        requests:
-          cpu: 25m
-          memory: 50Mi
-      couchdb:
-        limits:
-          cpu: 500m
-          memory: 1000Mi
-        requests:
-          cpu: 500m
-          memory: 1000Mi
-      deployer:
-        limits:
-          cpu: 100m
-          memory: 200Mi
-        requests:
-          cpu: 100m
-          memory: 200Mi
+spec:
+  arch:
+  - amd64
+  license: accept
+  serviceAccountName: default
+  proxyIP:
+  email: "<EMAIL>"
+  password: "<PASSWORD>"
+  registryURL: cp.icr.io/cp
+  imagePullSecrets:
+    - docker-key-secret
+  networkinfo:
+      domain: <DOMAIN>
+  storage:
+    console:
+      class: default
+      size: 10Gi
+  clusterdata:
+    zones:
+  resources:
+    console:
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+      limits:
+        cpu: 500m
+        memory: 1000Mi
+    configtxlator:
+      limits:
+        cpu: 25m
+        memory: 50Mi
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    couchdb:
+      limits:
+        cpu: 500m
+        memory: 1000Mi
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+    deployer:
+      limits:
+        cpu: 100m
+        memory: 200Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
 ```
 {:codeblock}
 
@@ -1103,7 +1099,6 @@ kubectl create secret generic console-tls-secret --from-file=tls.crt=./tlscert.p
 {:codeblock}
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
-
 After you create the secret, add the `tlsSecretName` field to the `spec:` section of `ibp-console.yaml` with one indent added, at the same level as the `resources:` and `clusterdata:` sections of the advanced deployment options. You must provide the name of the TLS secret that you created to the field. The following example deploys a console with the TLS certificate and key stored in a secret named `"console-tls-secret"`:
 
 ```yaml
@@ -1111,31 +1106,28 @@ apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
-  spec:
-    arch:
-    - amd64
-    license: accept
-    serviceAccountName: default
-    proxyIP:
-    email: "<EMAIL>"
-    password: "<PASSWORD>"
-    registryURL: cp.icr.io/cp
-    imagePullSecrets:
-      - docker-key-secret
-    networkinfo:
-        domain: <DOMAIN>
-        consolePort: <CONSOLE_PORT>
-        proxyPort: <PROXY_PORT>
-    storage:
-      console:
-        class: default
-        size: 10Gi
-    tlsSecretName: "console-tls-secret"
-    clusterdata:
-      zones:
-        - dal10
-        - dal12
-        - dal13
+spec:
+  arch:
+  - amd64
+  license: accept
+  serviceAccountName: default
+  email: "<EMAIL>"
+  password: "<PASSWORD>"
+  registryURL: cp.icr.io/cp
+  imagePullSecrets:
+    - docker-key-secret
+  networkinfo:
+    domain: <DOMAIN>
+  storage:
+    console:
+      class: default
+      size: 10Gi
+  tlsSecretName: "console-tls-secret"
+  clusterdata:
+    zones:
+      - dal10
+      - dal12
+      - dal13
 ```
 {:codeblock}
 

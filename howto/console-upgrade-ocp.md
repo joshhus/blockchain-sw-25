@@ -422,7 +422,7 @@ The output of this command is a base64 encoded string and looks similar to:
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 ```
 
-Save this value to be used in the in the next section.
+Save the value that is returned by this command to be used in the in the next section.
 
 ## Step three: Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
@@ -480,7 +480,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -488,7 +488,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpca-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.   
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -542,7 +542,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -550,7 +550,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibppeer-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -604,7 +604,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -612,7 +612,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibporderer-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -663,7 +663,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -671,7 +671,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpconsole-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -1276,7 +1276,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -1284,7 +1284,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpca-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.   
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -1338,7 +1338,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -1346,7 +1346,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibppeer-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -1400,7 +1400,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -1408,7 +1408,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibporderer-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
@@ -1459,7 +1459,7 @@ spec:
 ```
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the [base64 encoded string](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) that you generated when you created the secret for your entitlement key.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -1467,7 +1467,7 @@ Then, use the `kubectl` CLI to add the custom resource definition to your projec
 kubectl apply -f ibpconsole-crd.yaml -n <PROJECT_NAME>
 ```
 {:codeblock}
-Replace `<PROJECT_NAME>` with the name of your project.  
+Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 You should see the following output when it is successful:
 ```
