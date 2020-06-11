@@ -124,7 +124,7 @@ This command creates the namespace and switches your CLI to use that namespace f
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own namespace.
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -181,7 +181,7 @@ In order to deploy the webhook you need to create two `.yaml` files and apply th
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -285,7 +285,7 @@ deployment.apps/ibp-webhook created
 {: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:

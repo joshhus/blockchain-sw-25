@@ -111,7 +111,7 @@ This command creates the namespace and switches your CLI to use that namespace f
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own namespace.
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -168,7 +168,7 @@ In order to deploy the webhook you need to create two `.yaml` files and apply th
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -272,7 +272,7 @@ deployment.apps/ibp-webhook created
 {: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -913,7 +913,7 @@ This command creates the namespace and switches your CLI to use that namespace f
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own namespace.
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -970,7 +970,7 @@ In order to deploy the webhook you need to create two `.yaml` files and apply th
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1074,7 +1074,7 @@ deployment.apps/ibp-webhook created
 {: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -1498,20 +1498,20 @@ kubectl get deployment ibp-operator -o yaml > operator.yaml
 {:codeblock}
 
 Open `operator.yaml` in a text editor and save a new copy of the file as `operator-upgrade.yaml`. You need to update the `image:` field with the updated version of the operator image:
-```
+```yaml
 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
 You also need to edit the `env:` section of the file. Find the following lines in `operator-upgrade.yaml`:
-```
+```yaml
 - name: ISOPENSHIFT
   value: "false"
 ```
 {:codeblock}
 
 Replace the values above with the following lines at the same indentation:
-```
+```yaml
 - name: CLUSTERTYPE
   value: <CLUSTER_TYPE>
 ```
@@ -1520,7 +1520,7 @@ Replace the values above with the following lines at the same indentation:
 - Replace `<CLUSTER_TYPE>` with `K8S` if you are deploying the platform on open source Kubernetes or Rancher.
 
 When you are finished editing the file, the `env:` section would look similar to the following:
-```
+```yaml
 env:
 - name: WATCH_NAMESPACE
   valueFrom:
@@ -1542,6 +1542,9 @@ env:
 Save the file on your local system. You can then issue the following command upgrade your operator:
 ```
 kubectl apply -f operator-upgrade.yaml
+```
+{:codeblock}
+
 
 You can use the `kubectl get deployment ibp-operator -o yaml` command to confirm that the command updated the operator spec.
 
@@ -1563,7 +1566,7 @@ kubectl get ibpconsole ibpconsole -o yaml > console.yaml
 {:codeblock}
 
 Then add the URL of your local registry to the `spec:` section of `console.yaml`. Replace `<LOCAL_REGISTRY>` with the url of your local registry:
-```
+```yaml
 spec:
   registryURL: <LOCAL_REGISTRY>
 ```
@@ -1572,6 +1575,8 @@ spec:
 Save the updated file as `console-upgrade.yaml` on your local system. You can then issue the following command upgrade your console:
 ```
 kubectl apply -f console-upgrade.yaml
+```
+{:codeblock}
 
 ### Step six: Upgrade your blockchain nodes
 {: #upgrade-k8-nodes-firewall}

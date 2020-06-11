@@ -115,7 +115,7 @@ This command creates the project and switches your CLI to use that project for a
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -172,7 +172,7 @@ In order to deploy the webhook you need to create two `.yaml` files and apply th
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -276,7 +276,7 @@ deployment.apps/ibp-webhook created
 {: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -696,27 +696,27 @@ kubectl get deployment ibp-operator -o yaml > operator.yaml
 {:codeblock}
 
 Open `operator.yaml` in a text editor and save a new copy of the file as `operator-upgrade.yaml`. Open `operator-upgrade.yaml` in a text editor. You need to update the `image:` field with the updated version of the operator image. You can find the name and tag of the latest operator image below:
-```
+```yaml
 cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
 If you are upgrading from v2.1.0 or v2.1.1, then you also need to edit the `env:` section of the file. Find the following lines in `operator-upgrade.yaml`:
-```
+```yaml
 - name: ISOPENSHIFT
   value: "true"
 ```
 {:codeblock}
 
 Replace this section with the following lines at the same indentation:
-```
+```yaml
 - name: CLUSTERTYPE
   value: OPENSHIFT
 ```
 {:codeblock}
 
 When you are finished editing the file, the `env:` section would look similar to the following:
-```
+```yaml
 env:
 - name: WATCH_NAMESPACE
   valueFrom:
@@ -912,7 +912,7 @@ This command creates the project and switches your CLI to use that project for a
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
 
-```
+```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -969,7 +969,7 @@ In order to deploy the webhook you need to create two `.yaml` files and apply th
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1073,7 +1073,7 @@ deployment.apps/ibp-webhook created
 {: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
