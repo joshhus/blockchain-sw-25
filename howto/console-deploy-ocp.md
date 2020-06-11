@@ -130,10 +130,8 @@ When you connect to your cluster by using the OpenShift CLI, you also connect by
 kubectl get pods
 ```
 {:codeblock}
-
 ## Deploy the webhook to your OpenShift cluster
 {: #webhook}
-
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.

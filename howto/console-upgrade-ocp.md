@@ -67,8 +67,8 @@ You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by
 1. [Deploy the webhook to your OpenShift cluster](#webhook)
 2. [Update the ClusterRole](#upgrade-ocp-clusterrole)
 3. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform Platform custom resource definitions](#deploy-crd)
-3. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator)
-4. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes)
+4. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator)
+5. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes)
 
 After you upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator, the operator will automatically upgrade the console that is deployed on your OpenShift project. You can then use the upgraded console to upgrade your blockchain nodes.
 
@@ -90,9 +90,8 @@ To upgrade your network, you need to [retrieve your entitlement key](/docs/block
 Occasionally, a five node ordering service that was deployed using v2.1.2 will be deleted by the Kubernetes garbage collector because it considers the nodes a resource that needs to be cleaned up. This process is both random and unrecoverable --- if the ordering service is deleted, all of the channels hosted on it are permanently lost. To prevent this, the `ownerReferences` field in the configuration of each ordering node must be removed **before upgrading to v2.1.3**. For the steps about how to pull the configuration file, remove `ordererReferences`, and apply the change, see [Known issues](https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-sw-known-issues#sw-known-issues-ordering-service-delete) in the v2.1.2 documentation.
 {:important}
 
-## Deploy the webhook to your OpenShift cluster
+## Step one: Deploy the webhook to your OpenShift cluster
 {: #webhook}
-
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
@@ -311,7 +310,7 @@ service/ibp-webhook created
 ```
 
 
-## Update the ClusterRole
+## Step two: Update the ClusterRole
 {: #upgrade-ocp-clusterrole}
 
 You need to update the ClusterRole that is applied to your project. Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. Edit the file and replace `<PROJECT_NAME>` with the name of your project.
@@ -425,7 +424,7 @@ LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytK
 
 Save this value to be used in the in the next section.
 
-## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
+## Step three: Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the OpenShift CLI.
@@ -680,7 +679,7 @@ customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
 ```
 
 
-## Upgrade the {{site.data.keyword.blockchainfull_notm}} operator
+## Step four: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator
 {: #upgrade-ocp-operator}
 
 You can upgrade the {{site.data.keyword.blockchainfull_notm}} operator by fetching the operator deployment spec from your OpenShift project. When the operator upgrade is complete, the operator will upgrade your console and download the latest images for your blockchain nodes.
@@ -756,7 +755,7 @@ ibpconsole     1/1       1            1           4m
 
 If you experience a problem while you are upgrading the operator, go to this [troubleshooting topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems. You can run the command to apply the original operator file, `kubectl apply -f operator.yaml` to restore your original operator deployment.
 
-## Step three: Upgrade your blockchain nodes
+## Step five: Upgrade your blockchain nodes
 {: #upgrade-ocp-nodes}
 
 After you upgrade your console, you can use the console UI to upgrade the nodes of your blockchain network. Browse to the console UI and open the nodes overview tab. You can find the **Patch available** text on a node tile if there is an update available for the component. You can install this patch whenever you are ready. These patches are optional, but they are recommended. You cannot patch nodes that were imported into the console.
@@ -772,9 +771,11 @@ To apply a patch to a node, open the node tile and click the **Install patch** b
 If you deployed the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the external internet, you can upgrade your network by using the following steps:
 
 1. [Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images](#upgrade-ocp-images-firewall)
-2. [Update the ClusterRole](#upgrade-ocp-clusterrole-firewall)
-3. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator-firewall)
-4. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes-firewall)
+2. [Deploy the webhook to your OpenShift cluster](#webhook-fw)
+3. [Update the ClusterRole](#upgrade-ocp-clusterrole-firewall)
+4. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform Platform custom resource definitions](#deploy-crd-fw)
+5. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator-firewall)
+6. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes-firewall)
 
 You can continue to submit transactions to your network while you are upgrading your network. However, you cannot use the console to deploy new nodes, install or instantiate smart contracts, or create new channels during the upgrade process.
 
@@ -783,7 +784,7 @@ You can continue to submit transactions to your network while you are upgrading 
 
 To upgrade your network, you need to [retrieve your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall) from the My {{site.data.keyword.IBM_notm}} Dashboard, and [create a Kubernetes secret](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-docker-registry-secret) to store the key on your OpenShift project. If the Entitlement key secret was removed from your cluster, or if your key is expired, then you need to download another key and create a new secret.
 
-### Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images
+### Step one: Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images
 {: #upgrade-ocp-images-firewall}
 
 To upgrade your network, download the latest set of {{site.data.keyword.blockchainfull_notm}} Platform images and push them to a docker registry that you can access from behind your firewall.
@@ -886,7 +887,227 @@ docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
 
 After you complete these steps, you can use the following instructions to deploy the {{site.data.keyword.blockchainfull_notm}} Platform with the images in your registry.
 
-### Step two: Update the ClusterRole
+### Steo two: Deploy the webhook to your OpenShift cluster
+{: #webhook-fw}
+Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+
+Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
+
+This webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
+{: important}
+
+### Step one: Create the `ibpinfra` project for the webhook
+{: #webhook-ibminfra}
+
+Use the kubectl CLI to run the following command to create the project. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+```
+oc new-project ibpinfra
+```
+{:codeblock}
+
+This command creates the project and switches your CLI to use that project for all subsequent commands.
+
+### Step two: Configure role-based access control (RBAC) for the webhook
+{: #webhook-rbac}
+
+Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webhook
+  namespace: ibpinfra
+---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: webhook
+  rules:
+  - apiGroups:
+    - "*"
+    resources:
+    - secrets
+    verbs:
+    - "*"
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ibpinfra
+subjects:
+- kind: ServiceAccount
+  name: webhook
+  namespace: ibpinfra
+roleRef:
+  kind: Role
+  name: webhook
+  apiGroup: rbac.authorization.k8s.io
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -f rbac.yaml -n ibpinfra
+```
+{:codeblock}
+
+When the command completes successfully you should should see something similar to:
+```
+serviceaccount/webhook created
+role.rbac.authorization.k8s.io/webhook created
+rolebinding.rbac.authorization.k8s.io/ibpinfra created
+```
+
+### Step three: Deploy the webhook
+{: #webhook-deploy}
+
+In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
+
+#### deployment.yaml
+{: #webhook-deployment-yaml}
+
+Copy the following text to a file on your local system and save the file as `deployment.yaml`.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "ibp-webhook"
+  labels:
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "ibp-webhook"
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: "ibm-ibp"
+        app.kubernetes.io/name: "ibp"
+        app.kubernetes.io/instance: "ibp-webhook"
+      annotations:
+        productName: "IBM Blockchain Platform"
+        productID: "54283fa24f1a4e8589964e6e92626ec4"
+        productVersion: "2.5.0"
+    spec:
+      serviceAccountName: webhook
+      imagePullSecrets:
+        - name: docker-key-secret
+        - name: ibp-ibmregistry
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+      containers:
+        - name: "ibp-webhook"
+          image: "us.icr.io/crd-conversion-webhook/crd-conversion-webhook:mrshah-amd64"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+              - ALL
+              add:
+              - NET_BIND_SERVICE
+          env:
+            - name: "LICENSE"
+              value: "accept"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - name: server
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 26
+            timeoutSeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 0.1
+              memory: "100Mi"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f deployment.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+deployment.apps/ibp-webhook created
+```
+
+#### service.yaml
+{: #webhook-service-yaml}
+
+Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: "ibp-webhook"
+  labels:
+    type: "webhook"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+    helm.sh/chart: "ibm-ibp"
+spec:
+  type: ClusterIP
+  ports:
+    - name: server
+      port: 443
+      targetPort: server
+      protocol: TCP
+  selector:
+    app.kubernetes.io/instance: "ibp-webhook"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f service.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+service/ibp-webhook created
+```
+
+
+### Step three: Update the ClusterRole
 {: #upgrade-ocp-clusterrole-firewall}
 
 You need to update the ClusterRole that is applied to your project. Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. Edit the file and replace `<PROJECT_NAME>` with the name of your project.
@@ -982,8 +1203,25 @@ After you save and edit the file, run the following commands. Replace `<PROJECT_
 oc apply -f ibp-clusterrole.yaml -n <PROJECT_NAME>
 oc adm policy add-scc-to-group <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
 ```
-## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
-{: #deploy-crd}
+
+Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
+
+```
+kubectl get secret docker-key-secret -n <PROJECT_NAME> -o json | jq -r .data.\"cert.pem\"
+```
+{: codeblock}
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+- Again, if you used a different name for the secret, replace `docker-key-secret` with that name before running the command.
+
+The output of this command is a base64 encoded string and looks similar to:
+```
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+```
+
+Save this value to be used in the in the next section.
+
+### Step four: Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
+{: #deploy-crd-fw}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the OpenShift CLI.
 
@@ -1237,7 +1475,7 @@ customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
 ```
 
 
-### Upgrade the {{site.data.keyword.blockchainfull_notm}} operator
+### Step five: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator
 {: #upgrade-ocp-operator-firewall}
 
 You can upgrade the {{site.data.keyword.blockchainfull_notm}} operator by fetching the operator deployment spec from your OpenShift project. You can then update the spec with the latest operator image that you pushed to your local registry. When the operator upgrade is complete, the operator will download the images that you pushed to your local registry and upgrade your console.
@@ -1337,7 +1575,7 @@ kubectl apply -f console-upgrade.yaml
 ```
 {:codeblock}
 
-### Upgrade your blockchain nodes
+### Step six: Upgrade your blockchain nodes
 {: #upgrade-ocp-nodes-firewall}
 
 After you upgrade your console, you can use the console UI to upgrade the nodes of your blockchain network. For more information, see [Upgrade your blockchain nodes](#upgrade-ocp-nodes).
