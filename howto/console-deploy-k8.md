@@ -96,28 +96,6 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 Before you can complete the next steps, you need to log in to your cluster by using the kubectl CLI. Follow the instructions for logging into to your cluster.
 
-## Create a new namespace
-{: #deploy-k8-namespace}
-
-After you connect to your cluster, create a new namespace for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
-
-If you are using the CLI, create a new namespace by running the following command:
-```
-kubectl create namespace <NAMESPACE>
-```
-{:codeblock}
-
-Replace `<NAMESPACE>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
-
-It is required that you create a namespace for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique namespace for each environment. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each namespace.
-{: important}
-
-You can also use the CLI to find the available storage classes for your namespace. If you created a new storage class for your deployment, that storage class must be visible in the output in the following command:
-```
-kubectl get storageclasses
-```
-{:codeblock}
-
 ## Deploy the webhook to your Kubernetes cluster
 {: #webhook}
 
@@ -131,7 +109,8 @@ The webhook only has to be deployed **once per cluster**. If you have already de
 ### Step one: Create the `ibpinfra` namespace for the webhook
 {: #webhook-ibminfra}
 
-Use the kubectl CLI to run the following command to create the namespace:
+Use the kubectl CLI to run the following command to create the namespace. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+
 ```
 kubectl create namespace ibpinfra
 ```
@@ -338,6 +317,29 @@ When it completes successfully you should see something similar to:
 service/ibp-webhook created
 ```
 
+
+
+## Create a new namespace for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
+{: #deploy-k8-namespace}
+
+After you connect to your cluster, create a new namespace for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
+
+If you are using the CLI, create a new namespace by running the following command:
+```
+kubectl create namespace <NAMESPACE>
+```
+{:codeblock}
+
+Replace `<NAMESPACE>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
+
+It is required that you create a namespace for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique namespace for each environment. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each namespace.
+{: important}
+
+You can also use the CLI to find the available storage classes for your namespace. If you created a new storage class for your deployment, that storage class must be visible in the output in the following command:
+```
+kubectl get storageclasses
+```
+{:codeblock}
 
 ## Add security and access policies
 {: #deploy-k8-scc}
@@ -819,7 +821,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpoperator"
+    app.kubernetes.io/instance: "ibp"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   replicas: 1
@@ -835,8 +837,8 @@ spec:
         release: "operator"
         helm.sh/chart: "ibm-ibp"
         app.kubernetes.io/name: "ibp"
-        app.kubernetes.io/instance: "ibpoperator"
-        app.kubernetes.io/managed-by: "ibp-operator"
+        app.kubernetes.io/instance: "ibp"
+        app.kubernetes.io/managed-by: "ibp-operator"  
       annotations:
         productName: "IBM Blockchain Platform"
         productID: "54283fa24f1a4e8589964e6e92626ec4"
@@ -857,8 +859,12 @@ spec:
                 operator: In
                 values:
                 - amd64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 2000
       imagePullSecrets:
-        - "docker-key-secret"
+        - name: docker-key-secret
       containers:
         - name: ibp-operator
           image: cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
@@ -951,7 +957,7 @@ spec:
   password: "<PASSWORD>"
   registryURL: cp.icr.io/cp
   imagePullSecrets:
-    - "docker-key-secret"
+    - docker-key-secret
   networkinfo:
     domain: <DOMAIN>
   storage:
@@ -1003,7 +1009,7 @@ metadata:
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
     imagePullSecrets:
-      - "docker-key-secret"
+      - docker-key-secret
     networkinfo:
         domain: <DOMAIN>
     storage:
@@ -1113,7 +1119,7 @@ metadata:
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
     imagePullSecrets:
-      - "docker-key-secret"
+      - docker-key-secret
     networkinfo:
         domain: <DOMAIN>
         consolePort: <CONSOLE_PORT>

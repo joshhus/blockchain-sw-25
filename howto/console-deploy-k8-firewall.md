@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-10"
+lastupdated: "2020-06-11"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises
 
@@ -450,7 +450,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpoperator"
+    app.kubernetes.io/instance: "ibp"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   replicas: 1
@@ -466,12 +466,12 @@ spec:
         release: "operator"
         helm.sh/chart: "ibm-ibp"
         app.kubernetes.io/name: "ibp"
-        app.kubernetes.io/instance: "ibpoperator"
-        app.kubernetes.io/managed-by: "ibp-operator"
+        app.kubernetes.io/instance: "ibp"
+        app.kubernetes.io/managed-by: "ibp-operator"  
       annotations:
         productName: "IBM Blockchain Platform"
         productID: "54283fa24f1a4e8589964e6e92626ec4"
-        productVersion: "2.1.3"
+        productVersion: "2.5"
         productChargedContainers: ""
         productMetric: "VIRTUAL_PROCESSOR_CORE"
     spec:
@@ -488,8 +488,12 @@ spec:
                 operator: In
                 values:
                 - amd64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 2000
       imagePullSecrets:
-        - "docker-key-secret"
+        - name: docker-key-secret
       containers:
         - name: ibp-operator
           image: <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200618-amd64
@@ -580,7 +584,7 @@ spec:
   password: "<PASSWORD>"
   registryURL: <LOCAL_REGISTRY>
   imagePullSecrets:
-    - "docker-key-secret"
+    - docker-key-secret
   networkinfo:
     domain: <DOMAIN>
   storage:
@@ -631,7 +635,7 @@ spec:
   email: "<EMAIL>"
   password: "<PASSWORD>"
   imagePullSecrets:
-    - "docker-key-secret"
+    - docker-key-secret
   registryURL: <LOCAL_REGISTRY>
   networkinfo:
     domain: <DOMAIN>
@@ -736,7 +740,7 @@ metadata:
     password: "<PASSWORD>"
     registryURL: <LOCAL_REGISTRY>
     imagePullSecrets:
-      - "docker-key-secret"
+      - docker-key-secret
     networkinfo:
         domain: <DOMAIN>
         consolePort: <CONSOLE_PORT>

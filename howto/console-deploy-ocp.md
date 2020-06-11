@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-10"
+lastupdated: "2020-06-11"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -131,35 +131,6 @@ kubectl get pods
 ```
 {:codeblock}
 
-## Create a new project
-{: #deploy-ocp-project}
-
-After you connect to your cluster, create a new project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
-
-If you are using the CLI, create a new project by the following command:
-```
-oc new-project <PROJECT_NAME>
-```
-{:codeblock}
-
-Replace `<PROJECT_NAME>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
-
-It is required that you create a new OpenShift project for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique project for each environment. Each project creates a new Kubernetes namespace. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each project.
-{: important}
-
-When you create a new project, a new namespace is created with the same name as your project. You can verify that the existence of the new namespace by using the `oc get namespace` command:
-```
-$ oc get namespace
-NAME                                STATUS    AGE
-blockchain-project                  Active    2m
-```
-
-You can also use the CLI to find the available storage classes for your namespace. If you created a new storage class for your deployment, that storage class must be visible in the output in the following command:
-```
-kubectl get storageclasses
-```
-{:codeblock}
-
 ## Deploy the webhook to your OpenShift cluster
 {: #webhook}
 
@@ -173,7 +144,7 @@ This webhook only has to be deployed **once per cluster**. If you have already d
 ### Step one: Create the `ibpinfra` project for the webhook
 {: #webhook-ibminfra}
 
-Use the kubectl CLI to run the following command to create the project:
+Use the kubectl CLI to run the following command to create the project. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
 ```
 oc new-project ibpinfra
 ```
@@ -380,6 +351,35 @@ When it completes successfully you should see something similar to:
 service/ibp-webhook created
 ```
 
+
+## Create a new project for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
+{: #deploy-ocp-project}
+
+After you connect to your cluster, create a new project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+
+If you are using the CLI, create a new project by the following command:
+```
+oc new-project <PROJECT_NAME>
+```
+{:codeblock}
+
+Replace `<PROJECT_NAME>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+It is required that you create a new OpenShift project for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique project for each environment. Each project creates a new Kubernetes namespace. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each project.
+{: important}
+
+When you create a new project, a new namespace is created with the same name as your project. You can verify that the existence of the new namespace by using the `oc get namespace` command:
+```
+$ oc get namespace
+NAME                                STATUS    AGE
+blockchain-project                  Active    2m
+```
+
+You can also use the CLI to find the available storage classes for your namespace. If you created a new storage class for your deployment, that storage class must be visible in the output in the following command:
+```
+kubectl get storageclasses
+```
+{:codeblock}
 
 ## Add security and access policies
 {: #deploy-ocp-scc}
@@ -592,10 +592,27 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 {:codeblock}
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
-- Replace `<PROJECT_NAME>` with the name of your OpenShift Container Platform project.
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
+
+Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
+
+```
+kubectl get secret docker-key-secret -n <PROJECT_NAME> -o json | jq -r .data.\"cert.pem\"
+```
+{: codeblock}
+
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+- Again, if you used a different name for the secret, replace `docker-key-secret` with that name before running the command.
+
+The output of this command is a base64 encoded string and looks similar to:
+```
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+```
+
+Save this value to be used in the in the next section.
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
@@ -867,7 +884,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpoperator"
+    app.kubernetes.io/instance: "ibp"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   replicas: 1
@@ -883,8 +900,8 @@ spec:
         release: "operator"
         helm.sh/chart: "ibm-ibp"
         app.kubernetes.io/name: "ibp"
-        app.kubernetes.io/instance: "ibpoperator"
-        app.kubernetes.io/managed-by: "ibp-operator"
+        app.kubernetes.io/instance: "ibp"
+        app.kubernetes.io/managed-by: "ibp-operator"  
       annotations:
         productName: "IBM Blockchain Platform"
         productID: "54283fa24f1a4e8589964e6e92626ec4"
@@ -905,6 +922,10 @@ spec:
                 operator: In
                 values:
                 - amd64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 2000
       imagePullSecrets:
         - name: docker-key-secret
       containers:
@@ -999,7 +1020,7 @@ spec:
   password: "<PASSWORD>"
   registryURL: cp.icr.io/cp
   imagePullSecrets:
-    - "docker-key-secret"
+    - docker-key-secret
   networkinfo:
     domain: <DOMAIN>
   storage:
@@ -1064,7 +1085,7 @@ metadata:
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
     imagePullSecrets:
-      - "docker-key-secret"
+      - docker-key-secret
     networkinfo:
         domain: <DOMAIN>
     storage:
@@ -1172,7 +1193,7 @@ metadata:
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
     imagePullSecrets:
-      - "docker-key-secret"
+      - docker-key-secret
     networkinfo:
         domain: <DOMAIN>
     storage:

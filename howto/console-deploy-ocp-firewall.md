@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-10"
+lastupdated: "2020-06-11"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -754,7 +754,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpoperator"
+    app.kubernetes.io/instance: "ibp"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   replicas: 1
@@ -770,12 +770,12 @@ spec:
         release: "operator"
         helm.sh/chart: "ibm-ibp"
         app.kubernetes.io/name: "ibp"
-        app.kubernetes.io/instance: "ibpoperator"
-        app.kubernetes.io/managed-by: "ibp-operator"
+        app.kubernetes.io/instance: "ibp"
+        app.kubernetes.io/managed-by: "ibp-operator"  
       annotations:
         productName: "IBM Blockchain Platform"
         productID: "54283fa24f1a4e8589964e6e92626ec4"
-        productVersion: "2.1.3"
+        productVersion: "2.5"
         productChargedContainers: ""
         productMetric: "VIRTUAL_PROCESSOR_CORE"
     spec:
@@ -792,6 +792,10 @@ spec:
                 operator: In
                 values:
                 - amd64
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 2000
       imagePullSecrets:
         - name: docker-key-secret
       containers:
@@ -885,7 +889,7 @@ spec:
   password: "<PASSWORD>"
   registryURL: cp.icr.io/cp
   imagePullSecrets:
-    - "docker-key-secret"
+    - docker-key-secret
   networkinfo:
     domain: <DOMAIN>
   storage:
@@ -1054,7 +1058,7 @@ metadata:
     password: "<PASSWORD>"
     registryURL: cp.icr.io/cp
     imagePullSecrets:
-      - "docker-key-secret"
+      - docker-key-secret
     networkinfo:
         domain: <DOMAIN>
     storage:
