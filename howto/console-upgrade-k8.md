@@ -59,8 +59,8 @@ You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by
 1. [Deploy the webhook to your Kubernetes cluster](#webhook)
 2. [Update the ClusterRole](#upgrade-k8-clusterrole)
 3. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions](#deploy-crd)
-4. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator)
-5. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes)
+4. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-k8-operator)
+5. [Use your console to upgrade your running blockchain nodes](#upgrade-k8-nodes)
 
 After you upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator, the operator will automatically upgrade the console that is deployed on your namespace. You can then use the upgraded console to upgrade your blockchain nodes.
 
@@ -1108,7 +1108,7 @@ service/ibp-webhook created
 ```
 
 ### Step three: Update the ClusterRole
-{: #upgrade-k8-fw-clusterrole}
+{: #upgrade-k8-clusterrole-firewall}
 
 This step is only required if you are upgrading from v2.1.0 or v2.1.1. If you are running v2.1.2 you can skip to [Step three](#upgrade-k8-operator-firewall).
 {: note}
@@ -1229,7 +1229,7 @@ Save the base64 encoded string that is returned by this command to be used in th
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
 
-### CA custom resource definition
+#### CA custom resource definition
 {: #deploy-crd-ca}
 
 Copy the following text to a file on your local system and save the file as `ibpca-crd.yaml`.
@@ -1295,7 +1295,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibpcas.ibp.com created
 ```
 
-### Peer custom resource definition
+#### Peer custom resource definition
 {: #deploy-crd-peer}
 
 Copy the following text to a file on your local system and save the file as `ibppeer-crd.yaml`.
@@ -1357,7 +1357,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
 ```
 
-### Orderer custom resource definition
+#### Orderer custom resource definition
 {: #deploy-crd-orderer}
 
 Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.

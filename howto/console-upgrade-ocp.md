@@ -1224,7 +1224,7 @@ Save the base64 encoded string that is returned by this command to be used in th
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the OpenShift CLI.
 
-### CA custom resource definition
+#### CA custom resource definition
 {: #deploy-crd-ca}
 
 Copy the following text to a file on your local system and save the file as `ibpca-crd.yaml`.
@@ -1290,7 +1290,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibpcas.ibp.com created
 ```
 
-### Peer custom resource definition
+#### Peer custom resource definition
 {: #deploy-crd-peer}
 
 Copy the following text to a file on your local system and save the file as `ibppeer-crd.yaml`.
@@ -1352,7 +1352,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
 ```
 
-### Orderer custom resource definition
+#### Orderer custom resource definition
 {: #deploy-crd-orderer}
 
 Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.
@@ -1413,7 +1413,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
-### Console custom resource definition
+#### Console custom resource definition
 {: #deploy-crd-console}
 
 Copy the following text to a file on your local system and save the file as `ibpconsole-crd.yaml`.
