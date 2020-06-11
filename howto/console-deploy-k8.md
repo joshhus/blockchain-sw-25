@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-10"
+lastupdated: "2020-06-11"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -1213,7 +1213,7 @@ Ready to automate the entire deployment process? Check out the [Ansible Playbook
 ## Considerations when using Kubernetes distributions
 {: #console-deploy-k8-considerations}
 
-Before attempting to install {{site.data.keyword.blockchainfull_notm}} Platform on Azure, AWS, Rancher, or GKE, you should perform the following steps. Refer to your Kubernetes distribution documentation for more details.
+Before attempting to install {{site.data.keyword.blockchainfull_notm}} Platform on Azure Kubernetes Service, Amazon Web Services, Rancher, Amazon Elastic Kubernetes Service, or Google Kubernetes Engine, you should perform the following steps. Refer to your Kubernetes distribution documentation for more details.
 
 1. Ensure a load balancer with a public IP is configured in front of the Kubernetes cluster.
 2. Create a DNS entry for the IP address of the load balancer.
