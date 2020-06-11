@@ -66,7 +66,7 @@ You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by
 
 1. [Deploy the webhook to your OpenShift cluster](#webhook)
 2. [Update the ClusterRole](#upgrade-ocp-clusterrole)
-3. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform Platform custom resource definitions](#deploy-crd)
+3. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions](#deploy-crd)
 4. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator)
 5. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes)
 
@@ -99,7 +99,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 This webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
 {: important}
 
-### Step one: Create the `ibpinfra` project for the webhook
+### 1. Create the `ibpinfra` project for the webhook
 {: #webhook-ibminfra}
 
 Use the kubectl CLI to run the following command to create the project. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
@@ -110,7 +110,7 @@ oc new-project ibpinfra
 
 This command creates the project and switches your CLI to use that project for all subsequent commands.
 
-### Step two: Configure role-based access control (RBAC) for the webhook
+### 2. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
@@ -162,7 +162,7 @@ role.rbac.authorization.k8s.io/webhook created
 rolebinding.rbac.authorization.k8s.io/ibpinfra created
 ```
 
-### Step three: Deploy the webhook
+### 3. Deploy the webhook
 {: #webhook-deploy}
 
 In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
@@ -421,8 +421,7 @@ The output of this command is a base64 encoded string and looks similar to:
 ```
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 ```
-
-Save the value that is returned by this command to be used in the in the next section.
+Save the base64 encoded string that is returned by this command to be used in the next section.
 
 ## Step three: Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
@@ -773,7 +772,7 @@ If you deployed the {{site.data.keyword.blockchainfull_notm}} Platform behind a 
 1. [Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images](#upgrade-ocp-images-firewall)
 2. [Deploy the webhook to your OpenShift cluster](#webhook-fw)
 3. [Update the ClusterRole](#upgrade-ocp-clusterrole-firewall)
-4. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform Platform custom resource definitions](#deploy-crd-fw)
+4. [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions](#deploy-crd-fw)
 5. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-ocp-operator-firewall)
 6. [Use your console to upgrade your running blockchain nodes](#upgrade-ocp-nodes-firewall)
 
@@ -887,8 +886,9 @@ docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
 
 After you complete these steps, you can use the following instructions to deploy the {{site.data.keyword.blockchainfull_notm}} Platform with the images in your registry.
 
-### Steo two: Deploy the webhook to your OpenShift cluster
+### Step two: Deploy the webhook to your OpenShift cluster
 {: #webhook-fw}
+
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
@@ -896,7 +896,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 This webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
 {: important}
 
-### Step one: Create the `ibpinfra` project for the webhook
+#### 1. Create the `ibpinfra` project for the webhook
 {: #webhook-ibminfra}
 
 Use the kubectl CLI to run the following command to create the project. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
@@ -907,7 +907,7 @@ oc new-project ibpinfra
 
 This command creates the project and switches your CLI to use that project for all subsequent commands.
 
-### Step two: Configure role-based access control (RBAC) for the webhook
+#### 2. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
@@ -959,12 +959,12 @@ role.rbac.authorization.k8s.io/webhook created
 rolebinding.rbac.authorization.k8s.io/ibpinfra created
 ```
 
-### Step three: Deploy the webhook
+#### 3. Deploy the webhook
 {: #webhook-deploy}
 
 In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
 
-#### deployment.yaml
+##### deployment.yaml
 {: #webhook-deployment-yaml}
 
 Copy the following text to a file on your local system and save the file as `deployment.yaml`.
@@ -1069,7 +1069,7 @@ When it completes successfully you should see something similar to:
 deployment.apps/ibp-webhook created
 ```
 
-#### service.yaml
+##### service.yaml
 {: #webhook-service-yaml}
 
 Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
@@ -1105,7 +1105,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
 
 ### Step three: Update the ClusterRole
 {: #upgrade-ocp-clusterrole-firewall}
@@ -1218,7 +1217,7 @@ The output of this command is a base64 encoded string and looks similar to:
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 ```
 
-Save this value to be used in the in the next section.
+Save the base64 encoded string that is returned by this command to be used in the next section.
 
 ### Step four: Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd-fw}

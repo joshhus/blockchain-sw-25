@@ -98,9 +98,8 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 Before you can complete the next steps, you need to log in to your cluster by using the kubectl CLI. Follow the instructions for logging into to your cluster.
 
-## Deploy the webhook to your Kubernetes cluster
-{: #webhook}
-
+## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
+{: #deploy-crd}
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own Kubernetes namespace, referred to `ibpinfra` throughout these instructions.
@@ -108,7 +107,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
 {: important}
 
-### Step one: Create the `ibpinfra` namespace for the webhook
+### 1. Create the `ibpinfra` namespace for the webhook
 {: #webhook-ibminfra}
 
 Use the kubectl CLI to run the following command to create the namespace. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
@@ -120,7 +119,7 @@ kubectl create namespace ibpinfra
 
 This command creates the namespace and switches your CLI to use that namespace for all subsequent commands.
 
-### Step two: Configure role-based access control (RBAC) for the webhook
+### 2. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
 
 Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own namespace.
@@ -172,7 +171,7 @@ role.rbac.authorization.k8s.io/webhook created
 rolebinding.rbac.authorization.k8s.io/ibpinfra created
 ```
 
-### Step three: Deploy the webhook
+### 3. Deploy the webhook
 {: #webhook-deploy}
 
 In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
@@ -318,7 +317,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
 
 
 ## Create a new namespace for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
@@ -546,12 +544,10 @@ The output of this command is a base64 encoded string and looks similar to:
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 ```
 
-Save the value that is returned by this command to be used in the in the next section.
-
+Save the base64 encoded string that is returned by this command to be used in the next section.
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
 {: #deploy-crd}
-
 The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
 
 ### CA custom resource definition
