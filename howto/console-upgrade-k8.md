@@ -537,7 +537,7 @@ spec:
 ```
 
 {:codeblock}
-```
+
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
