@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-12"
 
-keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises
+keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
 subcollection: blockchain-sw-25
 
@@ -220,8 +220,227 @@ registry-console-6c74fc45f9-nl5nw   1/1       Running   0          7d
 router-6cc88df47c-hqjmk             1/1       Running   0          7d
 router-6cc88df47c-mwzbq             1/1       Running   0          7d
 ```
+## Deploy the webhook to your OpenShift cluster
+{: #webhook}
+Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
-## Create a new namespace
+Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own OpenShift project, referred to `ibpinfra` throughout these instructions.
+
+This webhook only has to be deployed **once per cluster**. If you have already deployed this webhook to your cluster, you can skip these steps.
+{: important}
+
+### 1. Create the `ibpinfra` project for the webhook
+{: #webhook-ibminfra}
+
+Use the kubectl CLI to run the following command to create the project. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+```
+oc new-project ibpinfra
+```
+{:codeblock}
+
+This command creates the project and switches your CLI to use that project for all subsequent commands.
+
+### 2. Configure role-based access control (RBAC) for the webhook
+{: #webhook-rbac}
+
+Copy the following text to a file on your local system and save the file as `rbac.yaml`. This step allows the webhook to read and create a TLS secret in its own project.
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webhook
+  namespace: ibpinfra
+---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: webhook
+  rules:
+  - apiGroups:
+    - "*"
+    resources:
+    - secrets
+    verbs:
+    - "*"
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ibpinfra
+subjects:
+- kind: ServiceAccount
+  name: webhook
+  namespace: ibpinfra
+roleRef:
+  kind: Role
+  name: webhook
+  apiGroup: rbac.authorization.k8s.io
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -f rbac.yaml -n ibpinfra
+```
+{:codeblock}
+
+When the command completes successfully you should should see something similar to:
+```
+serviceaccount/webhook created
+role.rbac.authorization.k8s.io/webhook created
+rolebinding.rbac.authorization.k8s.io/ibpinfra created
+```
+
+### 3. Deploy the webhook
+{: #webhook-deploy}
+
+In order to deploy the webhook you need to create two `.yaml` files and apply them to your Kubernetes cluster.
+
+#### deployment.yaml
+{: #webhook-deployment-yaml}
+
+Copy the following text to a file on your local system and save the file as `deployment.yaml`.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "ibp-webhook"
+  labels:
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: "ibp-webhook"
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: "ibm-ibp"
+        app.kubernetes.io/name: "ibp"
+        app.kubernetes.io/instance: "ibp-webhook"
+      annotations:
+        productName: "IBM Blockchain Platform"
+        productID: "54283fa24f1a4e8589964e6e92626ec4"
+        productVersion: "2.5.0"
+    spec:
+      serviceAccountName: webhook
+      imagePullSecrets:
+        - name: docker-key-secret
+        - name: ibp-ibmregistry
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+      containers:
+        - name: "ibp-webhook"
+          image: "us.icr.io/crd-conversion-webhook/crd-conversion-webhook:mrshah-amd64"
+          imagePullPolicy: Always
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            capabilities:
+              drop:
+              - ALL
+              add:
+              - NET_BIND_SERVICE
+          env:
+            - name: "LICENSE"
+              value: "accept"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - name: server
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: server
+              scheme: HTTPS
+            initialDelaySeconds: 26
+            timeoutSeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 0.1
+              memory: "100Mi"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f deployment.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+deployment.apps/ibp-webhook created
+```
+
+#### service.yaml
+{: #webhook-service-yaml}
+
+Secondly, copy the following text to a file on your local system and save the file as `service.yaml`.
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: "ibp-webhook"
+  labels:
+    type: "webhook"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibp-webhook"
+    helm.sh/chart: "ibm-ibp"
+spec:
+  type: ClusterIP
+  ports:
+    - name: server
+      port: 443
+      targetPort: server
+      protocol: TCP
+  selector:
+    app.kubernetes.io/instance: "ibp-webhook"
+```
+{: codeblock}
+
+Run the following command to add the file to your cluster definition:
+```
+kubectl apply -n ibpinfra -f service.yaml
+```
+{: codeblock}
+
+When it completes successfully you should see something similar to:
+```
+service/ibp-webhook created
+```
+
+
+## Create a new namespace for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
 {: #deploy-k8-namespace-firewall}
 
 After you connect to your cluster, create a new namespace for your deployment of the {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
@@ -232,7 +451,7 @@ kubectl create namespace <NAMESPACE>
 ```
 {:codeblock}
 
-Replace `<NAMESPACE>` with the name of your namespace.
+Replace `<NAMESPACE>` with the name that you want to use for your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 It is required that you create a namespace for each blockchain network that you deploy with the {{site.data.keyword.blockchainfull_notm}} Platform. For example, if you plan to create different networks for development, staging, and production, then you need to create a unique namespace for each environment. Using a separate namespace provides each network with separate resources and allows you to set unique access policies for each network. You need to follow these deployment instructions to deploy a separate operator and console for each namespace.
 {: important}
@@ -252,7 +471,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform requires specific securit
 
 Copy the PodSecurityPolicy object below and save it to your local system as `ibp-psp.yaml`.
 
-If you are running **Kubernetes v1.16**, you need to change the line `apiVersion: extensions/v1beta1` in the following PodSecurityPolicy object to `apiVersion: policy/v1beta1`.
+If you are running **Kubernetes v1.16 or higher**, you need to change the line `apiVersion: extensions/v1beta1` in the following PodSecurityPolicy object to `apiVersion: policy/v1beta1`.
 {: important}
 
 ```yaml
@@ -297,7 +516,7 @@ kubectl apply -f ibp-psp.yaml
 
 ### Apply the ClusterRole
 
-Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. This file defines the required ClusterRole for the PodSecurityPolicy. Edit the file and replace `<NAMESPACE>` with the name of your namespace.
+Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. This file defines the required ClusterRole for the PodSecurityPolicy. Edit the file and replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -316,7 +535,7 @@ rules:
   - "*"
   resources:
   - pods
-  - pods/log
+  - pod/logs
   - services
   - endpoints
   - persistentvolumeclaims
@@ -341,9 +560,14 @@ rules:
 - apiGroups:
   - apiextensions.k8s.io
   resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
   - persistentvolumeclaims
   - persistentvolumes
-  - customresourcedefinitions
   verbs:
   - '*'
 - apiGroups:
@@ -377,13 +601,14 @@ rules:
 
 After you save and edit the file, run the following commands.
 ```
-kubectl apply -f ibp-clusterrole.yaml
+kubectl apply -f ibp-clusterrole.yaml -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Apply the ClusterRoleBinding
 
-Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<NAMESPACE>` with the name of your namespace.
+Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ```yaml
 kind: ClusterRoleBinding
@@ -403,9 +628,10 @@ roleRef:
 
 After you save and edit the file, run the following commands.
 ```
-kubectl apply -f ibp-clusterrolebinding.yaml
+kubectl apply -f ibp-clusterrolebinding.yaml -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Create the role binding
 
@@ -431,10 +657,280 @@ kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_R
 - Replace `<EMAIL>` with your email address.
 - Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
 - Replace `<LOCAL_REGISTRY>` with the url of your local registry.
-- Replace `<NAMESPACE>` with the name of your namespace.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
+
+Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
+
+```
+kubectl get secret docker-key-secret -n ibpinfra -o json | jq -r .data.\"cert.pem\"
+```
+{: codeblock}
+
+Again, if you used a different name for the secret, replace `docker-key-secret` with that name before running the command.
+
+The output of this command is a base64 encoded string and looks similar to:
+```
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+```
+
+Save the base64 encoded string that is returned by this command to be used in the next section.
+
+## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
+{: #deploy-crd}
+The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
+
+### CA custom resource definition
+{: #deploy-crd-ca}
+
+Copy the following text to a file on your local system and save the file as `ibpca-crd.yaml`.
+```yaml
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  labels:
+    app.kubernetes.io/instance: ibpca
+    app.kubernetes.io/managed-by: ibp-operator
+    app.kubernetes.io/name: ibp
+    helm.sh/chart: ibm-ibp
+    release: operator
+  name: ibpcas.ibp.com
+spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
+  group: ibp.com
+  names:
+    kind: IBPCA
+    listKind: IBPCAList
+    plural: ibpcas
+    singular: ibpca
+  scope: Namespaced
+  versions:
+  - name: v210
+    served: false
+    storage: false
+  - name: v1alpha2
+    served: true
+    storage: true
+  - name: v212
+    served: false
+    storage: false
+  - name: v1alpha1
+    served: true
+    storage: false
+```
+{:codeblock}
+
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
+
+Then, use the `kubectl` CLI to add the custom resource definition to your project.
+
+```
+kubectl apply -f ibpca-crd.yaml -n <NAMESPACE>
+```
+{:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+You should see the following output when it is successful:
+```
+customresourcedefinition.apiextensions.k8s.io/ibpcas.ibp.com created
+```
+
+### Peer custom resource definition
+{: #deploy-crd-peer}
+
+Copy the following text to a file on your local system and save the file as `ibppeer-crd.yaml`.
+```yaml
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: ibppeers.ibp.com
+  labels:
+    release: "operator"
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/managed-by: "ibp-operator"
+spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
+  group: ibp.com
+  names:
+    kind: IBPPeer
+    listKind: IBPPeerList
+    plural: ibppeers
+    singular: ibppeer
+  scope: Namespaced
+  subresources:
+    status: {}
+  versions:
+  - name: v1alpha2
+    served: true
+    storage: true
+  - name: v1alpha1
+    served: true
+    storage: false
+```
+{:codeblock}
+
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
+
+Then, use the `kubectl` CLI to add the custom resource definition to your project.
+
+```
+kubectl apply -f ibppeer-crd.yaml -n <NAMESPACE>
+```
+{:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+You should see the following output when it is successful:
+```
+customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
+```
+
+### Orderer custom resource definition
+{: #deploy-crd-orderer}
+
+Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.
+```yaml
+
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: ibporderers.ibp.com
+  labels:
+    release: "operator"
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/managed-by: "ibp-operator"
+spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true    
+  group: ibp.com
+  names:
+    kind: IBPOrderer
+    listKind: IBPOrdererList
+    plural: ibporderers
+    singular: ibporderer
+  scope: Namespaced
+  subresources:
+    status: {}
+  versions:
+  - name: v1alpha2
+    served: true
+    storage: true
+  - name: v1alpha1
+    served: true
+    storage: false
+```
+{:codeblock}
+
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.
+
+Then, use the `kubectl` CLI to add the custom resource definition to your project.
+
+```
+kubectl apply -f ibporderer-crd.yaml -n <NAMESPACE>
+```
+{:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+You should see the following output when it is successful:
+```
+customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
+```
+### Console custom resource definition
+{: #deploy-crd-console}
+
+Copy the following text to a file on your local system and save the file as `ibpconsole-crd.yaml`.
+```yaml
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: ibpconsoles.ibp.com
+  labels:
+    release: "operator"
+    helm.sh/chart: "ibm-ibp"
+    app.kubernetes.io/name: "ibp"
+    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/managed-by: "ibp-operator"
+spec:
+  preserveUnknownFields: false
+  conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
+  validation:
+    openAPIV3Schema:
+      x-kubernetes-preserve-unknown-fields: true
+  group: ibp.com
+  names:
+    kind: IBPConsole
+    listKind: IBPConsoleList
+    plural: ibpconsoles
+    singular: ibpconsole
+  scope: Namespaced
+  versions:
+  - name: v1alpha2
+    served: true
+    storage: true
+  - name: v1alpha1
+    served: true
+    storage: false
+```
+{:codeblock}
+
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
+Then, use the `kubectl` CLI to add the custom resource definition to your project.
+
+```
+kubectl apply -f ibpconsole-crd.yaml -n <NAMESPACE>
+```
+{:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+You should see the following output when it is successful:
+```
+customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
+```
+
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator
 {: #deploy-k8-operator-firewall}
@@ -558,6 +1054,7 @@ Then, use the kubectl CLI to add the custom resource to your namespace.
 kubectl apply -f ibp-operator.yaml -n <NAMESPACE>
 ```
 {:codeblock}
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 You can confirm that the operator deployed by running the command `kubectl get deployment -n <NAMESPACE>`. If your operator deployment is successful, then you can see the following tables with four ones displayed. The operator takes about a minute to deploy.
 ```
@@ -597,6 +1094,7 @@ spec:
 {:codeblock}
 
 You need to specify the external endpoint information of the console in the `ibp-console.yaml` file:
+- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
 - Replace `<DOMAIN>` with the name of your cluster domain. You need to make sure that this domain is pointed to the load balancer of your cluster.
 
 You also need to provide the user name and password that is used to access the console for the first time:
@@ -615,8 +1113,7 @@ After you update the file, you can use the CLI to install the console.
 kubectl apply -f ibp-console.yaml -n <NAMESPACE>
 ```
 {:codeblock}
-
-Replace `<NAMESPACE>` with the name of your namespace. Before you install the console, you might want to review the advanced deployment options in the next section. The console can take a few minutes to deploy.
+Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace. Before you install the console, you might want to review the advanced deployment options in the next section. The console can take a few minutes to deploy.
 
 ### Advanced deployment options
 {: #console-deploy-ocp-advanced-firewall}
@@ -636,46 +1133,46 @@ spec:
   serviceAccountName: default
   email: "<EMAIL>"
   password: "<PASSWORD>"
+  registryURL: <LOCAL_REGISTRY>
   imagePullSecrets:
     - docker-key-secret
-  registryURL: <LOCAL_REGISTRY>
   networkinfo:
     domain: <DOMAIN>
   storage:
     console:
       class: default
       size: 10Gi
-    clusterdata:
-      zones:
-    resources:
-      console:
-        requests:
-          cpu: 500m
-          memory: 1000Mi
-        limits:
-          cpu: 500m
-          memory: 1000Mi
-      configtxlator:
-        limits:
-          cpu: 25m
-          memory: 50Mi
-        requests:
-          cpu: 25m
-          memory: 50Mi
-      couchdb:
-        limits:
-          cpu: 500m
-          memory: 1000Mi
-        requests:
-          cpu: 500m
-          memory: 1000Mi
-      deployer:
-        limits:
-          cpu: 100m
-          memory: 200Mi
-        requests:
-          cpu: 100m
-          memory: 200Mi
+  clusterdata:
+    zones:
+  resources:
+    console:
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+      limits:
+        cpu: 500m
+        memory: 1000Mi
+    configtxlator:
+      limits:
+        cpu: 25m
+        memory: 50Mi
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    couchdb:
+      limits:
+        cpu: 500m
+        memory: 1000Mi
+      requests:
+        cpu: 500m
+        memory: 1000Mi
+    deployer:
+      limits:
+        cpu: 100m
+        memory: 200Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
 ```
 {:codeblock}
 
@@ -716,7 +1213,7 @@ You can use a Certificate Authority or tool to create the TLS certificates for t
 **Console hostname:** `<NAMESPACE>-ibpconsole-console.<DOMAIN>`
 **Proxy hostname:** `<NAMESPACE>-ibpconsole-proxy.<DOMAIN>`
 
-- Replace `<NAMESPACE>` with the name of the Kubernetes namespace that you created.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 - Replace `<DOMAIN>` with the name of your cluster domain.
 
 Navigate to the TLS certificates that you plan to use on your local system. Name the TLS certificate `tlscert.pem` and the corresponding private key `tlskey.pem`. Run the following command to create the Kubernetes secret and add it to your Kubernetes namespace. The TLS certificate and key need to be in PEM format.
@@ -732,31 +1229,30 @@ apiVersion: ibp.com/v1alpha2
 kind: IBPConsole
 metadata:
   name: ibpconsole
-  spec:
-    arch:
-    - amd64
-    license: accept
-    serviceAccountName: default
-    proxyIP:
-    email: "<EMAIL>"
-    password: "<PASSWORD>"
-    registryURL: <LOCAL_REGISTRY>
-    imagePullSecrets:
-      - docker-key-secret
-    networkinfo:
+spec:
+  arch:
+  - amd64
+  license: accept
+  serviceAccountName: default
+  email: "<EMAIL>"
+  password: "<PASSWORD>"
+  registryURL: <LOCAL_REGISTRY>
+  imagePullSecrets:
+    - docker-key-secret
+  networkinfo:
         domain: <DOMAIN>
         consolePort: <CONSOLE_PORT>
         proxyPort: <PROXY_PORT>
-    storage:
-      console:
-        class: default
-        size: 10Gi
-    tlsSecretName: "console-tls-secret"
-    clusterdata:
-      zones:
-        - dal10
-        - dal12
-        - dal13
+  storage:
+    console:
+      class: default
+      size: 10Gi
+  tlsSecretName: "console-tls-secret"
+  clusterdata:
+    zones:
+      - dal10
+      - dal12
+      - dal13
 ```
 {:codeblock}
 
@@ -806,7 +1302,7 @@ You can use your browser to access the console by using the console URL:
 https://<NAMESPACE>-ibpconsole-console.<DOMAIN>:443
 ```
 
-- Replace `<NAMESPACE>` with the name of the namespace that you created.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 - Replace `<DOMAIN>` with the name of your cluster domain. You passed this value to the `DOMAIN:` field of the `ibp-console.yaml` file.
 
 Your console URL looks similar to the following example:

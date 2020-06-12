@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-12"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -350,7 +350,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform requires specific securit
 
 Copy the PodSecurityPolicy object below and save it to your local system as `ibp-psp.yaml`.
 
-If you are running **Kubernetes v1.16**, you will need to change the line `apiVersion: extensions/v1beta1` in the following PodSecurityPolicy object to `apiVersion: policy/v1beta1`.
+If you are running **Kubernetes v1.16 or higher**, you will need to change the line `apiVersion: extensions/v1beta1` in the following PodSecurityPolicy object to `apiVersion: policy/v1beta1`.
 {: important}
 
 ```yaml
@@ -415,7 +415,7 @@ rules:
   - "*"
   resources:
   - pods
-  - pods/log
+  - pod/logs
   - services
   - endpoints
   - persistentvolumeclaims
@@ -448,6 +448,17 @@ rules:
   resources:
   - persistentvolumeclaims
   - persistentvolumes
+  verbs:
+  - '*'
+- apiGroups:
+  - ibp.com
+  resources:
+  - '*'
+  - ibpservices
+  - ibpcas
+  - ibppeers
+  - ibpfabproxies
+  - ibporderers
   verbs:
   - '*'
 - apiGroups:
@@ -1113,7 +1124,9 @@ spec:
   imagePullSecrets:
     - docker-key-secret
   networkinfo:
-    domain: <DOMAIN>
+        domain: <DOMAIN>
+        consolePort: <CONSOLE_PORT>
+        proxyPort: <PROXY_PORT>
   storage:
     console:
       class: default

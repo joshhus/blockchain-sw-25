@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-12"
 
-keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
+keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
 subcollection: blockchain-sw-25
 

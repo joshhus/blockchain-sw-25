@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-12"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -318,23 +318,18 @@ metadata:
   name: <NAMESPACE>
 rules:
 - apiGroups:
-  - apiextensions.k8s.io
+  - extensions
+  resourceNames:
+  - ibm-blockchain-platform-psp
   resources:
-  - persistentvolumeclaims
-  - persistentvolumes
+  - podsecuritypolicies
   verbs:
-  - '*'
-- apiGroups:
-  - apiextensions.k8s.io
-  resources:
-  - customresourcedefinitions
-  verbs:
-  - 'get'
+  - use
 - apiGroups:
   - "*"
   resources:
   - pods
-  - pods/log
+  - pod/logs
   - services
   - endpoints
   - persistentvolumeclaims
@@ -347,8 +342,6 @@ rules:
   - rolebindings
   - serviceaccounts
   - nodes
-  - routes
-  - routes/custom-host
   verbs:
   - '*'
 - apiGroups:
@@ -357,31 +350,31 @@ rules:
   - namespaces
   - nodes
   verbs:
+  - 'get'
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
   - get
 - apiGroups:
-  - apps
+  - apiextensions.k8s.io
   resources:
-  - deployments
-  - daemonsets
-  - replicasets
-  - statefulsets
+  - persistentvolumeclaims
+  - persistentvolumes
   verbs:
   - '*'
 - apiGroups:
-  - monitoring.coreos.com
+  - ibp.com
   resources:
-  - servicemonitors
+  - '*'
+  - ibpservices
+  - ibpcas
+  - ibppeers
+  - ibpfabproxies
+  - ibporderers
   verbs:
-  - get
-  - create
-- apiGroups:
-  - apps
-  resourceNames:
-  - ibp-operator
-  resources:
-  - deployments/finalizers
-  verbs:
-  - update
+  - '*'
 - apiGroups:
   - ibp.com
   resources:
@@ -389,9 +382,12 @@ rules:
   verbs:
   - '*'
 - apiGroups:
-  - config.openshift.io
+  - apps
   resources:
-  - '*'
+  - deployments
+  - daemonsets
+  - replicasets
+  - statefulsets
   verbs:
   - '*'
 ```
@@ -1122,23 +1118,18 @@ metadata:
   name: <NAMESPACE>
 rules:
 - apiGroups:
-  - apiextensions.k8s.io
+  - extensions
+  resourceNames:
+  - ibm-blockchain-platform-psp
   resources:
-  - persistentvolumeclaims
-  - persistentvolumes
+  - podsecuritypolicies
   verbs:
-  - '*'
-- apiGroups:
-  - apiextensions.k8s.io
-  resources:
-  - customresourcedefinitions
-  verbs:
-  - 'get'
+  - use
 - apiGroups:
   - "*"
   resources:
   - pods
-  - pods/log
+  - pod/logs
   - services
   - endpoints
   - persistentvolumeclaims
@@ -1151,8 +1142,6 @@ rules:
   - rolebindings
   - serviceaccounts
   - nodes
-  - routes
-  - routes/custom-host
   verbs:
   - '*'
 - apiGroups:
@@ -1161,31 +1150,31 @@ rules:
   - namespaces
   - nodes
   verbs:
+  - 'get'
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
   - get
 - apiGroups:
-  - apps
+  - apiextensions.k8s.io
   resources:
-  - deployments
-  - daemonsets
-  - replicasets
-  - statefulsets
+  - persistentvolumeclaims
+  - persistentvolumes
   verbs:
   - '*'
 - apiGroups:
-  - monitoring.coreos.com
+  - ibp.com
   resources:
-  - servicemonitors
+  - '*'
+  - ibpservices
+  - ibpcas
+  - ibppeers
+  - ibpfabproxies
+  - ibporderers
   verbs:
-  - get
-  - create
-- apiGroups:
-  - apps
-  resourceNames:
-  - ibp-operator
-  resources:
-  - deployments/finalizers
-  verbs:
-  - update
+  - '*'
 - apiGroups:
   - ibp.com
   resources:
@@ -1193,9 +1182,12 @@ rules:
   verbs:
   - '*'
 - apiGroups:
-  - config.openshift.io
+  - apps
   resources:
-  - '*'
+  - deployments
+  - daemonsets
+  - replicasets
+  - statefulsets
   verbs:
   - '*'
 ```
