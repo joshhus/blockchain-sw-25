@@ -350,7 +350,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform requires specific securit
 
 Copy the PodSecurityPolicy object below and save it to your local system as `ibp-psp.yaml`.
 
-If you are running **Kubernetes v1.16**, you will need to change the line `apiVersion: extensions/v1beta1` in the following PodSecurityPolicy object to `apiVersion: policy/v1beta1`.
+If you are running **Kubernetes v1.16 or higher**, you will need to change the line `apiVersion: extensions/v1beta1` in the following PodSecurityPolicy object to `apiVersion: policy/v1beta1`.
 {: important}
 
 ```yaml
@@ -580,6 +580,14 @@ spec:
   preserveUnknownFields: false
   conversion:
     strategy: Webhook
+    conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
     webhookClientConfig:
       service:
         namespace: ibpinfra
@@ -596,13 +604,14 @@ spec:
     plural: ibpcas
     singular: ibpca
   scope: Namespaced
+  version: v1alpha2
   versions:
-  - name: v210
-    served: false
-    storage: false
   - name: v1alpha2
     served: true
     storage: true
+  - name: v210
+    served: false
+    storage: false
   - name: v212
     served: false
     storage: false
@@ -610,6 +619,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
@@ -640,12 +650,18 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibppeer"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
   conversion:
     strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
     webhookClientConfig:
       service:
         namespace: ibpinfra
@@ -664,6 +680,7 @@ spec:
   scope: Namespaced
   subresources:
     status: {}
+  version: v1alpha2
   versions:
   - name: v1alpha2
     served: true
@@ -672,6 +689,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
@@ -694,7 +712,7 @@ customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
 
 Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.
 ```yaml
-
+```yaml
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -703,7 +721,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibporderer"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -727,6 +745,7 @@ spec:
   scope: Namespaced
   subresources:
     status: {}
+  version: v1alpha2
   versions:
   - name: v1alpha2
     served: true
@@ -734,6 +753,8 @@ spec:
   - name: v1alpha1
     served: true
     storage: false
+```
+
 ```
 {:codeblock}
 
@@ -764,7 +785,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibpconsole"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -786,6 +807,7 @@ spec:
     plural: ibpconsoles
     singular: ibpconsole
   scope: Namespaced
+  version: v1alpha2
   versions:
   - name: v1alpha2
     served: true
@@ -794,6 +816,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
@@ -1124,7 +1147,9 @@ spec:
   imagePullSecrets:
     - docker-key-secret
   networkinfo:
-    domain: <DOMAIN>
+        domain: <DOMAIN>
+        consolePort: <CONSOLE_PORT>
+        proxyPort: <PROXY_PORT>
   storage:
     console:
       class: default

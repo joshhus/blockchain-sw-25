@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-12"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -636,6 +636,14 @@ spec:
   preserveUnknownFields: false
   conversion:
     strategy: Webhook
+    conversion:
+    strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
     webhookClientConfig:
       service:
         namespace: ibpinfra
@@ -652,13 +660,14 @@ spec:
     plural: ibpcas
     singular: ibpca
   scope: Namespaced
+  version: v1alpha2
   versions:
-  - name: v210
-    served: false
-    storage: false
   - name: v1alpha2
     served: true
     storage: true
+  - name: v210
+    served: false
+    storage: false
   - name: v212
     served: false
     storage: false
@@ -666,6 +675,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
@@ -696,12 +706,18 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibppeer"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
   conversion:
     strategy: Webhook
+    webhookClientConfig:
+      service:
+        namespace: ibpinfra
+        name: ibp-webhook
+        path: /crdconvert
+      caBundle: "<CABUNDLE>"
     webhookClientConfig:
       service:
         namespace: ibpinfra
@@ -720,6 +736,7 @@ spec:
   scope: Namespaced
   subresources:
     status: {}
+  version: v1alpha2
   versions:
   - name: v1alpha2
     served: true
@@ -728,6 +745,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
@@ -758,7 +776,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibporderer"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -782,6 +800,7 @@ spec:
   scope: Namespaced
   subresources:
     status: {}
+  version: v1alpha2
   versions:
   - name: v1alpha2
     served: true
@@ -790,6 +809,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
@@ -811,6 +831,7 @@ customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 
 Copy the following text to a file on your local system and save the file as `ibpconsole-crd.yaml`.
 ```yaml
+```yaml
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -819,7 +840,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibpconsole"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -841,6 +862,7 @@ spec:
     plural: ibpconsoles
     singular: ibpconsole
   scope: Namespaced
+  version: v1alpha2
   versions:
   - name: v1alpha2
     served: true
@@ -849,6 +871,7 @@ spec:
     served: true
     storage: false
 ```
+
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated in the previous step.  
