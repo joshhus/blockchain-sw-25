@@ -138,6 +138,7 @@ LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytK
 ```
 
 Save the base64 encoded string that is returned by this command to be used in the next section when you create the custom resource definitions.
+{: important}
 
 
 ## Step three: Deploy the webhook and custom resource definitions to your OpenShift cluster
@@ -149,7 +150,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-**Webhook**  
+The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 ### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -350,13 +351,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
-**Custom resource definitions**  
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-The CA, peer, orderer, and console custom resource definitions only have to be deployed **once per cluster**. If you have already deployed these to your cluster, you can skip these steps.
-{: important}
 
 ### 3. Create the CA custom resource definition
 {: #deploy-crd-ca}
@@ -566,6 +560,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
+
 ### 6. Create the console custom resource definition
 {: #deploy-crd-console}
 
@@ -982,6 +977,7 @@ LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytK
 ```
 
 Save the base64 encoded string that is returned by this command to be used in the next section when you create the custom resource definitions.
+{: important}
 
 
 ### Step four: Deploy the webhook and custom resource definitions to your OpenShift cluster
@@ -994,7 +990,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-**Webhook**  
+The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 #### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -1195,13 +1191,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
-**Custom resource definitions**  
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-The CA, peer, orderer, and console custom resource definitions only have to be deployed **once per cluster**. If you have already deployed these to your cluster, you can skip these steps.
-{: important}
 
 #### 3. Create the CA custom resource definition
 {: #deploy-crd-ca}
@@ -1411,6 +1400,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
+
 #### 6. Create the console custom resource definition
 {: #deploy-crd-console}
 

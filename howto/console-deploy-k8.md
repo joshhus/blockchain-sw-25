@@ -102,7 +102,7 @@ Before you can complete the next steps, you need to log in to your cluster by us
 ## Create the `ibpinfra` namespace for the webhook
 {: #deploy-k8-ibpinfra}
 
-After you log in  to your cluster, you need to create a new namespace for the Kubernetes conversion webhook and custom resource definitions that are required by the product. You can create the `ibpinfra` namespace by using the kubectl CLI.
+After you log in to your cluster, you need to create a new namespace for the Kubernetes conversion webhook and custom resource definitions that are required by the product. You can create the `ibpinfra` namespace by using the kubectl CLI.
 
 Run the following command to create the namespace. The new namespace needs to be created by a cluster administrator.
 ```
@@ -141,6 +141,7 @@ LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytK
 ```
 
 Save the base64 encoded string that is returned by this command to be used in the next section when you create the custom resource definitions.
+{: important}
 
 
 ## Deploy the webhook and custom resource definitions to your OpenShift cluster
@@ -153,7 +154,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-**Webhook**  
+The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 ### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -354,13 +355,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
-**Custom resource definitions**  
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-The CA, peer, orderer, and console custom resource definitions only have to be deployed **once per cluster**. If you have already deployed these to your cluster, you can skip these steps.
-{: important}
 
 ### 3. Create the CA custom resource definition
 {: #deploy-crd-ca}
@@ -570,6 +564,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
+
 ### 6. Create the console custom resource definition
 {: #deploy-crd-console}
 
@@ -634,7 +629,7 @@ customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
 ## Create a new namespace for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
 {: #deploy-k8-namespace}
 
-After you connect to your cluster, create a new namespace for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
+Next, you need to create a second project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
 
 If you are using the CLI, create a new namespace by running the following command:
 ```
@@ -655,9 +650,6 @@ kubectl get storageclasses
 
 ## Create a secret for your entitlement key
 {: #deploy-k8-docker-registry-secret}
-
-## Create a secret for your entitlement key
-{: #sw-ibpinfra-registry-secret}
 
 After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments. You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project.
 
@@ -680,6 +672,7 @@ The name of the secret that you are creating is `docker-key-secret`. This value 
 The {{site.data.keyword.blockchainfull_notm}} Platform requires specific security and access policies to be added to your namespace. The contents of a set of `.yaml` files are provided here for you to copy and edit to define the security policies. You must save these files to your local system and then add them your namespace by using the kubectl CLI. These steps need to be completed by a cluster administrator. Also, be aware that the peer `init` and `dind` containers that get deployed are required to run in privileged mode.
 
 ### Apply the Pod Security Policy
+{: #deploy-k8-apply-psp}
 
 Copy the PodSecurityPolicy object below and save it to your local system as `ibp-psp.yaml`.
 
@@ -728,6 +721,7 @@ kubectl apply -f ibp-psp.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Apply the ClusterRole
+{: #deploy-k8-clusterrole}
 
 Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. This file defines the required ClusterRole for the PodSecurityPolicy. Edit the file and replace `<NAMESPACE>` with the name of your namespace.
 ```yaml
@@ -821,6 +815,7 @@ Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_n
 
 
 ### Apply the ClusterRoleBinding
+{: #deploy-k8-clusterrolebinding}
 
 Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
@@ -848,6 +843,7 @@ kubectl apply -f ibp-clusterrolebinding.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Create the role binding
+{: #deploy-k8-rolebinding}
 
 After applying the policies, you must grant your service account the required level of permissions to deploy your console. Run the following command with the name of your target namespace:
 ```
@@ -856,9 +852,6 @@ kubectl -n <NAMESPACE> create rolebinding ibp-operator-rolebinding --clusterrole
 {:codeblock}
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
-## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
-{: #deploy-crd}
-{[pg-sw-crd.md]}
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator
 {: #deploy-k8-operator}
@@ -1134,6 +1127,7 @@ Unlike the resource allocation, you cannot add zones to a running network. If yo
 {: Important}
 
 ### Use your own TLS Certificates (Optional)
+{: #deploy-k8-tls}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform console uses TLS certificates to secure the communication between the console and your blockchain nodes and between the console and your browser. You have the option of creating your own TLS certificates and providing them to the console by using a Kubernetes secret. If you skip this step, the console creates its own self-signed TLS certificates during deployment.
 
@@ -1197,6 +1191,7 @@ kubectl apply -f ibp-console.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Verifying the console installation
+{: #deploy-k8-verify}
 
 You can confirm that the operator deployed by running the command `kubectl get deployment -n <NAMESPACE>`. If your console deployment is successful, you can see `ibpconsole` added to the deployment table, with four ones displayed. The console takes a few minutes to deploy. You might need to click refresh and wait for the table to be updated.
 ```

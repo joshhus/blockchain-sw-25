@@ -87,7 +87,7 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 1. Log in to [MyIBM Container Software Library](https://myibm.ibm.com/products-services/containerlibrary){: external} with the IBMid and password that are associated with the entitled software.
 
-2. In the Entitlement keys section, select Copy key to copy the entitlement key to the clipboard.
+2. In the Entitlement keys section, select Copy key to copy the entitlement key to the clipboard and save this value to be used later in these steps.
 
 ## Before you begin
 {: #deploy-ocp-prerequisites-firewall}
@@ -237,8 +237,60 @@ kubectl get pods
 ```
 {:codeblock}
 
-## Deploy the webhook to your OpenShift cluster
-{: #webhook}
+## Create the `ibpinfra` project for the webhook
+{: #deploy-ocp-ibpinfra}
+
+After you connect to your cluster, create a new project for the Kubernetes conversion webhook and custom resource definitions that are required by the product. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+
+```
+oc new-project ibpinfra
+```
+{:codeblock}
+
+When you create a new project, a new namespace is created with the same name as your project. You can verify that the existence of the new namespace by using the `oc get namespace` command:
+```
+$ oc get namespace
+NAME                                STATUS    AGE
+ibpinfra                            Active    2m
+```
+
+## Create a secret for your entitlement key
+{: #deploy-ocp-secret-ibpinfra}
+
+After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
+
+Run the following command to create the secret and add it to your `ibpinfra` namespace or project:
+```
+kubectl create secret docker-registry webhook-tls-cert --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n ibpinfra
+```
+{:codeblock}
+- Replace `<KEY>` with your entitlement key.
+- Replace `<EMAIL>` with your email address.
+
+The name of the secret that you are creating is `webhook-tls-cert`. It is used
+{: note}
+
+Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
+
+```
+kubectl get secret webhook-tls-cert -n ibpinfra -o json | jq -r .data.\"cert.pem\"
+```
+{: codeblock}
+
+- If you used a different name for the secret, replace `webhook-tls-cert` with that name before running the command.
+
+The output of this command is a base64 encoded string and looks similar to:
+```
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+```
+
+Save the base64 encoded string that is returned by this command to be used in the next section when you create the custom resource definitions.
+{: important}
+
+
+## Deploy the webhook and custom resource definitions to your OpenShift cluster
+{: #deploy-k8s-webhook-crd}
+
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
@@ -246,7 +298,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-**Webhook**  
+The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 ### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -447,13 +499,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
-**Custom resource definitions**  
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-The CA, peer, orderer, and console custom resource definitions only have to be deployed **once per cluster**. If you have already deployed these to your cluster, you can skip these steps.
-{: important}
 
 ### 3. Create the CA custom resource definition
 {: #deploy-crd-ca}
@@ -663,6 +708,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
+
 ### 6. Create the console custom resource definition
 {: #deploy-crd-console}
 
@@ -727,7 +773,7 @@ customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
 ## Create a new project for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
 {: #deploy-ocp-project-firewall}
 
-After you connect to your cluster, create a new project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+Next, you need to create a second project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
 
 If you are using the CLI, create a new project by the following command:
 ```
@@ -753,12 +799,31 @@ kubectl get storageclasses
 ```
 {:codeblock}
 
+## Create a secret for your entitlement key
+{: #deploy-ocp-docker-registry-secret}
+
+After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments. You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project.
+
+Run the following command to create the secret and add it to your OpenShift Project:
+```
+kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <PROJECT_NAME>
+```
+{:codeblock}
+- Replace `<KEY>` with your entitlement key.
+- Replace `<EMAIL>` with your email address.
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
+{: note}
+
+
 ## Add security and access policies
 {: #deploy-ocp-scc-firewall}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform requires specific security and access policies to be added to your project. The contents of a set of `.yaml` files are provided here for you to copy and edit to define the security policies for your project. You must save these files to your local system and then add them your project by using the OpenShift CLI. These steps need to be completed by a cluster administrator. Also, be aware that the peer `init` and `dind` containers that get deployed are required to run in privileged mode.
 
 ### Apply the Security Context Constraint
+{: #deploy-ocp-scc-firewall-apply}
 
 Copy the security context constraint object below and save it to your local system as `ibp-scc.yaml`. Edit the file and replace `<PROJECT_NAME>` with the name of your project.
 
@@ -815,6 +880,7 @@ scc "blockchain-project" added to: ["system:serviceaccounts:blockchain-project"]
 ```
 
 ### Apply the ClusterRole
+{: #deploy-ocp-clusterrole-firewall}
 
 Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. This file defines the required ClusterRole for the PodSecurityPolicy. Edit the file and replace `<PROJECT_NAME>` with the name of your project.
 
@@ -919,6 +985,7 @@ scc "blockchain-project" added to groups: ["system:serviceaccounts:blockchain-pr
 ```
 
 ### Apply the ClusterRoleBinding
+{: #deploy-ocp-clusterrolebinding-firewall}
 
 Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<PROJECT_NAME>` with the name of your project.
 
@@ -952,50 +1019,8 @@ clusterrolebinding.rbac.authorization.k8s.io/blockchain-project created
 cluster role "blockchain-project" added: "system:serviceaccounts:blockchain-project"
 ```
 
-## Create a secret for your entitlement key
-{: #deploy-ocp-docker-registry-secret-firewall}
-
-After you push the {{site.data.keyword.blockchainfull_notm}} Platform images to your own docker registry, you need to store the password to that registry on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
-
-Run the following command to create the secret and add it to your OpenShift Project:
-```
-kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_REGISTRY> --docker-username=<USER> --docker-password=<LOCAL_REGISTRY_PASSWORD> --docker-email=<EMAIL> -n <PROJECT_NAME>
-```
-{:codeblock}
-
-- Replace `<USER>` with your user name
-- Replace `<EMAIL>` with your email address.
-- Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
-- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
-
-The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
-{: note}
-
-Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
-
-```
-kubectl get secret docker-key-secret -n <PROJECT_NAME> -o json | jq -r .data.\"cert.pem\"
-```
-{: codeblock}
-
-- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
-- Again, if you used a different name for the secret, replace `docker-key-secret` with that name before running the command.
-
-The output of this command is a base64 encoded string and looks similar to:
-```
-LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-```
-
-Save the base64 encoded string that is returned by this command to be used in the next section.
-
-## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
-{: #deploy-crd}
-
-{[pg-sw-crd.md]}
-
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator
-{: #deploy-ocp-operator}
+{: #deploy-ocp-operator-fw}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses an operator to install the {{site.data.keyword.blockchainfull_notm}} Platform console. You can deploy the operator on your cluster by adding a custom resource to your project by using the OpenShift CLI. The custom resource pulls the operator image from the Docker registry and starts it on your cluster.
 
@@ -1125,7 +1150,7 @@ ibp-operator   1/1       1            1           46s
 ```
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform console
-{: #deploy-ocp-console}
+{: #deploy-ocp-console-fw}
 
 When the operator is running on your namespace, you can apply a custom resource to start the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster. You can then access the console from your browser. Note that you can deploy only one console per OpenShift project.
 
@@ -1404,7 +1429,7 @@ Ensure that you are not using the ESR version of Firefox. If you are, switch to 
 The administrator who provisions the console can grant access to other users and restrict the actions they can perform. For more information, see [Managing users from the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-users).
 
 ## Next steps
-{: #console-deploy-ocp-next-steps}
+{: #console-deploy-ocp-next-steps-fw}
 
 When you access your console, you can view the **nodes** tab of your console UI. You can use this screen to deploy components on the cluster where you deployed the console. See the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network) to get started with the console. You can also use this tab to operate nodes that are created on other clouds. For more information, see [Importing nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes).
 

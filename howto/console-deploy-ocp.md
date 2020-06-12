@@ -17,7 +17,7 @@ subcollection: blockchain-sw-25
 {:note: .note}
 {:important: .important}
 {:tip: .tip}
-{:pre: .pre}
+{:pre: .pre}_
 
 # Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #deploy-ocp}
@@ -180,6 +180,7 @@ LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytK
 ```
 
 Save the base64 encoded string that is returned by this command to be used in the next section when you create the custom resource definitions.
+{: important}
 
 
 ## Deploy the webhook and custom resource definitions to your OpenShift cluster
@@ -192,7 +193,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-**Webhook**  
+The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 ### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -393,13 +394,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
-**Custom resource definitions**  
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-The CA, peer, orderer, and console custom resource definitions only have to be deployed **once per cluster**. If you have already deployed these to your cluster, you can skip these steps.
-{: important}
 
 ### 3. Create the CA custom resource definition
 {: #deploy-crd-ca}
@@ -609,6 +603,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
+
 ### 6. Create the console custom resource definition
 {: #deploy-crd-console}
 
@@ -673,7 +668,7 @@ customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
 ## Create a new project for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
 {: #deploy-ocp-project}
 
-After you connect to your cluster, create a new project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
+Next, you need to create a second project for your deployment of {{site.data.keyword.blockchainfull_notm}} Platform. You can create a new project by using the OpenShift web console or OpenShift CLI. The new project needs to be created by a cluster administrator.
 
 If you are using the CLI, create a new project by the following command:
 ```
@@ -701,9 +696,6 @@ kubectl get storageclasses
 
 ## Create a secret for your entitlement key
 {: #deploy-ocp-docker-registry-secret}
-
-## Create a secret for your entitlement key
-{: #sw-ibpinfra-registry-secret}
 
 After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments. You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project.
 

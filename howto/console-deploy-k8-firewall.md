@@ -86,7 +86,7 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 1. Log in to [MyIBM Container Software Library](https://myibm.ibm.com/products-services/containerlibrary){: external} with the IBMid and password that are associated with the entitled software.
 
-2. In the Entitlement keys section, select Copy key to copy the entitlement key to the clipboard.
+2. In the Entitlement keys section, select Copy key to copy the entitlement key to the clipboard and save this value to be used later in these steps.
 
 ## Before you begin
 {: #deploy-k8-prerequisites-firewall}
@@ -221,8 +221,55 @@ registry-console-6c74fc45f9-nl5nw   1/1       Running   0          7d
 router-6cc88df47c-hqjmk             1/1       Running   0          7d
 router-6cc88df47c-mwzbq             1/1       Running   0          7d
 ```
-## Deploy the webhook to your OpenShift cluster
-{: #webhook}
+
+## Create the `ibpinfra` namespace for the webhook
+{: #deploy-k8-ibpinfra-fw}
+
+After you log in  to your cluster, you need to create a new namespace for the Kubernetes conversion webhook and custom resource definitions that are required by the product. You can create the `ibpinfra` namespace by using the kubectl CLI.
+
+Run the following command to create the namespace. The new namespace needs to be created by a cluster administrator.
+```
+kubectl create namespace ibpinfra
+```
+{:codeblock}
+
+## Create a secret for your entitlement key
+{: #deploy-k8-secret-ibpinfra-fw}
+
+After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
+
+Run the following command to create the secret and add it to your `ibpinfra` namespace or project:
+```
+kubectl create secret docker-registry webhook-tls-cert --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n ibpinfra
+```
+{:codeblock}
+- Replace `<KEY>` with your entitlement key.
+- Replace `<EMAIL>` with your email address.
+
+The name of the secret that you are creating is `webhook-tls-cert`. It is used
+{: note}
+
+Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
+
+```
+kubectl get secret webhook-tls-cert -n ibpinfra -o json | jq -r .data.\"cert.pem\"
+```
+{: codeblock}
+
+- If you used a different name for the secret, replace `webhook-tls-cert` with that name before running the command.
+
+The output of this command is a base64 encoded string and looks similar to:
+```
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+```
+
+Save the base64 encoded string that is returned by this command to be used in the next section when you create the custom resource definitions.
+{: important}
+
+
+## Deploy the webhook and custom resource definitions to your OpenShift cluster
+{: #deploy-k8s-webhook-crd-fw}
+
 Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
@@ -230,7 +277,7 @@ Before you can upgrade an existing network to 2.5, or deploy a new instance of t
 The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-**Webhook**  
+The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 ### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -431,13 +478,6 @@ When it completes successfully you should see something similar to:
 ```
 service/ibp-webhook created
 ```
-
-**Custom resource definitions**  
-
-The {{site.data.keyword.blockchainfull_notm}} Platform uses Kubernetes custom resource definitions for the CA, peer, orderer and console components. You can deploy the custom resource definitions on your cluster by adding the custom resources to your project from the kubectl CLI.
-
-The CA, peer, orderer, and console custom resource definitions only have to be deployed **once per cluster**. If you have already deployed these to your cluster, you can skip these steps.
-{: important}
 
 ### 3. Create the CA custom resource definition
 {: #deploy-crd-ca}
@@ -647,6 +687,7 @@ You should see the following output when it is successful:
 ```
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
+
 ### 6. Create the console custom resource definition
 {: #deploy-crd-console}
 
@@ -711,7 +752,7 @@ customresourcedefinition.apiextensions.k8s.io/ibpconsoles.ibp.com created
 ## Create a new namespace for your {{site.data.keyword.blockchainfull_notm}} Platform deployment
 {: #deploy-k8-namespace-firewall}
 
-After you connect to your cluster, create a new namespace for your deployment of the {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
+Next, you need to create a second project for your deployment of the {{site.data.keyword.blockchainfull_notm}} Platform. You can create a namespace by using the kubectl CLI. The namespace needs to be created by a cluster administrator.
 
 If you are using the CLI, create a new namespace by the following command:
 ```
@@ -730,12 +771,31 @@ kubectl get storageclasses
 ```
 {:codeblock}
 
+## Create a secret for your entitlement key
+{: #deploy-k8s-docker-registry-secret-fw}
+
+After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments. You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project.
+
+Run the following command to create the secret and add it to your OpenShift Project:
+```
+kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <PROJECT_NAME>
+```
+{:codeblock}
+- Replace `<KEY>` with your entitlement key.
+- Replace `<EMAIL>` with your email address.
+- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+
+The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
+{: note}
+
+
 ## Add security and access policies
 {: #deploy-k8-scc-firewall}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform requires specific security and access policies to be added to your namespace. The contents of a set of `.yaml` files are provided here for you to copy and edit to define the security policies. You must save these files to your local system and then add them your namespace by using the kubectl CLI. These steps need to be completed by a cluster administrator. Also, be aware that the peer `init` and `dind` containers that get deployed are required to run in privileged mode.
 
 ### Apply the Pod Security Policy
+{: #deploy-k8-scc-apply-fw}
 
 Copy the PodSecurityPolicy object below and save it to your local system as `ibp-psp.yaml`.
 
@@ -783,6 +843,7 @@ kubectl apply -f ibp-psp.yaml
 {:codeblock}
 
 ### Apply the ClusterRole
+{: #deploy-k8-clusterrole-fw}
 
 Copy the following text to a file on your local system and save the file as `ibp-clusterrole.yaml`. This file defines the required ClusterRole for the PodSecurityPolicy. Edit the file and replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 ```yaml
@@ -875,6 +936,7 @@ kubectl apply -f ibp-clusterrole.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Apply the ClusterRoleBinding
+{: #deploy-k8-clusterrolebinding-fw}
 
 Copy the following text to a file on your local system and save the file as `ibp-clusterrolebinding.yaml`. This file defines the ClusterRoleBinding. Edit the file and replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
@@ -902,6 +964,7 @@ kubectl apply -f ibp-clusterrolebinding.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 ### Create the role binding
+{: #deploy-k8-createrole-fw}
 
 After applying the policies, you must grant your service account the required level of permissions to deploy your console. Run the following command with the name of your target namespace:
 ```
@@ -909,46 +972,6 @@ kubectl -n <NAMESPACE> create rolebinding ibp-operator-rolebinding --clusterrole
 ```
 {:codeblock}
 
-
-## Create a secret for your entitlement key
-{: #deploy-k8-docker-registry-secret-firewall}
-
-After you push the {{site.data.keyword.blockchainfull_notm}} Platform images to your own Docker registry, you need to store the password to that registry on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
-
-Run the following command to create the secret and add it to your namespace:
-```
-kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_REGISTRY> --docker-username=<USER> --docker-password=<LOCAL_REGISTRY_PASSWORD> --docker-email=<EMAIL> -n <NAMESPACE>
-```
-{:codeblock}
-
-- Replace `<USER>` with your username
-- Replace `<EMAIL>` with your email address.
-- Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
-- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
-
-The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
-{: note}
-
-Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
-
-```
-kubectl get secret docker-key-secret -n ibpinfra -o json | jq -r .data.\"cert.pem\"
-```
-{: codeblock}
-
-Again, if you used a different name for the secret, replace `docker-key-secret` with that name before running the command.
-
-The output of this command is a base64 encoded string and looks similar to:
-```
-LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytKdTJXbFMvVDFzakFLQmdncWhrak9QUVFEQWpBU01SQXcKRGdZRFZRUUtFd2RKUWswZ1NVSlFNQjRYRFRJd01EWXdPVEUxTkRrME5sFORGsxTVZvdwpFakVRTUE0R0ExVUVDaE1IU1VKTklFbENVREJaTUJGcVRyV0Z4WFBhTU5mSUkrYUJ2RG9DQVFlTW3SUZvREFUQmdOVkhTVUVEREFLQmdncgpCZ0VGQlFjREFUQU1CZ05WSFJNQkFmOEVBakFBTUNvR0ExVWRFUVFqTUNHQ0gyTnlaQzEzWldKb2IyOXJMWE5sCmNuWnBZMlV1ZDJWaWFHOXZheTV6ZG1Nd0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFNb29kLy9zNGxYaTB2Y28KVjBOMTUrL0h6TkI1cTErSTJDdU9lb1c1RnR4MUFpRUEzOEFlVktPZnZSa0paN0R2THpCRFh6VmhJN2lBQVV3ZAo3ZStrOTA3TGFlTT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-```
-
-Save the base64 encoded string that is returned by this command to be used in the next section.
-
-## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform custom resource definitions
-{: #deploy-crd}
-{[pg-sw-crd.md]}
 
 ## Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator
 {: #deploy-k8-operator-firewall}
@@ -1220,6 +1243,7 @@ Unlike the resource allocation, you cannot add zones to a running network. If yo
 {: Important}
 
 ### Use your own TLS Certificates (Optional)
+{: #deploy-k8-tls-fw}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform console uses TLS certificates to secure the communication between the console and your blockchain nodes and between the console and your browser. You have the option of creating your own TLS certificates and providing them to the console by using a Kubernetes secret. If you skip this step, the console creates its own self-signed TLS certificates during deployment.
 
@@ -1281,6 +1305,7 @@ kubectl apply -f ibp-console.yaml -n <NAMESPACE>
 {:codeblock}
 
 ### Verifying the console installation
+{: #deploy-k8-verify-fw}
 
 You can confirm that the operator deployed by running the command `kubectl get deployment -n <NAMESPACE>`. If your console deployment is successful, you can see `ibpconsole` added to the deployment table, with four ones displayed. The console takes a few minutes to deploy. You might need to click refresh and wait for the table to be updated.
 ```
@@ -1313,7 +1338,7 @@ kubectl logs -f ibpconsole-55cf9db6cc-856nz console -n blockchain-project
 {:codeblock}
 
 ## Log in to the console
-{: #deploy-k8-log-in}
+{: #deploy-k8-log-in-fw}
 
 You can use your browser to access the console by using the console URL:
 ```
@@ -1338,7 +1363,7 @@ Ensure that you are not using the ESR version of Firefox. If you are, switch to 
 The administrator who provisions the console can grant access to other users and restrict the actions they can perform. For more information, see [Managing users from the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-users).
 
 ## Next steps
-{: #console-deploy-k8-next-steps}
+{: #console-deploy-k8-next-steps-fw}
 
 When you access your console, you can view the **nodes** tab of your console UI. You can use this screen to deploy components on the cluster where you deployed the console. See the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network) to get started with the console. You can also use this tab to operate nodes that are created on other clouds. For more information, see [Importing nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes).
 
