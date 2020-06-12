@@ -246,7 +246,7 @@ kubectl create secret docker-registry webhook-tls-cert --docker-server=cp.icr.io
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `webhook-tls-cert`. It is used
+The name of the secret that you are creating is `webhook-tls-cert`. It is required by the custom resource definitions that you will deploy later.
 {: note}
 
 Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
@@ -627,7 +627,7 @@ customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
 {: #deploy-crd-orderer}
 
 Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.
-```yaml
+
 ```yaml
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
@@ -671,9 +671,8 @@ spec:
     storage: false
 ```
 
-```
 {:codeblock}
-
+```
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
