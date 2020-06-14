@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-12"
+lastupdated: "2020-06-14"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -41,6 +41,8 @@ If you prefer to automate the installation of the service, check out the [Ansibl
 {: #deploy-k8-resources-required}
 
 Ensure that your Kubernetes cluster has sufficient resources for the {{site.data.keyword.blockchainfull_notm}} Platform console and for the blockchain nodes that you create. The amount of resources that are required can vary depending on your infrastructure, network design, and performance requirements. To help you deploy a cluster of the appropriate size, the default CPU, memory, and storage requirements for each component type are provided in this table. Your actual resource allocations are visible in your blockchain console when you deploy a node and can be adjusted at deployment time or after deployment according to your business needs.
+
+The resources for the CA, peer, and ordering nodes need to be multiplied by the number of these nodes that you require. The operator and console resources are per blockhain deployment. For example, if you deployed development, staging, and test networks in a single cluster, you need to have enough resources for three instances of the operator and console, one for each blockchain deployment. On the other hand, the webhook resources are per Kubernetes cluster, only one instance is required, regardless of the number of blockchain networks in the cluster.
 
 | **Component** (all containers) | CPU**  | Memory (GB) | Storage (GB) |
 |--------------------------------|---------------|-----------------------|------------------------|
@@ -650,16 +652,16 @@ kubectl get storageclasses
 ## Create a secret for your entitlement key
 {: #deploy-k8-docker-registry-secret}
 
-After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments. You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project.
+You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project. After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
 
-Run the following command to create the secret and add it to your OpenShift Project:
+Run the following command to create the secret and add it to your namespace or project:
 ```
-kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <PROJECT_NAME>
+kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <NAMESPACE>
 ```
 {:codeblock}
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
-- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace or OpenShift project.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
@@ -954,7 +956,7 @@ spec:
             - name: OPERATOR_NAME
               value: "ibp-operator"
             - name: CLUSTERTYPE
-              value: <CLUSTER_TYPE>
+              value: K8S
           resources:
             requests:
               cpu: 100m
@@ -965,7 +967,6 @@ spec:
 ```
 {:codeblock}
 
-- Replace `<CLUSTER_TYPE>` with `K8S` if you are deploying the platform on open source Kubernetes or Rancher.
 - If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
 
 Then, use the kubectl CLI to add the custom resource to your namespace.
@@ -1313,5 +1314,6 @@ Before attempting to install {{site.data.keyword.blockchainfull_notm}} Platform 
     {: codeblock}
 
 7. Verify all pods are running before attempting to install the {{site.data.keyword.blockchainfull_notm}} Platform.
+
 
 You can now [resume your installation](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-login).

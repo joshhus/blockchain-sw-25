@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-12"
+lastupdated: "2020-06-14"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
@@ -95,9 +95,10 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 2. You need to install and connect to your cluster by using the [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl){: external} to deploy the platform.
 
-3. If you are not running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution, then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
+3. If you are not running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}. For more information, see [Considerations when using Kubernetes distributions](#console-deploy-k8-considerations).
 
 ## Pull the {{site.data.keyword.blockchainfull_notm}} Platform images
+{: #deploy-k8-images-firewall}
 
 You can download the complete set of {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement Registry. To deploy the platform without access to the public internet, you need to pull the images from the {{site.data.keyword.IBM_notm}} Registry and then push the images to a Docker registry that you can access from behind your firewall.
 
@@ -773,16 +774,16 @@ kubectl get storageclasses
 ## Create a secret for your entitlement key
 {: #deploy-k8s-docker-registry-secret-fw}
 
-After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments. You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project.
+You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project. After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
 
-Run the following command to create the secret and add it to your OpenShift Project:
+Run the following command to create the secret and add it to your namespace or project:
 ```
-kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <PROJECT_NAME>
+kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <NAMESPACE>
 ```
 {:codeblock}
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
-- Replace `<PROJECT_NAME>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment project.
+- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace or OpenShift project.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
@@ -1074,7 +1075,7 @@ spec:
             - name: OPERATOR_NAME
               value: "ibp-operator"
             - name: CLUSTERTYPE
-              value: <CLUSTER_TYPE>
+              value: K8S
           resources:
             requests:
               cpu: 100m
@@ -1085,7 +1086,6 @@ spec:
 ```
 {:codeblock}
 
-- Replace `<CLUSTER_TYPE>` with `K8S` if you are deploying the platform on open source Kubernetes or Rancher.
 - If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
 
 Then, use the kubectl CLI to add the custom resource to your namespace.
@@ -1367,3 +1367,58 @@ The administrator who provisions the console can grant access to other users and
 When you access your console, you can view the **nodes** tab of your console UI. You can use this screen to deploy components on the cluster where you deployed the console. See the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network) to get started with the console. You can also use this tab to operate nodes that are created on other clouds. For more information, see [Importing nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes).
 
 To learn how to manage the users that can access the console, view the logs of your console and your blockchain components, see [Administering your console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage).
+
+## Considerations when using Kubernetes distributions
+{: #console-deploy-k8-considerations}
+
+Before attempting to install {{site.data.keyword.blockchainfull_notm}} Platform on Azure Kubernetes Service, Amazon Web Services, Rancher, Amazon Elastic Kubernetes Service, or Google Kubernetes Engine, you should perform the following steps. Refer to your Kubernetes distribution documentation for more details.
+
+1. Ensure a load balancer with a public IP is configured in front of the Kubernetes cluster.
+2. Create a DNS entry for the IP address of the load balancer.
+3. Create a wild card host entry in DNS for the load balancer. This is a `DNS A` record with a wild card host.
+
+    For example, if the DNS entry for the load balancer is `test.example.com`, the DNS entry would be:
+    ```
+    *.test.example.com
+    ```
+
+    that ultimately resolves to
+    ```
+    test.example.com
+    ```
+
+    When this is configured, the following examples should all resolve to test.example.com:
+    ```
+    console.test.example.com
+    peer.test.example.com
+    ```
+
+    You can use `nslookup` to verify that DNS is configured correctly:
+
+    ```
+    $ nslookup console.test.example.com
+    ```
+
+4. The DNS entry for the load balancer should then be used as the **Domain name** during the installation of IBM Blockchain Platform.
+
+5. The NGINX ingress controller must be used. See the [ingress controller installation guide](https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md){: external} that can be used for most Kubernetes distributions.
+
+6. Use the following instructions to edit the NGINX ingress controller deployment to enable ssl-passthrough or refer to the [Kubernetes instructions](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough).
+
+    This section may not be exact for your installation. The key is to ensure the last line that enables `ssl-passthrough` is present.
+
+    ```
+    /nginx-ingress-controller
+    --configmap=$(POD_NAMESPACE)/nginx-configuration
+    --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+    --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+    --publish-service=$(POD_NAMESPACE)/ingress-nginx
+    --annotations-prefix=nginx.ingress.kubernetes.io
+    --enable-ssl-passthrough=true
+    ```
+    {: codeblock}
+
+7. Verify all pods are running before attempting to install the {{site.data.keyword.blockchainfull_notm}} Platform.
+
+
+You can now [resume your installation](#deploy-k8-images-firewall).

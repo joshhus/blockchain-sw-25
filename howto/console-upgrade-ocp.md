@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-12"
+lastupdated: "2020-06-14"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -982,14 +982,14 @@ Save the base64 encoded string that is returned by this command to be used in th
 ### Step four: Deploy the webhook and custom resource definitions to your OpenShift cluster
 {: #webhook-fw}
 
-Because the platform has updated the internal apiversion from `v1alpha1` in version 2.1.3 to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
 
-The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
+The first two steps are for deployment of the webhook. The last four steps are for creation of the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires. The webhook and custom resources definitions only have to be deployed **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these six steps below.
 {: important}
 
-The first two steps are for deployment of the webhook. The last four steps are for the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
+The first two steps are for deployment of the webhook. The last four steps are for creation of the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires.
 
 #### 1. Configure role-based access control (RBAC) for the webhook
 {: #webhook-rbac}
@@ -1143,7 +1143,7 @@ spec:
 
 {: codeblock}
 
-Run the following command to add the file to your cluster definition:
+Run the following command to add the configuration to your cluster definition:
 ```
 kubectl apply -n ibpinfra -f deployment.yaml
 ```
@@ -1180,7 +1180,7 @@ spec:
 ```
 {: codeblock}
 
-Run the following command to add the file to your cluster definition:
+Run the following command to add the configuration to your cluster definition:
 ```
 kubectl apply -n ibpinfra -f service.yaml
 ```
@@ -1254,7 +1254,7 @@ spec:
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
 
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
+Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
 ```
 kubectl apply -f ibpca-crd.yaml
@@ -1323,7 +1323,7 @@ spec:
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
 
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
+Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
 ```
 kubectl apply -f ibppeer-crd.yaml
@@ -1387,7 +1387,7 @@ spec:
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.
 
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
+Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
 ```
 kubectl apply -f ibporderer-crd.yaml
@@ -1447,7 +1447,7 @@ spec:
 {:codeblock}
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
-Then, use the `kubectl` CLI to add the custom resource definition to your project.
+Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
 ```
 kubectl apply -f ibpconsole-crd.yaml
