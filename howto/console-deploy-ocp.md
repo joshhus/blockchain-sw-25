@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-12"
+lastupdated: "2020-06-14"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -17,7 +17,7 @@ subcollection: blockchain-sw-25
 {:note: .note}
 {:important: .important}
 {:tip: .tip}
-{:pre: .pre}_
+{:pre: .pre}
 
 # Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #deploy-ocp}
