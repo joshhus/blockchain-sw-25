@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-12"
+lastupdated: "2020-06-14"
 
 keywords: FAQs, can I, upgrade, what version, peer ledger database, supported languages, why do I, regions
 
@@ -101,7 +101,13 @@ View the Support page by clicking the question mark icon <img src="../images/sup
 {: #ibp-v2-faq-v2-Hyperledger-Fabric-3-1}
 {: faq}
 
-{{site.data.keyword.blockchainfull_notm}} Platform 2.5 uses Hyperledger Fabric v1.4.7 and v2.x while {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 and 2.1.1 use Hyperledger Fabric 1.4.3.
+Refer to the following table for information on which version of Fabric is used by each version of the {{site.data.keyword.blockchainfull_notm}} Platform:
+
+| {{site.data.keyword.blockchainfull_notm}} Platform | Hyperledger Fabric |
+|----------------------------------------------------| -------------------|
+| 2.5 | v1.4.7 and v2.x |
+| 2.1.3 | v1.4.6|
+| 2.1.2 | v1.4.4|
 
 ## What database do the peers use for their ledger?
 {: #ibp-v2-faq-v2-IBP-Overview-1-3}
