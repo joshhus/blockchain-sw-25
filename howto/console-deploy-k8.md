@@ -104,9 +104,11 @@ Before you can complete the next steps, you need to log in to your cluster by us
 ## Create the `ibpinfra` namespace for the webhook
 {: #deploy-k8-ibpinfra}
 
-After you log in to your cluster, you need to create a new namespace for the Kubernetes conversion webhook and custom resource definitions that are required by the product. You can create the `ibpinfra` namespace by using the kubectl CLI.
+Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API version. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  The webhook is deployed to its own namespace, referred to as  `ibpinfra` throughout these instructions.
 
-Run the following command to create the namespace. The new namespace needs to be created by a cluster administrator.
+After you log in to your cluster, you can create the new `ibpinfra` namespace for the Kubernetes conversion webhook using the kubectl CLI. The new namespace needs to be created by a cluster administrator.
+
+Run the following command to create the namespace.
 ```
 kubectl create namespace ibpinfra
 ```
@@ -119,19 +121,19 @@ After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you c
 
 Run the following command to create the secret and add it to your `ibpinfra` namespace or project:
 ```
-kubectl create secret docker-registry webhook-tls-cert --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n ibpinfra
+kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n ibpinfra
 ```
 {:codeblock}
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `webhook-tls-cert`. It is required by the custom resource definitions that you will deploy later.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the custom resource definitions that you will deploy later.
 {: note}
 
 Next, we need to extract the secret to be used in the custom resource definitions in the next section. Run the following command to extract the secret to a base64 encoded string:
 
 ```
-kubectl get secret webhook-tls-cert -n ibpinfra -o json | jq -r .data.\"cert.pem\"
+kubectl get secret docker-key-secret -n ibpinfra -o json | jq -r .data.\"cert.pem\"
 ```
 {: codeblock}
 
@@ -168,17 +170,17 @@ metadata:
   name: webhook
   namespace: ibpinfra
 ---
-  apiVersion: rbac.authorization.k8s.io/v1
-  kind: Role
-  metadata:
-    name: webhook
-  rules:
-  - apiGroups:
-    - "*"
-    resources:
-    - secrets
-    verbs:
-    - "*"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: webhook
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - secrets
+  verbs:
+  - "*"
 ---
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -251,7 +253,6 @@ spec:
       serviceAccountName: webhook
       imagePullSecrets:
         - name: docker-key-secret
-        - name: ibp-ibmregistry
       hostIPC: false
       hostNetwork: false
       hostPID: false
@@ -375,14 +376,6 @@ spec:
   preserveUnknownFields: false
   conversion:
     strategy: Webhook
-    conversion:
-    strategy: Webhook
-    webhookClientConfig:
-      service:
-        namespace: ibpinfra
-        name: ibp-webhook
-        path: /crdconvert
-      caBundle: "<CABUNDLE>"
     webhookClientConfig:
       service:
         namespace: ibpinfra
@@ -444,18 +437,12 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibppeer"
+    app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
   conversion:
     strategy: Webhook
-    webhookClientConfig:
-      service:
-        namespace: ibpinfra
-        name: ibp-webhook
-        path: /crdconvert
-      caBundle: "<CABUNDLE>"
     webhookClientConfig:
       service:
         namespace: ibpinfra
@@ -514,7 +501,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibporderer"
+    app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -577,7 +564,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpconsole"
+    app.kubernetes.io/instance: "ibpca"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
