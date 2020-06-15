@@ -51,13 +51,12 @@ You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 fr
 If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1, you cannot access the console from the Chrome browser on Mac OS Catalina when the console is deployed with the default configuration that uses self-signed certificates. For more information on how you can resolve this problem, see [Chrome browser on Mac OS Catalina](/docs/blockchain-sw-25?topic=blockchain-sw-25-sw-known-issues#sw-known-issues-catalina) in Known Issues.
 {:note}
 
-## Upgrading platforms
+## Platform limitations
 {: #upgrade-ocp-platform}
 
-If you are using {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or V2.1.1 on the OpenShift Container Platform 3.11, you can upgrade your network to run on OpenShift Container Platform 4.2. Because the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 cannot run on OpenShift Container Platform 4.x, you need to upgrade your blockchain network before you upgrade your cluster. First, follow the steps to [upgrade your network to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5](#upgrade-ocp-steps). You can then migrate your OpenShift cluster from 3.11 to 4.2. You cannot migrate your OpenShift cluster from 3.11 to 4.1. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).
+If your {{site.data.keyword.blockchainfull_notm}} Platform is running on OpenShift Container Platform 3.11, you cannot upgrade to {{site.data.keyword.blockchainfull_notm}} Platform 2.5, unless you first upgrade your OpenShift cluster from 3.11 to 4.2 or 4.3. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).  
 
-Updating the Operator triggers a restart of all components managed by this installation of the {{site.data.keyword.blockchainfull_notm}} Platform including Fabric nodes. To avoid disruption of service, a multiregion setup is recommended.
-{: important}
+Also in OpenShift Container Platform 3.11, you cannot run an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 network in the same cluster as an {{site.data.keyword.blockchainfull_notm}} Platform 2.5 network. If this is a required configuration for your business, then you should first upgrade the OpenShift Container Platform to 4.2 or 4.3 and then deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 network.
 
 ## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #upgrade-ocp-steps}
