@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-15"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -123,6 +123,8 @@ kubectl delete ibporderer --all
 {:codeblock}
 
 You may also choose to only delete all of a single type of node within a namespace, for example, by only issuing `kubectl delete ibppeer --all`.
+
+Note that if you delete your entire project, your smart contract pods will also be deleted.
 {: tip}
 
 
