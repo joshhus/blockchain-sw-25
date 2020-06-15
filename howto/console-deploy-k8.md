@@ -392,6 +392,8 @@ spec:
     plural: ibpcas
     singular: ibpca
   scope: Namespaced
+  subresources:
+    status: {}
   version: v1alpha2
   versions:
   - name: v1alpha2
@@ -437,7 +439,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibppeer"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -501,7 +503,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibporderer"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -564,7 +566,7 @@ metadata:
     release: "operator"
     helm.sh/chart: "ibm-ibp"
     app.kubernetes.io/name: "ibp"
-    app.kubernetes.io/instance: "ibpca"
+    app.kubernetes.io/instance: "ibpconsole"
     app.kubernetes.io/managed-by: "ibp-operator"
 spec:
   preserveUnknownFields: false
@@ -586,6 +588,8 @@ spec:
     plural: ibpconsoles
     singular: ibpconsole
   scope: Namespaced
+  subresources:
+    status: {}
   version: v1alpha2
   versions:
   - name: v1alpha2
