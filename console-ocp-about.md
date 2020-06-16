@@ -109,7 +109,7 @@ If you are running on Azure Kubernetes Service, Amazon Web Services, Rancher, Am
 
 Your {{site.data.keyword.blockchainfull_notm}} Platform 2.5 entitlement includes both the full platform and the {{site.data.keyword.blockchainfull_notm}} images.
 
-The entitlement does not include a Kubernetes distribution. You must procure that separately.  And if you plan to use {{site.data.keyword.cloud_notm}} Private, you need to purchase a separate entitlement.
+The entitlement does not include a Kubernetes distribution. You must procure that separately.
 {: note}
 
 After you purchase an entitlement, you can access your [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. This key is required to deploy the release. **When  you choose this option, you are responsible for provisioning your own Kubernetes cluster.**
