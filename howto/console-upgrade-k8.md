@@ -124,7 +124,7 @@ Because the platform has updated the internal apiversion from `v1alpha1` in prev
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
 
-The first two steps are for deployment of the webhook. The last five steps are for the custom resource definitions for the CA, peer, orderer, and console components that the {{site.data.keyword.blockchainfull_notm}} requires. You only have to deploy the webhook and custom resources definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
+The first two steps are for deployment of the webhook. The last five steps are for the custom resource definitions for the CA, peer, orderer, and console components that the {{site.data.keyword.blockchainfull_notm}} requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
 {: important}
 
 ### 1. Configure role-based access control (RBAC) for the webhook
@@ -398,7 +398,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -461,7 +461,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -525,7 +525,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -588,7 +588,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
 ```
@@ -946,7 +946,7 @@ Because the platform has updated the internal apiversion from `v1alpha1` in prev
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
 
-The first two steps are for deployment of the webhook. The last five steps are for creation of the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires. You only have to deploy the webhook and custom resources definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
+The first two steps are for deployment of the webhook. The last five steps are for creation of the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
 {: important}
 
 #### 1. Configure role-based access control (RBAC) for the webhook
@@ -1220,7 +1220,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
@@ -1283,7 +1283,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
@@ -1347,7 +1347,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.
 
 Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
@@ -1410,7 +1410,7 @@ spec:
 
 {:codeblock}
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in the previous section.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 Then, use the `kubectl` CLI to add the custom resource definition to your namespace or project.
 
 ```
