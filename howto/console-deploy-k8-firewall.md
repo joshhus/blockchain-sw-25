@@ -464,7 +464,7 @@ service/ibp-webhook created
 
 ### 3. Extract the certificate
 
-Next, we need to extract the secret to be used in the custom resource definitions in the next step. Run the following command to extract the secret to a base64 encoded string:
+Next, we need to extract the secret to be used in the custom resource definitions in the next steps. Run the following command to extract the secret to a base64 encoded string:
 
 ```
 kubectl get secret webhook-tls-cert -n ibpinfra -o json | jq -r .data.\"cert.pem\"
