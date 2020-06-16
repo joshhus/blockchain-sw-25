@@ -1522,7 +1522,7 @@ kubectl apply -f ibp-clusterrole.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace.
 
 
-### Step five: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator
+### Step six: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator
 {: #upgrade-k8-operator-firewall}
 
 You can upgrade the {{site.data.keyword.blockchainfull_notm}} operator by fetching the operator deployment spec from your cluster. You can then update the spec with the latest operator image that you pushed to your local registry. When the upgraded operator is running, the new operator will download the images that you pushed to your local registry and upgrade your console.
@@ -1621,7 +1621,7 @@ kubectl apply -f console-upgrade.yaml
 ```
 {:codeblock}
 
-### Step six: Upgrade your blockchain nodes
+### Step seven: Upgrade your blockchain nodes
 {: #upgrade-k8-nodes-firewall}
 
 After you upgrade your console, you can use the console UI to upgrade the nodes of your blockchain network. For more information, see [Upgrade your blockchain nodes](#upgrade-k8-nodes).
