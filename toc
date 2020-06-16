@@ -76,6 +76,12 @@ IBM Blockchain Platform 2.5
 	{: .navgroup id="reference"}
 	[API reference](https://cloud.ibm.com/apidocs/blockchain)
 
+	{: .topicgroup}
+	Using Ansible Playbooks
+		howto/ansible.md
+		howto/ansible-install-ibp.md
+		howto/ansible-build-network.md
+
 	/blockchain/blockchain-hyperledger-fabric
 	/blockchain/blockchain-k8s-overview
 	reference/metering.md

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-15"
+lastupdated: "2020-06-16"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -94,7 +94,7 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 3. If you are not running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}. For more information, see [Considerations when using Kubernetes distributions](#console-deploy-k8-considerations).
 
-
+**Looking for a way to script the deployment of the service?** Check out the [Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible), a powerful tool for scripting the deployment of components in your blockchain network. If you prefer a manual installation, proceed to the next section.
 
 ## Log in to your cluster
 {: #deploy-k8-login}

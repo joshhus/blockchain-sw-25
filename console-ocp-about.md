@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-15"
+lastupdated: "2020-06-16"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
 
@@ -138,7 +138,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 uses a [Kubernetes Op
 
 It is also possible to deploy the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without having access to the public internet. For more information, see [Deploying IBM Blockchain Platform 2.5 on the OpenShift Container Platform behind a firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall). Otherwise, for other Kubernetes distributions see [Deploying IBM Blockchain Platform 2.5 on Kubernetes behind a firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall).
 
-
+**Looking for a way to script the deployment of the service?** Check out the [Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible), a powerful tool for scripting the deployment of components in your blockchain network.
 
 ## Security Considerations
 {: #console-ocp-about-security}

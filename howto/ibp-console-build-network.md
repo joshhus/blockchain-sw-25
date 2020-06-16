@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-15"
+lastupdated: "2020-06-16"
 
 keywords: getting started tutorials, create a CA, enroll, register, create an MSP, wallet, create a peer, create ordering service, Raft, ordering service, blockchain network
 
@@ -59,7 +59,7 @@ This three-part tutorial series guides you through the process of creating and i
 * [Deploy a smart contract on the network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts) shows how to write a smart contract and deploy it on a network.
 
 
-
+**Looking for a way to script the deployment of your nodes?** If you are already familiar with the manual process to deploy the components with the console, you can check out the [Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible), a powerful tool for scripting the deployment of components in your blockchain network.
 
 
 

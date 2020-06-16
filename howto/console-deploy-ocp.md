@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-15"
+lastupdated: "2020-06-16"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -98,7 +98,7 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 
 2. You need to install and connect to your cluster by using the [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform. If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, use these instructions to [Install the OpenShift Origin CLI](/docs/openshift?topic=openshift-openshift-cli#cli_oc).
 
-
+**Looking for a way to script the deployment of the service?** Check out the [Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible), a powerful tool for scripting the deployment of components in your blockchain network. If you prefer a manual installation, proceed to the next section.
 
 ## Log in to your OpenShift cluster
 {: #deploy-ocp-login}
