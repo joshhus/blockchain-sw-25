@@ -56,7 +56,6 @@ This topic describes common issues that can occur when using the {{site.data.key
 - [Why am I getting the error `Unable to authenticate with the enroll ID and secret you provided` when I create a new organization MSP definition?](#ibp-v2-troubleshooting-create-msp)
 - [Why am I getting the error `An error occurred when updating channel` when I try to add an organization to my channel?](#ibp-v2-troubleshooting-update-channel)
 - [When I log in to my console, why am I getting a 401 unauthorized error?](#ibp-v2-troubleshooting-console-401)
-
 - [Why am I getting an error “all SubConns are in TransientFailure” on the console?](#ibp-console-transientfailure)
 
 **Issues with your Nodes**  
@@ -257,6 +256,7 @@ You may receive this error if this version of the smart contract already exists 
 ## Why is my Node.js smart contract instantiation failing?
 {: #ibp-v2-troubleshooting-nodejs-instantiate}
 
+{: tsSymptoms}
 Instantiating a Node.js smart contract fails with the timeout error:
 ```
 [endorser] SimulateProposal -> ERRO 0ba [channel2][37876c5f] failed to invoke chaincode name:"lscc" , error: timeout expired while starting chaincode myassetc:0.0.1 for transaction
