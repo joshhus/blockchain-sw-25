@@ -56,6 +56,7 @@ This topic describes common issues that can occur when using the {{site.data.key
 - [Why am I getting the error `Unable to authenticate with the enroll ID and secret you provided` when I create a new organization MSP definition?](#ibp-v2-troubleshooting-create-msp)
 - [Why am I getting the error `An error occurred when updating channel` when I try to add an organization to my channel?](#ibp-v2-troubleshooting-update-channel)
 - [When I log in to my console, why am I getting a 401 unauthorized error?](#ibp-v2-troubleshooting-console-401)
+
 - [Why am I getting an error “all SubConns are in TransientFailure” on the console?](#ibp-console-transientfailure)
 
 **Issues with your Nodes**  
@@ -367,7 +368,7 @@ The following error appears on the console: "All SubConns are in TransientFailut
 An Out of Memory (OOM) situation can cause this error.
 {: tsCauses}
 
-To resolve, resize the peers and CouchDB containers to add more memory, such as 2000 MB memory each. After resizing the memory, delete the peer pods so they will be re-created. Then try the scenario again.
+To resolve this problem, you need to resize the peers and CouchDB containers to add more memory, such as 2000 MB memory each. After resizing the memory, [delete the peer pods](#ibp-troubleshooting-delete-peer) so they will be re-created. Then try the scenario again. See [Considerations when reallocating resources](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-govern-components#ibp-console-govern-components-reallocate-resources) for more information.
 {: tsResolve}
 
 ## Why is my first invoke of a smart contract returning the following error: no suitable peers available to initialize from?

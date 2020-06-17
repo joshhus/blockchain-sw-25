@@ -452,7 +452,7 @@ spec:
 {:codeblock}
 
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted after the webhook deployment in step three.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted in step three after the webhook deployment.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -515,7 +515,7 @@ spec:
 {:codeblock}
 
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted after the webhook deployment in step three.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted in step three after the webhook deployment.  
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -579,7 +579,7 @@ spec:
 {:codeblock}
 
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted after the webhook deployment in step three.
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted in step three after the webhook deployment.
 
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
@@ -642,7 +642,7 @@ spec:
 {:codeblock}
 
 
-Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted after the webhook deployment in step three.  
+Replace the value of `<CABUNDLE>` with the base64 encoded string that you extracted in step three after the webhook deployment.  
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
 
 ```
