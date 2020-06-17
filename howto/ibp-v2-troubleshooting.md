@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-17"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
 subcollection: blockchain-sw-25
@@ -55,6 +55,7 @@ This topic describes common issues that can occur when using the {{site.data.key
 - [Why am I getting the error `Unable to authenticate with the enroll ID and secret you provided` when I create a new organization MSP definition?](#ibp-v2-troubleshooting-create-msp)
 - [Why am I getting the error `An error occurred when updating channel` when I try to add an organization to my channel?](#ibp-v2-troubleshooting-update-channel)
 - [When I log in to my console, why am I getting a 401 unauthorized error?](#ibp-v2-troubleshooting-console-401)
+- [Why am I getting an error “all SubConns are in TransientFailure” on the console?](#ibp-console-transientfailure)
 
 **Issues with your Nodes**  
 
@@ -336,6 +337,16 @@ As a best practice, you should have already stored your certificates and identit
 {: note}
 
 
+## Why am I getting an error “all SubConns are in TransientFailure” on the console?
+{: #ibp-console-transientfailure}
+{: troubleshoot}
+The following error appears on the console: "All SubConns are in TransientFailutre."
+{: tsSymptoms}
+An Out of Memory (OOM) situation can cause this error.
+{: tsCauses}
+To resolve, resize the peers and CouchDB containers to add more memory, such as 2000 MB memory each. After resizing the memory, delete the peer pods so they will be re-created. Then try the scenario again.
+{: tsResolve}
+
 ## Why is my first invoke of a smart contract returning the following error: no suitable peers available to initialize from?
 {: #ibp-v2-troubleshooting-smart-contract-anchor-peers}
 {: troubleshoot}
@@ -530,5 +541,23 @@ This error occurs when the peer's enroll id type does not match the smart contra
 
 The only way to resolve this error is to delete the peer and create a new one with an enroll id that has the correct type `peer`. You can use the enroll id and secret from an existing user of type `peer` from the peer's CA or register a new user with type `peer`. Follow the instructions in the [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peer-org1) to create a new peer identity with the correct type and peer.
 {: tsResolve}
+
+## How do I delete a peer pod?
+{: #ibp-troubleshooting-delete-peer}
+{: troubleshoot}
+You are looking for the commands to delete a peer.
+{: tsSymptoms}
+Use the following CLI command to identify and then delete and restart the failing node:
+{: tsResolve}
+* List the pods: `kubectl get pods --all-namespaces`
+* Delete the pod: `kubectl delete pod -n <NAMESPACE> <PODNAME>`
+## How can I recover a contract after a failed upgrade of the smart contract container?
+{: #ibp-troubleshooting-contract-fail}
+{: troubleshoot}
+All contracts were lost after the procedure to upgrade the smart contract container crashed.
+{: tsSymptoms}
+Delete all the peer pods. This deletion triggers the peer to be created again and restarts the proxy.
+{: tsResolve}
+
 
 
