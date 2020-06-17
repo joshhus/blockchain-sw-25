@@ -329,8 +329,8 @@ spec:
               cpu: 0.1
               memory: "100Mi"
 ```
-
 {: codeblock}
+
 
 Run the following command to add the file to your cluster definition:
 ```
