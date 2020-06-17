@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-16"
+lastupdated: "2020-06-17"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -409,8 +409,8 @@ spec:
     served: true
     storage: false
 ```
-
 {:codeblock}
+
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 
@@ -472,8 +472,8 @@ spec:
     served: true
     storage: false
 ```
-
 {:codeblock}
+
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 
@@ -536,8 +536,8 @@ spec:
     served: true
     storage: false
 ```
-
 {:codeblock}
+
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.
 
@@ -599,8 +599,8 @@ spec:
     served: true
     storage: false
 ```
-
 {:codeblock}
+
 
 Replace the value of `<CABUNDLE>` with the base64 encoded string that you generated when you created a secret for your entitlement key in step three.  
 Then, use the `kubectl` CLI to add the custom resource definition to your project.
