@@ -265,10 +265,10 @@ github.com/hyperledger/fabric/core/chaincode.(*RuntimeLauncher).Launch
 ```
 
 {: tsCauses}
-When running the {{site.data.keyword.blockchainfull_notm}} Platform on s390x architecture, it is possible that Node.js smart contracts instantiation can fail if the default timeout is too short.
+When running the {{site.data.keyword.blockchainfull_notm}} Platform on s390x architecture, it is possible that Node.js smart contract instantiation can fail if the default timeout is too short.
 
 {: tsResolve}
-Customers should wait for five minutes after the failure occurs and then retry the instantiation again. It will then work successfully on the second attempt.
+Customers should wait for five minutes after the failure occurs and then retry the instantiation again. It will then work successfully on the subsequent attempt.
 
 
 

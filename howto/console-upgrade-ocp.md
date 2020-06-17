@@ -289,7 +289,7 @@ kubectl apply -n ibpinfra -f deployment.yaml
 ```
 {: codeblock}
 
-When the command completes successfully you should see something similar to:
+When the command completes successfully, you should see something similar to:
 ```
 deployment.apps/ibp-webhook created
 ```
@@ -326,7 +326,7 @@ kubectl apply -n ibpinfra -f service.yaml
 ```
 {: codeblock}
 
-When the command completes successfully you should see something similar to:
+When the command completes successfully, you should see something similar to:
 ```
 service/ibp-webhook created
 ```

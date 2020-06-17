@@ -3,7 +3,7 @@
 copyright:
   years: 2019
 
-lastupdated: "2020-06-16"
+lastupdated: "2020-06-17"
 
 keywords: getting started tutorials, create a CA, enroll, register, create an MSP, wallet, create a peer, create ordering service, Raft, join a network, system channel
 
@@ -33,7 +33,7 @@ subcollection: blockchain-sw-25
 
 
 
-{{site.data.keyword.blockchainfull}} Platform is a blockchain-as-a-service offering that enables you to develop, deploy, and operate blockchain applications and networks. You can learn more about blockchain components and how they work together by visiting the [Blockchain component overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-component-overview#blockchain-component-overview). This tutorial is the second part in the [sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-sample-tutorial) and describes how to create nodes in the {{site.data.keyword.blockchainfull_notm}} Platform console and connect them a blockchain consortium hosted in another cluster.
+{{site.data.keyword.blockchainfull}} Platform is a blockchain-as-a-service offering that enables you to develop, deploy, and operate blockchain applications and networks. You can learn more about blockchain components and how they work together by visiting the [Blockchain component overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-component-overview#blockchain-component-overview). This tutorial is the second part in the [sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-sample-tutorial) and describes how to create nodes in the {{site.data.keyword.blockchainfull_notm}} Platform console and connect them to a blockchain consortium hosted in another cluster.
 {:shortdesc}
 
 **Target audience:** This topic is designed for network operators who are responsible for creating, monitoring, and managing the blockchain network.  
@@ -244,7 +244,7 @@ Use your console to perform the following steps:
    * Select the **Enroll ID** for the peer identity that you created for your peer from the drop-down list, `peer2`, and enter its associated **secret**, `peer2pw`.
    * Then, select `Org2 MSP` from the drop-down list
    * The **TLS Certificate Signing Request (CSR) hostname** is an option available to advanced users who want to specify a custom domain name that can be used to address the peer endpoint. Custom domain names are not a part of this tutorial, so leave the **TLS CSR hostname** blank for now.
-   * In the **Fabric version** drop down list, the best practice is to select the **highest available version**, as it will contain the latest bug fixes. It might also be necessary to select the highest version in order to have access to the latest features. Note that if you select any version higher than v2.0, no smart contract container will be deployed along with your peer. Instead, each smart contract will be deployed a into its own pod when it is instantiated on the channel or invoked for the first time.
+   * In the **Fabric version** drop down list, the best practice is to select the **highest available version**, as it will contain the latest bug fixes. It might also be necessary to select the highest version in order to have access to the latest features. Note that if you select any version higher than v2.0, no smart contract container will be deployed along with your peer. Instead, each smart contract will be deployed into its own pod when it is instantiated on the channel or invoked for the first time.
    * Click **Next**.
 7. The last side panel asks you to **Associate an identity** to make it the admin of your peer. For the purpose of this tutorial, make your organization admin, `Org2 MSP Admin`, the admin of your peer as well. It is possible to register and enroll a different identity with the `Org2 CA` and make that identity the admin of your peer, but this tutorial uses the `Org2 MSP Admin` identity.
 8. Review the summary and click **Add peer**.  The **Edit configuration JSON** button allows you to override configuration settings for the peer. For this tutorial, the default settings are sufficient. See [Customizing a peer configuration](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-peer-create-json) to learn more about the options that are available.

@@ -64,8 +64,7 @@ Ensure that your Kubernetes cluster has sufficient resources for the {{site.data
 {: #deploy-k8-browsers-firewall}
 The {{site.data.keyword.blockchainfull_notm}} Platform console has been successfully tested on the following browsers:
 
-- Chrome Version 81.0.4044.122 (Official Build) (64-bit)
-- Firefox (non-ESR): Version 69.0.1
+- Chrome Version 83.0.4103.97 (Official Build) (64-bit)
 - Safari Version 13.0.3 (15608.3.10.1.4)
 
 
@@ -420,7 +419,7 @@ kubectl apply -n ibpinfra -f deployment.yaml
 ```
 {: codeblock}
 
-When the command completes successfully you should see something similar to:
+When the command completes successfully, you should see something similar to:
 ```
 deployment.apps/ibp-webhook created
 ```
@@ -457,7 +456,7 @@ kubectl apply -n ibpinfra -f service.yaml
 ```
 {: codeblock}
 
-When the command completes successfully you should see something similar to:
+When the command completes successfully, you should see something similar to:
 ```
 service/ibp-webhook created
 ```
