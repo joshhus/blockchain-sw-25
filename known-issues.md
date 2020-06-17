@@ -39,7 +39,7 @@ This page describes known issues that you might encounter when you use {{site.da
 ## Smart contract instantiation timeout
 {: #sw-known-issues-instantiation-timeout}
 
-When running the {{site.data.keyword.blockchainfull}} Platform on s390x architecture, it is possible that Node.js smart contracts instantiation can fail. Customers can wait about 5 minutes after the failure occurs and then retry the instantiation again. It will work successfully on the second attempt.
+When running the {{site.data.keyword.blockchainfull}} Platform on s390x architecture, it is possible that Node.js smart contract instantiation can fail. Customers should wait for five minutes after the failure occurs and then retry the instantiation again. It will then work successfully on the second attempt.
 
 
 
