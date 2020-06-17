@@ -40,7 +40,9 @@ See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-i
 
 **Peer and ordering node patch 1.4.7-0**
 
-Miscellaneous bug fixes and security patches.
+Miscellaneous bug fixes and security patches.  
+
+This patch updates the CouchDB `delayed_commits` configuration property to false. The prior setting could cause the peer's CouchDB database to be in an inconsistent state in the event of a CouchDB or underlying storage system crash. The new setting ensures that a peer will recover from crashes in a consistent state. As always, it is recommended to utilize an endorsement policy that requires multiple peers to endorse a transaction, to avoid an inconsistency from a single peer from impacting the overall blockchain network state. Any peer that has experienced CouchDB or underlying storage system crashes can be re-provisioned with the new patch applied to ensure its data integrity.
 
 ### Fabric peer and ordering node images
 {: #06-18-2020-images}
