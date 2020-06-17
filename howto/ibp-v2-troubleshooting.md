@@ -263,7 +263,6 @@ Instantiating a Node.js smart contract fails with the timeout error:
 github.com/hyperledger/fabric/core/chaincode.(*RuntimeLauncher).Launch
 	/go/src/github.com/hyperledger/fabric/core/chaincode/runtime_launcher.go:75
 ```
-{: tsSymptoms}
 
 {: tsCauses}
 When running the {{site.data.keyword.blockchainfull_notm}} Platform on s390x architecture, it is possible that Node.js smart contracts instantiation can fail if the default timeout is too short.
