@@ -50,6 +50,7 @@ This topic describes common issues that can occur when using the {{site.data.key
 - [When I hover over my node, the status is `Status unavailable`, what does this mean?](#ibp-v2-troubleshooting-status-unavailable)
 - [When I hover over my node, the status is `Status undetectable`, what does this mean?](#ibp-v2-troubleshooting-status-undetectable)
 - [Why did my smart contract installation, instantiation or upgrade fail?](#ibp-console-smart-contracts-troubleshoot-entry1)
+- [Why is my Node.js smart contract instantiation failing?](#ibp-v2-troubleshooting-nodejs-instantiate)
 - [Why is the smart contract that I installed on the peer not listed in the UI?](#ibp-console-build-network-troubleshoot-missing-sc)
 - [My channel, smart contracts, and identities have disappeared from the console. How can I get them back?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-browser-storage)
 - [Why am I getting the error `Unable to authenticate with the enroll ID and secret you provided` when I create a new organization MSP definition?](#ibp-v2-troubleshooting-create-msp)
@@ -250,6 +251,25 @@ You may receive this error if this version of the smart contract already exists 
 - Open the peer node and ensure the smart contract version does not already exist on the peer and try again with the proper version.
 - If you are still experiencing problems after the node is up,  [check your node logs](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-node-logs) for errors.
 {: tsResolve}
+
+
+## Why is my Node.js smart contract instantiation failing?
+{: #ibp-v2-troubleshooting-nodejs-instantiate}
+
+Instantiating a Node.js smart contract fails with the timeout error:
+```
+[endorser] SimulateProposal -> ERRO 0ba [channel2][37876c5f] failed to invoke chaincode name:"lscc" , error: timeout expired while starting chaincode myassetc:0.0.1 for transaction
+github.com/hyperledger/fabric/core/chaincode.(*RuntimeLauncher).Launch
+	/go/src/github.com/hyperledger/fabric/core/chaincode/runtime_launcher.go:75
+```
+{: tsSymptoms}
+
+When running the {{site.data.keyword.blockchainfull_notm}} Platform on s390x architecture, it is possible that Node.js smart contracts instantiation can fail if the default timeout is too short.
+{: tsCauses}
+
+Wait about 5 minutes after the failure occurs and then retry the instantiation again. It will work successfully on the second attempt.
+{: tsResolve}
+
 
 ## Why is the smart contract that I installed on the peer not listed in the UI?
 {: #ibp-console-build-network-troubleshoot-missing-sc}

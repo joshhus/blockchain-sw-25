@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-16"
+lastupdated: "2020-06-17"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
 
@@ -129,7 +129,6 @@ For more information, see [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-2
 - You cannot upgrade a deployed network from {{site.data.keyword.blockchainfull_notm}} Platform for Multicloud to {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
 - {{site.data.keyword.blockchainfull_notm}} Platform is not supported on OpenShift Online.
 - There is no free trial at this time. Customers who are interested in exploring the functionality should try the offering on [{{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-console-overview){: external}.
-- You cannot access the {{site.data.keyword.blockchainfull_notm}} Platform console with the Chrome browser on Mac OS Catalina when the {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0 or v2.1.1 is deployed with the default configuration that uses self-signed certificates. See [Known issues](/docs/blockchain-sw-25?topic=blockchain-sw-25-sw-known-issues#sw-known-issues-catalina) for a list of workarounds.
 
 ## Installing {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #console-ocp-about-install}
