@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-18"
 
 keywords: IBM Blockchain Platform, images
 
@@ -46,7 +46,7 @@ Although you can deploy the {{site.data.keyword.blockchainfull_notm}} images on 
 
 The {{site.data.keyword.blockchainfull_notm}} Docker images are based on Hyperledger Fabric v1.4.7 and v2.x. You can use this documentation to install and deploy the latest version of Fabric used by the {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 
-See the [My Support](https://www.ibm.com/support/pages/support-ibm-blockchain-platform-v21x){: external} page for details on what is supported.
+See the [My Support](https://www.ibm.com/support/pages/node/1072956){: external} page for details on what is supported.
 
 ## Considerations and limitations
 
@@ -583,7 +583,7 @@ You can upgrade your deployment to the latest version of the {{site.data.keyword
 
 ## Getting support
 
-If you encounter issues that are related to Hyperledger Fabric or the underlying images, you can submit a support case from the [mysupport](https://www.ibm.com/support/pages/support-ibm-blockchain-platform-v21x){: external} page. When you open a case you need to select your product, {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
+If you encounter issues that are related to Hyperledger Fabric or the underlying images, you can submit a support case from the [mysupport](https://www.ibm.com/support/pages/node/1072956){: external} page. When you open a case you need to select your product, {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 
 {{site.data.keyword.IBM_notm}} provides support for issues that are related to the Hyperledger Fabric code or the steps to download and deploy the images that you can find in this documentation. {{site.data.keyword.IBM_notm}} does not provide support for issues that relate to the operation of the images or your underlying infrastructure. Deployment issues due to the specific circumstances of the customer environment will be the customer's responsibility to investigate. If you need assistance with the deployment and management of a Fabric network, use the [{{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about) offering.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-17"
+lastupdated: "2020-06-18"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -59,5 +59,5 @@ Leveraging the Fabric v2 **external chaincode launcher** capability, when you de
 ### Multizone-capable storage
 {: #06-18-2020-Multizone}
 
-If your Kubernetes cluster is configured to use multizone-capable storage, new peer and ordering nodes can be deployed that leverage multizone storage, effectively extending their high availability across cluster zones.See [Multizone-capable Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha##ibp-console-ha-multi-zone-storage) for more information.
+If your Kubernetes cluster is configured to use multizone-capable storage, new peer and ordering nodes can be deployed that leverage multizone storage, effectively extending their high availability across cluster zones.See [Multizone-capable Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone-storage) for more information.
 
