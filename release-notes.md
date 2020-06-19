@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-19"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -44,7 +44,7 @@ See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-i
 
 **To be certain that your peers have no database corruption**, you should reprovision your peers.
 
-Miscellaneous bug fixes and security patches.  
+Miscellaneous bug fixes and security patches. 
 
 ### Fabric peer and ordering node images
 {: #06-18-2020-images}
