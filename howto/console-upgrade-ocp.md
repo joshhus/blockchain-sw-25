@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-19"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -51,9 +51,7 @@ You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 fr
 ## Platform limitations
 {: #upgrade-ocp-platform}
 
-If your {{site.data.keyword.blockchainfull_notm}} Platform is running on OpenShift Container Platform 3.11, you cannot upgrade to {{site.data.keyword.blockchainfull_notm}} Platform 2.5, unless you first upgrade your OpenShift cluster from 3.11 to 4.2 or 4.3. For more information, see [Migrating OpenShift Container Platform 3.7 to 4.2](https://docs.openshift.com/container-platform/4.2/migration/migrating_3_4/planning-migration-3-to-4.html).  
-
-Also in OpenShift Container Platform 3.11, you cannot run an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3 network in the same cluster as an {{site.data.keyword.blockchainfull_notm}} Platform 2.5 network. If this is a required configuration for your business, then you should first upgrade the OpenShift Container Platform to 4.2 or 4.3 and then deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 network.
+If your {{site.data.keyword.blockchainfull_notm}} Platform is running on OpenShift Container Platform 3.11, you cannot upgrade to {{site.data.keyword.blockchainfull_notm}} Platform 2.5 unless you first upgrade your OpenShift cluster from 3.11 to 4.3. For more information, see [Migrating OpenShift Container Platform to 4.3](https://docs.openshift.com/container-platform/4.3/migration/migrating_3_4/planning-migration-3-to-4.html).  
 
 ## Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #upgrade-ocp-steps}

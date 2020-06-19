@@ -91,9 +91,8 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with 
 
 | Kubernetes distribution | Version | Hardware |  Tested configuration|
 |----|----|----|-----|
-| OpenShift Container Platform | 3.11 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) <br> New deployments only, migration to IBP 2.5 is not supported from OCP 3.11|
 | OpenShift Container Platform | 4.3 |  x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 3.11, 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
+| OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
 | OpenShift Container Platform on LinuxONE | 4.2 | s390x |  |
 | OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | Kubernetes ***    | v1.15 - v1.18 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) v1.15, v1.16, v1.17|
