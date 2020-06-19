@@ -132,6 +132,7 @@ docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -161,6 +162,7 @@ docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ccen
 docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -197,6 +199,7 @@ docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
