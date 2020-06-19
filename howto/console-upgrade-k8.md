@@ -37,7 +37,7 @@ You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrup
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-k8-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform, unless it is running on OpenShift Container Platform 3.11. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|
