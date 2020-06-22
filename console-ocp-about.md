@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-22"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
 
@@ -82,7 +82,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 - **Connect to other Fabric networks**: Join {{site.data.keyword.blockchainfull_notm}} Platform peers to any network running Hyperledger Fabric components. Similarly, you can invite Fabric peers to join channels hosted on an ordering service deployed on the {{site.data.keyword.blockchainfull_notm}} Platform. Note that you will need to use Hyperledger Fabric APIs or the CLI.
 
 
-
+Check out this [blog](https://www.ibm.com/blogs/blockchain/2020/06/ibm-blockchain-platform-2-5-a-new-era-of-multi-party-systems/){: external} on how blockchain is creating the new era of multi-party systems.
 
 ## Supported Platforms
 {: #console-ocp-about-prerequisites}
@@ -91,9 +91,8 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with 
 
 | Kubernetes distribution | Version | Hardware |  Tested configuration|
 |----|----|----|-----|
-| OpenShift Container Platform | 3.11 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) <br> New deployments only, migration to IBP 2.5 is not supported from OCP 3.11|
 | OpenShift Container Platform | 4.3 |  x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
-| OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 3.11, 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
+| OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
 | OpenShift Container Platform on LinuxONE | 4.2 | s390x |  |
 | OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | Kubernetes ***    | v1.15 - v1.18 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) v1.15, v1.16, v1.17|

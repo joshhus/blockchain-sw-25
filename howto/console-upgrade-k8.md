@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-19"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -37,7 +37,7 @@ You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrup
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-k8-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform, unless it is running on OpenShift Container Platform 3.11. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|
@@ -839,6 +839,7 @@ docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -865,6 +866,7 @@ docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ccen
 docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-s390x <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -901,6 +903,7 @@ docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-17"
+lastupdated: "2020-06-19"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
@@ -34,7 +34,7 @@ subcollection: blockchain-sw-25
 You can use these instructions to deploy {{site.data.keyword.blockchainfull}} Platform 2.5 behind a firewall without internet connectivity. If you are deploying the platform on a cluster with access to the external internet, use the main instructions for [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp).
 {:shortdesc}
 
-You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a Kubernetes cluster that is running on Red Hat OpenShift Container Platform 3.11, 4.2 or 4.3. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a Kubernetes cluster that is running on Red Hat OpenShift Container Platform 4.2 (LinuxONE only) or 4.3. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 
 ## Need to Know
 
@@ -91,7 +91,7 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 ## Before you begin
 {: #deploy-ocp-prerequisites-firewall}
 
-1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the [OpenShift Container Platform 3.11, 4.2, or 4.3](https://docs.openshift.com/container-platform/3.11/welcome/index.html){: external}.
+1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the OpenShift Container Platform 4.2 (LinuxONE only) or 4.3.
 
 2. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform.
 
@@ -132,6 +132,7 @@ docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64
+docker pull cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -161,6 +162,7 @@ docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ccen
 docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
@@ -197,6 +199,7 @@ docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
 ```
 {:codeblock}
 
