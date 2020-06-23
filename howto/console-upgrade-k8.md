@@ -55,7 +55,7 @@ You can upgrade an {{site.data.keyword.blockchainfull_notm}} Platform network by
 
 1. [Create the `ibpinfra` project for the webhook](#upgrade-k8s-ibpinfra)
 2. [Create a secret for your entitlement key](#upgrade-k8s-secret-ibpinfra)
-3. [Deploy the webhook and custom resource definitions to your OpenShift cluster](#upgrade-k8s-webhook-crd)
+3. [Deploy the webhook and custom resource definitions to your Kubernetes cluster](#upgrade-k8s-webhook-crd)
 4. [Update the ClusterRole](#upgrade-k8-clusterrole)
 5. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-k8-operator)
 6. [Use your console to upgrade your running blockchain nodes](#upgrade-k8-nodes)
@@ -114,14 +114,14 @@ The name of the secret that you are creating is `docker-key-secret`. It is requi
 {: note}
 
 
-## Step three: Deploy the webhook and custom resource definitions to your OpenShift cluster
+## Step three: Deploy the webhook and custom resource definitions to your Kubernetes cluster
 {: #upgrade-k8s-webhook-crd}
 
-Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API version. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API version. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  **Webhooks are supported in Kubernetes v1.15 and higher. If your cluster is running Kubernetes v1.14 or lower, you need to upgrade it now to take advantage of this release of the {{site.data.keyword.blockchainfull_notm}} Platform.**
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
 
-The first two steps are for deployment of the webhook. The last five steps are for the custom resource definitions for the CA, peer, orderer, and console components that the {{site.data.keyword.blockchainfull_notm}} requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
+The first two steps are for deployment of the webhook. The last five steps are for the custom resource definitions for the CA, peer, orderer, and console components that the {{site.data.keyword.blockchainfull_notm}} Platform requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
 {: important}
 
 ### 1. Configure role-based access control (RBAC) for the webhook
@@ -791,7 +791,7 @@ If you deployed the {{site.data.keyword.blockchainfull_notm}} Platform behind a 
 1. [Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images](#upgrade-k8-images-firewall)
 2. [Create the `ibpinfra` project for the webhook](#upgrade-k8s-ibpinfra-fw)
 3. [Create a secret for your entitlement key](#upgrade-k8s-secret-ibpinfra-fw)
-4. [Deploy the webhook and custom resource definitions to your OpenShift cluster](#upgrade-webhook-fw)
+4. [Deploy the webhook and custom resource definitions to your Kubernetes cluster](#upgrade-webhook-fw)
 5. [Update the ClusterRole](#upgrade-k8-clusterrole-firewall)
 6. [Upgrade the {{site.data.keyword.blockchainfull_notm}} Platform operator](#upgrade-k8-operator-firewall)
 7. [Use your console to upgrade your running blockchain nodes](#upgrade-k8-nodes-firewall)
@@ -948,14 +948,14 @@ The name of the secret that you are creating is `docker-key-secret`. It is requi
 {: note}
 
 
-### Step four: Deploy the webhook and custom resource definitions to your OpenShift cluster
+### Step four: Deploy the webhook and custom resource definitions to your Kubernetes cluster
 {: #upgrade-webhook-fw}
 
-Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  
+Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API versions. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  **Webhooks are supported in Kubernetes v1.15 and higher. If your cluster is running Kubernetes v1.14 or lower, you need to upgrade it now to take advantage of this release of the {{site.data.keyword.blockchainfull_notm}} Platform.**
 
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
 
-The first two steps are for deployment of the webhook. The last five steps are for creation of the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
+The first two steps are for deployment of the webhook. The last five steps are for creation of the custom resource definitions for the CA, peer, orderer and console components that the {{site.data.keyword.blockchainfull_notm}} Platform requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
 {: important}
 
 #### 1. Configure role-based access control (RBAC) for the webhook

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-06-23"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -60,4 +60,9 @@ Leveraging the Fabric v2 **external chaincode launcher** capability, when you de
 {: #06-18-2020-Multizone}
 
 If your Kubernetes cluster is configured to use multizone-capable storage, new peer and ordering nodes can be deployed that leverage multizone storage, effectively extending their high availability across cluster zones.See [Multizone-capable Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone-storage) for more information.
+
+### Kubernetes version upgrade
+{: #06-18-2020-k8s}
+
+{{site.data.keyword.blockchainfull_notm}} Platform requires **Kubernetes v1.15 - v1.18**. If your existing Kubernetes cluster is running v1.14 or lower, you need to upgrade your cluster before you can update your existing blockchain components to this latest release.
 
