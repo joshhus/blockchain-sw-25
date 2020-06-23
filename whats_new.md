@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-22"
+lastupdated: "2020-06-23"
 
 keywords: IBM Blockchain Platform, release, new features
 
@@ -39,7 +39,7 @@ subcollection: blockchain-sw-25
 {{site.data.keyword.blockchainfull}} Platform 2.5 is now available.
 
 
-{{site.data.keyword.blockchainfull_notm}} Platform 2.5 provides tighter integration with Red Hat solutions, including additional deployment options on Red Hat OpenShift 4.3 and support for Red Hat CodeReady Workspaces. This latest release  also makes available a set of Ansible Content Collections to help accelerate the deployment of blockchain solutions.
+{{site.data.keyword.blockchainfull_notm}} Platform 2.5 provides tighter integration with Red Hat solutions, including additional integration with Red Hat OpenShift 4.3 and support for Red Hat CodeReady Workspaces. This latest release also makes available a set of Ansible Content Collections to help accelerate the deployment of blockchain solutions.
 
 **IBM Blockchain Platform Ansible Playbooks**  
 
