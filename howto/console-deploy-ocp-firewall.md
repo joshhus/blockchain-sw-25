@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-06-23"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
@@ -125,7 +125,6 @@ docker pull cp.icr.io/cp/ibp-dind:1.4.7-20200618-amd64
 docker pull cp.icr.io/cp/ibp-utilities:1.4.7-20200618-amd64
 docker pull cp.icr.io/cp/ibp-peer:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-orderer:2.1.1-20200618-amd64
-docker pull cp.icr.io/cp/ibp-ca:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-utilities:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64
@@ -133,6 +132,10 @@ docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64
 docker pull cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64
+docker pull cp.icr.io/cp/ibp-ccenv:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-goenv:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-nodeenv:1.4.7-20200618-amd64
+docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200618-amd64
 ```
 {:codeblock}
 
@@ -155,7 +158,7 @@ docker tag cp.icr.io/cp/ibp-dind:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-dind:
 docker tag cp.icr.io/cp/ibp-utilities:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200618-amd64
 docker tag cp.icr.io/cp/ibp-peer:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-orderer:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200618-amd64
-docker tag cp.icr.io/cp/ibp-ca:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ca:2.1.1-20200618-amd64
+docker tag cp.icr.io/cp/ibp-ca:2.1.-20200618-amd64 <LOCAL_REGISTRY>/ibp-ca:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-utilities:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
@@ -163,6 +166,10 @@ docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-goen
 docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20200618-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
 docker tag cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64 <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
+docker tag cp.icr.io/cp/ibp-ccenv:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-ccenv:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-goenv:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-goenv:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-nodeenv:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:1.4.7-20200618-amd64
+docker tag cp.icr.io/cp/ibp-javaenv:1.4.7-20200618-amd64 <LOCAL_REGISTRY>/ibp-javaenv:1.4.7-20200618-amd64
 ```
 {:codeblock}
 
@@ -192,7 +199,6 @@ docker push <LOCAL_REGISTRY>/ibp-dind:1.4.7-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200618-amd64
-docker push <LOCAL_REGISTRY>/ibp-ca:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200618-amd64
@@ -200,6 +206,10 @@ docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200618-amd64
 docker push <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-ccenv:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-goenv:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-nodeenv:1.4.7-20200618-amd64
+docker push <LOCAL_REGISTRY>/ibp-javaenv:1.4.7-20200618-amd64
 ```
 {:codeblock}
 
