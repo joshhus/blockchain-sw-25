@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-23"
+lastupdated: "2020-06-24"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -80,6 +80,7 @@ Before you deploy the {{site.data.keyword.blockchainfull_notm}} Platform console
 
 If you prefer not to choose a persistent storage option, the default storage class of your OpenShift project is used. `Host-local` volume storage is not supported.
 {: note}
+
 
 ## Get your entitlement key
 {: #deploy-ocp-entitlement-key}
