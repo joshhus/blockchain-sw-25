@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-06-29"
 
 keywords: high availability, CA, PostgreSQL, replica sets
 
@@ -15,6 +15,7 @@ subcollection: blockchain-sw-25
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:note: .note}
+{:term: .term}
 {:important: .important}
 {:tip: .tip}
 {:pre: .pre}

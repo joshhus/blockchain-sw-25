@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-22"
+lastupdated: "2020-06-29"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
 
@@ -15,6 +15,7 @@ subcollection: blockchain-sw-25
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:note: .note}
+{:term: .term}
 {:important: .important}
 {:term: .term}
 {:tip: .tip}
@@ -32,7 +33,7 @@ subcollection: blockchain-sw-25
 </div>
 
 
-The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network on-premises, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.7 and v2.x and supports deployment on multiple Kubernetes distributions.
+The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network [on-premises](#x4561212){: term}, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.7 and v2.x and supports deployment on multiple Kubernetes distributions.
 {:shortdesc}
 
 ## What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers
@@ -54,7 +55,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 
 **BUILD ---- Integrated developer experience**
 - **Deploy easily**. Use Ansible Playbooks to deploy networks quicker than ever before.
-- **Easily code** your smart contracts in Node.js, Golang, Java, or JavaScript. Use the {{site.data.keyword.blockchainfull_notm}} Platform Developer Tools to easily develop smart contracts locally or use Red Hat CodeReady Workspaces to develop them in the cloud. Leverage **SDK integration** with the console, and learn from our rich tutorials and samples.
+- **Easily code** your [smart contracts](#x8888420){: term} in Node.js, Golang, Java, or JavaScript. Use the {{site.data.keyword.blockchainfull_notm}} Platform Developer Tools to easily develop smart contracts locally or use Red Hat CodeReady Workspaces to develop them in the cloud. Leverage **SDK integration** with the console, and learn from our rich tutorials and samples.
 - **Simplified DevOps** allows you to move from development to test to production in a single environment by scaling up your Kubernetes resources to add more components.
 - **Up-to-date Fabric key features**. Choose which version of Hyperledger Fabric you want to use when deploying peers or ordering nodes. Leverage the latest features of Hyperledger Fabric v1.4.7 and v2.x:
   - [Raft ordering service](https://hyperledger-fabric.readthedocs.io/en/release-1.4/orderer/ordering_service.html#raft){: external}
