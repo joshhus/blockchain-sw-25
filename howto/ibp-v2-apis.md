@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-29"
 
 keywords: APIs, build a network, authentication, service credentials, API key, API endpoint, IAM access token, Fabric CA client, import a network, generate certificates
 
@@ -16,6 +16,7 @@ subcollection: blockchain-sw-25
 {:codeblock: .codeblock}
 {:note: .note}
 {:important: .important}
+{:term: .term}
 {:tip: .tip}
 {:faq: data-hd-content-type='faq'}
 {:pre: .pre}
@@ -46,7 +47,7 @@ The APIs target your {{site.data.keyword.blockchainfull_notm}} Platform console 
 To use the APIs, you will need to gather the following information:
 
 - The console **API Endpoint**. This is the URL that you use to access the console using your browser.
-- A username and password that you can use to access the console. To create an API key, you must have an account with a [manager role](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-users).
+- A username and password that you can use to access the console. To create an [API key](#x8051010){: term}, you must have an account with a [manager role](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#console-icp-manage-users).
 
 ## Connect to your console using API keys
 {: #console-icp-manage-api-key}
@@ -1027,7 +1028,7 @@ You can use the APIs to create an organization MSP definition by calling [`POST 
 
   Provide this string to the `root_certs` field of the API request.
 
-5. You should also provide the root certificate of your TLS CA. The TLS root certificate allows your peers to participate in gossip on a channel.
+5. You should also provide the root certificate of your TLS CA. The TLS root certificate allows your peers to participate in [gossip](#x9829550){: term} on a channel.
 
   Navigate to the MSP directory that was generated when you [enrolled your TLS CA admin](#ibp-v2-apis-config-register-component-tls).
   ```

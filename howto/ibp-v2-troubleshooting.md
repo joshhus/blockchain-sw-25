@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-30"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
 subcollection: blockchain-sw-25
@@ -34,10 +34,10 @@ subcollection: blockchain-sw-25
 </div>
 
 
-General problems may occur when using the console to manage nodes, channels, or smart contracts. In many cases, you can recover from these problems by following a few easy steps.
+General problems can occur when you use the console to manage nodes, channels, or smart contracts. In many cases, you can recover from these problems by following a few easy steps.
 {:shortdesc}
 
-This topic describes common issues that can occur when using the {{site.data.keyword.blockchainfull_notm}} Platform console.  
+This topic describes common issues that can occur when you use the {{site.data.keyword.blockchainfull_notm}} Platform console.  
 
 **Issues during Deployment**
 - [My deployment fails when I try apply the security and access policies to my namespace](#ibp-v2-troubleshooting-deployment-policies)
@@ -95,7 +95,7 @@ When I try to apply resource file, I receive a parsing error:
 error: error parsing ibp-scc.yaml: error converting YAML to JSON: yaml: line 10: mapping values are not allowed in this context
 ```
 
-This problem occurs when there is a problem with the indents in your file. Refer to the documentation for the correct format for the security and access files.
+This error happens when a problem exists with the indents in your YAML file. Refer to the documentation for the correct format for the security and access files.
 {: tsCauses}
 
 
@@ -123,7 +123,7 @@ When I try to apply the custom resource file, I receive a parsing error:
 error: error parsing console.yaml: error converting YAML to JSON: yaml: line 11: mapping values are not allowed in this context
 ```
 
-This problem occurs when there is a problem with the indents in your file. Refer to the documentation for the correct format for the custom resource files of the console and operator.
+This error happens when a problem exists with the indents in your file. Refer to the documentation for the correct format for the custom resource files of the console and operator.
 {: tsCauses}
 
 
@@ -137,7 +137,7 @@ The console has been working successfully, but requests have started to fail. Fo
 This problem can be caused by a [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=1006243){: external} introduced by the Chrome browser `Version 77.0.3865.90 (Official Build) (64-bit)` that causes actions from the browser to fail.
 {: tsCauses}
 
-To resolve this problem, open the console in a new browser tab in Chrome. Any identities that you saved in your console wallet will persist in the new browser tab. To avoid this problem you can upgrade your Chrome browser version. Ensure you have downloaded all of your wallet identities to your local machine before closing your browser. If this solution does not resolve your problem see [Why is my channel creation failing or I am unable to add a new organization to my ordering service with the error "Unable to get system channel"?](#ibp-v2-troubleshooting-accept-tls).
+To resolve this problem, open the console in a new browser tab in Chrome. Any identities that you saved in your console wallet will  persist in the new browser tab. To avoid this problem you can upgrade your Chrome browser version. Ensure you have downloaded all of your wallet identities to your local machine before closing your browser. If this solution does not resolve your problem see [Why is my channel creation failing or I am unable to add a new organization to my ordering service with the error "Unable to get system channel"?](#ibp-v2-troubleshooting-accept-tls).
 {: tsResolve}
 
 
@@ -153,7 +153,7 @@ There are three ways to resolve this problem:
 1.  Use a different [supported browser](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers) with Catalina.
 2. Use your own [TLS certificates when deploying on OpenShift Contain Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#console-deploy-ocp-use-your-own-tls-certificates-optional) or [TLS certificates when deploying on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-tls).
 3. Run the following commands to generate a new key and certificate pair for the console that will fix the problem.
-   1. Run the following command to get the pod that corresponds to the ibp console:
+   1. Run the following command to get the pod that corresponds to the console:
       ```
       kubectl get po
       ```
@@ -441,7 +441,7 @@ Failed to initialize local MSP: admin 0 is invalid [The identity does not contai
 {: #ibp-v2-troubleshooting-cleanup}
 {: troubleshoot}
 
-Sometimes a node can fail to deploy, for example, due to lack of resources in your Kubernetes cluster. After you understand the cause of the node deployment failure, you need to cleanup the failed node in your cluster.
+Sometimes a node can fail to deploy, for example, due to lack of resources in your Kubernetes cluster. After you understand the cause of the node deployment failure, you need to clean up the failed node in your cluster.
 {: tsSymptoms}
 
 Do not attempt to use Kubernetes commands to remove the node. Instead, it is extremely important that you use the {{site.data.keyword.blockchainfull_notm}} Platform console or the APIs to remove the failed node to ensure that the associated metadata and storage are also cleaned up.
@@ -485,7 +485,7 @@ To re-establish communications between the node and the proxy, restart the faili
 - Delete the pod: `kubectl delete pod -n <NAMESPACE> <PODNAME>`  
 
 Replace:
-- `<NAMESPACE>` with the namespace or project, if using Openshift Container Platform, where the  {{site.data.keyword.blockchainfull_notm}} Platform was deployed in your Kubernetes cluster.
+- `<NAMESPACE>` with the namespace or project, if using Openshift Container Platform, where the {{site.data.keyword.blockchainfull_notm}} Platform was deployed in your Kubernetes cluster.
 - `<PODNAME>` with the **Name** of the failing pod that is visible in the list of pods returned by the previous command.
 
 ## My CA failed to upgrade, how can I fix it?

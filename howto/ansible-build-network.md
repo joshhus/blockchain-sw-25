@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-17"
+lastupdated: "2020-06-30"
 
 keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy
 
@@ -15,6 +15,7 @@ subcollection: blockchain-sw-25
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:note: .note}
+{:term: .term}
 {:important: .important}
 {:javascript: data-hd-programlang="javascript"}
 {:tip: .tip}
@@ -30,7 +31,7 @@ Customers can use Ansible playbooks to automate the setup and tear down of {{sit
 
 In this tutorial, we gather the connection information to your console and demonstrate how to use that information configure the playbooks. The playbooks group and automate common network deployment tasks so that you can bypass manually configuring your network from the console. We teach you how to run an individual playbook and then how to run them sequentially from a script.  In just a few minutes, you can deploy an entire set of blockchain components that are ready to process transactions on your {{site.data.keyword.blockchainfull_notm}} Platform network.
 
-The Ansible scripts can be used to build the following network that includes two organizations (Org1 and Org2) that each contains one peer and an ordering service with a channel joined by both peers. It's a simple process to customize the playbooks with your own component or organization names. They can also be used to install and instantiate smart contracts on the channel. And as you become more proficient, you can use the playbooks to build additional organizations, peers, ordering services, and channels according to your use case.
+The Ansible scripts can be used to build the following network that includes two organizations (Org1 and Org2) that each contains one peer and an [ordering service](#x9826021){: term} with a [channel](#x2016483){: term} joined by both peers. It's a simple process to customize the playbooks with your own component or organization names. They can also be used to install and instantiate smart contracts on the channel. And as you become more proficient, you can use the playbooks to build additional organizations, peers, ordering services, and channels according to your use case.
 
 ![Ansible network](../images/ansible.svg "Network components created by the Ansible playbooks"){: caption="Figure 1. Network components created by the Ansible playbooks" caption-side="bottom"}
 
@@ -58,7 +59,7 @@ After you deploy an {{site.data.keyword.blockchainfull_notm}} Platform service i
    https://blockchain-project-ibpconsole-console.xyz.abc.com
 
    ```
-2. (Optional) Get an API `key` and `secret` that you can use to access your {{site.data.keyword.blockchainfull_notm}} Platform console. If you want to skip getting an API key and secret, you can also use your console **username** and **password** instead of an API key and secret, although that would not be recommended in a production setting.
+2. (Optional) Get an [API key](#x8051010){: term} and `secret` that you can use to access your {{site.data.keyword.blockchainfull_notm}} Platform console. If you want to skip getting an API key and secret, you can also use your console **username** and **password** instead of an API key and secret, although that would not be recommended in a production setting.
 
  If you prefer to use an API `key` and `secret`, then you need to use the [{{site.data.keyword.blockchainfull_notm}} Platform REST APIs](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#console-icp-manage-api-key) to generate them. Save the value of the `"api_key"` and `"api_secret"` to be used in step three.
 
