@@ -59,7 +59,7 @@ After you deploy an {{site.data.keyword.blockchainfull_notm}} Platform service i
    https://blockchain-project-ibpconsole-console.xyz.abc.com
 
    ```
-2. (Optional) Get an [API `key`](#x8051010){: term} and `secret` that you can use to access your {{site.data.keyword.blockchainfull_notm}} Platform console. If you want to skip getting an API key and secret, you can also use your console **username** and **password** instead of an API key and secret, although that would not be recommended in a production setting.
+2. (Optional) Get an [API key](#x8051010){: term} and `secret` that you can use to access your {{site.data.keyword.blockchainfull_notm}} Platform console. If you want to skip getting an API key and secret, you can also use your console **username** and **password** instead of an API key and secret, although that would not be recommended in a production setting.
 
  If you prefer to use an API `key` and `secret`, then you need to use the [{{site.data.keyword.blockchainfull_notm}} Platform REST APIs](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#console-icp-manage-api-key) to generate them. Save the value of the `"api_key"` and `"api_secret"` to be used in step three.
 
