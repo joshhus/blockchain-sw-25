@@ -17,6 +17,7 @@ IBM Blockchain Platform 2.5
 		howto/ibp-console-join-network.md
 		howto/ibp-console-smart-contracts.md
 		howto/ibp-console-create-app.md
+		reference/videos.md
 
 	security.md
 
