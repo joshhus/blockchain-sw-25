@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-29"
+lastupdated: "2020-07-01"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
 
@@ -35,6 +35,8 @@ subcollection: blockchain-sw-25
 
 The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network [on-premises](#x4561212){: term}, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.7 and v2.x and supports deployment on multiple Kubernetes distributions.
 {:shortdesc}
+
+{{site.data.keyword.blockchainfull_notm}} Platform is based on Hyperledger Fabric v1.4.7 and v2.x and is {{site.data.keyword.IBM_notm}}'s commercial distribution of Hyperledger Fabric. A key benefit of the platform is that {{site.data.keyword.IBM_notm}} tests the open source code for security vulnerabilities daily and provides 24x7x365 support with SLAs appropriate for production environments.
 
 ## What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers
 {: #console-ocp-about-offers}
