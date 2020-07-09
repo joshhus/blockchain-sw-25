@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-30"
+lastupdated: "2020-07-09"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -983,7 +983,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
+          image: cp.icr.io/cp/ibp-operator:2.5.0-20200714-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always
