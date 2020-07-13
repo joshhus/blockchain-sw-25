@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-07-13"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -37,7 +37,7 @@ You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrup
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
 {: #upgrade-k8-platform-overview}
 
-You can upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from any previous release of the {{site.data.keyword.blockchainfull_notm}} Platform. The table provides an overview of the current and past releases.
+Use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from v2.1.3, v2.1.2, v2.1.1, and v2.1.0. The table provides an overview of the current and past releases.
 
 | Version | Release date | Image tags | New features |
 |----|----|----|----|
