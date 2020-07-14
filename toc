@@ -46,7 +46,7 @@ IBM Blockchain Platform 2.5
 		howto/console-deploy-k8-firewall.md
 		howto/console-upgrade-k8.md
 		howto/console-delete-k8.md
-	howto/console-fixpack.md
+		howto/console-fixpack.md
 
 	internal/blockchain_images.md
 

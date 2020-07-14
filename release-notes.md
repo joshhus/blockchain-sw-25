@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-13"
+lastupdated: "2020-07-14"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -42,7 +42,7 @@ See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-i
 
 Miscellaneous bug fixes and security patches.
 
-Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 before July 14, 2020 should install the [2.5 Fix Pack](/docs/blockchain-sw-25?topic=blockchain-sw-25-install-fixpack#install-fixpack). If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after July 14, 2020, the platform will contain all the bug fixes and improvements that are provided by the Fix Pack, and you do not need to apply the Fix Pack.
+Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 before July 14, 2020 should install the [2.5 fix pack](/docs/blockchain-sw-25?topic=blockchain-sw-25-install-fixpack#install-fixpack). If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after July 14, 2020, the platform will contain all the bug fixes and improvements that are provided by the fix pack, and you do not need to apply the fix pack.
 
 
 ## 18 June 2020
