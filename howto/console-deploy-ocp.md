@@ -302,6 +302,12 @@ oc adm policy add-scc-to-user ibpinfra system:serviceaccounts:ibpinfra
 ```
 {:codeblock}
 
+If the commands are successful, you can see a response that is similar to the following example:
+```
+securitycontextconstraints.security.openshift.io/ibpinfra created
+scc "ibpinfra" added to: ["system:serviceaccounts:ibpinfra"]
+```
+
 ### 3. Deploy the webhook
 {: #webhook-deploy}
 
