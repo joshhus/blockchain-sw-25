@@ -368,7 +368,7 @@ volumes:
 ```
 {:codeblock}
 
-After you save and edit the file, run the following commands to add the file to your cluster and add the policy to your project.
+After you save the file, run the following commands to add the file to your cluster and add the policy to your project.
 
 ```
 oc apply -f ibp-scc.yaml -n ibpinfra
