@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-30"
+lastupdated: "2020-07-15"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -156,7 +156,7 @@ kubectl get pods
 ## Create the `ibpinfra` project for the webhook
 {: #deploy-ocp-ibpinfra}
 
-Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API version. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  The webhook is deployed to its own project, referred to as  `ibpinfra` throughout these instructions.
+Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API version. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  The webhook is deployed to its own project, referred to as  `ibpinfra` throughout these instructions. **Webhooks are supported in Kubernetes v1.15 and higher. If your cluster is running Kubernetes v1.14 or lower, you need to upgrade it now to take advantage of this release of the {{site.data.keyword.blockchainfull_notm}} Platform.**
 
 After you log in to your cluster, you can create the new `ibpinfra` project for the Kubernetes conversion webhook using the kubectl CLI. The new project needs to be created by a cluster administrator.  
 
@@ -193,11 +193,9 @@ The name of the secret that you are creating is `docker-key-secret`. It is requi
 ## Deploy the webhook and custom resource definitions to your OpenShift cluster
 {: #deploy-k8s-webhook-crd}
 
-Because the platform has updated the internal apiversion from `v1alpha1` in previous versions to `v1alpha2` in 2.5, a Kubernetes conversion webhook is required to update the CA, peer, operator, and console to the new API version. This webhook will continue to be used in the future, so new deployments of the platform are required to deploy it as well.  **Webhooks are supported in Kubernetes v1.15 and higher. If your cluster is running Kubernetes v1.14 or lower, you need to upgrade it now to take advantage of this release of the {{site.data.keyword.blockchainfull_notm}} Platform.**
-
 Before you can upgrade an existing network to 2.5, or deploy a new instance of the platform to your Kubernetes cluster, you need to create the conversion webhook by completing the steps in this section. The webhook is deployed to its own namespace or project, referred to `ibpinfra` throughout these instructions.
 
-The first two steps are for deployment of the webhook. The last five steps are for the custom resource definitions for the CA, peer, orderer, and console components that the {{site.data.keyword.blockchainfull_notm}} Platform requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these seven steps below.
+The first three steps are for deployment of the webhook. The last five steps are for the custom resource definitions for the CA, peer, orderer, and console components that the {{site.data.keyword.blockchainfull_notm}} Platform requires. You only have to deploy the webhook and custom resource definitions **once per cluster**. If you have already deployed this webhook and custom resource definitions to your cluster, you can skip these eight steps below.
 {: important}
 
 ### 1. Configure role-based access control (RBAC) for the webhook
@@ -251,8 +249,64 @@ serviceaccount/webhook created
 role.rbac.authorization.k8s.io/webhook created
 rolebinding.rbac.authorization.k8s.io/ibpinfra created
 ```
+### 2. (OpenShift cluster only) Apply the Security Context Constraint
+{: #webhook-scc}
 
-### 2. Deploy the webhook
+The {{site.data.keyword.blockchainfull_notm}} Platform requires specific security and access policies to be added to the `ibpinfra` project. Copy the security context constraint object below and save it to your local system as `ibpinfra-scc.yaml`.
+
+```yaml
+allowHostDirVolumePlugin: true
+allowHostIPC: true
+allowHostNetwork: true
+allowHostPID: true
+allowHostPorts: true
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+- NET_BIND_SERVICE
+- CHOWN
+- DAC_OVERRIDE
+- SETGID
+- SETUID
+- FOWNER
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+groups:
+- system:cluster-admins
+- system:authenticated
+kind: SecurityContextConstraints
+metadata:
+  name: ibpinfra
+readOnlyRootFilesystem: false
+requiredDropCapabilities: null
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+volumes:
+- "*"
+```
+{:codeblock}
+
+After you save the file, run the following commands to add the file to your cluster and add the policy to your project.
+
+```
+oc apply -f ibpinfra-scc.yaml -n ibpinfra
+oc adm policy add-scc-to-user ibpinfra system:serviceaccounts:ibpinfra
+```
+{:codeblock}
+
+If the commands are successful, you can see a response that is similar to the following example:
+```
+securitycontextconstraints.security.openshift.io/ibpinfra created
+scc "ibpinfra" added to: ["system:serviceaccounts:ibpinfra"]
+```
+
+### 3. Deploy the webhook
 {: #webhook-deploy}
 
 In order to deploy the webhook, you need to create two `.yaml` files and apply them to your Kubernetes cluster.
@@ -304,7 +358,7 @@ spec:
         fsGroup: 2000
       containers:
         - name: "ibp-webhook"
-          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200618-amd64"
+          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200714-amd64"
           imagePullPolicy: Always
           securityContext:
             privileged: false
@@ -399,7 +453,7 @@ When the command completes successfully, you should see something similar to:
 service/ibp-webhook created
 ```
 
-### 3. Extract the certificate
+### 4. Extract the certificate
 
 Next, we need to extract the TLS certificate that was generated by the webhook deployment so that it can be used in the custom resource definitions in the next steps. Run the following command to extract the secret to a base64 encoded string:
 
@@ -416,7 +470,7 @@ LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJoRENDQVNtZ0F3SUJBZ0lRZDNadkhZalN0KytK
 Save the base64 encoded string that is returned by this command to be used in the next steps when you create the custom resource definitions.
 {: important}
 
-### 4. Create the CA custom resource definition
+### 5. Create the CA custom resource definition
 {: #deploy-crd-ca}
 
 Copy the following text to a file on your local system and save the file as `ibpca-crd.yaml`.
@@ -485,7 +539,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibpcas.ibp.com created
 ```
 
-### 5. Create the peer custom resource definition
+### 6. Create the peer custom resource definition
 {: #deploy-crd-peer}
 
 Copy the following text to a file on your local system and save the file as `ibppeer-crd.yaml`.
@@ -548,7 +602,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibppeers.ibp.com created
 ```
 
-### 6. Create the orderer custom resource definition
+### 7. Create the orderer custom resource definition
 {: #deploy-crd-orderer}
 
 Copy the following text to a file on your local system and save the file as `ibporderer-crd.yaml`.
@@ -612,7 +666,7 @@ You should see the following output when it is successful:
 customresourcedefinition.apiextensions.k8s.io/ibporderers.ibp.com created
 ```
 
-### 7. Create the console custom resource definition
+### 8. Create the console custom resource definition
 {: #deploy-crd-console}
 
 Copy the following text to a file on your local system and save the file as `ibpconsole-crd.yaml`.
@@ -873,7 +927,7 @@ rules:
 ```
 {:codeblock}
 
-After you save and edit the file, run the following commands. Replace `<PROJECT_NAME>` with your project.
+After you save and edit the file, run the following commands.
 ```
 oc apply -f ibp-clusterrole.yaml -n <PROJECT_NAME>
 oc adm policy add-scc-to-group <PROJECT_NAME> system:serviceaccounts:<PROJECT_NAME>
@@ -983,7 +1037,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: cp.icr.io/cp/ibp-operator:2.5.0-20200618-amd64
+          image: cp.icr.io/cp/ibp-operator:2.5.0-20200714-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always

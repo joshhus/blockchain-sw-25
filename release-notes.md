@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-23"
+lastupdated: "2020-07-14"
 
 
 keywords: release note, latest changes, Hyperledger Fabric
@@ -33,7 +33,17 @@ subcollection: blockchain-sw-25
 Use these release notes that are grouped by date to learn about the latest changes to {{site.data.keyword.blockchainfull}} Platform 2.5.
 {:shortdesc}
 
-See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#ibp-console-manage-patch) for instructions on how to apply patches to your existing nodes.
+See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#ibp-console-manage-patch) for instructions on how to apply patches to your existing nodes. Patches are cumulative. This means that if multiple patches, for example `1.4.7-0` and `1.4.7-1`, are available for a node, you should always select the latest patch, `1.4.7-1` in this case, wherever possible because it includes the fixes from the previous patches as well.
+
+## 14 July 2020
+{: #07-14-2020}
+
+**CA, Peer, and ordering node patch 1.4.7-1, 2.1.1-1**  
+
+Miscellaneous bug fixes and security patches.
+
+Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 before July 14, 2020 should install the [2.5 fix pack](/docs/blockchain-sw-25?topic=blockchain-sw-25-install-fixpack#install-fixpack). If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after July 14, 2020, the platform will contain all the bug fixes and improvements that are provided by the fix pack, and you do not need to apply the fix pack.
+
 
 ## 18 June 2020
 {: #06-18-2020}
