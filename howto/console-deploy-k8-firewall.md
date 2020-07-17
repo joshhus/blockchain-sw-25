@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-15"
+lastupdated: "2020-07-17"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
@@ -71,7 +71,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform console has been successf
 ## Storage
 {: #deploy-k8-storage-firewall}
 
-{{site.data.keyword.blockchainfull_notm}} Platform requires persistent storage for each CA, peer, and ordering node that you deploy, in addition to the storage required by the {{site.data.keyword.blockchainfull_notm}} console. The {{site.data.keyword.blockchainfull_notm}} Platform console uses [dynamic provisioning](https://docs.openshift.com/container-platform/4.2/storage/dynamic-provisioning.html){: external} to allocate storage for each blockchain node that you deploy by using a pre-defined storage class.
+{{site.data.keyword.blockchainfull_notm}} Platform requires persistent storage for each CA, peer, and ordering node that you deploy, in addition to the storage required by the {{site.data.keyword.blockchainfull_notm}} console. The {{site.data.keyword.blockchainfull_notm}} Platform console uses [dynamic provisioning](https://docs.openshift.com/container-platform/4.3/storage/dynamic-provisioning.html){: external} to allocate storage for each blockchain node that you deploy by using a pre-defined storage class.
 
 Before you deploy the {{site.data.keyword.blockchainfull_notm}} Platform console, you must create a storage class with enough backing storage for the {{site.data.keyword.blockchainfull_notm}} console and the nodes that you create. You can set this storage class to the default storage class of your Kubernetes cluster or create a new class that is used by the {{site.data.keyword.blockchainfull_notm}} Platform console. If you are using a multizone cluster, then you must configure the default storage class for each zone. After you create the storage class, run the command `kubectl patch storageclass` to set the storage class of the multizone region to be the default storage class.
 
@@ -260,7 +260,7 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. You can only use the key once per deployment. You can refresh the key before you attempt another deployment and use that value here.
 {: note}
 
 
@@ -388,7 +388,7 @@ In order to deploy the webhook, you need to create two `.yaml` files and apply t
 #### deployment.yaml
 {: #webhook-deployment-yaml}
 
-Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
+Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
 
 ```yaml
 apiVersion: apps/v1

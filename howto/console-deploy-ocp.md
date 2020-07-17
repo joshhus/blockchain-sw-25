@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-15"
+lastupdated: "2020-07-17"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -31,7 +31,7 @@ subcollection: blockchain-sw-25
 </div>
 
 
-You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 onto a Kubernetes cluster that is running on OpenShift Container Platform 4.2 (LinuxONE only), or 4.3. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. After the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can use the following instructions to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 onto a Kubernetes cluster that is running on OpenShift Container Platform 4.3. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. After the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 {:shortdesc}
 
 
@@ -113,9 +113,9 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 ## Before you begin
 {: #deploy-ocp-prerequisites}
 
-1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the OpenShift Container Platform 4.2 (LinuxONE only) or 4.3.
+1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the OpenShift Container Platform 4.3.
 
-2. You need to install and connect to your cluster by using the [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform. If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, use these instructions to [Install the OpenShift Origin CLI](/docs/openshift?topic=openshift-openshift-cli#cli_oc).
+2. You need to install and connect to your cluster by using the [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform. If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, use these instructions to [Install the OpenShift Origin CLI](/docs/openshift?topic=openshift-openshift-cli#cli_oc).
 
 **Looking for a way to script the deployment of the service?** Check out the [Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible), a powerful tool for scripting the deployment of components in your blockchain network. If you prefer a manual installation, proceed to the next section.
 
@@ -186,7 +186,7 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. You can only use the key once per deployment. You can refresh the key before you attempt another deployment and use that value here.
 {: note}
 
 
@@ -314,7 +314,7 @@ In order to deploy the webhook, you need to create two `.yaml` files and apply t
 #### deployment.yaml
 {: #webhook-deployment-yaml}
 
-Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
+Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
 
 ```yaml
 apiVersion: apps/v1
@@ -1088,7 +1088,7 @@ spec:
 ```
 {:codeblock}
 - If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
-- If you are using OpenShift Container Platform v4.2 on LinuxONE, you need to make the following additional customizations:
+- If you are using OpenShift Container Platform 4.3 on LinuxONE, you need to make the following additional customizations:
    1. In the `spec.affinity` section, change `amd64` to `s390x`.
    2. In the `spec.containers` section, replace `amd64` in the operator `images` tag with `s390x`.
 
@@ -1148,7 +1148,7 @@ You also need to make additional edits to the file depending on your choices in 
 - If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecrets:` field.
 - If you created a new storage class for your network, provide the storage class that you created to the `class:` field.
 
-If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace:
+If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace:
 ```yaml
 arch:
 - amd64

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-29"
+lastupdated: "2020-07-17"
 
 keywords: high availability, HA, failures, zone failure, region failure, component failure, worker node failure
 
@@ -212,7 +212,7 @@ All nodes must be [stopped](#ibp-console-ha-stop-nodes) in order to ensure a rel
 
 | Storage solution provider | Guidance |
 |----------|---------|
-| OpenShift Container Platform | You can leverage the capability that is provided by the OpenShift Container platform to [backup persistent volume claims](https://docs.openshift.com/container-platform/4.2/backup_and_restore/disaster_recovery/about-disaster-recovery.html){: external}. |
+| OpenShift Container Platform | You can leverage the capability that is provided by the OpenShift Container platform to [backup persistent volume claims](https://docs.openshift.com/container-platform/4.3/backup_and_restore/disaster_recovery/about-disaster-recovery.html){: external}. |
 | Portworx | While a [snapshot capability](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/ibm/#prerequisites){: external} is available for taking backups without stopping the nodes, in order to get a reliable backup, the nodes must be stopped.|
 {: caption="Table 2. Backup recommendations for storage" caption-side="top"}
 
