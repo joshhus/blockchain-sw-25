@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-07-17"
 
-keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall
+keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure
 
 subcollection: blockchain-sw-25
 
@@ -96,7 +96,6 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with 
 |----|----|----|-----|
 | OpenShift Container Platform | 4.3 |  x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 4.3 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg)  |
-| OpenShift Container Platform on LinuxONE | 4.2 | s390x |  |
 | OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 | Kubernetes ***    | v1.15 - v1.18 | x86_64 | ![Checkmark icon](../../icons/checkmark-icon.svg) v1.15, v1.16, v1.17|
 {: caption="Table 1. Supported platforms" caption-side="bottom"}
@@ -127,7 +126,7 @@ For more information, see [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-2
 - Persistent storage is required. Host-local storage volumes are not supported.
 - You must have the cluster admin role in order to deploy the product.
 - The console creates nodes based on the Hyperledger Fabric v1.4.7 and v2.x node images.
-- You can deploy only one {{site.data.keyword.blockchainfull_notm}} Platform console per Kubernetes namespace. If you plan to create multiple blockchain networks, for example to create different environments for development, staging, and production, you should create a unique project or namespace for each environment.
+- You can deploy only one {{site.data.keyword.blockchainfull_notm}} Platform console per Kubernetes namespace or OpenShift project. If you plan to create multiple blockchain networks, for example to create different environments for development, staging, and production, you should create a unique project or namespace for each environment.
 - You cannot upgrade a deployed network from {{site.data.keyword.blockchainfull_notm}} Platform for Multicloud to {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
 - {{site.data.keyword.blockchainfull_notm}} Platform is not supported on OpenShift Online.
 - There is no free trial at this time. Customers who are interested in exploring the functionality should try the offering on [{{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-console-overview){: external}.

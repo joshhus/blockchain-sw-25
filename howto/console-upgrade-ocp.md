@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-15"
+lastupdated: "2020-07-17"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -47,6 +47,8 @@ Use these instruction to upgrade to the {{site.data.keyword.blockchainfull_notm}
 | [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.1]( /docs/blockchain-sw?topic=blockchain-sw-whats-new#whats-new-11-08-2019)| 8 November 2019 | **Console and tools** <ul><li>2.1.1-20191108-amd64</ul> **Fabric nodes** <ul><li>1.4.3-20191108-amd64</ul> **CouchDB** <ul><li>2.3.1-20191108-amd64</ul> | **Additional platforms** <ul><li>Platform can be deployed on Kubernetes v1.14 - v1.16</li><li>Platform can be deployed on {{site.data.keyword.cloud_notm}} Private 3.2.1</li></ul> |
 | [{{site.data.keyword.blockchainfull_notm}} Platform v2.1.0](/docs/blockchain-sw?topic=blockchain-sw-whats-new#whats-new-9-24-2019) | 24 September 2019 | **Console and tools** <ul><li>2.1.0-20190918-amd64</ul> **Fabric nodes** <ul><li>1.4.3-20190918-amd64</ul> **CouchDB** <ul><li>2.3.1-20190918-amd64</ul> | **Fabric Version Upgrade** <ul><li>Fabric version 1.4.3</ul> **Additional platforms** <ul><li>Platform can be deployed on the OpenShift Container Platform 3.11</ul> |
 {: caption="Table 1. {{site.data.keyword.blockchainfull_notm}} Platform versions" caption-side="bottom"}
+
+
 
 ## Platform limitations
 {: #upgrade-ocp-platform}
@@ -120,7 +122,7 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. You can only use the key once per deployment. You can refresh the key before you attempt another deployment and use that value here.
 {: note}
 
 
@@ -247,7 +249,7 @@ In order to deploy the webhook, you need to create two `.yaml` files and apply t
 #### deployment.yaml
 {: #webhook-deployment-yaml}
 
-Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
+Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
 
 ```yaml
 apiVersion: apps/v1
@@ -1015,7 +1017,7 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. You can only use the key once per deployment. You can refresh the key before you attempt another deployment and use that value here.
 {: note}
 
 
@@ -1143,7 +1145,7 @@ In order to deploy the webhook, you need to create two `.yaml` files and apply t
 ##### deployment.yaml
 {: #webhook-deployment-yaml}
 
-Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
+Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
 
 ```yaml
 apiVersion: apps/v1

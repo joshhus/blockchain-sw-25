@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-15"
+lastupdated: "2020-07-17"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped
 
@@ -34,7 +34,7 @@ subcollection: blockchain-sw-25
 You can use these instructions to deploy {{site.data.keyword.blockchainfull}} Platform 2.5 behind a firewall without internet connectivity. If you are deploying the platform on a cluster with access to the external internet, use the main instructions for [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp).
 {:shortdesc}
 
-You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a Kubernetes cluster that is running on Red Hat OpenShift Container Platform 4.2 (LinuxONE only) or 4.3. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
+You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a Kubernetes cluster that is running on Red Hat OpenShift Container Platform 4.3. The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://www.openshift.com/learn/topics/operators){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. When the {{site.data.keyword.blockchainfull_notm}} Platform console is running on your cluster, you can use the console to create blockchain nodes and operate a multicloud blockchain network.
 
 ## Need to Know
 
@@ -72,7 +72,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform console has been successf
 ## Storage
 {: #deploy-ocp-storage-firewall}
 
-{{site.data.keyword.blockchainfull_notm}} Platform requires persistent storage for each CA, peer, and ordering node that you deploy, in addition to the storage required by the {{site.data.keyword.blockchainfull_notm}} console. The {{site.data.keyword.blockchainfull_notm}} Platform console uses [dynamic provisioning](https://docs.openshift.com/container-platform/4.2/storage/dynamic-provisioning.html){: external} to allocate storage for each blockchain node that you deploy by using a pre-defined storage class. You have the opportunity to choose your persistent storage from the available storage options for the OpenShift Container Platform.
+{{site.data.keyword.blockchainfull_notm}} Platform requires persistent storage for each CA, peer, and ordering node that you deploy, in addition to the storage required by the {{site.data.keyword.blockchainfull_notm}} console. The {{site.data.keyword.blockchainfull_notm}} Platform console uses [dynamic provisioning](https://docs.openshift.com/container-platform/4.3/storage/dynamic-provisioning.html){: external} to allocate storage for each blockchain node that you deploy by using a pre-defined storage class. You have the opportunity to choose your persistent storage from the available storage options for the OpenShift Container Platform.
 
 Before you deploy the {{site.data.keyword.blockchainfull_notm}} Platform console, you must create a storage class with enough backing storage for the {{site.data.keyword.blockchainfull_notm}} console and the nodes that you create. You can set this storage class to the default storage class of your Kubernetes cluster or create a new class that is used by the {{site.data.keyword.blockchainfull_notm}} Platform console. If you are using a multizone cluster in OpenShift Container Platform, then you must configure the default storage class for each zone. After you create the storage class, run the command `kubectl patch storageclass` to set the storage class of the multizone region to be the default storage class.
 
@@ -91,9 +91,11 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 ## Before you begin
 {: #deploy-ocp-prerequisites-firewall}
 
-1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the OpenShift Container Platform 4.2 (LinuxONE only) or 4.3.
+1. The {{site.data.keyword.blockchainfull_notm}} Platform can be installed only on the OpenShift Container Platform 4.3.
 
-2. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.2/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform.
+2. You cannot deploy both an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 instance to the same cluster. If you need to run both instances of the product, then they must be running in separate clusters.
+
+3. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform.
 
 ## Pull the {{site.data.keyword.blockchainfull_notm}} Platform images
 
@@ -283,7 +285,7 @@ kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.i
 - Replace `<KEY>` with your entitlement key.
 - Replace `<EMAIL>` with your email address.
 
-The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. You can only use the key once per deployment. You can refresh the key before you attempt another deployment and use that value here.
 {: note}
 
 
@@ -411,7 +413,7 @@ In order to deploy the webhook, you need to create two `.yaml` files and apply t
 #### deployment.yaml
 {: #webhook-deployment-yaml}
 
-Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
+Copy the following text to a file on your local system and save the file as `deployment.yaml`. If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace `amd64` with `s390x`.
 
 ```yaml
 apiVersion: apps/v1
@@ -1187,7 +1189,7 @@ spec:
 ```
 {:codeblock}
 - If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
-- If you are using OpenShift Container Platform v4.2 on LinuxONE, you need to make the following additional customizations:
+- If you are using OpenShift Container Platform 4.3 on LinuxONE, you need to make the following additional customizations:
    1. In the `spec.affinity` section, change `amd64` to `s390x`.
    2. In the `spec.containers` section, replace `amd64` in the operator `images` tag with `s390x`.
 
@@ -1249,7 +1251,7 @@ You also need to make additional edits to the file depending on your choices in 
 - If you changed the name of your Docker key secret, change corresponding value of the `imagePullSecrets:` field.
 - If you created a new storage class for your network, provide the storage class that you created to the `class:` field.
 
-If you are deploying on OpenShift Container Platform v4.2 or v4.3 on LinuxONE, you need to replace:
+If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace:
 ```yaml
 arch:
 - amd64
