@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-20"
+lastupdated: "2020-07-21"
 
 keywords: Kubernetes, IBM Cloud Private, OCP, OpenShift Container Platform, IBM Blockchain Platform
 
@@ -62,7 +62,7 @@ Check out the following topics for instructions on how to upgrade:
 | What are my deployment options? | <ul><li> Full platform </li> <li> Only {{site.data.keyword.blockchainfull_notm}} images ** </li> </ul>| <ul><li> Full platform </li> </ul>
 | How is it billed? |Contact us for [pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing) |[$0.29 USD per allocated CPU hour](/docs/blockchain?topic=blockchain-ibp-saas-pricing)  |
 | Can I connect with Peers in other clouds? |  Yes| Yes |
-| Can my data center be on-premises and behind a firewall? | Yes| No |
+| Can my data center be on-prem and behind a firewall? | Yes| No |
 | Can I use a console UI to deploy and manage my blockchain components? | Yes | Yes |
 | Are APIs available for node management? | Yes | Yes |
 | Does the product integrate with the {{site.data.keyword.blockchainfull_notm}} Platform VSCode extension to develop and test my smart contracts?| Yes | Yes |
@@ -93,7 +93,7 @@ Are you a developer? Check out the [**{{site.data.keyword.blockchainfull_notm}} 
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses a [Kubernetes Operator](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/){: external} to install the {{site.data.keyword.blockchainfull_notm}} Platform console on your cluster and manage the deployment and your blockchain nodes. A cluster administrator can use your entitlement key to deploy the platform on any Kubernetes Cluster
 
--  If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform on the OpenShift Container Platform, you can deploy the platform by using the steps in the [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on the OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp).
+-  If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform on the OpenShift Container Platform, you can deploy the platform by using the steps in [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on the OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp).<staging-rhm>Or, if you prefer to deploy from the Red Hat Marketplace see [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 from Red Hat Marketplace](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm).</staging-rhm>
 
 - If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform on open source Kubernetes or a distribution such as Rancher, use the steps described in the [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8).
 
