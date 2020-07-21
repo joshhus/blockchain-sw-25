@@ -19,7 +19,7 @@ subcollection: blockchain-sw-25
 {:tip: .tip}
 {:pre: .pre}
 
-# Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 manually
+# Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #deploy-ocp}
 
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
