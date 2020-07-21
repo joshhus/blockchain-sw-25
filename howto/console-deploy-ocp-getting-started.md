@@ -121,7 +121,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform can be deployed in four d
   <div class="solutionBox">
         <a href = "/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp">
           <div>
-            <p><strong><img src="../images/ansible.png" alt="Ansible icon" width="25" style="width:25px; border-style: none"/> Deploy from Ansible</p>
+            <p><strong><img src="../images/ansible.png" alt="Ansible icon" width="50" style="width:50px; border-style: none"/> Deploy from Ansible</p>
             <p class="bx--type-caption"> Automate the deployment of the IBM Blockchain  Platform to your OpenShift cluster  using an Ansible playbook.</p>
           </div>
         </a>
