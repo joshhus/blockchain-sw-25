@@ -98,7 +98,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform can be deployed in four d
     <a href = "/docs/blockchain?topic=blockchain-deploy-ocp-rhm">
       <div>
         <p><strong><img src="../images/logo_redhat.png" alt="Red Hat icon" width="25" style="width:25px; border-style: none"/> Deploy from Red Hat Marketplace</p>
-        <p class="bx--type-caption">Use the Red Hat Marketplace to deploy the {{site.data.keyword.blockchainfull_notm}} Platform to your OpenShift cluster in the cloud or on-prem.</p>
+        <p class="bx--type-caption">Use the Red Hat Marketplace to deploy the service to your OpenShift cluster in the cloud or on-prem.</p>
       </div>
     </a>
   </div>
@@ -106,7 +106,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform can be deployed in four d
     <a href = "/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp">
       <div>
         <p><strong><img src="../images/logo_openshift.svg" alt="OpenShift icon" width="25" style="width:25px; border-style: none"/> Deploy to your OpenShift cluster</p>
-        <p class="bx--type-caption"> Manually deploy the IBM Blockchain  Platform to your OpenShift cluster in your cloud.</p>
+        <p class="bx--type-caption"> Manually deploy the IBM Blockchain  Platform service to your OpenShift cluster in your cloud.</p>
       </div>
     </a>
   </div>
@@ -121,7 +121,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform can be deployed in four d
   <div class="solutionBox">
         <a href = "/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp">
           <div>
-            <p><strong><img src="../images/anisble.png" alt="Ansible icon" width="25" style="width:25px; border-style: none"/> Deploy from Ansible</p>
+            <p><strong><img src="../images/ansible.png" alt="Ansible icon" width="25" style="width:25px; border-style: none"/> Deploy from Ansible</p>
             <p class="bx--type-caption"> Automate the deployment of the IBM Blockchain  Platform to your OpenShift cluster  using an Ansible playbook.</p>
           </div>
         </a>
