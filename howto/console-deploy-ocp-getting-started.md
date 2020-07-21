@@ -1,6 +1,6 @@
 
 
-# Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 manually
+# Getting started
 {: #deploy-ocp-getting started}
 
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
@@ -109,20 +109,23 @@ The {{site.data.keyword.blockchainfull_notm}} Platform can be deployed in four d
         <p class="bx--type-caption"> Manually deploy the IBM Blockchain  Platform to your OpenShift cluster in your cloud.</p>
       </div>
     </a>
-    <div class="solutionBox">
+  </div>
+  <div class="solutionBox">
       <a href = "/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall">
         <div>
           <p><strong><img src="../images/logo_openshift.svg" alt="OpenShift icon" width="25" style="width:25px; border-style: none"/> Deploy to your OpenShift cluster on-prem</p>
-          <p class="bx--type-caption"> Manually deploy the IBM Blockchain  Platform to your OpenShift cluster  on-prem behind a firewall.</p>
+          <p class="bx--type-caption"> Manually deploy the IBM Blockchain Platform to your OpenShift cluster on-prem behind a firewall.</p>
         </div>
       </a>
-      <div class="solutionBox">
+  </div>    
+  <div class="solutionBox">
         <a href = "/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp">
           <div>
             <p><strong><img src="../images/anisble.png" alt="Ansible icon" width="25" style="width:25px; border-style: none"/> Deploy from Ansible</p>
             <p class="bx--type-caption"> Automate the deployment of the IBM Blockchain  Platform to your OpenShift cluster  using an Ansible playbook.</p>
           </div>
         </a>
+  </div>
 </div>
 
 </staging rhm>
