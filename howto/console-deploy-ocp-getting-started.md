@@ -97,7 +97,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform can be deployed in four d
   <div class="solutionBox">
     <a href = "/docs/blockchain?topic=blockchain-deploy-ocp-rhm">
       <div>
-        <p><strong><img src="../images/logo_redhat.png" alt="Red Hat icon" width="25" style="width:25px; border-style: none"/> Deploy from Red Hat Marketplace</p>
+        <p><strong><img src="../images/logo_redhat.png" alt="Red Hat icon" width="50" style="width:50px; border-style: none"/> Deploy from Red Hat Marketplace</p>
         <p class="bx--type-caption">Use the Red Hat Marketplace to deploy the service to your OpenShift cluster in the cloud or on-prem.</p>
       </div>
     </a>
