@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-17"
+lastupdated: "2020-07-22"
 
-keywords: catalina, chrome, external CA, TLS, orderer, error
+keywords: catalina, chrome, external CA, TLS, orderer, error, multicloud
 
 subcollection: blockchain-sw-25
 

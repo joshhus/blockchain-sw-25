@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-07-22"
 
-keywords: IBM Blockchain Platform, images
+keywords: IBM Blockchain Platform, images, multicloud
 
 subcollection: blockchain-sw-25
 

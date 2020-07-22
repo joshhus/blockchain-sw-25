@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-21"
+lastupdated: "2020-07-22"
 
-keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure
+keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
 subcollection: blockchain-sw-25
 

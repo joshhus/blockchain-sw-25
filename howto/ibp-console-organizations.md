@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-07-22"
 
-keywords: organizations, MSPs, create an MSP, MSP JSON file, consortium, system channel, remove an organization
+keywords: organizations, MSPs, create an MSP, MSP JSON file, consortium, system channel, remove an organization, multicloud
 
 subcollection: blockchain-sw-25
 

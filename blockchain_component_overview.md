@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-06-04"
+lastupdated: "2020-07-22"
 
-keywords: blockchain components, ca, certificate authorities, peer, ordering service, orderer, channel, smart contract, applications
+keywords: blockchain components, ca, certificate authorities, peer, ordering service, orderer, channel, smart contract, applications, multicloud
 
 subcollection: blockchain-sw-25
 

@@ -2,10 +2,10 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-07-22"
 
 
-keywords: vs code extension, Visual Studio Code extension, smart contract, development tools
+keywords: vs code extension, Visual Studio Code extension, smart contract, development tools, multicloud
 
 subcollection: blockchain-sw-25
 
@@ -161,7 +161,7 @@ Proceed to [Step one](#develop-vscode-guided-tutorials) to learn how to access t
 ## Install {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension for free
 {: #develop-vscode-install}
 
-Before you install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension on your local system, you must complete the prerequisites. If you have already configured the [Red Hat CodeReady Workspaces](#develop-vscode-crw) for your developer environment, you can skip ahead to [Step one](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-guided-tutorials).
+Before you install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension on your local system, you must complete the prerequisites. If you have already configured the [Red Hat CodeReady Workspaces](#develop-vscode-crw) for your developer environment, you can skip ahead to [Step one](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#develop-vscode-guided-tutorials).
 
 ### Prerequisites
 {: #develop-vscode-prerequisites}

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-20"
+lastupdated: "2020-07-22"
 
-keywords: IBM Blockchain Platform, release, new features
+keywords: IBM Blockchain Platform, release, new features, multicloud
 
 subcollection: blockchain-sw-25
 

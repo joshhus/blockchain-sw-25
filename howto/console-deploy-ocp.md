@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-21"
+lastupdated: "2020-07-22"
 
-keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
+keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
 subcollection: blockchain-sw-25
 

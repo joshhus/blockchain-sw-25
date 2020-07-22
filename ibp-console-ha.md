@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-07-22"
 
-keywords: high availability, HA, failures, zone failure, region failure, component failure, worker node failure
+keywords: high availability, HA, failures, zone failure, region failure, component failure, worker node failure, multicloud
 
 subcollection: blockchain-sw-25
 

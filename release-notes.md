@@ -2,10 +2,10 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-14"
+lastupdated: "2020-07-22"
 
 
-keywords: release note, latest changes, Hyperledger Fabric
+keywords: release note, latest changes, Hyperledger Fabric, multicloud
 
 subcollection: blockchain-sw-25
 
