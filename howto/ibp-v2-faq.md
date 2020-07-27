@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-22"
+lastupdated: "2020-07-27"
 
 keywords: FAQs, can I, upgrade, what version, peer ledger database, supported languages, why do I, regions, multicloud
 
@@ -198,7 +198,7 @@ Blockchain solutions can use any RDBMS or NoSQL DB such as {{site.data.keyword.I
 {: faq}
 
 You cannot currently directly integrate your [LDAP](#x2481619){: term} server with the CA. However, you can use an external mechanism to generate X.509 certificates for the LDAP users. To use those certificates with a peer or ordering service, see these topics on [Using certs from an external CA for your peer or ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-third-party-ca) and
-[Manually building an MSP organization](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-organizations#console-organizations-build-msp).  
+[Manually building an organization MSP](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-organizations#console-organizations-build-msp).  
 
 Also, you cannot configure the blockchain console login authentication to use an LDAP user registry at this time.
 {: note}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-22"
+lastupdated: "2020-07-27"
 
 
 keywords: vs code extension, Visual Studio Code extension, smart contract, development tools, multicloud
@@ -80,7 +80,7 @@ CodeReady Workspaces are included with the [{{site.data.keyword.cloud_notm}} Pak
 While the {{site.data.keyword.blockchainfull_notm}} Platform Developer Tooling that runs in the CodeReady Workspaces is exactly the same experience as when you run on your local system, the following features will not work in the CodeReady Workspaces and are not currently supported. Bi-weekly updates to the tooling are planned to address these features.
 
 - Debugging of smart contracts
-- Creation of a local Fabric network from a template (1 organization, or 2 organization)
+- Creation of a local Fabric network from a template (1 organization, or 2 organizations)
 
   If you want to deploy and test your smart contracts, instead of using a local Fabric network, you can build an {{site.data.keyword.blockchainfull_notm}} Platform network outside of Red Hat CodeReady Workspaces, and then use the **Add Environment** command to import it into the {{site.data.keyword.blockchainfull_notm}} Platform extension. Detailed steps are included later in this topic.
   {: note}
