@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-22"
+lastupdated: "2020-07-31"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
@@ -803,7 +803,7 @@ allowedCapabilities:
 - SETUID
 - FOWNER
 apiVersion: security.openshift.io/v1
-defaultAddCapabilities: null
+defaultAddCapabilities: []
 fsGroup:
   type: RunAsAny
 groups:
@@ -813,7 +813,7 @@ kind: SecurityContextConstraints
 metadata:
   name: <PROJECT_NAME>
 readOnlyRootFilesystem: false
-requiredDropCapabilities: null
+requiredDropCapabilities: []
 runAsUser:
   type: RunAsAny
 seLinuxContext:
@@ -822,6 +822,7 @@ supplementalGroups:
   type: RunAsAny
 volumes:
 - "*"
+priority: 1
 ```
 {:codeblock}
 
