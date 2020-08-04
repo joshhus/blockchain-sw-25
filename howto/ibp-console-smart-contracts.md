@@ -21,7 +21,6 @@ subcollection: blockchain-sw-25
 {:pre: .pre}
 
 # Deploy a smart contract on the network
-
 {: #ibp-console-smart-contracts}
 
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
