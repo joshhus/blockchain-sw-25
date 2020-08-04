@@ -389,7 +389,7 @@ allowedCapabilities:
 - SETUID
 - FOWNER
 apiVersion: security.openshift.io/v1
-defaultAddCapabilities: null
+defaultAddCapabilities: []
 fsGroup:
   type: RunAsAny
 groups:
@@ -397,9 +397,9 @@ groups:
 - system:authenticated
 kind: SecurityContextConstraints
 metadata:
-  name: ibpinfra
+  name: <PROJECT_NAME>
 readOnlyRootFilesystem: false
-requiredDropCapabilities: null
+requiredDropCapabilities: []
 runAsUser:
   type: RunAsAny
 seLinuxContext:
@@ -408,8 +408,10 @@ supplementalGroups:
   type: RunAsAny
 volumes:
 - "*"
+priority: 1
 ```
 {:codeblock}
+
 
 After you save the file, run the following commands to add the file to your cluster and add the policy to your project.
 
