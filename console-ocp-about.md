@@ -21,6 +21,7 @@ subcollection: blockchain-sw-25
 {:tip: .tip}
 {:pre: .pre}
 {:script: data-hd-video='script'}
+{:video: .video}
 
 # About {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #console-ocp-about}
