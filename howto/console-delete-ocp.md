@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-02"
+lastupdated: "2020-08-06"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -38,9 +38,6 @@ If your organization is participating in an active blockchain network, you shoul
 
 ## Step one: Use the console to delete your blockchain nodes
 {: #Removing-ocp-step-one}
-
-## Deleting components
-{: #ibp-console-govern-components-delete}
 
 The best practice for deleting components is to delete them using the console. This will also delete all of the artifacts associated with a node including your ledger data in persistent storage and the keys that are stored as secrets. Deleting a peer will not, however, delete any smart contract pods associated with it. These must be deleted separately. Deleting a component is usually achieved by logging onto the console where a component was created or installed, clicking on the component and finding the related **trash can** icon. You will typically be prompted to type the name of the component and to confirm your decision. You can also delete nodes by using the {{site.data.keyword.blockchainfull_notm}} Platform APIs.
 
