@@ -181,7 +181,7 @@ docker tag cp.icr.io/cp/ibp-dind:1.4.7-20200714-amd64 <LOCAL_REGISTRY>/ibp-dind:
 docker tag cp.icr.io/cp/ibp-utilities:1.4.7-20200714-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200714-amd64
 docker tag cp.icr.io/cp/ibp-peer:2.1.1-20200714-amd64 <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200714-amd64
 docker tag cp.icr.io/cp/ibp-orderer:2.1.1-20200714-amd64 <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200714-amd64
-docker tag cp.icr.io/cp/ibp-ca:2.1.-20200714-amd64 <LOCAL_REGISTRY>/ibp-ca:2.1.1-20200714-amd64
+docker tag cp.icr.io/cp/ibp-ca:1.4.7-20200714-amd64 <LOCAL_REGISTRY>/ibp-ca:1.4.7-20200714-amd64
 docker tag cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200714-amd64 <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200714-amd64
 docker tag cp.icr.io/cp/ibp-utilities:2.1.1-20200714-amd64 <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200714-amd64
 docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200714-amd64 <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200714-amd64
