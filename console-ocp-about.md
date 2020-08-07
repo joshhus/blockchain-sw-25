@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-05"
+lastupdated: "2020-08-07"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
@@ -35,9 +35,18 @@ subcollection: blockchain-sw-25
 </div>
 
 
+The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network [on-prem](#x4561212){: term}, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.7 and v2.x and supports deployment on multiple Kubernetes distributions.
+{:shortdesc}
+
+{{site.data.keyword.blockchainfull_notm}} Platform is based on Hyperledger Fabric v1.4.7 and v2.x and is {{site.data.keyword.IBM_notm}}'s commercial distribution of Hyperledger Fabric. A key benefit of the platform is that {{site.data.keyword.IBM_notm}} tests the open source code for security vulnerabilities daily and provides 24x7x365 support with SLAs appropriate for production environments.
+
 Watch the following video for an introduction to blockchain and the {{site.data.keyword.blockchainfull}} Platform:
 
-![Key concepts and introduction to IBM Blockchain Platform](https://www.youtube.com/embed/AvQa1W38J4I){: video output="iframe" id="youtubeplayer" frameborder="0" width="640" height="390" webkitallowfullscreen mozallowfullscreen allowfullscreen}
+<p>
+  <div class="embed-responsive embed-responsive-16by9" data-hd-video="video">
+<iframe class="embed-responsive-item" id="youtubeplayer2" title="Key concepts and introduction to IBM Blockchain Platform" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/AvQa1W38J4I" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
+</div>
+</p>
 
 ### Video transcript
 {: #transcript-key-concepts}
@@ -80,11 +89,6 @@ Because you only pay for the compute you use, it’s painless to transition from
 
 The world is moving too fast to keep doing things the old way. Go to cloud dot IBM dot com today and check out the IBM blockchain platform.
 
-
-The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of organizations to easily build and join a blockchain network [on-prem](#x4561212){: term}, or on any private, public, or hybrid multicloud that uses Kubernetes. Customers can deploy their nodes on the cloud platform of their choice and connect to any {{site.data.keyword.blockchainfull_notm}} Platform network, whether it is deployed on your own Kubernetes cluster or with the {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 leverages Hyperledger Fabric v1.4.7 and v2.x and supports deployment on multiple Kubernetes distributions.
-{:shortdesc}
-
-{{site.data.keyword.blockchainfull_notm}} Platform is based on Hyperledger Fabric v1.4.7 and v2.x and is {{site.data.keyword.IBM_notm}}'s commercial distribution of Hyperledger Fabric. A key benefit of the platform is that {{site.data.keyword.IBM_notm}} tests the open source code for security vulnerabilities daily and provides 24x7x365 support with SLAs appropriate for production environments.
 
 ## What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers
 {: #console-ocp-about-offers}
@@ -177,7 +181,7 @@ For more information, see [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-2
 - You can deploy only one {{site.data.keyword.blockchainfull_notm}} Platform console per Kubernetes namespace or OpenShift project. If you plan to create multiple blockchain networks, for example to create different environments for development, staging, and production, you should create a unique project or namespace for each environment.
 - You cannot upgrade a deployed network from {{site.data.keyword.blockchainfull_notm}} Platform for Multicloud to {{site.data.keyword.blockchainfull_notm}} Platform v2.5.
 - {{site.data.keyword.blockchainfull_notm}} Platform is not supported on OpenShift Online.
-- There is no free trial at this time. Customers who are interested in exploring the functionality should try the offering on [{{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-console-overview){: external}.
+ - There is no free trial at this time. Customers who are interested in exploring the functionality should try the offering on [{{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-console-overview){: external}. 
 
 ## Installing {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #console-ocp-about-install}
