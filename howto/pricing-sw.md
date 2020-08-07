@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-08-07"
 
 keywords: pricing model, VPC, CPU, vCPU, virtual core, cost, scalability, estimation, optimize your cost
 
@@ -18,6 +18,7 @@ subcollection: blockchain-sw-25
 {:important: .important}
 {:tip: .tip}
 {:pre: .pre}
+
 
 # Pricing
 {: #ibp-sw-pricing}
@@ -50,3 +51,17 @@ Note that 1 `core` in OpenShift is equivalent to 1 vCPU in {{site.data.keyword.b
 The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offering also includes the ability to download and run just the peer, orderer, CA, and smart contract container images without the console. This is an advanced option for customers who are experienced with the Hyperledger Fabric processes for deploying and running the nodes and includes limited support for those images.
 
 Various licensing options are available. For more information, please [Contact us](https://www.ibm.com/account/reg/us-en/signup?formid=urx-37672){: external}.
+
+## Free trial
+{: #ibp-software-pricing-free}
+
+OpenShift customers can preview the {{site.data.keyword.blockchainfull_notm}} Platform at no charge for 30 days when you select the free trial version available from the Red Hat Marketplace.  Simply follow instructions to [deploy the blockchain console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm) to get started. The free trial version is fully functional, meaning the product features available in the free trial version are identical to the paid version.
+
+### Free trial limitations
+{: #ibp-software-pricing-free-limits}
+
+- Customers must have an existing OpenShift cluster with adequate resources available.
+- Only one free trial is permitted per account.
+- The free trial is available for 30 days, after which the product and all deployment artifacts are no longer available.
+- There is no migration or upgrade to the paid version.
+- Support is limited to documentation and self-help instructions such as community support.

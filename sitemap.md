@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-06"
+lastupdated: "2020-08-07"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -158,6 +158,9 @@ subcollection: blockchain-sw-25
 [License](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-license)
 
 [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-pricing)
+
+[Free trial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-free)
+* [Free trial limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-free-limits)
 
 
 ## Blockchain component overview
