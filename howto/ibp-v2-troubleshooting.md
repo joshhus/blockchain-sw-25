@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-07-22"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
 subcollection: blockchain-sw-25
@@ -501,7 +501,7 @@ To re-establish communications between the node and the proxy, restart the faili
 - Delete the pod: `kubectl delete pod -n <NAMESPACE> <PODNAME>`  
 
 Replace:
-- `<NAMESPACE>` with the namespace or project, if using Openshift Container Platform, where the {{site.data.keyword.blockchainfull_notm}} Platform was deployed in your Kubernetes cluster.
+- `<NAMESPACE>` with the namespace or project, if using OpenShift Container Platform, where the {{site.data.keyword.blockchainfull_notm}} Platform was deployed in your Kubernetes cluster.
 - `<PODNAME>` with the **Name** of the failing pod that is visible in the list of pods returned by the previous command.
 
 ## My CA failed to upgrade, how can I fix it?

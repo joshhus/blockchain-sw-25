@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-08-07"
 
 keywords: pricing model, VPC, CPU, vCPU, virtual core, cost, scalability, estimation, optimize your cost
 
@@ -18,6 +18,7 @@ subcollection: blockchain-sw-25
 {:important: .important}
 {:tip: .tip}
 {:pre: .pre}
+
 
 # Pricing
 {: #ibp-sw-pricing}
@@ -50,3 +51,5 @@ Note that 1 `core` in OpenShift is equivalent to 1 vCPU in {{site.data.keyword.b
 The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offering also includes the ability to download and run just the peer, orderer, CA, and smart contract container images without the console. This is an advanced option for customers who are experienced with the Hyperledger Fabric processes for deploying and running the nodes and includes limited support for those images.
 
 Various licensing options are available. For more information, please [Contact us](https://www.ibm.com/account/reg/us-en/signup?formid=urx-37672){: external}.
+
+

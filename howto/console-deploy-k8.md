@@ -2,9 +2,9 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-08-07"
 
-keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
+keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
 subcollection: blockchain-sw-25
 
@@ -232,7 +232,7 @@ allowedCapabilities:
 - SETUID
 - FOWNER
 apiVersion: security.openshift.io/v1
-defaultAddCapabilities: null
+defaultAddCapabilities: []
 fsGroup:
   type: RunAsAny
 groups:
@@ -242,7 +242,7 @@ kind: SecurityContextConstraints
 metadata:
   name: ibpinfra
 readOnlyRootFilesystem: false
-requiredDropCapabilities: null
+requiredDropCapabilities: []
 runAsUser:
   type: RunAsAny
 seLinuxContext:
@@ -251,8 +251,10 @@ supplementalGroups:
   type: RunAsAny
 volumes:
 - "*"
+priority: 1
 ```
 {:codeblock}
+
 
 After you save the file, run the following commands to add the file to your cluster and add the policy to your project.
 
