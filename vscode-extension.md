@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-27"
+lastupdated: "2020-08-07"
 
 
 keywords: vs code extension, Visual Studio Code extension, smart contract, development tools, multicloud
@@ -90,7 +90,7 @@ While the {{site.data.keyword.blockchainfull_notm}} Platform Developer Tooling t
 ### Choose your Developer Tooling environment
 {: #develop-vscode-crw}
 
-<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/rh-crw.png" width="188" h alt="Install Developer Tooling into Red Hat CodeReady Workspaces in the cloud." style="width:188px;" /><map name="home_map" id="home_map"><area href="/docs/blockchain?topic=blockchain-develop-vscode#develop-vscode-crw" alt="Install Developer Tooling into Red Hat CodeReady Workspaces in the cloud" title="Install Developer Tooling into Red Hat CodeReady Workspaces in the cloud" shape="rect" coords="1,-4,187,71" /></map>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img usemap="#home_map2" border="0" class="image" id="image_ztx_crb_f1b" src="images/visual-studio.png" width="188" alt="Install the  {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension into Visual Studio on your local system." style="width:188px;" /><map name="home_map2" id="home_map"><area href="/docs/blockchain?topic=blockchain-develop-vscode#develop-vscode-install" alt="Install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension into Visual Studio on your local system" title="Install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension into Visual Studio on your local system" shape="rect" coords="-2, 0, 192, 68" /></map>
+<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/rh-crw.png" width="188" h alt="Install Developer Tooling into Red Hat CodeReady Workspaces in the cloud." style="width:188px;" /><map name="home_map" id="home_map"><area href="/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw" alt="Install Developer Tooling into Red Hat CodeReady Workspaces in the cloud" title="Install Developer Tooling into Red Hat CodeReady Workspaces in the cloud" shape="rect" coords="1,-4,187,71" /></map>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img usemap="#home_map2" border="0" class="image" id="image_ztx_crb_f1b" src="images/visual-studio.png" width="188" alt="Install the  {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension into Visual Studio on your local system." style="width:188px;" /><map name="home_map2" id="home_map"><area href="/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-install" alt="Install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension into Visual Studio on your local system" title="Install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension into Visual Studio on your local system" shape="rect" coords="-2, 0, 192, 68" /></map>
 
 Both development environments include the same rich functionality of the {{site.data.keyword.blockchainfull_notm}} Platform Developer Tooling. The **Red Hat CodeReady Workspaces** include the pre-installed stack of prerequisites to get up and running quickly in an IDE that is accessible from your web browser. Choose **VS Code extension from the VisualStudio Marketplace** if you prefer to develop smart contracts and applications locally. You will need to download, install, and configure everything on your local system.
 
@@ -103,7 +103,7 @@ The following set of steps can be used to install the CodeReady Workspaces and c
 
 1. Log in as the administrator of your OpenShift 4.3 cluster.
 2. In the navigation bar, click **Operators** > **Operator Hub**. Ensure you have selected the project from the twistie at the top of the page, where you want the operator to be installed.
-3. Search for **CodeReady Workspaces** and then click **Install**.
+3. Search for **CodeReady Workspaces** and then, click **Install**.
 4. When the operator is successfully installed, it is visible from the **Installed Operators** tab and the status is `Succeeded`.
 5. From the table of Installed Operators, click **Red Hat CodeReady Workspaces** > **CodeReady Workspaces cluster**.
 6. Red Hat CodeReady Workspaces are based on the open **Eclipse Che** project that uses Kubernetes and containers to provide any member of a development or IT team with a consistent, secure, and zero-configuration development environment. Click **Create CheCluster**.
@@ -161,7 +161,7 @@ Proceed to [Step one](#develop-vscode-guided-tutorials) to learn how to access t
 ## Install {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension for free
 {: #develop-vscode-install}
 
-Before you install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension on your local system, you must complete the prerequisites. If you have already configured the [Red Hat CodeReady Workspaces](#develop-vscode-crw) for your developer environment, you can skip ahead to [Step one](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#develop-vscode-guided-tutorials).
+Before you install the {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension on your local system, you must complete the prerequisites. If you have already configured the [Red Hat CodeReady Workspaces](#develop-vscode-crw) for your developer environment, you can skip ahead to [Step one](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-guided-tutorials).
 
 ### Prerequisites
 {: #develop-vscode-prerequisites}
