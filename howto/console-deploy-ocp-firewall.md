@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-04"
+lastupdated: "2020-08-07"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -71,6 +71,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform console has been successf
 
 ## Storage
 {: #deploy-ocp-storage-firewall}
+
 
 In addition to a small amount of storage (10GB) required by the {{site.data.keyword.blockchainfull_notm}} console, persistent storage is required for each CA, peer, and ordering node that you deploy. Because blockchain components do not use the Kubernetes node local storage, network-attached remote storage is required so that blockchain nodes can failover to a different Kubernetes worker node in the event of a node outage.  And because you cannot change your storage type after deploying peer, CA, or ordering nodes, you need to decide the type of persistent storage that you want to use _before_ you deploy any blockchain nodes.
 
@@ -397,7 +398,7 @@ groups:
 - system:authenticated
 kind: SecurityContextConstraints
 metadata:
-  name: <PROJECT_NAME>
+  name: ibpinfra
 readOnlyRootFilesystem: false
 requiredDropCapabilities: []
 runAsUser:

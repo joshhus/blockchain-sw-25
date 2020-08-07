@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-04"
+lastupdated: "2020-08-07"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
@@ -240,7 +240,7 @@ groups:
 - system:authenticated
 kind: SecurityContextConstraints
 metadata:
-  name: <PROJECT_NAME>
+  name: ibpinfra
 readOnlyRootFilesystem: false
 requiredDropCapabilities: []
 runAsUser:
