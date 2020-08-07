@@ -159,9 +159,6 @@ subcollection: blockchain-sw-25
 
 [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-pricing)
 
-[Free trial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-free)
-* [Free trial limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-free-limits)
-
 
 ## Blockchain component overview
 {: #sitemap_blockchain_component_overview}
@@ -184,8 +181,8 @@ subcollection: blockchain-sw-25
 [An example network](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-component-overview#blockchain-component-overview-example-network)
 
 
-## 	Getting started tutorials
-{: #sitemap_	getting_started_tutorials}
+## Getting started tutorials
+{: #sitemap_getting_started_tutorials}
 
 
 [Build a network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network)
@@ -288,8 +285,8 @@ subcollection: blockchain-sw-25
 [Hyperledger Fabric Security](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-security#ibp-security-kubernetes-fabric)
 
 
-## 	High availability
-{: #sitemap_	high_availability}
+## High availability
+{: #sitemap_high_availability}
 
 
 [High availability (HA)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha)
@@ -401,8 +398,8 @@ subcollection: blockchain-sw-25
 [Can the {{site.data.keyword.blockchainfull_notm}} Platform monitor the health of a client application?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-faq#ibp-v2-faq-mon-client-app)
 
 
-## 	Install on the OpenShift Container Platform
-{: #sitemap_	install_on_the_openshift_container_platform}
+## Install on the OpenShift Container Platform
+{: #sitemap_install_on_the_openshift_container_platform}
 
 
 [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp)
@@ -496,8 +493,8 @@ subcollection: blockchain-sw-25
 * [Step Four: Remove policies and secrets](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-four)
 
 
-## 	Install on Kubernetes
-{: #sitemap_	install_on_kubernetes}
+## Install on Kubernetes
+{: #sitemap_install_on_kubernetes}
 
 
 [Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8)
@@ -632,8 +629,8 @@ subcollection: blockchain-sw-25
 [Upgrading to new versions](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
 
 
-## 	Using the IBM Blockchain Platform console
-{: #sitemap_	using_the_ibm_blockchain_platform_console}
+## Using the IBM Blockchain Platform console
+{: #sitemap_using_the_ibm_blockchain_platform_console}
 
 
 [Administering your console](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage)
@@ -764,8 +761,8 @@ subcollection: blockchain-sw-25
 * [Deleting components](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-govern-components#ibp-console-govern-components-delete)
 
 
-## 	Developing smart contracts and applications
-{: #sitemap_	developing_smart_contracts_and_applications}
+## Developing smart contracts and applications
+{: #sitemap_developing_smart_contracts_and_applications}
 
 
 [Developing smart contracts with {{site.data.keyword.blockchainfull_notm}} Platform Developer Tools](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode)
@@ -804,8 +801,8 @@ subcollection: blockchain-sw-25
 * [Best practices when using CouchDB](/docs/blockchain-sw-25?topic=blockchain-sw-25-best-practices-app#best-practices-app-couchdb-indices)
 
 
-## 	Advanced tutorials
-{: #sitemap_	advanced_tutorials}
+## Advanced tutorials
+{: #sitemap_advanced_tutorials}
 
 
 [Creating an intermediate Certificate Authority (CA)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-ica)
@@ -834,8 +831,8 @@ subcollection: blockchain-sw-25
 * [Using multiple partitions](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-hsm-gemalto#ibp-hsm-gemalto-multiple-partitions)
 
 
-## 		Using Ansible Playbooks
-{: #sitemap_		using_ansible_playbooks}
+## Using Ansible Playbooks
+{: #sitemap_using_ansible_playbooks}
 
 
 [Getting started with Ansible playbooks on the IBM Blockchain Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible)
