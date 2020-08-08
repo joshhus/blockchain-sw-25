@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-07"
+lastupdated: "2020-08-08"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
@@ -142,7 +142,7 @@ Check out this [blog](https://www.ibm.com/blogs/blockchain/2020/06/ibm-blockchai
 ## Supported Platforms
 {: #console-ocp-about-prerequisites}
 
-The {{site.data.keyword.blockchainfull_notm}} Platform {[sw_ibp_version ]} can be deployed with the Kubernetes distributions on the following Platforms:
+The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with the Kubernetes distributions on the following Platforms:
 
 | Kubernetes distribution | Version | Hardware |  Tested configuration|
 |----|----|----|-----|
