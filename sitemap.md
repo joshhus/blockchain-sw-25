@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-08"
+lastupdated: "2020-08-09"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -406,8 +406,8 @@ subcollection: blockchain-sw-25
 * [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-resources-required)
 * [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers)
 * [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-storage)
-* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key)
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-prerequisites)
+* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key)
 * [Log in to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-login)
 * [Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-ibpinfra)
 * [Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-secret-ibpinfra)
@@ -433,8 +433,8 @@ subcollection: blockchain-sw-25
 * [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-resources-required-firewall)
 * [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-browsers-firewall)
 * [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-storage-firewall)
-* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall)
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-prerequisites-firewall)
+* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall)
 * [Log in to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-login-firewall)
 * [Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-ibpinfra)
 * [Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-secret-ibpinfra)

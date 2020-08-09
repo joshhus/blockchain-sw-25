@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-07"
+lastupdated: "2020-08-09"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -100,15 +100,6 @@ If you prefer not to choose a persistent storage option, the default storage cla
 | **Multi-zone capable storage** | {{site.data.keyword.cloud_notm}} includes the ability to create a single Kubernetes cluster across multiple data centers or "zones". Portworx offers multi-zone capable storage that can be used to potentially reduce the number of peers required. Consider a scenario where you build two zones with two peers for redundancy, one zone can go down and you still have two peers up in another zone. With multi-zone capable storage, you could instead have two zones with one peer each. If one zone goes down, the peer comes up in the other zone with its storage intact, reducing the overall redundant peer requirements. |
 
 
-## Get your entitlement key
-{: #deploy-ocp-entitlement-key-firewall}
-
-When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PPA, you receive an entitlement key for the software is associated with your MyIBM account. You need to access and save this key to deploy the platform.
-
-1. Log in to [MyIBM Container Software Library](https://myibm.ibm.com/products-services/containerlibrary){: external} with the IBMid and password that are associated with the entitled software.
-
-2. In the Entitlement keys section, select **Copy key** to copy the entitlement key to the clipboard and save this value to be used later in these steps.
-
 ## Before you begin
 {: #deploy-ocp-prerequisites-firewall}
 
@@ -117,6 +108,15 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 2. You cannot deploy both an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 instance to the same cluster. If you need to run both instances of the product, then they must be running in separate clusters.
 
 3. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform.
+
+## Get your entitlement key
+{: #deploy-ocp-entitlement-key-firewall}
+
+When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PPA, you receive an entitlement key for the software is associated with your MyIBM account. You need to access and save this key to deploy the platform.
+
+1. Log in to [MyIBM Container Software Library](https://myibm.ibm.com/products-services/containerlibrary){: external} with the IBMid and password that are associated with the entitled software.
+
+2. In the Entitlement keys section, select **Copy key** to copy the entitlement key to the clipboard and save this value to be used later in these steps.
 
 ## Pull the {{site.data.keyword.blockchainfull_notm}} Platform images
 
