@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-07"
+lastupdated: "2020-08-17"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
@@ -102,13 +102,13 @@ If you prefer not to choose a persistent storage option, the default storage cla
 
 
 ## Get your entitlement key
-{: #deploy-ocp-entitlement-key}
+{: #deploy-ocp-entitlement-key-firewall}
 
 When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PPA, you receive an entitlement key for the software is associated with your MyIBM account. You need to access and save this key to deploy the platform.
 
 1. Log in to [MyIBM Container Software Library](https://myibm.ibm.com/products-services/containerlibrary){: external} with the IBMid and password that are associated with the entitled software.
 
-2. In the Entitlement keys section, select **Copy key** to copy the entitlement key to the clipboard. Save this value for use later during deployment.
+2. In the Entitlement keys section, select **Copy key** to copy the entitlement key to the clipboard and save this value to be used later in these steps.
 
 ## Before you begin
 {: #deploy-ocp-prerequisites}
@@ -120,6 +120,8 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 3. You need to install and connect to your cluster by using the [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform. If you are using an OpenShift cluster that was deployed with the {{site.data.keyword.IBM_notm}} Kubernetes Service, use these instructions to [Install the OpenShift Origin CLI](/docs/openshift?topic=openshift-openshift-cli#cli_oc).
 
 **Looking for a way to script the deployment of the service?** Check out the [Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible), a powerful tool for scripting the deployment of components in your blockchain network. If you prefer a manual installation, proceed to the next section.
+
+
 
 ## Log in to your OpenShift cluster
 {: #deploy-ocp-login}
