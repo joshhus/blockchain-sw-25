@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-08"
+lastupdated: "2020-08-17"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
@@ -48,7 +48,7 @@ Watch the following video for an introduction to blockchain and the {{site.data.
 </div>
 </p>
 
-### Video transcript
+## Video transcript
 {: #transcript-key-concepts}
 {: script}
 {: notoc}

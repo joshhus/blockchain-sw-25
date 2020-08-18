@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-17"
+lastupdated: "2020-08-18"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -121,7 +121,8 @@ subcollection: blockchain-sw-25
 
 
 [About {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about)
-* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#transcript-key-concepts)
+
+[Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#transcript-key-concepts)
 
 [What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-offers)
 
@@ -189,14 +190,14 @@ subcollection: blockchain-sw-25
 * [Sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-sample-tutorial)
   * [The structure of this network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-structure)
 * [Step one: Create a peer organization and a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peer-org1)
-  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-peer-video)
+* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-peer-video)
   * [Creating your peer organization's CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-CA-org1CA)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ca-admin)
   * [Using your CA to register identities](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1)
   * [Creating the peer organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1)
   * [Creating a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-peer-create)
 * [Step two: Create the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer)
-  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-orderer-video)
+* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-orderer-video)
   * [Ordering in the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ordering-console)
   * [Creating your ordering service organization CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-ca)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-orderer-ca-admin)
@@ -204,7 +205,7 @@ subcollection: blockchain-sw-25
   * [Creating the ordering service organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-org-msp)
   * [Deploy the ordering nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-an-orderer)
 * [Step three: Join the consortium hosted by the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org)
-  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-channel-video)
+* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-channel-video)
 * [Step four: Create a channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel)
   * [Creating a channel: `channel1`](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel1)
 * [Step five: Join your peer to the channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-join-peer)
