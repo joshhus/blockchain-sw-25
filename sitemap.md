@@ -620,6 +620,18 @@ subcollection: blockchain-sw-25
 
 [Using the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images)
 
+[Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-supported-platforms)
+
+[Supported Fabric versions](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-supported-fabric)
+
+[Considerations and limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-considerations)
+
+[License and pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-license)
+
+[Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-entitlement-key)
+
+[Downloading the {{site.data.keyword.blockchainfull_notm}} Platform images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-downloading)
+
 [Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#getting-started)
 * [Configuring the gRPC web proxy (optional)](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#getting-started-proxy)
 
@@ -627,7 +639,11 @@ subcollection: blockchain-sw-25
 * [Deploying an {{site.data.keyword.blockchainfull_notm}} Certificate Authority](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-example-ca)
 * [Deploying the gRPC web proxy](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#example-proxy)
 
+[Interoperability](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-interop)
+
 [Upgrading to new versions](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
+
+[Getting support](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-support)
 
 
 ## Using the IBM Blockchain Platform console
