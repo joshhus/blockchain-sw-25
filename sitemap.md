@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-18"
+lastupdated: "2020-08-20"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -190,14 +190,13 @@ subcollection: blockchain-sw-25
 * [Sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-sample-tutorial)
   * [The structure of this network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-structure)
 * [Step one: Create a peer organization and a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peer-org1)
-* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-peer-video)
+  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-peer-video)
   * [Creating your peer organization's CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-CA-org1CA)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ca-admin)
   * [Using your CA to register identities](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1)
   * [Creating the peer organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1)
-  * [Creating a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-peer-create)
 * [Step two: Create the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer)
-* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-orderer-video)
+  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-orderer-video)
   * [Ordering in the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ordering-console)
   * [Creating your ordering service organization CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-ca)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-orderer-ca-admin)
@@ -205,7 +204,8 @@ subcollection: blockchain-sw-25
   * [Creating the ordering service organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-org-msp)
   * [Deploy the ordering nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-an-orderer)
 * [Step three: Join the consortium hosted by the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org)
-* [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-channel-video)
+  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-channel-video)
+  * [Add the organization to the consortium](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org-consortium)
 * [Step four: Create a channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel)
   * [Creating a channel: `channel1`](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel1)
 * [Step five: Join your peer to the channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-join-peer)
@@ -620,6 +620,18 @@ subcollection: blockchain-sw-25
 
 [Using the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images)
 
+[Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-supported-platforms)
+
+[Supported Fabric versions](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-supported-fabric)
+
+[Considerations and limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-considerations)
+
+[License and pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-license)
+
+[Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-entitlement-key)
+
+[Downloading the {{site.data.keyword.blockchainfull_notm}} Platform images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-downloading)
+
 [Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#getting-started)
 * [Configuring the gRPC web proxy (optional)](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#getting-started-proxy)
 
@@ -627,7 +639,11 @@ subcollection: blockchain-sw-25
 * [Deploying an {{site.data.keyword.blockchainfull_notm}} Certificate Authority](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-example-ca)
 * [Deploying the gRPC web proxy](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#example-proxy)
 
+[Interoperability](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-interop)
+
 [Upgrading to new versions](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
+
+[Getting support](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-support)
 
 
 ## Using the IBM Blockchain Platform console

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-22"
+lastupdated: "2020-08-18"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -36,6 +36,7 @@ For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchain
 {{site.data.keyword.blockchainfull_notm}} Platform images can be purchased through an entitlement to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5. The images are bundled with support from {{site.data.keyword.IBM_notm}}. {{site.data.keyword.blockchainfull_notm}} does not support blockchain components that are deployed using the open source Hyperledger Fabric Docker images.
 
 ## Supported Platforms
+{: #blockchain-images-supported-platforms}
 
 The {{site.data.keyword.blockchainfull_notm}} images must be deployed using a container environment on x86_64 or s390x hardware. Refer to the list of [Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-prerequisites).
 
@@ -43,12 +44,14 @@ Although you can deploy the {{site.data.keyword.blockchainfull_notm}} images on 
 {: note}
 
 ## Supported Fabric versions
+{: #blockchain-images-supported-fabric}
 
 The {{site.data.keyword.blockchainfull_notm}} Docker images are based on Hyperledger Fabric v1.4.7 and v2.x. You can use this documentation to install and deploy the latest version of Fabric used by the {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 
 See the [My Support](https://www.ibm.com/support/pages/node/1072956){: external} page for details on what is supported.
 
 ## Considerations and limitations
+{: #blockchain-images-considerations}
 
 The images do not include the {{site.data.keyword.blockchainfull_notm}} Platform console or operator. This offering is meant for experienced Fabric users with existing deployments. If you are still exploring Hyperledger Fabric, you can get started with [{{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks#ibp-v2-deploy-iks).
 {:important}
@@ -58,12 +61,14 @@ The images do not include the {{site.data.keyword.blockchainfull_notm}} Platform
 - If you download the image for the gRPC web proxy and connect the proxy to node that you deploy, you can import the node into an {{site.data.keyword.blockchainfull_notm}} Platform console. After you import a node into the console, you can operate that node alongside nodes that were deployed by using the {{site.data.keyword.blockchainfull_notm}} Platform.
 
 ## License and pricing
+{: #blockchain-images-license}
 
 {{site.data.keyword.blockchainfull_notm}} Platform images can be purchased through an entitlement to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5. After you purchase the platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key. You can then use the entitlement key to download the images from the {{site.data.keyword.IBM_notm}} Entitlement Registry.
 
 For more information on the pricing of the images, to the [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing) topic.
 
 ## Get your entitlement key
+{: #blockchain-images-entitlement-key}
 
 When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PPA, you receive an entitlement key for the software is associated with your MyIBM account. You need to access and save this key to deploy the platform.
 
@@ -72,6 +77,7 @@ When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PP
 2. In the Entitlement keys section, select **Copy key** to copy the entitlement key to the clipboard.
 
 ## Downloading the {{site.data.keyword.blockchainfull_notm}} Platform images
+{: #blockchain-images-downloading}
 
 You can use your entitlement key to download the {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement Registry. Use the following command to log in to the {{site.data.keyword.IBM_notm}} Entitlement Registry:
 ```
@@ -586,6 +592,7 @@ You need to complete these steps for each node that you want to import into an i
 
 
 ## Interoperability
+{: #blockchain-images-interop}
 
 Nodes that are deployed by using the {{site.data.keyword.blockchainfull_notm}} images can join the channels of other {{site.data.keyword.blockchainfull_notm}} offerings, such as {{site.data.keyword.blockchainfull_notm}} Platform 2.5 and {{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}. Unless you connected an instance of the gRPC web proxy to the node, you cannot use the console to operate the images. You need to use Fabric tools to join existing channels that were created with a console or create new channels.
 
@@ -595,6 +602,7 @@ Nodes that are deployed by using the {{site.data.keyword.blockchainfull_notm}} i
 You can upgrade your deployment to the latest version of the {{site.data.keyword.blockchainfull_notm}} images. The latest images normally contain security or stability improvements, or use a higher version Hyperledger Fabric, allowing you to take advantage of the latest Fabric features. To upgrade your network, you need to back up the ledger and MSP data for each node and then manually upgrade the node binaries. For more information about upgrading a network that you deployed using the {{site.data.keyword.blockchainfull_notm}} images, see [Upgrading Your Network Components](https://hyperledger-fabric.readthedocs.io/en/release-1.4/upgrading_your_network_tutorial.html){: external} in the Hyperleder Fabric documentation.
 
 ## Getting support
+{: #blockchain-images-support}
 
 If you encounter issues that are related to Hyperledger Fabric or the underlying images, you can submit a support case from the [mysupport](https://www.ibm.com/support/pages/node/1072956){: external} page. When you open a case you need to select your product, {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 
