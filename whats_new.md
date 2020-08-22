@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-13"
+lastupdated: "2020-08-22"
 
 keywords: IBM Blockchain Platform, release, new features, multicloud
 
@@ -48,7 +48,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 improvements are desi
 
 **Red Hat CodeReady Workspaces**  
 
-The platform expands its developer tool ecosystem with **Red Hat CodeReady Workspaces**, that help organizations speed up and simplify the setup of blockchain development environments. Red Hat CodeReady Workspaces provide a preconfigured and shared runtime environment that enables cloud-native blockchain development to be performed across teams. Red Hat CodeReady Workspaces offer strong security and adhere to enterprise-grade compliance for cloud-native development. Read about the [benefits of CodeReady Workspaces](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-why) to learn more.
+The platform expands its developer tool ecosystem with **Red Hat CodeReady Workspaces**, that help organizations speed up and simplify the setup of blockchain development environments. Red Hat CodeReady Workspaces provide a preconfigured and shared runtime environment that enables cloud-native blockchain development to be performed across teams. Red Hat CodeReady Workspaces offer strong security and adhere to enterprise-grade compliance for cloud-native development. Read about the [benefits of CodeReady Workspaces](/docs/blockchain?topic=blockchain-develop-vscode#develop-vscode-crw-why) to learn more.
 
 **Hyperledger Fabric 2.0 images**
 
@@ -61,5 +61,5 @@ If you have an existing {{site.data.keyword.blockchainfull_notm}} Platform v2.1.
 - [Upgrading the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
 
 
-See the [Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#06-18-2020) for more details on the new features that are included in this release.
+See the [Release notes](/docs/blockchain?topic=blockchain-release-notes-saas-20#06-18-2020) for more details on the new features that are included in this release.
 
