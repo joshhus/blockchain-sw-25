@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-21"
+lastupdated: "2020-08-22"
 
 
 keywords: release note, latest changes, Hyperledger Fabric, multicloud
@@ -35,7 +35,8 @@ Use these release notes that are grouped by date to learn about the latest chang
 
 See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#ibp-console-manage-patch) for instructions on how to apply patches to your existing nodes. Patches are cumulative. This means that if multiple patches, for example `1.4.7-0` and `1.4.7-1`, are available for a node, you should always select the latest patch, `1.4.7-1` in this case, wherever possible because it includes the fixes from the previous patches as well.
 
-<blockchain cert-expiration>## 25 Aug 2020
+<blockchain cert-expiration>
+## 25 Aug 2020
 {: #08-25-2020}
 
 **CA, Peer, and ordering node patch 1.4.7-2, 2.1.1-2**
