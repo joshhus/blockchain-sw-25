@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-21"
+lastupdated: "2020-08-22"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -121,8 +121,6 @@ subcollection: blockchain-sw-25
 
 
 [About {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about)
-
-[Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#transcript-key-concepts)
 
 [What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-offers)
 
