@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-22"
+lastupdated: "2020-08-24"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -31,7 +31,7 @@ subcollection: blockchain-sw-25
 </div>
 
 
-For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchainfull}} Platform provides images for peer, CA, ordering service, and smart contract containers that are signed and supported by {{site.data.keyword.IBM_notm}}. These images are the commercial distribution of [Hyperledger Fabric](https://hyperledger-fabric.readthedocs.io/en/release-1.4/). A key benefits of the platform is that {{site.data.keyword.IBM_notm}} scans the open source code for security vulnerabilities daily and provides 24x7x365 support with SLAs appropriate for production environments, as well as keeps the images up to date with vulnerability patches.
+For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchainfull}} Platform provides images for peer, CA, ordering service, and smart contract containers that are signed and supported by {{site.data.keyword.IBM_notm}}. These images are the commercial distribution of [Hyperledger Fabric](https://hyperledger-fabric.readthedocs.io/en/release-1.4/). A key benefit of the platform is that {{site.data.keyword.IBM_notm}} scans the open source code for security vulnerabilities daily and provides 24x7x365 support with SLAs appropriate for production environments, as well as keeps the images up to date with vulnerability patches.
 
 {{site.data.keyword.blockchainfull_notm}} Platform images can be purchased through an entitlement to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5. The images are bundled with support from {{site.data.keyword.IBM_notm}}. While it is possible to configure mixed networks that include components from the {{site.data.keyword.blockchainfull_notm}} Platform and Hyperledger Fabric community version, {{site.data.keyword.IBM_notm}} support is limited to {{site.data.keyword.blockchainfull_notm}} components.  {{site.data.keyword.IBM_notm}} does not support blockchain components that are deployed using the open source Hyperledger Fabric Docker images.
 
