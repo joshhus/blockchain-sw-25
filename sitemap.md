@@ -721,7 +721,7 @@ subcollection: blockchain-sw-25
 * [Exporting and importing in bulk](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-bulk-export-import)
 * [Gathering certificates or credentials](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-start-here)
   * [Exporting and importing admin identities into the Wallet](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes-admin-identities)
-  * [Importing an organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-msp)
+* [Importing an organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-msp)
 * [Importing a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-peer)
   * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-peer-before-you-begin)
   * [How to import a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-peer-howto)
