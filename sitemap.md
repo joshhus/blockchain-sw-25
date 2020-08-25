@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-20"
+lastupdated: "2020-08-25"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -122,8 +122,6 @@ subcollection: blockchain-sw-25
 
 [About {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about)
 
-[Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#transcript-key-concepts)
-
 [What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-offers)
 
 [Supported Platforms](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-prerequisites)
@@ -190,13 +188,11 @@ subcollection: blockchain-sw-25
 * [Sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-sample-tutorial)
   * [The structure of this network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-structure)
 * [Step one: Create a peer organization and a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peer-org1)
-  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-peer-video)
   * [Creating your peer organization's CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-CA-org1CA)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ca-admin)
   * [Using your CA to register identities](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1)
   * [Creating the peer organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1)
 * [Step two: Create the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer)
-  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-orderer-video)
   * [Ordering in the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ordering-console)
   * [Creating your ordering service organization CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-ca)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-orderer-ca-admin)
@@ -204,7 +200,6 @@ subcollection: blockchain-sw-25
   * [Creating the ordering service organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-org-msp)
   * [Deploy the ordering nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-an-orderer)
 * [Step three: Join the consortium hosted by the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org)
-  * [Video transcript](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#transcript-channel-video)
   * [Add the organization to the consortium](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org-consortium)
 * [Step four: Create a channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel)
   * [Creating a channel: `channel1`](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel1)
@@ -726,7 +721,7 @@ subcollection: blockchain-sw-25
 * [Exporting and importing in bulk](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-bulk-export-import)
 * [Gathering certificates or credentials](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-start-here)
   * [Exporting and importing admin identities into the Wallet](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-nodes-admin-identities)
-  * [Importing an organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-msp)
+* [Importing an organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-msp)
 * [Importing a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-peer)
   * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-peer-before-you-begin)
   * [How to import a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-peer-howto)
@@ -786,7 +781,7 @@ subcollection: blockchain-sw-25
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-before)
   * [What are the benefits of CodeReady Workspaces?](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-why)
   * [Current limitations of the CodeReady Workspaces](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-limits)
-  * [Choose your Developer Tooling environment](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw)
+  * [Choose your Developer Tooling environment](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-choose)
 * [Install Developer Tooling into Red Hat CodeReady Workspaces](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw)
   * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-next)
 * [Install {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension for free](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-install)
