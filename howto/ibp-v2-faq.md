@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-17"
+lastupdated: "2020-08-25"
 
 keywords: FAQs, can I, upgrade, what version, peer ledger database, supported languages, why do I, regions, multicloud
 
@@ -49,7 +49,7 @@ subcollection: blockchain-sw-25
 - [What is the recommended way to manage private keys?](#ibp-v2-faq-hsm)
 - [What ports are used by the {{site.data.keyword.blockchainfull_notm}} Platform?](#ibp-v2-ports)
 - [Do ordering service Raft nodes use Transport Layer Security (TLS) for communication?](#ibp-v2-faq-raft-tls)
-- [Can {{site.data.keyword.blockchainfull_notm}} Platform components interoperate with Hyperledger Fabric components on the same network? And vice versa? And what is the support policy for networks that include both {{site.data.keyword.blockchainfull_notm}} Platform components and open source components?](#ibp-v2-faq-interoperability)
+- [Can {{site.data.keyword.blockchainfull_notm}} Platform components interoperate with Hyperledger Fabric components on the same network? And vice versa? And what is the support policy for networks that include both {{site.data.keyword.blockchainfull_notm}} Platform components and open source components?](#ibp-v2-faq-interoperability)>
 - [What types of off-chain databases are supported with the {{site.data.keyword.blockchainfull_notm}} Platform?](#ibp-v2-faq-offchain-db)
 - [Can I integrate my corporate LDAP server with the Certificate Authority (CA) in the {{site.data.keyword.blockchainfull_notm}} Platform?](#ibp-v2-faq-ldap)
 
@@ -172,6 +172,7 @@ Yes. The Raft ordering service nodes are configured to use TLS communication. TL
 
 ## Can {{site.data.keyword.blockchainfull_notm}} Platform components interoperate with Hyperledger Fabric components on the same network? And vice versa? And what is the support policy for networks that include both {{site.data.keyword.blockchainfull_notm}} Platform components and open source components?
 {: #ibp-v2-faq-interoperability}
+{: faq}
 
 Yes. Hyperledger Fabric networks consist of many distributed members owning one or more nodes. There are multiple deployment options:
 
@@ -181,6 +182,8 @@ Yes. Hyperledger Fabric networks consist of many distributed members owning one 
 * Open source Hyperledger Fabric images or a non-IBM product
 
 Containers deployed from any of the above sources can be connected on a single channel and transact. You can join IBM Blockchain Platform peers to any network running Hyperledger Fabric components. Similarly, you can invite Fabric peers to join channels hosted on an ordering service deployed on the IBM Blockchain Platform. Note that you will need to use Hyperledger Fabric APIs or the CLI. For more information about what is supported, see [Support for IBM Blockchain Platform](https://www.ibm.com/support/pages/node/1072956){: external}.
+
+
 
 ## What types of off-chain databases are supported with the {{site.data.keyword.blockchainfull_notm}} Platform?
 {: #ibp-v2-faq-offchain-db}
