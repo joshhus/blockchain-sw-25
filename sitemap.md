@@ -1048,8 +1048,6 @@ subcollection: blockchain-sw-25
 
 [Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20)
 
-[25 Aug 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#08-25-2020)
-
 [14 July 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#07-14-2020)
 
 [18 June 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#06-18-2020)
