@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-22"
+lastupdated: "2020-08-25"
 
 keywords: organizations, MSPs, create an MSP, MSP JSON file, consortium, system channel, remove an organization, multicloud
 
@@ -215,7 +215,6 @@ But if the `"certificateAuthorities"` section is empty and client application ne
     - `<TLS_CERT>` with the value of the `"tls_cert"` from the downloaded JSON file.
 
 If the organization MSP was manually created by using certificates from an external CA, then there is no reason to add the CA to the connection profile. You cannot register and enroll users with an external CA from a client application.
-
 
 
 

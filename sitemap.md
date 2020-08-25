@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-24"
+lastupdated: "2020-08-25"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -781,7 +781,7 @@ subcollection: blockchain-sw-25
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-before)
   * [What are the benefits of CodeReady Workspaces?](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-why)
   * [Current limitations of the CodeReady Workspaces](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-limits)
-  * [Choose your Developer Tooling environment](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw)
+  * [Choose your Developer Tooling environment](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-choose)
 * [Install Developer Tooling into Red Hat CodeReady Workspaces](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw)
   * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-crw-next)
 * [Install {{site.data.keyword.blockchainfull_notm}} Platform VS Code extension for free](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-install)
