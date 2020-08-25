@@ -61,5 +61,6 @@ If you have an existing {{site.data.keyword.blockchainfull_notm}} Platform v2.1.
 - [Upgrading the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
 
 
-See the [Release notes](/docs/blockchain?topic=blockchain-release-notes-saas-20#06-18-2020) for more details on the new features that are included in this release.
+
+See the [Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#06-18-2020) for more details on the new features that are included in this release.
 
