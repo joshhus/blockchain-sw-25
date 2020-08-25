@@ -218,6 +218,7 @@ If the organization MSP was manually created by using certificates from an exter
 
 
 
+
 ## Updating an organization MSP definition
 {: #ibp-console-govern-update-msp}
 
@@ -308,6 +309,7 @@ First, perform the same steps as above for [Updating the organization MSP defini
 4. With the **Existing MSP ID** tab selected, browse to the updated MSP.
 5. Click **Update MSP definition**.
 
+>
 
 ## Manually building an MSP JSON file
 {: #console-organizations-build-msp}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-22"
+lastupdated: "2020-08-25"
 
 keywords: create identities, manage identities, Certificate Authorities, register, enroll, TLS CA, wallet, certificate expiration
 
@@ -136,6 +136,7 @@ When creating a peer or orderer with your console, you can also use the TLS CA t
 
 
 
+
 ## Certificate renewal and expiration
 {: #ibp-console-identities-expiration}
 
@@ -224,6 +225,7 @@ Signature Algorithm: ecdsa-with-SHA256
 ```
 
 You can find the expiration date in the **Validity** section and follows `Not After:`. In this example, the certificate will expire on November 28, 2019.
+
 
 
 ## Storing identities in your console wallet
