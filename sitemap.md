@@ -402,7 +402,7 @@ subcollection: blockchain-sw-25
 * [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-resources-required)
 * [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers)
 * [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-storage)
-* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key-firewall)
+* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key)
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-prerequisites)
 * [Log in to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-login)
 * [Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-ibpinfra)
