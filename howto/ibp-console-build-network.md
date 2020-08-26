@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-08-26"
 
 keywords: getting started tutorials, create a CA, enroll, register, create an MSP, wallet, create a peer, create ordering service, Raft, ordering service, blockchain network, multicloud
 
@@ -280,7 +280,8 @@ After you have created the MSP, you should be able to see the peer organization 
 
 For more information about MSPs, see [managing organizations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-organizations#ibp-console-organizations).
 
-**Creating a peer**
+**Creating a peer**  
+{: #ibp-console-build-network-peer-create}
 
 After you have [created the Org1 CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-CA-org1CA), used it to register Org1 identities, and created the [Org1 MSP](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1), you're ready to create a peer for Org1.
 
