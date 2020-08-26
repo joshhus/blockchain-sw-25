@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-17"
+lastupdated: "2020-08-26"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
@@ -102,7 +102,7 @@ If you prefer not to choose a persistent storage option, the default storage cla
 
 
 ## Get your entitlement key
-{: #deploy-ocp-entitlement-key-firewall}
+{: #deploy-ocp-entitlement-key}
 
 When you purchase the {{site.data.keyword.blockchainfull_notm}} Platform from PPA, you receive an entitlement key for the software is associated with your MyIBM account. You need to access and save this key to deploy the platform.
 
