@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-08-27"
 
 keywords: IBM Blockchain Platform, release, new features, multicloud
 
@@ -31,6 +31,10 @@ subcollection: blockchain-sw-25
 </div>
 
 
+## August 27, 2020
+{: #whats-new-08-19-2020}
+
+The {{site.data.keyword.blockchainfull_notm}} Platform can now be deployed onto OpenShift clusters from the Red Hat Marketplace, an open cloud catalog that makes it easier to discover and access certified software. Red Hat certified {{site.data.keyword.blockchainfull_notm}} Platform operator images are available in the marketplace and accessible from your OpenShift web console. This new deployment option is immediately available to deploy on any Red Hat OpenShift 4.3+ cluster, and provides a fast, integrated experience for deploying the blockchain console that can be used to create Certificate Authorities (CAs), peers, and ordering nodes, in the public cloud or in your on-prem environment. See [Deploying {{site.data.keyword.blockchainfull_notm}} 2.5 from Red Hat Marketplace](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm) for more information about this streamlined deployment option that is provided as an alternative to the existing [manual deployment](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp) steps.
 
 
 ## June 18, 2020

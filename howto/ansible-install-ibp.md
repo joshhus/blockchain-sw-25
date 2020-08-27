@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-16"
+lastupdated: "2020-08-27"
 
 keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy
 
@@ -21,7 +21,7 @@ subcollection: blockchain-sw-25
 {:pre: .pre}
 
 
-# Installing the IBM Blockchain Platform using an Ansible playbook
+# Deploy the service from an Ansible playbook
 {: #ansible-install-ibp}
 
 Customers can use an Ansible playbook to automate their installation of the {{site.data.keyword.blockchainfull}} Platform network deployments on a Kubernetes distribution.
