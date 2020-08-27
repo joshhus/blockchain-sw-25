@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-26"
+lastupdated: "2020-08-27"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -145,6 +145,8 @@ subcollection: blockchain-sw-25
 
 [What's new](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new)
 
+[August 27, 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-08-19-2020)
+
 [June 18, 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-06-18-2020)
 
 
@@ -157,6 +159,9 @@ subcollection: blockchain-sw-25
 [License](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-license)
 
 [Pricing](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-pricing)
+
+[Free trial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-free)
+* [Free trial limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-sw-pricing#ibp-software-pricing-free-limits)
 
 
 ## Blockchain component overview
@@ -398,12 +403,35 @@ subcollection: blockchain-sw-25
 {: #sitemap_install_on_the_openshift_container_platform}
 
 
-[Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp)
-* [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-resources-required)
-* [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers)
-* [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-storage)
-* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key)
+
+## Deployment options
+{: #sitemap_deployment_options}
+
+
+[Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started)
+* [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-resources-required)
+* [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-browsers)
+* [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-storage)
+* [Choose your deployment option](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-choose)
+
+[Deploy from Red Hat Marketplace](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm)
+* [What is the Red Hat Marketplace?](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-whatis)
+* [Limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-limitations)
+* [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-prerequisites)
+* [Step one: Apply the Security Context Constraint](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-scc)
+* [Step two: Deploy the {{site.data.keyword.blockchainfull_notm}} Platform console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-console)
+  * [Advanced deployment options](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#console-deploy-ocp-rhm-advanced)
+  * [Use your own TLS Certificates (Optional)](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#console-deploy-ocp-use-your-own-tls-certificates-optional)
+* [Step three: Verify the console installation](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#console-deploy-ocp-verify-install)
+* [Step four: Log in to the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-log-in)
+* [Removing your deployment](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#console-deploy-ocp-rhm-remove-deployment)
+* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#console-deploy-ocp-rhm-next-steps)
+* [Support](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-support)
+* [Create a new project for your {{site.data.keyword.blockchainfull_notm}} Platform deployment](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-project)
+
+[Deploy {{site.data.keyword.blockchainfull_notm}} Platform 2.5 manually](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp)
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-prerequisites)
+* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key)
 * [Log in to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-login)
 * [Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-ibpinfra)
 * [Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-secret-ibpinfra)
@@ -425,12 +453,9 @@ subcollection: blockchain-sw-25
 * [Log in to the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-log-in)
 * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#console-deploy-ocp-next-steps)
 
-[Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 behind a firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall)
-* [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-resources-required-firewall)
-* [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-browsers-firewall)
-* [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-storage-firewall)
-* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall)
+[Deploy {{site.data.keyword.blockchainfull_notm}} Platform 2.5 on-prem manually](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall)
 * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-prerequisites-firewall)
+* [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-entitlement-key-firewall)
 * [Log in to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-login-firewall)
 * [Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-ibpinfra)
 * [Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-secret-ibpinfra)
@@ -454,39 +479,69 @@ subcollection: blockchain-sw-25
 * [Log in to the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#deploy-ocp-log-in)
 * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-firewall#console-deploy-ocp-next-steps-fw)
 
+[Deploy the service from an Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp)
+* [Prerequisites](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-prereqs)
+  * [Gather your Kubernetes cluster details](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-k8s-cluster)
+* [Build the Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)
+* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)
+
+
+## Upgrading your console and components
+{: #sitemap_upgrading_your_console_and_components}
+
+
 [Upgrading your console and components](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp)
-* [{{site.data.keyword.blockchainfull_notm}} Platform overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-platform-overview)
-* [Platform limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-platform)
-* [Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-steps)
-  * [Roll back an upgrade](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-rollback)
-* [Step one: Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-ibpinfra)
-* [Step two: Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-secret-ibpinfra)
-* [Step three: Deploy the webhook and custom resource definitions to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook)
-  * [1. Configure role-based access control (RBAC) for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-rbac)
-  * [2. (OpenShift cluster only) Apply the Security Context Constraint](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-scc)
-  * [3. Deploy the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-deploy)
-  * [5. Create the CA custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-ca)
-  * [6. Create the peer custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-peer)
-  * [7. Create the orderer custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-orderer)
-  * [8. Create the console custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-console)
-* [Step four: Update the ClusterRole](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-clusterrole)
-* [Step five: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-operator)
-* [Step six: Upgrade your blockchain nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-nodes)
-* [Upgrading the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-firewall)
-  * [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-begin-firewall)
-  * [Step one: Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-images-firewall)
-  * [Step two: Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-ibpinfra-fw)
-  * [Step three: Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-secret-ibpinfra-fw)
-  * [Step four: Deploy the webhook and custom resource definitions to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-fw)
-  * [Step five: Update the ClusterRole](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-clusterrole-firewall)
-  * [Step six: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-operator-firewall)
-  * [Step seven: Upgrade your blockchain nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-nodes-firewall)
+
+[{{site.data.keyword.blockchainfull_notm}} Platform overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-platform-overview)
+
+[Platform limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-platform)
+
+[Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-steps)
+* [Roll back an upgrade](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-rollback)
+
+[Step one: Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-ibpinfra)
+
+[Step two: Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-secret-ibpinfra)
+
+[Step three: Deploy the webhook and custom resource definitions to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook)
+* [1. Configure role-based access control (RBAC) for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-rbac)
+* [2. (OpenShift cluster only) Apply the Security Context Constraint](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-scc)
+* [3. Deploy the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-deploy)
+* [5. Create the CA custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-ca)
+* [6. Create the peer custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-peer)
+* [7. Create the orderer custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-orderer)
+* [8. Create the console custom resource definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-crd-console)
+
+[Step four: Update the ClusterRole](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-clusterrole)
+
+[Step five: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-operator)
+
+[Step six: Upgrade your blockchain nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-nodes)
+
+[Upgrading the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-firewall)
+* [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-begin-firewall)
+* [Step one: Pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-images-firewall)
+* [Step two: Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-ibpinfra-fw)
+* [Step three: Create a secret for your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-secret-ibpinfra-fw)
+* [Step four: Deploy the webhook and custom resource definitions to your OpenShift cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#webhook-fw)
+* [Step five: Update the ClusterRole](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-clusterrole-firewall)
+* [Step six: Upgrade the {{site.data.keyword.blockchainfull_notm}} operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-operator-firewall)
+* [Step seven: Upgrade your blockchain nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-nodes-firewall)
+
+
+## Removing your deployment
+{: #sitemap_removing_your_deployment}
+
 
 [Removing your deployment](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp)
-* [Step one: Use the console to delete your blockchain nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-one)
-* [Step two: Delete the {{site.data.keyword.blockchainfull_notm}} Platform operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-two)
-* [Step Three: Delete the {{site.data.keyword.blockchainfull_notm}} Platform console](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-three)
-* [Step Four: Remove policies and secrets](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-four)
+
+[Step one: Use the console to delete your blockchain nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-one)
+
+[Step two: Delete the {{site.data.keyword.blockchainfull_notm}} Platform operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-two)
+
+[Step Three: Delete the {{site.data.keyword.blockchainfull_notm}} Platform console](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-three)
+
+[Step Four: Remove policies and secrets](/docs/blockchain-sw-25?topic=blockchain-sw-25-Removing-ocp#Removing-ocp-step-four)
 
 
 ## Install on Kubernetes
@@ -857,7 +912,7 @@ subcollection: blockchain-sw-25
 * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-next-steps)
 * [Where to find support](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-support)
 
-[Installing the IBM Blockchain Platform using an Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp)
+[Deploy the service from an Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp)
 * [Prerequisites](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-prereqs)
   * [Gather your Kubernetes cluster details](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-k8s-cluster)
 * [Build the Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)

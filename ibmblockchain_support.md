@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-11"
+lastupdated: "2020-08-27"
 
 keywords: IBM Blockchain Platform, support case, Hyperledger Fabric Community, Cloud tickets, Rocket Chat, dWAnswers, multicloud
 
@@ -59,6 +59,6 @@ It is recommended to start with [free digital support resources](/docs/blockchai
 
 For issues that are related to {{site.data.keyword.blockchainfull_notm}} Platform 2.5, you can submit a support case from the [mysupport](https://www.ibm.com/support/pages/node/1072956){: external} page.   
 
-
+For issues that are related to the {{site.data.keyword.blockchainfull_notm}} Platform acquired through the Red Hat Marketplace, it is recommended that you submit a support ticket through the Red Hat Marketplace [support portal](https://marketplace.redhat.com/en-us/support){: external}.
 
 If you need help with Hyperledger Fabric, or your applications, ensure you make use of the community resources above or engage [{{site.data.keyword.blockchainfull_notm}} Services](https://www.ibm.com/blockchain/services){: external}.
