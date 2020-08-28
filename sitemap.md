@@ -100,6 +100,8 @@ subcollection: blockchain-sw-25
 
 [Getting started with {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp)
 
+[Are you a Red Hat Marketplace customer?](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-rhm)
+
 [Already have an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x network and want to upgrade?](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-upgrade)
 
 [Is {{site.data.keyword.blockchainfull_notm}} Platform 2.5 suitable for you?](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable)

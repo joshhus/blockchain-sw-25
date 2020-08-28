@@ -43,6 +43,11 @@ The **{{site.data.keyword.blockchainfull_notm}} Platform 2.5** is purchased as a
 With this offering, you are responsible for purchasing and provisioning your own Kubernetes cluster. Additionally, you will need to [open ports in your firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-security#ibp-security-ibp-ports) if you are using one.
 {: important}
 
+## Are you a Red Hat Marketplace customer?
+{: #get-started-console-ocp-rhm}
+
+Already using Red Hat Marketplace and ready to try out blockchain? Check out these [instructions](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm) to get started.
+
 ## Already have an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x network and want to upgrade?
 {: #get-started-console-ocp-upgrade}
 
@@ -50,6 +55,7 @@ Check out the following topics for instructions on how to upgrade:
 - [Upgrading your console and components on the OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp)
 - [Upgrading your console and components on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-k8)
 - [Upgrading the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
+
 
 ## Is {{site.data.keyword.blockchainfull_notm}} Platform 2.5 suitable for you?
 {: #get-started-console-ocp-suitable}
