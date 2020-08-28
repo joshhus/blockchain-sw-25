@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-27"
+lastupdated: "2020-08-28"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -197,6 +197,7 @@ subcollection: blockchain-sw-25
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ca-admin)
   * [Using your CA to register identities](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1)
   * [Creating the peer organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1)
+  * [Creating a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-peer-create)
 * [Step two: Create the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer)
   * [Ordering in the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ordering-console)
   * [Creating your ordering service organization CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-ca)
@@ -382,6 +383,8 @@ subcollection: blockchain-sw-25
 
 [Can I integrate my corporate LDAP server with the Certificate Authority (CA) in the {{site.data.keyword.blockchainfull_notm}} Platform?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-faq#ibp-v2-faq-ldap)
 
+[What is the process for rotating certificates on a periodic basis?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-faq#ibp-v2-faq-cert-mgmt)
+
 [What languages are supported for smart contracts?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-faq#ibp-v2-faq-v2-IBP-Overview-1-4)
 
 [What version of the {{site.data.keyword.blockchainfull_notm}} Platform works with the Ansible collection?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-faq#ibp-v2-faq-ansible-version)
@@ -408,11 +411,11 @@ subcollection: blockchain-sw-25
 {: #sitemap_deployment_options}
 
 
-[Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started)
-* [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-resources-required)
-* [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-browsers)
-* [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-storage)
-* [Choose your deployment option](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting started#deploy-ocp-choose)
+[Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started)
+* [Resources required](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-resources-required)
+* [Browsers](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-browsers)
+* [Storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage)
+* [Choose your deployment option](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-choose)
 
 [Deploy from Red Hat Marketplace](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm)
 * [What is the Red Hat Marketplace?](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-rhm#deploy-ocp-rhm-whatis)
