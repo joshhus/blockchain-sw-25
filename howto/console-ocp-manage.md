@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-26"
+lastupdated: "2020-08-28"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -27,8 +27,8 @@ subcollection: blockchain-sw-25
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-console-icp-manage">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage">2.1.3</a>
+    <a href="/docs/blockchain-sw?topic=blockchain-sw-console-icp-manage">2.1.2</a>,
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage">2.1.3</a>
     </p>
 </div>
 
@@ -332,7 +332,7 @@ You can view only the console logs if you are logged in as a console administrat
 ### Viewing your node logs
 {: #console-icp-manage-node-logs}
 
-Component logs can be viewed from the command line by using the [kubectl CLI commands](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/manage_cluster/install_kubectl.html){: external} or through [Kibana](https://www.elastic.co/products/kibana){: external} which is included in the OpenShift Container Platform.
+Component logs can be viewed from the command line by using the [kubectl CLI commands](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/manage_cluster/install_kubectl.html){: external} or through [Kibana](https://www.elastic.co/kibana){: external} which is included in the OpenShift Container Platform.
 
 - Use the `kubectl logs` command to view the container logs inside the pod. Follow the instructions to [Install the kubectl cli](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.2.0/manage_cluster/install_kubectl.html){: external} if you have not already done so. If you are unsure of your pod name, run the following command to view your list of pods.
 

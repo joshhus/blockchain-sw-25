@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-26"
+lastupdated: "2020-08-28"
 
 
 keywords: vs code extension, Visual Studio Code extension, smart contract, development tools, multicloud
@@ -27,8 +27,8 @@ subcollection: blockchain-sw-25
 <div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 10px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
-    <a href="https://cloud.ibm.com/docs/blockchain-sw?topic=blockchain-sw-develop-vscode">2.1.2</a>,
-    <a href="https://cloud.ibm.com/docs/blockchain-sw-213?topic=blockchain-sw-213-develop-vscode">2.1.3</a>
+    <a href="/docs/blockchain-sw?topic=blockchain-sw-develop-vscode">2.1.2</a>,
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-develop-vscode">2.1.3</a>
     </p>
 </div>
 
