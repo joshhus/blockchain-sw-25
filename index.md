@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-27"
+lastupdated: "2020-08-28"
 
 keywords: Kubernetes, IBM Cloud Private, OCP, OpenShift Container Platform, IBM Blockchain Platform, multicloud
 
@@ -38,7 +38,7 @@ Your entitlement includes the flexible management console for deploying and mana
 
 Experienced Hyperledger Fabric customers who prefer to deploy and manage their containers can download and use the peer, CA, orderer, and smart contract container images without the management console.
 
-The **{{site.data.keyword.blockchainfull_notm}} Platform 2.5** is purchased as a stand-alone entitlement. After purchase, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. This key is required to deploy the release or download the container images.
+The **{{site.data.keyword.blockchainfull_notm}} Platform 2.5** is purchased as a stand-alone entitlement. After purchase, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. This key is required to deploy the release or download the container images unless you are deploying from Red Hat Marketplace.
 
 With this offering, you are responsible for purchasing and provisioning your own Kubernetes cluster. Additionally, you will need to [open ports in your firewall](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-security#ibp-security-ibp-ports) if you are using one.
 {: important}
@@ -86,7 +86,7 @@ Are you a developer? Check out the [**{{site.data.keyword.blockchainfull_notm}} 
 
 3. If you are _not_ running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution, you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
 
-4. Get the entitlement key from your MyIBM account in order to install the platform. For more information, see [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key).
+4. If you are not deploying from Red Hat Marketplace, get the entitlement key from your MyIBM account in order to install the platform. For more information, see [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key).
 
 ## Step one: Install the {{site.data.keyword.blockchainfull_notm}} Platform
 {: #get-started-console-ocp-step-two-deploy-console}
