@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-26"
+lastupdated: "2020-08-28"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
 subcollection: blockchain-sw-25
@@ -166,7 +166,7 @@ The console has been working successfully, but after I upgraded my Mac OS to Cat
 
 There are three ways to resolve this problem:
 {: tsResolve}
-1.  Use a different [supported browser](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-browsers) with Catalina.
+1.  Use a different [supported browser](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-browsers) with Catalina.
 2. Use your own [TLS certificates when deploying on OpenShift Contain Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#console-deploy-ocp-use-your-own-tls-certificates-optional) or [TLS certificates when deploying on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-tls).
 3. Run the following commands to generate a new key and certificate pair for the console that will fix the problem.
    1. Run the following command to get the pod that corresponds to the console:
