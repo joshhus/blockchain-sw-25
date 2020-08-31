@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-08-31"
 
 keywords: IBM Blockchain Platform, release, new features, multicloud
 
@@ -18,6 +18,7 @@ subcollection: blockchain-sw-25
 {:important: .important}
 {:tip: .tip}
 {:external: target="_blank" .external}
+
 
 # What's new
 {: #whats-new}
@@ -67,4 +68,7 @@ If you have an existing {{site.data.keyword.blockchainfull_notm}} Platform v2.1.
 
 
 See the [Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-notes-saas-20#06-18-2020) for more details on the new features that are included in this release.
+
+
+
 
