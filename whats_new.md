@@ -72,32 +72,3 @@ See the [Release notes](/docs/blockchain-sw-25?topic=blockchain-sw-25-release-no
 
 
 
-
-
-## March 24, 2020
-{: #whats-new-03-24-2020}
-
-
-{{site.data.keyword.blockchainfull}} Platform v2.1.3 is now available.
-
-
-The following enhancements are included in this latest release: 
-- Red Hat OpenShift on LinuxONE (s390x)
-- Support for Hyperledger Fabric v1.4.6
-- Hardware Security Module (HSM) support for node identities
-- Support for adding and removing ordering nodes from an existing ordering service
-- Ability to override default CA, peer, ordering node configuration
-- Full Java smart contract development support
-
-
-If you have an existing {{site.data.keyword.blockchainfull_notm}} Platform v2.1.0, v2.1.1, or v2.1.2 deployment and are interested in upgrading to {{site.data.keyword.blockchainfull_notm}} Platform v2.1.3, see the following topics:
-- [Upgrading your console and components on the OpenShift Container Platform](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp)
-- [Upgrading your console and components on Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-k8)
-- [Upgrading the {{site.data.keyword.blockchainfull_notm}} images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images#blockchain-images-upgrade)
-
-
-See the [Release notes](/docs/blockchain?topic=blockchain-release-notes-saas-20#03-24-2020) for more details on the new features that are included in this release.
-
-We've streamlined the documentation. If you are an existing customer, you might notice that a new `Tutorials` section was added in the table of contents under `Learn`. We've aggregated all of the tutorials in a single location under the Tutorials heading to make them easier to find.
-
-
