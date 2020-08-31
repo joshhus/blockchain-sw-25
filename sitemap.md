@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-08-31"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -150,6 +150,8 @@ subcollection: blockchain-sw-25
 [August 27, 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-08-19-2020)
 
 [June 18, 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-06-18-2020)
+
+[March 24, 2020](/docs/blockchain-sw-25?topic=blockchain-sw-25-whats-new#whats-new-03-24-2020)
 
 
 ## Pricing
