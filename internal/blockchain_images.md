@@ -31,10 +31,10 @@ subcollection: blockchain-sw-25
 </div>
 
 
-For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchainfull}} Platform provides images for peer, CA, ordering service, and smart contract containers that are signed and supported by {{site.data.keyword.IBM_notm}}.
+For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchainfull}} Platform provides images for peer, CA, ordering service, and smart contract containers that are signed and supported by {{site.data.keyword.IBM_notm}}. These images are the commercial distribution of Hyperledger Fabric.
 {: shortdesc}
 
-These images are the commercial distribution of [Hyperledger Fabric](https://hyperledger-fabric.readthedocs.io/en/release-1.4/). A key benefit of the platform is that {{site.data.keyword.IBM_notm}} scans the open source code for security vulnerabilities daily and provides 24x7x365 support with SLAs appropriate for production environments, as well as keeps the images up to date with operating system and vulnerability patches. The images are based on [Red Hat Universal Base Image (UBI)](https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image){: external} and the blockchain components are enabled for HSM support.   
+A key benefit of the platform is that {{site.data.keyword.IBM_notm}} scans the open source code for security vulnerabilities daily as well as keeps the images up to date with operating system and vulnerability patches. Additionally, {{site.data.keyword.IBM_notm}} provides 24x7x365 support with SLAs appropriate for production environments.  The images are based on [Red Hat Universal Base Image (UBI)](https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image){: external} and the blockchain components are enabled for HSM support.   
 
 {{site.data.keyword.blockchainfull_notm}} Platform images can be purchased through an entitlement to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5. The images are bundled with support from {{site.data.keyword.IBM_notm}}. While it is possible to configure mixed networks that include components from the {{site.data.keyword.blockchainfull_notm}} Platform and Hyperledger Fabric community version, {{site.data.keyword.IBM_notm}} support is limited to {{site.data.keyword.blockchainfull_notm}} components.  {{site.data.keyword.IBM_notm}} does not support blockchain components that are deployed using the open source Hyperledger Fabric Docker images.
 
