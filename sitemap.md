@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-31"
+lastupdated: "2020-09-01"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -105,7 +105,7 @@ subcollection: blockchain-sw-25
 [Already have an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x network and want to upgrade?](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-upgrade)
 
 [Is {{site.data.keyword.blockchainfull_notm}} Platform 2.5 suitable for you?](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable)
-* [Developer Tools](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp##get-started-console-ocp-dev-tools)
+* [Developer Tools](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-dev-tools)
 
 [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-set-up-ocp)
 
