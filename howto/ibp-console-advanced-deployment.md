@@ -89,7 +89,6 @@ After you have deployed the node, you need to **monitor the resource consumption
 
 All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage). 
 
-
 You are responsible for monitoring your CPU, memory, and storage consumption in your cluster. If you do happen to request more resources for a blockchain node than are available, the node will not start. However, existing nodes will not be affected. For information about how to increase the CPU, memory, and storage, consult the documentation of your cloud provider.
 {:note}
 
@@ -1328,6 +1327,10 @@ Configuring a node to use HSM is a three-part process:
 3. **Configure the node to use HSM**.  From the APIs or the console, when you deploy a peer, CA, or ordering node, you can select the advanced option to use an HSM. See [Configure the node to use the HSM](#ibp-console-adv-deployment-cfg-hsm-node).
 
 
+You have completed the HSM configuration for your blockchain network. Now when you deploy a new CA, peer, or odering node, you can configure it to use the HSM that you have configured here.
+See [Configuring a CA, peer, or ordering node to use the HSM](#ibp-console-adv-deployment-cfg-hsm-node) for details.
+
+
 
 ### Setting up a PKCS #11 proxy for your HSM
 {: #ibp-console-adv-deployment-pkcs11-proxy}
@@ -1627,15 +1630,15 @@ Before attempting these steps you should have:
 
 Then you are ready to deploy a new CA, peer, or ordering node that uses the HSM.
 
-When you deploy a new node from the console, ensure that you select the advanced deployment option **Hardware security module (HSM)**.
+When you deploy a new node from the console, ensure that you select the advanced deployment option **Hardware security module (HSM)**. 
 
 ![Configuring a node to use HSM](../images/hsm-cfg.png "Configuring a node to use HSM"){: caption="Figure 1. Configuring a node to use HSM" caption-side="bottom"}
 
-On the **HSM configuration** panel,  enter the following values:
+On the **HSM configuration** panel,   enter the following values:
 
-- **HSM proxy endpoint** - Enter the url for the PKCS #11 proxy that begins with `tcp://` and includes the `CLUSTER-IP` address and `PORT`. For example, `tcp://172.21.106.217:2345`.
+- **HSM proxy endpoint** -Enter the url for the PKCS #11 proxy that begins with `tcp://` and includes the `CLUSTER-IP` address and `PORT`. For example, `tcp://172.21.106.217:2345`. 
 - **HSM label** - Enter the name of the HSM partition to be used for this node.
-- **HSM PIN** - Enter the PIN for the HSM slot.
+- **HSM PIN** - Enter the PIN for the HSM slot.  
 
 Lastly, on the CA **Summary** panel, you can override the default HSM configuration, for example if you want to customize which crypto library implementation to use. Click **Edit configuration JSON (Advanced)** on the **Summary** panel to view the `JSON`. Scroll down to the `BCCSP (Blockchain Crypto Service Provider) section` where you can modify the crypto library settings. For example, if you are using AWS HSM, you also need to include additional parameters in the BCCSP section of the configuration for your node. See [Fabric documentation](https://hyperledger-fabric.readthedocs.io/en/release-1.4/hsm.html#example) for details.
 
