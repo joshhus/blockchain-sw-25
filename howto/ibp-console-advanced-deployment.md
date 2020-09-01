@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-08-31"
+lastupdated: "2020-09-01"
 
 keywords: deployment, advanced, CouchDB, LevelDB, external CA, HSM, resource allocation
 
@@ -87,7 +87,8 @@ The **Resource allocation** panel in the console provides default values for the
 After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as [Sysdig](https://sysdig.com/platform/){: external} to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
 {: important}
 
-All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-storage). 
+All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage). 
+
 
 You are responsible for monitoring your CPU, memory, and storage consumption in your cluster. If you do happen to request more resources for a blockchain node than are available, the node will not start. However, existing nodes will not be affected. For information about how to increase the CPU, memory, and storage, consult the documentation of your cloud provider.
 {:note}
