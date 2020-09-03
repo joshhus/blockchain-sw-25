@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-02"
+lastupdated: "2020-09-03"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -130,7 +130,8 @@ See the [My Support](https://www.ibm.com/support/pages/node/1072956){: external}
 The images do not include the {{site.data.keyword.blockchainfull_notm}} Platform console or operator. This offering is meant for experienced Fabric users with existing deployments. If you are still exploring Hyperledger Fabric, you can get started with [{{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks#ibp-v2-deploy-iks).
 {:important}
 
-- {{site.data.keyword.blockchainfull_notm}} provides support for Hyperledger Fabric only if you purchase {{site.data.keyword.blockchainfull_notm}} 2.5, which is the commercial distribution of Hyperledger Fabric, and deploy the {{site.data.keyword.blockchainfull_notm}} images. You cannot purchase support for the Hyperledger Fabric Docker images that are provided by the Hyperledger community. {{site.data.keyword.blockchainfull_notm}} does not support images that have been altered.
+- {{site.data.keyword.blockchainfull_notm}} provides support for Hyperledger Fabric only if you purchase {{site.data.keyword.blockchainfull_notm}} 2.5 and deploy the commercial distribution of Hyperledger Fabric images that comes with it. You cannot purchase support for the Hyperledger Fabric Docker images that are provided by the Hyperledger community.
+- {{site.data.keyword.blockchainfull_notm}} does not support images that have been altered.
 - You cannot use the {{site.data.keyword.blockchainfull_notm}} Platform console to deploy or operate these images. But, if you download the image for the gRPC web proxy and connect the proxy to node that you deploy, you can import the node into an existing {{site.data.keyword.blockchainfull_notm}} Platform console. After you import a node into the console, you can operate that node alongside nodes that were deployed by using the {{site.data.keyword.blockchainfull_notm}} Platform.
 
 ## License and pricing
