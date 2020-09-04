@@ -613,7 +613,7 @@ subcollection: blockchain-sw-25
   * [Create the role binding](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-createrole-fw)
 * [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-operator-firewall)
 * [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-console)
-  * [Advanced deployment options](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#console-deploy-ocp-advanced-firewall)
+  * [Advanced deployment options](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#console-deploy-k8-advanced-firewall)
   * [Use your own TLS Certificates (Optional)](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-tls-fw)
   * [Verifying the console installation](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-verify-fw)
 * [Log in to the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-log-in-fw)
