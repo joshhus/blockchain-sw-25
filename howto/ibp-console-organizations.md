@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-04"
 
 keywords: organizations, MSPs, create an MSP, MSP JSON file, consortium, system channel, remove an organization, multicloud
 
@@ -334,6 +334,7 @@ Create a JSON file by using the following format:
 
 ```json
 {
+    "name": "<organization_name>",
     "display_name": "<organization_name>",
     "msp_id": "<organization_id>",
     "type": "msp",
@@ -366,7 +367,6 @@ Create a JSON file by using the following format:
         }
     },
     "host_url": "<url>",
-    "external": false
 }
 ```
 {:codeblock}
