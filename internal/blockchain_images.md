@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-31"
+lastupdated: "2020-09-03"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -10,14 +10,85 @@ subcollection: blockchain-sw-25
 
 ---
 
-{:shortdesc: .shortdesc}
-{:screen: .screen}
+{:DomainName: data-hd-keyref="APPDomain"}
+{:DomainName: data-hd-keyref="DomainName"}
+{:android: data-hd-operatingsystem="android"}
+{:apikey: data-credential-placeholder='apikey'}
+{:app_key: data-hd-keyref="app_key"}
+{:app_name: data-hd-keyref="app_name"}
+{:app_secret: data-hd-keyref="app_secret"}
+{:app_url: data-hd-keyref="app_url"}
+{:authenticated-content: .authenticated-content}
+{:beta: .beta}
+{:c#: data-hd-programlang="c#"}
 {:codeblock: .codeblock}
-{:note: .note}
-{:important: .important}
-{:tip: .tip}
-{:pre: .pre}
+{:curl: .ph data-hd-programlang='curl'}
+{:deprecated: .deprecated}
+{:dotnet-standard: .ph data-hd-programlang='dotnet-standard'}
+{:download: .download}
 {:external: target="_blank" .external}
+{:faq: data-hd-content-type='faq'}
+{:fuzzybunny: .ph data-hd-programlang='fuzzybunny'}
+{:generic: data-hd-operatingsystem="generic"}
+{:generic: data-hd-programlang="generic"}
+{:gif: data-image-type='gif'}
+{:go: .ph data-hd-programlang='go'}
+{:help: data-hd-content-type='help'}
+{:hide-dashboard: .hide-dashboard}
+{:hide-in-docs: .hide-in-docs}
+{:important: .important}
+{:ios: data-hd-operatingsystem="ios"}
+{:java: #java .ph data-hd-programlang='java'}
+{:java: .ph data-hd-programlang='java'}
+{:java: data-hd-programlang="java"}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:javascript: data-hd-programlang="javascript"}
+{:new_window: target="_blank"}
+{:note: .note}
+{:objectc data-hd-programlang="objectc"}
+{:org_name: data-hd-keyref="org_name"}
+{:php: data-hd-programlang="php"}
+{:pre: .pre}
+{:preview: .preview}
+{:python: .ph data-hd-programlang='python'}
+{:python: data-hd-programlang="python"}
+{:route: data-hd-keyref="route"}
+{:row-headers: .row-headers}
+{:ruby: .ph data-hd-programlang='ruby'}
+{:ruby: data-hd-programlang="ruby"}
+{:runtime: architecture="runtime"}
+{:runtimeIcon: .runtimeIcon}
+{:runtimeIconList: .runtimeIconList}
+{:runtimeLink: .runtimeLink}
+{:runtimeTitle: .runtimeTitle}
+{:screen: .screen}
+{:script: data-hd-video='script'}
+{:service: architecture="service"}
+{:service_instance_name: data-hd-keyref="service_instance_name"}
+{:service_name: data-hd-keyref="service_name"}
+{:shortdesc: .shortdesc}
+{:space_name: data-hd-keyref="space_name"}
+{:step: data-tutorial-type='step'}
+{:subsection: outputclass="subsection"}
+{:support: data-reuse='support'}
+{:swift: #swift .ph data-hd-programlang='swift'}
+{:swift: .ph data-hd-programlang='swift'}
+{:swift: data-hd-programlang="swift"}
+{:table: .aria-labeledby="caption"}
+{:term: .term}
+{:tip: .tip}
+{:tooling-url: data-tooling-url-placeholder='tooling-url'}
+{:troubleshoot: data-hd-content-type='troubleshoot'}
+{:tsCauses: .tsCauses}
+{:tsResolve: .tsResolve}
+{:tsSymptoms: .tsSymptoms}
+{:tutorial: data-hd-content-type='tutorial'}
+{:unity: .ph data-hd-programlang='unity'}
+{:url: data-credential-placeholder='url'}
+{:user_ID: data-hd-keyref="user_ID"}
+{:vb.net: .ph data-hd-programlang='vb.net'}
+{:video: .video}
+
 
 # Using the {{site.data.keyword.blockchainfull_notm}} images
 {: #blockchain-images}
@@ -31,12 +102,12 @@ subcollection: blockchain-sw-25
 </div>
 
 
-For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchainfull}} Platform provides images for peer, CA, ordering service, and smart contract containers that are signed and supported by {{site.data.keyword.IBM_notm}}. These images are the commercial distribution of Hyperledger Fabric.
+For experienced Hyperledger Fabric customers, the {{site.data.keyword.blockchainfull}} Platform provides images for peer, CA, ordering service, and smart contract containers that are signed and supported by {{site.data.keyword.IBM_notm}}. These images are the commercial distribution of Hyperledger Fabric v1.4.7 and v2.x.
 {: shortdesc}
 
 A key benefit of using these images over the open source community version is that {{site.data.keyword.IBM_notm}} scans the open source code for security vulnerabilities daily as well as keeps the images up to date with operating system and vulnerability patches. Additionally, {{site.data.keyword.IBM_notm}} provides 24x7x365 support with SLAs appropriate for production environments.  The images are based on [Red Hat Universal Base Image (UBI)](https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image){: external} and the blockchain components are enabled for HSM support.   
 
-{{site.data.keyword.blockchainfull_notm}} Platform images can be purchased through an entitlement to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5. The images are bundled with support from {{site.data.keyword.IBM_notm}}. While it is possible to configure mixed networks that include components from the {{site.data.keyword.blockchainfull_notm}} Platform and Hyperledger Fabric community version, {{site.data.keyword.IBM_notm}} support is limited to {{site.data.keyword.blockchainfull_notm}} components.  {{site.data.keyword.IBM_notm}} does not support blockchain components that are deployed using the open source Hyperledger Fabric Docker images.
+{{site.data.keyword.blockchainfull_notm}} Platform images can be purchased through an entitlement to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5. The images are bundled with support from {{site.data.keyword.IBM_notm}}. While it is possible to configure mixed networks that include components (CAs, peers, and ordering nodes) from the {{site.data.keyword.blockchainfull_notm}} Platform and Hyperledger Fabric community version, {{site.data.keyword.IBM_notm}} support is limited to {{site.data.keyword.blockchainfull_notm}} components.  {{site.data.keyword.IBM_notm}} does not support blockchain components that are deployed using the open source Hyperledger Fabric Docker images.
 
 ## Supported Platforms
 {: #blockchain-images-supported-platforms}
@@ -59,9 +130,9 @@ See the [My Support](https://www.ibm.com/support/pages/node/1072956){: external}
 The images do not include the {{site.data.keyword.blockchainfull_notm}} Platform console or operator. This offering is meant for experienced Fabric users with existing deployments. If you are still exploring Hyperledger Fabric, you can get started with [{{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks#ibp-v2-deploy-iks).
 {:important}
 
-- {{site.data.keyword.blockchainfull_notm}} provides support for Hyperledger Fabric only if you purchase {{site.data.keyword.blockchainfull_notm}} 2.5 and deploy the {{site.data.keyword.blockchainfull_notm}} images. You cannot purchase support for the Hyperledger Fabric Docker images that are provided by the Hyperledger community. {{site.data.keyword.blockchainfull_notm}} does not support images that have been altered.
-- You cannot use the {{site.data.keyword.blockchainfull_notm}} Platform console to deploy or operate the images.
-- If you download the image for the gRPC web proxy and connect the proxy to node that you deploy, you can import the node into an {{site.data.keyword.blockchainfull_notm}} Platform console. After you import a node into the console, you can operate that node alongside nodes that were deployed by using the {{site.data.keyword.blockchainfull_notm}} Platform.
+- {{site.data.keyword.blockchainfull_notm}} provides support for Hyperledger Fabric only if you purchase {{site.data.keyword.blockchainfull_notm}} 2.5 and deploy the commercial distribution of Hyperledger Fabric images that comes with it. You cannot purchase support for the Hyperledger Fabric Docker images that are provided by the Hyperledger community.
+- {{site.data.keyword.blockchainfull_notm}} does not support images that have been altered.
+- You cannot use the {{site.data.keyword.blockchainfull_notm}} Platform console to deploy or operate these images. But, if you download the image for the gRPC web proxy and connect the proxy to node that you deploy, you can import the node into an existing {{site.data.keyword.blockchainfull_notm}} Platform console. After you import a node into the console, you can operate that node alongside nodes that were deployed by using the {{site.data.keyword.blockchainfull_notm}} Platform.
 
 ## License and pricing
 {: #blockchain-images-license}

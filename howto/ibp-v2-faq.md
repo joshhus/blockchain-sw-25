@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-01"
+lastupdated: "2020-09-02"
 
 keywords: FAQs, can I, upgrade, what version, peer ledger database, supported languages, why do I, regions, multicloud
 
@@ -54,6 +54,7 @@ subcollection: blockchain-sw-25
 - [Can I integrate my corporate LDAP server with the Certificate Authority (CA) in the {{site.data.keyword.blockchainfull_notm}} Platform?](#ibp-v2-faq-ldap)
 - [What is the process for rotating certificates on a periodic basis?](#ibp-v2-faq-cert-mgmt)
 
+
 **For developers**
 
 - [What languages are supported for smart contracts?](#ibp-v2-faq-v2-IBP-Overview-1-4)
@@ -82,6 +83,8 @@ For an updated list of all the {{site.data.keyword.blockchainfull_notm}} Platfor
 It is important to note that the {{site.data.keyword.blockchainfull_notm}} support only spans across Hyperledger Fabric based component issues for customers who have purchased the Blockchain Platform. Some examples include assistance in Fabric upgrades, chaincode instantiation, adding peers to channels, etc.
 
 On the other hand, {{site.data.keyword.blockchainfull_notm}} will not provide deployment support for environments outside of the supported platform. This means the customer is free to deploy into an environment of their choice from the list above, and should have the same {{site.data.keyword.blockchainfull_notm}} Platform experience as they would when they deploy into the {{site.data.keyword.cloud_notm}}. But it will be up to the customer to configure the network and address their own infrastructure related issues. Examples of these types of issues include failed deployment to a Kubernetes service, infrastructure capacity, custom firewall settings, etc.
+
+
 
 ## Does {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 run on OpenShift on {{site.data.keyword.cloud_notm}}?
 {: #ibp-v2-faq-saas-ocp}

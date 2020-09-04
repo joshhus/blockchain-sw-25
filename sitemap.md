@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-01"
+lastupdated: "2020-09-04"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -613,7 +613,7 @@ subcollection: blockchain-sw-25
   * [Create the role binding](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-createrole-fw)
 * [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform operator](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-operator-firewall)
 * [Deploy the {{site.data.keyword.blockchainfull_notm}} Platform console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-console)
-  * [Advanced deployment options](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#console-deploy-ocp-advanced-firewall)
+  * [Advanced deployment options](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#console-deploy-k8-advanced-firewall)
   * [Use your own TLS Certificates (Optional)](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-tls-fw)
   * [Verifying the console installation](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-verify-fw)
 * [Log in to the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8-firewall#deploy-k8-log-in-fw)
@@ -858,7 +858,7 @@ subcollection: blockchain-sw-25
   * [Interacting with your smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-submitting-transactions)
   * [Connecting your applications to the preconfigured network](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-exploring-connection-details)
 * [Step five: Debug a smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-development-mode)
-* [Step six: Test an instantiated smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-testing-instantiated-smart-contract)
+* [Step six: Test an instantiated  smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-testing-instantiated-smart-contract)
 * [Step seven: Connect to your {{site.data.keyword.blockchainfull_notm}} Platform network](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-connecting-ibp)
   * [Invoke a smart contract that has been instantiated on your channels](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-connecting-ibp-invoke)
   * [Install and instantiate a smart contract from VS Code](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode#develop-vscode-connecting-ibp-install-instantiate)

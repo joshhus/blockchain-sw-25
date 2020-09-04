@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-04"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -1214,7 +1214,7 @@ kubectl apply -f ibp-console.yaml -n <NAMESPACE>
 Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace. Before you install the console, you might want to review the advanced deployment options in the next section. The console can take a few minutes to deploy.
 
 ### Advanced deployment options
-{: #console-deploy-ocp-advanced-firewall}
+{: #console-deploy-k8-advanced-firewall}
 
 You can edit the `ibp-console.yaml` file to allocate more resources to your console or use zones for high availability in a multizone cluster. To take advantage of these deployment options, you can use the console resource definition with the `resources:` and `clusterdata:` sections added:
 
