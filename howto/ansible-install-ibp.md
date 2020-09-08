@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-08-27"
+lastupdated: "2020-09-08"
 
 keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy
 
@@ -72,7 +72,7 @@ The first time you log in, you are required to change your password, and then lo
 {: note}
 
 ## Next steps
-{: #ansible-install-ibp-playbook}
+{: #ansible-install-ibp-playbook-next}
 
 If you are simply interested in automating the process of installing the {{site.data.keyword.blockchainfull_notm}} Platform, you are done. You can use the console UI or APIs to create your blockchain components. If you are not familiar with the process to build a network using the console, check out the [tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network) that walks you through the steps of building a sample network.
 

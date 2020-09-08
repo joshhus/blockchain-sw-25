@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-04"
 
 keywords: import nodes, another console, import a CA, import a peer, import admin identities, import an ordering service node
 
@@ -145,6 +145,7 @@ The exports and imports of MSPs are performed in the **Organizations** tab.
  1. Navigate to the **Organizations** tab and click **Import MSP**.
  2. Browse to the MSP JSON file and click **Add file**.
  3. Click **Import MSP**.  
+
 
  
 

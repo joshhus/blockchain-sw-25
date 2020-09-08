@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-04"
+lastupdated: "2020-09-08"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -488,7 +488,7 @@ subcollection: blockchain-sw-25
 * [Prerequisites](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-prereqs)
   * [Gather your Kubernetes cluster details](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-k8s-cluster)
 * [Build the Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)
-* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)
+* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook-next)
 
 
 ## Upgrading your console and components
@@ -921,7 +921,7 @@ subcollection: blockchain-sw-25
 * [Prerequisites](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-prereqs)
   * [Gather your Kubernetes cluster details](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-k8s-cluster)
 * [Build the Ansible playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)
-* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook)
+* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp#ansible-install-ibp-playbook-next)
 
 [Building an IBM Blockchain Platform network using Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-build)
 * [Prerequisites](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-build#ansible-build-prereqs)
