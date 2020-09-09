@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-09-09"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, fix pack, multicloud
 
@@ -153,7 +153,11 @@ docker login --username cp --password <KEY> cp.icr.io
 
 - Replace `<KEY>` with your entitlement key.
 
-After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform 2.5:
+After you log in, use the following command to pull the images for {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
+
+If you are deploying on OpenShift Container Platform on LinuxONE, you need to replace `amd64` with `s390x` throughout these instructions.
+{: important}
+
 ```
 docker pull cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64
 docker pull cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64
