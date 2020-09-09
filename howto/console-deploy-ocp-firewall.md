@@ -49,7 +49,7 @@ You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a
 
 2. You cannot deploy both an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 instance to the same cluster. If you need to run both instances of the product, then they must be running in separate clusters.
 
-3. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external}to deploy the platform.
+3. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform.
 
 ## Get your entitlement key
 {: #deploy-ocp-entitlement-key-firewall}
