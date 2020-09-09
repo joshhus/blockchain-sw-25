@@ -66,6 +66,7 @@ IBM Blockchain Platform 2.5
 		howto/ibp-console-import-nodes.md
 		howto/ibp-console-identities.md
 		howto/ibp-console-organizations.md
+		howto/ibp-console-certificates.md
 		howto/ibp-console-govern-components.md
 		/blockchain/blockchain-operations_service
 
