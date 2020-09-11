@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-31"
+lastupdated: "2020-09-11"
 
 keywords: Kubernetes, IBM Cloud Private, OCP, OpenShift Container Platform, IBM Blockchain Platform, multicloud
 
@@ -93,6 +93,8 @@ Are you a developer? Check out the [**{{site.data.keyword.blockchainfull_notm}} 
 3. If you are _not_ running the platform on Red Hat OpenShift Container Platform or Red Hat Open Kubernetes Distribution, you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}.
 
 4. If you are not deploying from Red Hat Marketplace, get the entitlement key from your MyIBM account in order to install the platform. For more information, see [Get your entitlement key](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp#deploy-ocp-entitlement-key).
+
+5. Review the persistent storage considerations for [OpenShift](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage) or [Kubernetes](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#deploy-k8-storage) depending on your platform.
 
 ## Step one: Install the {{site.data.keyword.blockchainfull_notm}} Platform
 {: #get-started-console-ocp-step-two-deploy-console}
