@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-09"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
@@ -151,6 +151,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with 
 | OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../icons/checkmark-icon.svg) |
 | Kubernetes ***    | v1.15 - v1.18 | x86_64 | ![Checkmark icon](../icons/checkmark-icon.svg) v1.15, v1.16, v1.17|
 {: caption="Table 1. Supported platforms" caption-side="bottom"}
+
 *** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform 2.5 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).    
 
 If you are running on Azure Kubernetes Service, Amazon Web Services, Rancher, Amazon Elastic Kubernetes Service, or Google Kubernetes Engine, then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}. For more information, see [Considerations when using Kubernetes distributions](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#console-deploy-k8-considerations).

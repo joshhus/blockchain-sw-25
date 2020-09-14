@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-09"
+lastupdated: "2020-09-14"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -38,7 +38,7 @@ You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a
 
 ## Need to Know
 
-- If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the public internet, your JavaScript or TypeScript chaincode will not be able to download external depenencies when the chaincode is instantiated. You need point to a local NPM registry for your chaincode to access the required dependencies. This problem does not occur if you are using Go chaincode.
+- If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the public internet, your JavaScript or TypeScript smart contract will not be able to download external dependencies when it is instantiated. You need point to a local NPM registry for your smart contract to access the required dependencies. See [Building Node.js Contracts with limited internet access](https://hyperledgendary.github.io/docs/goodpractise/nodejs_building_limited_access.html){: external}. This problem does not occur if you are using smart contracts that are written in Go.
 
 - After you deploy your peer and ordering nodes, you need to expose the ports of your nodes for your network to be able to respond to requests from applications or nodes outside your firewall. For more information about the ports that you need to expose, see [Internet Ports](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-security#ibp-security-ibp-ports) in the security guide.
 
@@ -49,7 +49,7 @@ You can deploy the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 onto a
 
 2. You cannot deploy both an {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 instance to the same cluster. If you need to run both instances of the product, then they must be running in separate clusters.
 
-3. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external}to deploy the platform.
+3. You need to install and connect to your cluster by using [OpenShift Container Platform CLI](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html){: external} to deploy the platform.
 
 ## Get your entitlement key
 {: #deploy-ocp-entitlement-key-firewall}
