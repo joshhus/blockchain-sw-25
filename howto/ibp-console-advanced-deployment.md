@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-14"
+lastupdated: "2020-09-15"
 
 keywords: deployment, advanced, CouchDB, LevelDB, external CA, HSM, resource allocation
 
@@ -509,7 +509,7 @@ Only the following fields can be updated:
 		},
 		"cfg": {
 			"identities": {
-				"passwordattempts": 10,
+				"passwordattempts": 10
 			}
 		},
 		"metrics": {
