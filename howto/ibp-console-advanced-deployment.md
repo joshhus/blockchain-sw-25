@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-15"
+lastupdated: "2020-09-16"
 
 keywords: deployment, advanced, CouchDB, LevelDB, external CA, HSM, resource allocation
 
@@ -84,7 +84,7 @@ While the figures in this topic endeavor to be precise, be aware that there are 
 
 The **Resource allocation** panel in the console provides default values for the various fields that are involved in creating a node. These values are chosen because they represent a good way to get started. However, every use case is different. While this topic provides guidance for ways to think about these values, it ultimately falls to the user to monitor their nodes and find sizings that work for them. Therefore, barring situations in which users are certain that they need values different from the defaults, a practical strategy is to use these defaults at first and adjust them later. For an overview of performance and scale of Hyperledger Fabric, which the {{site.data.keyword.blockchainfull_notm}} Platform is based on, see [Answering your questions on Hyperledger Fabric performance and scale](https://www.ibm.com/blogs/blockchain/2019/01/answering-your-questions-on-hyperledger-fabric-performance-and-scale/){: external}.
 
-After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as [Sysdig](https://sysdig.com/platform/){: external} to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
+After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as [Sysdig](https://sysdig.com/secure-devops-platform/){: external} to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
 {: important}
 
 All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage). 
@@ -610,7 +610,7 @@ As we noted in our section on [Considerations before you deploy a node](#ibp-con
 | **Smart contract container CPU and memory** | When you expect a high throughput on a channel, especially in cases where multiple smart contracts will be invoked at the same time. You should also increase the resource allocation of your peers if your smart contracts are written in JavaScript or TypeScript.|
 | **Smart contract launcher container CPU and memory** | Because the smart contract launcher container streams logs from smart contracts back to a peer, the more smart contracts are running the greater the load on the smart contract launcher. |
 
-The {{site.data.keyword.blockchainfull_notm}} Platform supports smart contracts that are written in JavaScript, TypeScript, Java, and Go. When you are allocating resources to your peer node, it is important to note that JavaScript and TypeScript smart contracts require more resources than contracts written in Go. The default storage allocation for the peer container is sufficient for most smart contracts. However, when you instantiate a smart contract, you should actively monitor the resources consumed by the pod that contains the smart contract in your cluster by using a tool like [Sysdig](https://sysdig.com/platform/){: external} to ensure that adequate resources are available.
+The {{site.data.keyword.blockchainfull_notm}} Platform supports smart contracts that are written in JavaScript, TypeScript, Java, and Go. When you are allocating resources to your peer node, it is important to note that JavaScript and TypeScript smart contracts require more resources than contracts written in Go. The default storage allocation for the peer container is sufficient for most smart contracts. However, when you instantiate a smart contract, you should actively monitor the resources consumed by the pod that contains the smart contract in your cluster by using a tool like [Sysdig](https://sysdig.com/secure-devops-platform/){: external} to ensure that adequate resources are available.
 {: important}
 
 For more details on the resource allocation panel in the console see [Allocating resource](#ibp-console-adv-deployment-allocate-resources).

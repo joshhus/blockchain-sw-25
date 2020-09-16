@@ -147,7 +147,7 @@ You cannot currently deploy blockchain nodes to multiple hosted cloud providers.
 {: faq}
 {: support}
 
-You are responsible for the health monitoring and resource allocation of the blockchain nodes in your Kubernetes cluster. While requests against the nodes are being actively processed, you should be monitoring for spikes in resource consumption to avoid problems. You can configure a monitoring tool, such as [Sysdig](https://sysdig.com/platform/){: external} with alert notifications for the nodes in your cluster.
+You are responsible for the health monitoring and resource allocation of the blockchain nodes in your Kubernetes cluster. While requests against the nodes are being actively processed, you should be monitoring for spikes in resource consumption to avoid problems. You can configure a monitoring tool, such as [Sysdig](https://sysdig.com/secure-devops-platform/){: external} with alert notifications for the nodes in your cluster.
 
 You should be aware that JavaScript and TypeScript smart contracts require more resources than contracts written in Golang. Therefore, when you are allocating resources to your cluster, it is important to ensure adequate resources are available to your smart contract pods when they are instantiated on a channel and during transaction processing. The pods containing the smart contracts will consume as much resources as they need to function.
 {: tip}
