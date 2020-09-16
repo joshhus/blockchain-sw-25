@@ -237,6 +237,7 @@ subcollection: blockchain-sw-25
 
 [Deploy a smart contract on the network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts)
 * [Sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-structure)
+* [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-before)
 * [Step one: Write and package your smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-write-package)
   * [Vendoring smart contracts](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-write-package-vendor)
 * [Step two: Install a smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-install)
@@ -503,6 +504,8 @@ subcollection: blockchain-sw-25
 
 [Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-steps)
 * [Roll back an upgrade](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-rollback)
+
+[Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-before)
 
 [Step one: Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-ibpinfra)
 
