@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-15"
+lastupdated: "2020-09-16"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -305,8 +305,7 @@ subcollection: blockchain-sw-25
   * [Multizone HA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone)
   * [Multi-region HA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-region)
 * [Disaster recovery (DR)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-dr)
-  * [Stopping nodes to prepare for a backup](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-stop-nodes)
-  * [Node considerations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-dr-node-considerations)
+  * [Backup and recovery](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-stop-nodes)
 
 [Setting up multiregion High Availability (HA) deployments for peers](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-hadr-mr)
 * [Overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-hadr-mr#ibp-console-hadr-overview)
