@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-17"
 
 keywords: APIs, build a network, authentication, service credentials, API key, API endpoint, IAM access token, Fabric CA client, import a network, generate certificates
 
@@ -77,7 +77,8 @@ Use the request below to create an API key and secret. You can then use this key
 
 ### Example curl request: Create API key
 {: #console-icp-manage-create-api-key-example}
-```curl
+
+```bash
 curl -X POST \
   https://openshiftcluster.us-south.containers.appdomain.cloud:443/ak/api/v2/permissions/keys \
   -u user@email.com:password \
@@ -104,7 +105,8 @@ Once you have created an API key and secret, you can use the APIs to view or rem
 
 ### Example curl request: view API keys
 {: #console-icp-manage-view-api-key-example}
-```curl
+
+```bash
 curl -X GET \
   https://openshiftcluster.us-south.containers.appdomain.cloud:443/ak/api/v2/permissions/keys \
   -k \
@@ -124,7 +126,7 @@ curl -X GET \
 {: #console-icp-manage-delete-api-keys-example}
 
 
-```curl
+```bash
 curl -X DELETE \
   https://openshiftcluster.us-south.containers.appdomain.cloud:443/ak/api/v2/permissions/keys/<api_key> \
   -k \
