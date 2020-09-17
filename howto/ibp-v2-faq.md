@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-16"
+lastupdated: "2020-09-17"
 
 keywords: FAQs, can I, upgrade, what version, peer ledger database, supported languages, why do I, regions, multicloud
 
@@ -84,8 +84,6 @@ It is important to note that the {{site.data.keyword.blockchainfull_notm}} suppo
 
 On the other hand, {{site.data.keyword.blockchainfull_notm}} will not provide deployment support for environments outside of the supported platform. This means the customer is free to deploy into an environment of their choice from the list above, and should have the same {{site.data.keyword.blockchainfull_notm}} Platform experience as they would when they deploy into the {{site.data.keyword.cloud_notm}}. But it will be up to the customer to configure the network and address their own infrastructure related issues. Examples of these types of issues include failed deployment to a Kubernetes service, infrastructure capacity, custom firewall settings, etc.
 
-
-
 ## Does {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 run on OpenShift on {{site.data.keyword.cloud_notm}}?
 {: #ibp-v2-faq-saas-ocp}
 {: faq}
@@ -94,6 +92,8 @@ Yes. The {{site.data.keyword.blockchainfull_notm}} Platform can be purchased and
 - [{{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/services/blockchain-platform){: external} is deployed and runs on [IBM Cloud](https://cloud.ibm.com/kubernetes/catalog/openshiftcluster){: external}.
 - {{site.data.keyword.blockchainfull_notm}} Platform is also available as a software offering that can be deployed on Red Hat OpenShift and can run in all environments where OpenShift Container Platform (OCP) is supported. Read more about running OpenShift Container Platform [here](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about).
 - Finally, experienced Hyperledger Fabric customers also have the option to download and use the peer, CA, orderer, and smart contract container [images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images).
+
+
 
 
 ## How can I find what version of the {{site.data.keyword.blockchainfull_notm}} Platform that I am running?
