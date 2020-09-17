@@ -933,7 +933,6 @@ subcollection: blockchain-sw-25
 * [Why would I want to use an Ansible playbook?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-why)
 * [Considerations and Limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-limits)
 * [Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-getting-started)
-  * [Build the Docker image](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-docker-build)
 * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-next-steps)
 * [Where to find support](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-support)
 
