@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-15"
+lastupdated: "2020-09-18"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
@@ -109,15 +109,10 @@ The {{site.data.keyword.blockchainfull}} Platform 2.5 enables a consortium of or
 
 Watch the following video for an introduction to blockchain and the {{site.data.keyword.blockchainfull}} Platform:
 
-<p>
-  <div class="embed-responsive embed-responsive-16by9" data-hd-video="video">
-<iframe class="embed-responsive-item" id="youtubeplayer2" title="Key concepts and introduction to IBM Blockchain Platform" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/AvQa1W38J4I" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
-</div>
-</p>
+![Key concepts video](https://www.youtube.com/embed/AvQa1W38J4I){: video output="iframe" data-script="#video-transcript-key-concepts" id="youtubeplayer" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen}
 
-## Video transcript
-{: #transcript-key-concepts}
-{: script}
+### Video script
+{: #video-transcript-key-concepts}
 {: notoc}
 
 By now you’ve probably heard of the IBM Blockchain Platform, the leading permissioned enterprise blockchain solution in the world. But what is a permissioned blockchain? And what is the IBM Blockchain Platform? The modern world is interwoven and interactive place.
