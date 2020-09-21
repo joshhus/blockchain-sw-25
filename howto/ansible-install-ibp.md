@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-09-21"
 
 keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy
 
@@ -50,7 +50,7 @@ Before you can deploy the {{site.data.keyword.blockchainfull_notm}} Platform to 
 
 - The name of your Kubernetes `namespace`, or `project`, if your are using OpenShift Container Platform.
 - The domain name of your Kubernetes cluster. This domain name is used as the base domain name for all ingress or routes that are created by the IBM Blockchain Platform.
-  - If you are running OpenShift Container Platform, you can find this value by using the OpenShift web console. After logging in to the console, use the drop-down menu next to **OpenShift Container Platform** at the upper left of the page to switch from Service Catalog to Cluster Console. Examine the url for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after you remove `console` and `/k8s/cluster/projects`.
+  - If you are running OpenShift Container Platform, you can find this value by using the OpenShift web console. After logging in to the console, use the drop-down menu next to **OpenShift Container Platform** at the upper left of the page to switch from Service Catalog to Cluster Console. Examine the URL for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after you remove `console` and `/k8s/cluster/projects`.
   - If you are running any other supported Kubernetes distribution, follow instructions from the distribution documentation to retrieve the domain name after configuring the NGINX Ingress controller.
 
 ## Build the Ansible playbook

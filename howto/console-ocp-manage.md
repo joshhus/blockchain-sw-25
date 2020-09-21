@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-09-21"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -327,7 +327,7 @@ Navigate to the **Settings** tab in the console browser to change the logging se
 
 Set the number of collected logs by using the drop-down list under each log type. For example, **Error** and **Warning** collect the least amount of logs, while **Debug** and **All** collect the most.
 
-You can view only the console logs if you are logged in as a console administrator. To view the logs from the **Settings** tab, replace the word `settings` in the browser URL with `api/v2/logs`. For example, if your console url is `localhost:3001/settings`, you can view your logs by navigating to `localhost:3001/api/v2/logs`. Client and server logs are collected in separate files. The most recent logs are at the top of the page.
+You can view only the console logs if you are logged in as a console administrator. To view the logs from the **Settings** tab, replace the word `settings` in the browser URL with `api/v2/logs`. For example, if your console URL is `localhost:3001/settings`, you can view your logs by navigating to `localhost:3001/api/v2/logs`. Client and server logs are collected in separate files. The most recent logs are at the top of the page.
 
 ### Viewing your node logs
 {: #console-icp-manage-node-logs}

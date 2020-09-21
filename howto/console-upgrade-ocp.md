@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-16"
+lastupdated: "2020-09-21"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -915,7 +915,7 @@ docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200825-amd64
 ```
 {:codeblock}
 
-After you download the images, you must change the image tags to refer to your docker registry. Replace `<LOCAL_REGISTRY>` with the url of your local registry and run the following commands:
+After you download the images, you must change the image tags to refer to your docker registry. Replace `<LOCAL_REGISTRY>` with the URL of your local registry and run the following commands:
 ```
 docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker tag cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -953,9 +953,9 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 - Replace `<USER>` with your username
 - Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 
-Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 ```
 docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -1753,7 +1753,7 @@ kubectl get ibpconsole ibpconsole -o yaml > console.yaml
 ```
 {:codeblock}
 
-Then add the URL of your local registry to the `spec:` section of `console.yaml`. Replace `<LOCAL_REGISTRY>` with the url of your local registry:
+Then add the URL of your local registry to the `spec:` section of `console.yaml`. Replace `<LOCAL_REGISTRY>` with the URL of your local registry:
 ```
 spec:
   registryURL: <LOCAL_REGISTRY>

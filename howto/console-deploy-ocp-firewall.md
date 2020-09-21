@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-18"
+lastupdated: "2020-09-21"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -107,7 +107,7 @@ docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200825-amd64
 If you are deploying the platform on LinuxONE on s390x, replace `amd64` in the image tag with `s390x`
 {: important}
 
-After you download the images, you must change the image tags to refer to your docker registry. Replace `<LOCAL_REGISTRY>` with the url of your local registry and run the following commands:
+After you download the images, you must change the image tags to refer to your docker registry. Replace `<LOCAL_REGISTRY>` with the URL of your local registry and run the following commands:
 ```
 docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker tag cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -146,9 +146,9 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 - Replace `<USER>` with your user name
 - Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 
-Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 ```
 docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -1049,7 +1049,7 @@ cluster role "blockchain-project" added: "system:serviceaccounts:blockchain-proj
 
 The {{site.data.keyword.blockchainfull_notm}} Platform uses an operator to install the {{site.data.keyword.blockchainfull_notm}} Platform console. You can deploy the operator on your cluster by adding a custom resource to your project by using the OpenShift CLI. The custom resource pulls the operator image from the Docker registry and starts it on your cluster.
 
-Copy the following text to a file on your local system and save the file as `ibp-operator.yaml`. Replace `<LOCAL_REGISTRY>` with the url of your local registry. If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
+Copy the following text to a file on your local system and save the file as `ibp-operator.yaml`. Replace `<LOCAL_REGISTRY>` with the URL of your local registry. If you changed the name of the Docker key secret, then you need to edit the field of `name: docker-key-secret`.
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -1207,8 +1207,8 @@ spec:
 
 
 You need to specify the external endpoint information of the console in the `ibp-console.yaml` file:
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
-- Replace `<DOMAIN>` with the name of your cluster domain. You can find this value by using the OpenShift web console. Use the dropdown menu next to **OpenShift Container Platform** at the top left of the page to switch from **Service Catalog** to **Cluster Console**. Examine the url for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after removing `console` and `/k8s/cluster/projects`.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
+- Replace `<DOMAIN>` with the name of your cluster domain. You can find this value by using the OpenShift web console. Use the dropdown menu next to **OpenShift Container Platform** at the top left of the page to switch from **Service Catalog** to **Cluster Console**. Examine the URL for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after removing `console` and `/k8s/cluster/projects`.
 
 You need to provide the user name and password that is used to access the console for the first time:
 - Replace `<EMAIL>` with the email address of the console administrator.
@@ -1342,7 +1342,7 @@ You can use a Certificate Authority or tool to create the TLS certificates for t
 **Proxy hostname:** ``<PROJECT_NAME>-ibpconsole-proxy.<DOMAIN>``
 
 - Replace `<PROJECT_NAME>` with the name of the OpenShift project that you created.
-- Replace `<DOMAIN>` with the name of your cluster domain. You can find this value by using the OpenShift web console. Use the dropdown menu next to **OpenShift Container Platform** at the top of the page to switch from **Service Catalog** to **Cluster Console**. Examine the url for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after removing `console` and `/k8s/cluster/projects`.
+- Replace `<DOMAIN>` with the name of your cluster domain. You can find this value by using the OpenShift web console. Use the dropdown menu next to **OpenShift Container Platform** at the top of the page to switch from **Service Catalog** to **Cluster Console**. Examine the URL for that page. It will be similar to `console.xyz.abc.com/k8s/cluster/projects`. The value of the domain then would be `xyz.abc.com`, after removing `console` and `/k8s/cluster/projects`.
 
 Navigate to the TLS certificates that you plan to use on your local system. Name the TLS certificate `tlscert.pem` and the corresponding private key `tlskey.pem`. Run the following command to create the Kubernetes secret and add it to your OpenShift project. The TLS certificate and key need to be in PEM format.
 ```

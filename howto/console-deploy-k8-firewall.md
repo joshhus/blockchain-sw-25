@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-18"
+lastupdated: "2020-09-21"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -146,7 +146,7 @@ docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200825-amd64
 If you are deploying the platform on LinuxONE on s390x, replace `amd64` in the image tag with `s390x`
 {: important}
 
-After you download the images, you must change the image tags to refer to your Docker registry. Replace `<LOCAL_REGISTRY>` with the url of your local registry and run the following commands:
+After you download the images, you must change the image tags to refer to your Docker registry. Replace `<LOCAL_REGISTRY>` with the URL of your local registry and run the following commands:
 ```
 docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker tag cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -184,9 +184,9 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 - Replace `<USER>` with your username
 - Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 
-Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 ```
 docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -1192,7 +1192,7 @@ spec:
 {:codeblock}
 
 You need to specify the external endpoint information of the console in the `ibp-console.yaml` file:
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 - Replace `<DOMAIN>` with the name of your cluster domain. You need to make sure that this domain is pointed to the load balancer of your cluster.
 
 You also need to provide the user name and password that is used to access the console for the first time:
