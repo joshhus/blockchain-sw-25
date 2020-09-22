@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-21"
 
 keywords: APIs, build a network, authentication, service credentials, API key, API endpoint, IAM access token, Fabric CA client, import a network, generate certificates
 
@@ -77,7 +77,8 @@ Use the request below to create an API key and secret. You can then use this key
 
 ### Example curl request: Create API key
 {: #console-icp-manage-create-api-key-example}
-```curl
+
+```bash
 curl -X POST \
   https://openshiftcluster.us-south.containers.appdomain.cloud:443/ak/api/v2/permissions/keys \
   -u user@email.com:password \
@@ -104,7 +105,8 @@ Once you have created an API key and secret, you can use the APIs to view or rem
 
 ### Example curl request: view API keys
 {: #console-icp-manage-view-api-key-example}
-```curl
+
+```bash
 curl -X GET \
   https://openshiftcluster.us-south.containers.appdomain.cloud:443/ak/api/v2/permissions/keys \
   -k \
@@ -124,7 +126,7 @@ curl -X GET \
 {: #console-icp-manage-delete-api-keys-example}
 
 
-```curl
+```bash
 curl -X DELETE \
   https://openshiftcluster.us-south.containers.appdomain.cloud:443/ak/api/v2/permissions/keys/<api_key> \
   -k \
@@ -593,7 +595,7 @@ You can use the Fabric CA client to operate your CAs. Run the following Fabric C
 
 1. Download the [Fabric CA client](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html#fabric-ca-client){: external} to your local file system.
 
-  The easiest way to get the Fabric CA client is to download all of the Fabric tool binaries directly. Navigate to a directory where you would like to download the binaries with your command line, and fetch them by running the following [Curl](https://hyperledger-fabric.readthedocs.io/en/release-1.4/prereqs.html#install-curl){: external} command.
+  The easiest way to get the Fabric CA client is to download all of the Fabric tool binaries directly. Navigate to a directory where you would like to download the binaries with your command line, and fetch them by running the following [cURL](https://hyperledger-fabric.readthedocs.io/en/release-1.4/prereqs.html#install-curl){: external} command.
 
   ```
   curl -sSL http://bit.ly/2ysbOFE | bash -s 1.4.3 1.4.3 -d -s
@@ -675,7 +677,7 @@ A **CA admin** identity was automatically registered for you when you created yo
   ```  
   {:codeblock}
 
-**Tip:** If the value of the enrollment url, which is the `-u` parameter value, contains a special character, you need to either encode the special character or surround the url with the single quotation marks. For example, `!` becomes `%21`, or the command looks like:
+**Tip:** If the value of the enrollment URL, which is the `-u` parameter value, contains a special character, you need to either encode the special character or surround the URL with the single quotation marks. For example, `!` becomes `%21`, or the command looks like:
 
   ```
   ./fabric-ca-client enroll -u 'https://admin:C25A06287!0@ash-zbc07c.4.secure.blockchain.ibm.com:21241' --tls.certfiles $HOME/fabric-ca-remote/cert.pem --caname ca
@@ -932,7 +934,7 @@ Review the parameters that you specified on your `enroll` command and ensure tha
 #### **Problem:** Error with CA URL when running the `enroll` command
 {: #ibp-v2-apis-config-enroll-error2}
 
-The Fabric CA client enroll command can fail if the enrollment url, the `-u` parameter value, contains a special character. For example, the following command with the enroll ID and password of `admin:C25A06287!0`,
+The Fabric CA client enroll command can fail if the enrollment URL, the `-u` parameter value, contains a special character. For example, the following command with the enroll ID and password of `admin:C25A06287!0`,
 
 ```
 ./fabric-ca-client enroll -u https://admin:C25A06287!0@ash-zbc07c.4.secure.blockchain.ibm.com:21241 --tls.certfiles $HOME/fabric-ca-remote/cert.pem --caname PeerOrg1CA
@@ -947,7 +949,7 @@ will fail and produce the following error:
 **Solution:**
 {: #ibp-v2-apis-config-enroll-error2-solution}
 
-You need to either encode the special character or surround the url with the single quotation marks. For example, `!` becomes `%21`, or the command looks like:
+You need to either encode the special character or surround the URL with the single quotation marks. For example, `!` becomes `%21`, or the command looks like:
 
 ```
 ./fabric-ca-client enroll -u 'https://admin:C25A06287!0@ash-zbc07c.4.secure.blockchain.ibm.com:21241' --tls.certfiles $HOME/fabric-ca-remote/cert.pem --caname PeerOrg1CA

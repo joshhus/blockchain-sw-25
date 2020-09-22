@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-09-21"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
 subcollection: blockchain-sw-25
@@ -114,7 +114,7 @@ NAME                            READY     STATUS             RESTARTS   AGE
 ibp-operator-769d94ffbc-w52n6   0/1       ImagePullBackOff   0          32s
 ```
 
-This problem occurs when your deployment cannot pull the {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry. This can happen because you provided an incorrect name of your secret to the `imagePullSecrets:` field, or if there was a problem with the url or the key that you provided to the entitlement key secret. This error can also occur if you supplied the wrong image tag to the file.
+This problem occurs when your deployment cannot pull the {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry. This can happen because you provided an incorrect name of your secret to the `imagePullSecrets:` field, or if there was a problem with the URL or the key that you provided to the entitlement key secret. This error can also occur if you supplied the wrong image tag to the file.
 {: tsCauses}
 
 When I try to apply the custom resource file, I receive a parsing error:
@@ -210,7 +210,7 @@ To resolve this problem, you need to accept the self-signed certificate in your 
 3. Open a new tab in your browser and paste in the new URL.
 4. Accept the certificate.
 
-You need to accept the certificate from this url to communicate with your nodes from your console and then log in as usual. When you switch to a new machine or a new browser, you need to repeat these steps.
+You need to accept the certificate from this URL to communicate with your nodes from your console and then log in as usual. When you switch to a new machine or a new browser, you need to repeat these steps.
 
 
 ## When I hover over my node, the status is `Status unavailable` or `Status unknown`, what does this mean?
@@ -234,7 +234,7 @@ If this is a new node, wait a few more minutes for the deployment to complete. Y
 The node status in the tile for the peer or ordering node is yellow, meaning the status of the node cannot be detected. Ideally, when you hover over any node, the node status should be `Running`.
 {: tsSymptoms}
 
-This condition only occurs on peer and ordering nodes that were *imported* to the console and the health checker cannot run against the node. This status happens because an `operations_url` was not specified when the node was imported. An operations url is required for the node health checker to run. The node itself is likely `Running`, but because the operations url was not specified, its status cannot be determined.
+This condition only occurs on peer and ordering nodes that were *imported* to the console and the health checker cannot run against the node. This status happens because an `operations_url` was not specified when the node was imported. An operations URL is required for the node health checker to run. The node itself is likely `Running`, but because the operations URL was not specified, its status cannot be determined.
 {: tsCauses}
 
 You can resolve this problem by performing the following steps:

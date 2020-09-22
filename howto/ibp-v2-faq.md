@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-11"
+lastupdated: "2020-09-17"
 
 keywords: FAQs, can I, upgrade, what version, peer ledger database, supported languages, why do I, regions, multicloud
 
@@ -84,8 +84,6 @@ It is important to note that the {{site.data.keyword.blockchainfull_notm}} suppo
 
 On the other hand, {{site.data.keyword.blockchainfull_notm}} will not provide deployment support for environments outside of the supported platform. This means the customer is free to deploy into an environment of their choice from the list above, and should have the same {{site.data.keyword.blockchainfull_notm}} Platform experience as they would when they deploy into the {{site.data.keyword.cloud_notm}}. But it will be up to the customer to configure the network and address their own infrastructure related issues. Examples of these types of issues include failed deployment to a Kubernetes service, infrastructure capacity, custom firewall settings, etc.
 
-
-
 ## Does {{site.data.keyword.blockchainfull_notm}} Platform v2.1.x and 2.5 run on OpenShift on {{site.data.keyword.cloud_notm}}?
 {: #ibp-v2-faq-saas-ocp}
 {: faq}
@@ -94,6 +92,8 @@ Yes. The {{site.data.keyword.blockchainfull_notm}} Platform can be purchased and
 - [{{site.data.keyword.blockchainfull_notm}} Platform for {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/services/blockchain-platform){: external} is deployed and runs on [IBM Cloud](https://cloud.ibm.com/kubernetes/catalog/openshiftcluster){: external}.
 - {{site.data.keyword.blockchainfull_notm}} Platform is also available as a software offering that can be deployed on Red Hat OpenShift and can run in all environments where OpenShift Container Platform (OCP) is supported. Read more about running OpenShift Container Platform [here](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about).
 - Finally, experienced Hyperledger Fabric customers also have the option to download and use the peer, CA, orderer, and smart contract container [images](/docs/blockchain-sw-25?topic=blockchain-sw-25-blockchain-images).
+
+
 
 
 ## How can I find what version of the {{site.data.keyword.blockchainfull_notm}} Platform that I am running?
@@ -114,6 +114,8 @@ Refer to the following table for information on which version of Fabric is used 
 | 2.5 | v1.4.7 and v2.x |
 | 2.1.3 | v1.4.6|
 | 2.1.2 | v1.4.4|
+
+
 
 ## What database do the peers use for their ledger?
 {: #ibp-v2-faq-v2-IBP-Overview-1-3}
@@ -145,7 +147,7 @@ You cannot currently deploy blockchain nodes to multiple hosted cloud providers.
 {: faq}
 {: support}
 
-You are responsible for the health monitoring and resource allocation of the blockchain nodes in your Kubernetes cluster. While requests against the nodes are being actively processed, you should be monitoring for spikes in resource consumption to avoid problems. You can configure a monitoring tool, such as [Sysdig](https://sysdig.com/platform/){: external} with alert notifications for the nodes in your cluster.
+You are responsible for the health monitoring and resource allocation of the blockchain nodes in your Kubernetes cluster. While requests against the nodes are being actively processed, you should be monitoring for spikes in resource consumption to avoid problems. You can configure a monitoring tool, such as [Sysdig](https://sysdig.com/secure-devops-platform/){: external} with alert notifications for the nodes in your cluster.
 
 You should be aware that JavaScript and TypeScript smart contracts require more resources than contracts written in Golang. Therefore, when you are allocating resources to your cluster, it is important to ensure adequate resources are available to your smart contract pods when they are instantiated on a channel and during transaction processing. The pods containing the smart contracts will consume as much resources as they need to function.
 {: tip}

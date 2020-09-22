@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-09-21"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -265,16 +265,16 @@ SERVER_HTTP_MAX_WRITE_TIMEOUT=5m
 SERVER_HTTP_MAX_READ_TIMEOUT=5m
 USE_WEBSOCKETS=true
 ```
-- Use the `BACKEND_ADDRESS` variable to point to the endpoint url of your node.
-- Use the `EXTERNAL_ADDRESS` to select the web proxy url that you will use to access the node from your console.
+- Use the `BACKEND_ADDRESS` variable to point to the endpoint URL of your node.
+- Use the `EXTERNAL_ADDRESS` to select the web proxy URL that you will use to access the node from your console.
 - Use the `SERVER_HTTP_TLS_PORT` to select the port that you will use the access the web proxy.
-- You also need to provide a TLS certificate and key that will be used secure the communication between your console and web proxy. It is recommended that you use certificates that were issued to secure the domain name of your cluster. The common name of the TLS certificates must be the domain name of your web proxy url. The TLS certificates then need be mounted inside the web proxy container. Use `SERVER_TLS_CERT_FILE` to point to the certificate and `SERVER_TLS_KEY_FILE` to point to the accompanying private key.
+- You also need to provide a TLS certificate and key that will be used secure the communication between your console and web proxy. It is recommended that you use certificates that were issued to secure the domain name of your cluster. The common name of the TLS certificates must be the domain name of your web proxy URL. The TLS certificates then need be mounted inside the web proxy container. Use `SERVER_TLS_CERT_FILE` to point to the certificate and `SERVER_TLS_KEY_FILE` to point to the accompanying private key.
 
 The console needs to check the health of any node being imported into the console. As a result, you need to enable the operations service for every node that is connected to a web proxy. For more information, see [The Operations Service](https://hyperledger-fabric.readthedocs.io/en/latest/operations_service.html).
 
 After the web proxy container is deployed, you can import the node into a console by creating a node JSON file. For more information about how to create the node file, see [Importing nodes from a locally deployed network](/docs/blockchain?topic=blockchain-ibp-console-import-nodes#ibp-console-import-icp). You need to use the following values when you create the file:
-- Use the web proxy url and port for the `"grpcwp_url"` field. You specified these values with the `EXTERNAL_ADDRESS` and `SERVER_HTTP_TLS_PORT` environment variables.
-- Use the node endpoint url and port for the `"api_url"` field. You specified these values with the `BACKEND_ADDRESS` environment variable.
+- Use the web proxy URL and port for the `"grpcwp_url"` field. You specified these values with the `EXTERNAL_ADDRESS` and `SERVER_HTTP_TLS_PORT` environment variables.
+- Use the node endpoint URL and port for the `"api_url"` field. You specified these values with the `BACKEND_ADDRESS` environment variable.
 - Encode the public TLS certificate of the node in base64 format and paste it in the`"pem"` field. This certificate was referenced by the `SERVER_TLS_CLIENT_CA_FILES` environment variable.
 
 We deploy an [example web proxy](#example-proxy) using Docker Compose as part of the example provided below. While the example is not a template for deploying a web proxy in production, it can be used for additional context on how you would connect a proxy to a running node.

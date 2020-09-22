@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-21"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -327,7 +327,7 @@ Navigate to the **Settings** tab in the console browser to change the logging se
 
 Set the number of collected logs by using the drop-down list under each log type. For example, **Error** and **Warning** collect the least amount of logs, while **Debug** and **All** collect the most.
 
-You can view only the console logs if you are logged in as a console administrator. To view the logs from the **Settings** tab, replace the word `settings` in the browser URL with `api/v2/logs`. For example, if your console url is `localhost:3001/settings`, you can view your logs by navigating to `localhost:3001/api/v2/logs`. Client and server logs are collected in separate files. The most recent logs are at the top of the page.
+You can view only the console logs if you are logged in as a console administrator. To view the logs from the **Settings** tab, replace the word `settings` in the browser URL with `api/v2/logs`. For example, if your console URL is `localhost:3001/settings`, you can view your logs by navigating to `localhost:3001/api/v2/logs`. Client and server logs are collected in separate files. The most recent logs are at the top of the page.
 
 ### Viewing your node logs
 {: #console-icp-manage-node-logs}
@@ -368,7 +368,7 @@ Component logs can be viewed from the command line by using the [kubectl CLI com
 
 If you encounter issues with your smart contract, you can view the smart contract, or chaincode, logs to debug an issue.
 
-<img src="../images/2-x_Pill.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> **Hyperleder Fabric v2.x peer image**  
+<img src="../images/2-x_Pill.png" alt="version 2.x" width="30" style="width:30px; border-style: none"/> **Hyperleder Fabric v2.x peer image**  
 
 If your peer is based on the Fabric v2.x image, you can run the following commands to view the smart contract container logs.
 
@@ -408,7 +408,7 @@ kubectl  logs -f chaincode-execution-0a8fb504-78e2-4d50-a614-e95fb7e7c8f4 -n na0
 
 <br><br>
 
-<img src="../images/1-4_Pill.png" alt="HSM client" width="30" style="width:30px; border-style: none"/> **Hyperledger Fabric v1.4 peer image**  
+<img src="../images/1-4_Pill.png" alt="version 1.4" width="30" style="width:30px; border-style: none"/> **Hyperledger Fabric v1.4 peer image**  
 
 If your peer is based on the Fabric v1.4 image, you can run the following kubectl command to view the smart contract container logs.
 

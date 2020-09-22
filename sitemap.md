@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-15"
+lastupdated: "2020-09-22"
 
 keywords: site map
 subcollection: blockchain-sw-25
@@ -124,6 +124,7 @@ subcollection: blockchain-sw-25
 
 
 [About {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about)
+* [Video script](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#video-transcript-key-concepts)
 
 [What {{site.data.keyword.blockchainfull_notm}} Platform 2.5 offers](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-ocp-about#console-ocp-about-offers)
 
@@ -196,12 +197,14 @@ subcollection: blockchain-sw-25
 * [Sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-sample-tutorial)
   * [The structure of this network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-structure)
 * [Step one: Create a peer organization and a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peer-org1)
+  * [Video script](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#video-transcript-peer)
   * [Creating your peer organization's CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-CA-org1CA)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ca-admin)
   * [Using your CA to register identities](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1)
   * [Creating the peer organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1)
   * [Creating a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-peer-create)
 * [Step two: Create the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer)
+  * [Video script](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#video-transcript-orderer)
   * [Ordering in the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-ordering-console)
   * [Creating your ordering service organization CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-ca)
   * [Associating the CA admin identity](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-orderer-ca-admin)
@@ -209,6 +212,7 @@ subcollection: blockchain-sw-25
   * [Creating the ordering service organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-orderer-org-msp)
   * [Deploy the ordering nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-an-orderer)
 * [Step three: Join the consortium hosted by the ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org)
+  * [Video script](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#video-transcript-channel)
   * [Add the organization to the consortium](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-add-org-consortium)
 * [Step four: Create a channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel)
   * [Creating a channel: `channel1`](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-channel1)
@@ -237,6 +241,7 @@ subcollection: blockchain-sw-25
 
 [Deploy a smart contract on the network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts)
 * [Sample network tutorial series](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-structure)
+* [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-before)
 * [Step one: Write and package your smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-write-package)
   * [Vendoring smart contracts](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-write-package-vendor)
 * [Step two: Install a smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-install)
@@ -305,8 +310,7 @@ subcollection: blockchain-sw-25
   * [Multizone HA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone)
   * [Multi-region HA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-region)
 * [Disaster recovery (DR)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-dr)
-  * [Stopping nodes to prepare for a backup](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-stop-nodes)
-  * [Node considerations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-dr-node-considerations)
+  * [Backup and recovery](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-stop-nodes)
 
 [Setting up multiregion High Availability (HA) deployments for peers](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-hadr-mr)
 * [Overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-hadr-mr#ibp-console-hadr-overview)
@@ -504,6 +508,8 @@ subcollection: blockchain-sw-25
 
 [Upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-steps)
 * [Roll back an upgrade](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-rollback)
+
+[Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#upgrade-ocp-before)
 
 [Step one: Create the `ibpinfra` project for the webhook](/docs/blockchain-sw-25?topic=blockchain-sw-25-upgrade-ocp#deploy-ocp-ibpinfra)
 
@@ -920,6 +926,30 @@ subcollection: blockchain-sw-25
   * [What's next](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-hsm-gemalto#ibp-hsm-gemalto-next-steps)
 * [Using multiple partitions](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-hsm-gemalto#ibp-hsm-gemalto-multiple-partitions)
 
+[Backing up and restoring components and networks](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore)
+* [ Overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-overview)
+  * [Backup considerations for each node type](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-node-considerations)
+  * [Scheduling snapshots](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-schedule-snapshot)
+* [Taking snapshots](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-take-snapshot)
+  * [Node snapshots](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-peer-snapshot)
+* [Restoring nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore)
+  * [Sequencing restorations](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore-sequence)
+  * [Restoring a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore-peer)
+  * [Restoring an ordering node](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore-orderer)
+
+[Using certificates from an external Certificate Authority](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca)
+* [Objectives](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-objectives)
+* [Before you begin](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-prereqs)
+* [Gather certificates](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-gather-certs)
+  * [Consideration when using an external CA to generate certificates](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-gather-certs-pkcs1)
+* [Build MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-build-msp)
+* [Import MSP into the console](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-import-msp)
+* [Create and import the organization admin identity to the wallet](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-import-admin)
+* [Deploy a blockchain node](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-deploy-node)
+  * [Deploy peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-deploy-peer)
+  * [Deploy ordering service](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-deploy-orderer)
+* [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-tutorial-extca#ibp-tutorial-extca-next-steps)
+
 
 ## Using Ansible Playbooks
 {: #sitemap_using_ansible_playbooks}
@@ -931,7 +961,6 @@ subcollection: blockchain-sw-25
 * [Why would I want to use an Ansible playbook?](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-why)
 * [Considerations and Limitations](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-limits)
 * [Getting started](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-getting-started)
-  * [Build the Docker image](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-docker-build)
 * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-next-steps)
 * [Where to find support](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible#ansible-support)
 
@@ -952,6 +981,25 @@ subcollection: blockchain-sw-25
 * [Next steps](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-build#ansible-build-next-steps)
   * [Generated identities](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-build#ansible-build-import-identities)
 * [Summary](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-build#ansible-build-summary)
+
+
+## Backing up and restoring components and networks
+{: #sitemap_backing_up_and_restoring_components_and_networks}
+
+
+[Backing up and restoring components and networks](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore)
+
+[ Overview](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-overview)
+* [Backup considerations for each node type](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-node-considerations)
+* [Scheduling snapshots](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-schedule-snapshot)
+
+[Taking snapshots](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-take-snapshot)
+* [Node snapshots](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-peer-snapshot)
+
+[Restoring nodes](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore)
+* [Sequencing restorations](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore-sequence)
+* [Restoring a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore-peer)
+* [Restoring an ordering node](/docs/blockchain-sw-25?topic=blockchain-sw-25-backup-restore#backup-restore-restore-orderer)
 
 
 ## Using the {{site.data.keyword.blockchainfull_notm}} Platform APIs

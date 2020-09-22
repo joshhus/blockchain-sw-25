@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-14"
+lastupdated: "2020-09-21"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -38,7 +38,7 @@ You can use the following instructions to deploy the {{site.data.keyword.blockch
 
 ## Need to Know
 
-- If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the public internet, your JavaScript, or TypeScript smart contract will not be able to download external dependencies when it is instantiated. You need to point to a local NPM registry for your smart contract to access the required dependencies. See [Building Node.js Contracts with limited internet access](https://hyperledgendary.github.io/docs/goodpractise/nodejs_building_limited_access.html){: external}. This problem does not occur if you are using smart contracts that are written in Go.
+- If you are deploying the {{site.data.keyword.blockchainfull_notm}} Platform behind a firewall, without access to the public internet, your JavaScript, or TypeScript smart contract will not be able to download external dependencies when it is instantiated. You need to point to a local NPM registry for your smart contract to access the required dependencies. See [Building Node.js Contracts with limited internet access](https://hyperledgendary.github.io/docs/goodpractice/nodejs_building_limited_access.html){: external}. This problem does not occur if you are using smart contracts that are written in Go.
 
 - After you deploy your peer and ordering nodes, you need to expose the ports of your nodes for your network to be able to respond to requests from applications or nodes outside your firewall. For more information about the ports that you need to expose, see [Internet Ports](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-security#ibp-security-ibp-ports) in the security guide.
 
@@ -146,7 +146,7 @@ docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200825-amd64
 If you are deploying the platform on LinuxONE on s390x, replace `amd64` in the image tag with `s390x`
 {: important}
 
-After you download the images, you must change the image tags to refer to your Docker registry. Replace `<LOCAL_REGISTRY>` with the url of your local registry and run the following commands:
+After you download the images, you must change the image tags to refer to your Docker registry. Replace `<LOCAL_REGISTRY>` with the URL of your local registry and run the following commands:
 ```
 docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker tag cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -184,9 +184,9 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 - Replace `<USER>` with your username
 - Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 
-Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 ```
 docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
 docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
@@ -1192,7 +1192,7 @@ spec:
 {:codeblock}
 
 You need to specify the external endpoint information of the console in the `ibp-console.yaml` file:
-- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 - Replace `<DOMAIN>` with the name of your cluster domain. You need to make sure that this domain is pointed to the load balancer of your cluster.
 
 You also need to provide the user name and password that is used to access the console for the first time:

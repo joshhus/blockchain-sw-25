@@ -79,12 +79,16 @@ IBM Blockchain Platform 2.5
 	Advanced tutorials
 		howto/ibp-console-int-ca.md
 		reference/hsm-gemalto.md
+		howto/backup-restore.md
+		howto/ibp-v2-tutorial-extca.md
 
 		{: .topicgroup}
 		Using Ansible Playbooks
 			howto/ansible.md
 			howto/ansible-install-ibp.md
 			howto/ansible-build-network.md
+
+	howto/backup-restore.md
 
 	howto/ibp-v2-apis.md
 	{: .navgroup-end}
@@ -106,3 +110,4 @@ IBM Blockchain Platform 2.5
 	ibmblockchain_support.md
 	sitemap.md
 	{: .navgroup-end}
+	
