@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-01"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
@@ -35,7 +35,9 @@ You can use the following instructions to deploy the {{site.data.keyword.blockch
 {:shortdesc}
 
 
+<!-- The following diagram shows the steps that a cluster administrator needs to take on the OpenShift Container Platform to deploy the {{site.data.keyword.blockchainfull_notm}} Platform.
 
+![{{site.data.keyword.blockchainfull_notm}} Platform 2.5 deployment overview](../images/OCP_deploy_flow.svg "{{site.data.keyword.blockchainfull_notm}} Platform 2.5 deployment overview"){: caption="Figure 1. Deployment process on OpenShift"  caption-side="bottom"}-->
 
 If you prefer to automate the installation of the service, check out the [Ansible Playbook](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-install-ibp) that can be used to complete all of these steps for you.
 {: tip}
@@ -215,8 +217,7 @@ defaultAddCapabilities: []
 fsGroup:
   type: RunAsAny
 groups:
-- system:cluster-admins
-- system:authenticated
+- system:serviceaccounts:ibpinfra
 kind: SecurityContextConstraints
 metadata:
   name: ibpinfra
@@ -301,7 +302,7 @@ spec:
         fsGroup: 2000
       containers:
         - name: "ibp-webhook"
-          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200825-amd64"
+          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20201001-amd64"
           imagePullPolicy: Always
           securityContext:
             privileged: false
@@ -981,7 +982,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64
+          image: cp.icr.io/cp/ibp-operator:2.5.0-20201001-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always

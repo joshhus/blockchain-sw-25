@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-10-01"
 
 
 keywords: release note, latest changes, Hyperledger Fabric, multicloud
@@ -35,12 +35,15 @@ Use these release notes that are grouped by date to learn about the latest chang
 
 See [Installing patches](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#ibp-console-manage-patch) for instructions on how to apply patches to your existing nodes. Patches are cumulative. This means that if multiple patches, for example `1.4.7-0` and `1.4.7-1`, are available for a node, you should always select the latest patch, `1.4.7-1` in this case, wherever possible because it includes the fixes from the previous patches as well.
 
+## 1 Oct 2020
+{: #10-01-2020}
+
+**CA, Peer, and ordering node patch 1.4.7-3, 2.1.1-3**
+
+Miscellaneous bug fixes and security patches.  
 
 ## 9 Sept 2020
 {: #08-25-2020}
-
-
-
 
 **CA, Peer, and ordering node patch 1.4.7-2, 2.1.1-2**
 
@@ -68,7 +71,7 @@ Users who installed the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 b
 
 **To be certain that your peers have no database corruption**, you should reprovision your peers.
 
-Miscellaneous bug fixes and security patches. 
+Miscellaneous bug fixes and security patches.
 
 ### Fabric peer and ordering node images
 {: #06-18-2020-images}
@@ -89,4 +92,3 @@ If your Kubernetes cluster is configured to use multizone-capable storage, new p
 {: #06-18-2020-k8s}
 
 {{site.data.keyword.blockchainfull_notm}} Platform requires **Kubernetes v1.15 - v1.18**. If your existing Kubernetes cluster is running v1.14 or lower, you need to upgrade your cluster before you can update your existing blockchain components to this latest release.
-
