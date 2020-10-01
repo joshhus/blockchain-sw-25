@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-01"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -71,7 +71,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform console has been successf
 ## Storage
 {: #deploy-k8-storage-firewall}
 
-{{site.data.keyword.blockchainfull_notm}} Platform requires persistent storage for each CA, peer, and ordering node that you deploy, in addition to the storage required by the {{site.data.keyword.blockchainfull_notm}} console. The {{site.data.keyword.blockchainfull_notm}} Platform console uses [dynamic provisioning](https://docs.openshift.com/container-platform/4.3/storage/dynamic-provisioning.html){: external} to allocate storage for each blockchain node that you deploy by using a pre-defined storage class.
+{{site.data.keyword.blockchainfull_notm}} Platform requires persistent storage for each CA, peer, and ordering node that you deploy, in addition to the storage required by the {{site.data.keyword.blockchainfull_notm}} console. The {{site.data.keyword.blockchainfull_notm}} Platform console uses  to allocate storage for each blockchain node that you deploy by using a pre-defined storage class.
 
 Before you deploy the {{site.data.keyword.blockchainfull_notm}} Platform console, you must create a storage class with enough backing storage for the {{site.data.keyword.blockchainfull_notm}} console and the nodes that you create. You can set this storage class to the default storage class of your Kubernetes cluster or create a new class that is used by the {{site.data.keyword.blockchainfull_notm}} Platform console. If you are using a multizone cluster, then you must configure the default storage class for each zone. After you create the storage class, run the command `kubectl patch storageclass` to set the storage class of the multizone region to be the default storage class.
 
@@ -115,31 +115,31 @@ docker login --username cp --password <KEY> cp.icr.io
 
 After you log in, use the following command to pull all of the component images of the {{site.data.keyword.blockchainfull_notm}} Platform:
 ```
-docker pull cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-console:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-grpcweb:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-deployer:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-fluentd:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-couchdb:2.3.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-peer:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-orderer:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-ca:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-dind:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-utilities:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-peer:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-orderer:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-utilities:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20200825-amd64
-docker pull cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200825-amd64
-docker pull cp.icr.io/cp/ibp-ccenv:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-goenv:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-nodeenv:1.4.7-20200825-amd64
-docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20200825-amd64
+docker pull cp.icr.io/cp/ibp-operator:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-init:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-console:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-grpcweb:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-deployer:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-fluentd:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-couchdb:2.3.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-peer:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-orderer:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-ca:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-dind:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-utilities:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-peer:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-orderer:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-utilities:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-ccenv:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-goenv:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-nodeenv:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-javaenv:2.1.1-20201001-amd64
+docker pull cp.icr.io/cp/ibp-crdwebhook:2.5.0-20201001-amd64
+docker pull cp.icr.io/cp/ibp-ccenv:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-goenv:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-nodeenv:1.4.7-20201001-amd64
+docker pull cp.icr.io/cp/ibp-javaenv:1.4.7-20201001-amd64
 ```
 {:codeblock}
 
@@ -148,31 +148,31 @@ If you are deploying the platform on LinuxONE on s390x, replace `amd64` in the i
 
 After you download the images, you must change the image tags to refer to your Docker registry. Replace `<LOCAL_REGISTRY>` with the URL of your local registry and run the following commands:
 ```
-docker tag cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-init:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-console:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-console:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-grpcweb:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-deployer:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-fluentd:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-couchdb:2.3.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-peer:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-peer:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-orderer:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-orderer:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-ca:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-ca:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-dind:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-dind:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-utilities:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-peer:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-orderer:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-utilities:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20200825-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200825-amd64
-docker tag cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200825-amd64 <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200825-amd64
-docker tag cp.icr.io/cp/ibp-ccenv:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-ccenv:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-goenv:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-goenv:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-nodeenv:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:1.4.7-20200825-amd64
-docker tag cp.icr.io/cp/ibp-javaenv:1.4.7-20200825-amd64 <LOCAL_REGISTRY>/ibp-javaenv:1.4.7-20200825-amd64
+docker tag cp.icr.io/cp/ibp-operator:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-operator:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-init:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-init:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-console:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-console:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-grpcweb:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-deployer:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-fluentd:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-couchdb:2.3.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-peer:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-peer:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-orderer:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-orderer:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-ca:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-ca:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-dind:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-dind:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-utilities:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-peer:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-peer:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-orderer:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-chaincode-launcher:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-utilities:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-ccenv:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-goenv:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-nodeenv:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-javaenv:2.1.1-20201001-amd64 <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20201001-amd64
+docker tag cp.icr.io/cp/ibp-crdwebhook:2.5.0-20201001-amd64 <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20201001-amd64
+docker tag cp.icr.io/cp/ibp-ccenv:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-ccenv:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-goenv:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-goenv:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-nodeenv:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-nodeenv:1.4.7-20201001-amd64
+docker tag cp.icr.io/cp/ibp-javaenv:1.4.7-20201001-amd64 <LOCAL_REGISTRY>/ibp-javaenv:1.4.7-20201001-amd64
 ```
 {:codeblock}
 
@@ -188,31 +188,31 @@ docker login --username <USER> --password <LOCAL_REGISTRY_PASSWORD> <LOCAL_REGIS
 
 Then, run the following command to push the images. Replace `<LOCAL_REGISTRY>` with the URL of your local registry.
 ```
-docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-console:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-peer:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-orderer:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-ca:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-dind:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-peer:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-ccenv:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-goenv:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-nodeenv:1.4.7-20200825-amd64
-docker push <LOCAL_REGISTRY>/ibp-javaenv:1.4.7-20200825-amd64
+docker push <LOCAL_REGISTRY>/ibp-operator:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-init:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-console:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-grpcweb:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-deployer:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-fluentd:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-couchdb:2.3.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-peer:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-orderer:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-ca:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-dind:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-utilities:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-peer:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-orderer:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-chaincode-launcher:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-utilities:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-ccenv:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-goenv:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-nodeenv:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-javaenv:2.1.1-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-crdwebhook:2.5.0-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-ccenv:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-goenv:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-nodeenv:1.4.7-20201001-amd64
+docker push <LOCAL_REGISTRY>/ibp-javaenv:1.4.7-20201001-amd64
 ```
 {:codeblock}
 
@@ -350,8 +350,7 @@ defaultAddCapabilities: []
 fsGroup:
   type: RunAsAny
 groups:
-- system:cluster-admins
-- system:authenticated
+- system:serviceaccounts:ibpinfra
 kind: SecurityContextConstraints
 metadata:
   name: ibpinfra
@@ -436,7 +435,7 @@ spec:
         fsGroup: 2000
       containers:
         - name: "ibp-webhook"
-          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200825-amd64"
+          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20201001-amd64"
           imagePullPolicy: Always
           securityContext:
             privileged: false
@@ -1093,7 +1092,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: <LOCAL_REGISTRY>/ibp-operator:2.5.0-20200825-amd64
+          image: <LOCAL_REGISTRY>/ibp-operator:2.5.0-20201001-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always

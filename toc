@@ -108,6 +108,4 @@ IBM Blockchain Platform 2.5
 	known-issues.md
 	howto/ibp-v2-troubleshooting.md
 	ibmblockchain_support.md
-	sitemap.md
 	{: .navgroup-end}
-	

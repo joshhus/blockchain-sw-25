@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-01"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -429,7 +429,7 @@ The underlying {{site.data.keyword.IBM_notm}} Hyperledger Fabric docker images f
 Patches are applied to nodes one at a time. While the patch is being applied, the node is unavailable to process requests or transactions. Therefore, to avoid any disruption of service, whenever possible you should ensure another node of the same type is available to process requests. Installing patches on a node takes about a minute to complete and when the update is complete, the node is ready to process requests.
 {:note}
 
-To apply a patch to a node, open the node tile and click the **Install patch** button.
+To apply a patch to a node, open the node tile and click the **Update available** button.
 
 You cannot patch nodes that you imported to the console.
 {: important}

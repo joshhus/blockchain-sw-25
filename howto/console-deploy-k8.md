@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-09-11"
+lastupdated: "2020-10-01"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, multicloud
 
@@ -240,8 +240,7 @@ defaultAddCapabilities: []
 fsGroup:
   type: RunAsAny
 groups:
-- system:cluster-admins
-- system:authenticated
+- system:serviceaccounts:ibpinfra
 kind: SecurityContextConstraints
 metadata:
   name: ibpinfra
@@ -326,7 +325,7 @@ spec:
         fsGroup: 2000
       containers:
         - name: "ibp-webhook"
-          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20200825-amd64"
+          image: "cp.icr.io/cp/ibp-crdwebhook:2.5.0-20201001-amd64"
           imagePullPolicy: Always
           securityContext:
             privileged: false
@@ -986,7 +985,7 @@ spec:
         - name: docker-key-secret
       containers:
         - name: ibp-operator
-          image: cp.icr.io/cp/ibp-operator:2.5.0-20200825-amd64
+          image: cp.icr.io/cp/ibp-operator:2.5.0-20201001-amd64
           command:
           - ibp-operator
           imagePullPolicy: Always
