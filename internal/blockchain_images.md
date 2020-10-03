@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-01"
+lastupdated: "2020-10-03"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -508,7 +508,7 @@ After we deploy a network, we can use the gRPC web proxy to import a peer or ord
     ```
     {:codeblock}
 
-  - Create a `ssl.conf` file using the template below. Replace the `_default` variables with the values of your choice. Use the `alt_names` section to provide the domain of your cluster. This domain needs to match the publci URL that you will select for the web proxy.
+  - Create a `ssl.conf` file using the template below. Replace the `_default` variables with the values of your choice. Use the `alt_names` section to provide the domain of your cluster. This domain needs to match the public URL that you will select for the web proxy.
 
     ```
     extensions = extend
