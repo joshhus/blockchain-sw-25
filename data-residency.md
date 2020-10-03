@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-03"
 
 keywords: IBM Blockchain Platform, Data residency, world state, channels, multicloud
 
@@ -48,7 +48,7 @@ The architecture of Hyperledger Fabric that underlies the {{site.data.keyword.bl
 
 **Peers** are used by members of the consortium to store the blockchain [ledger](https://hyperledger-fabric.readthedocs.io/en/release-1.4/ledger/ledger.html){: external}. The blockchain ledger consists of two parts. The first is the world state, which stores the latest value for all data in the ledger in key-value pairs. The second is the blockchain record of every transaction. Peers receive state updates in the form of new blocks from the ordering service. They then use the blocks and the world state to confirm (or commit) transactions, update the world state and add the log of transactions on the blockchain. The ordering service establishes the order of transactions for all the peers on the [consortium](/docs/blockchain-sw-25?topic=blockchain-sw-25-glossary#glossary-consortium) and stores a copy of the blockchain portion of the ledger.
 
-**Channels** are a mechanism for transmitting data within a network. You cannot participate in a blockchain network without joining a channel. Channels can be used members of the network to create logical separation between business applications and even to boost performance by limiting traffic. They can also be used by subsets of organizations in the consortium to transact privately and segregate data.
+**Channels** are a mechanism for transmitting data within a network. You cannot participate in a blockchain network without joining a channel. Channels can be used by members of the network to create logical separation between business applications and even to boost performance by limiting traffic. They can also be used by subsets of organizations in the consortium to transact privately and segregate data.
 
 Peers maintain a separate ledger for each channel that they join. Only organizations that are members of the channel can join their peers to the channel and receive ledger updates from the ordering service. As a result, each channel is bound to an ordering service, which stores the blockchain portion of every channel ledger that it maintains. Client applications submit transactions to the peers and ordering service of a given channel. These transactions are added to the transaction log within the blockchain and include a [read-write set](https://hyperledger-fabric.readthedocs.io/en/release-1.4/readwrite.html){: external}, which is added to the key-value pairs in the world state.
 
@@ -128,4 +128,3 @@ Therefore, to preserve data residency, the end user's browser and the Kubernetes
 For a deeper understanding of the flow of data on the {{site.data.keyword.blockchainfull_notm}} Platform network, refer to the [Fabric documentation on transaction flow](https://hyperledger-fabric.readthedocs.io/en/release-1.4/txflow.html){: external}.
 
 You can get more information about Private data collections and Zero Knowledge Proof in the white paper about [Private and confidential transactions with Hyperledger Fabric](https://developer.ibm.com/tutorials/cl-blockchain-private-confidential-transactions-hyperledger-fabric-zero-knowledge-proof/){: external}.
-
