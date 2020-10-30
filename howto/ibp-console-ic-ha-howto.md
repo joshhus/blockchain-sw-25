@@ -60,7 +60,7 @@ This tutorial assumes that an ordering service exists with a channel defined tha
 2. After the CA tile status indicator is green, `Running`, follow the instructions to [Register identities with your CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1). In those instructions, you create two identities, one for the peer and another for the peer's organization admin identity.
 3. [Create the peer's organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1) for the peer's organization in the first cluster.
 4. [Create a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-peer-create) in the first cluster.
-5. [Install your smart contract](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-install) on your peer.
+5. [Install your smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-install) on your peer.
 
 Before you can instantiate the smart contract on the channel, you need to follow these steps to join the peer to the channel on the ordering service:
 - [Export the peer's organization definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-join-network#ibp-console-join-network-add-org2-remote) and share it with an ordering service admin.
