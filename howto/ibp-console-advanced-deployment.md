@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-10-30"
+lastupdated: "2020-09-21"
 
 keywords: deployment, advanced, CouchDB, LevelDB, external CA, HSM, resource allocation
 
@@ -22,12 +22,7 @@ subcollection: blockchain-sw-25
 # Advanced deployment options
 {: #ibp-console-adv-deployment}
 
-<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 20px;">
-    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
-    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-adv-deployment">2.5.1 (latest)</a>
-    </p>
-</div>
+
 
 When you deploy a node from the console, there are various advanced deployment options available for each node type. This topic provides more details about each of those options.
 {:shortdesc}
@@ -92,7 +87,7 @@ The **Resource allocation** panel in the console provides default values for the
 After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as [Sysdig](https://sysdig.com/secure-devops-platform/){: external} to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
 {: important}
 
-All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage).
+All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage). 
 
 You are responsible for monitoring your CPU, memory, and storage consumption in your cluster. If you do happen to request more resources for a blockchain node than are available, the node will not start. However, existing nodes will not be affected. For information about how to increase the CPU, memory, and storage, consult the documentation of your cloud provider.
 {:note}
@@ -152,6 +147,142 @@ In addition to the CA settings that are provided in the console when you provisi
 {: #ibp-console-adv-deployment-ca-customization-why}
 
 You can use the console to configure resource allocation, HSM, or the CA database and then edit the generated `JSON` adding additional parameters and fields for your use case.  For example, you might want to register additional users with the CA when the CA is created, or specify custom affiliations for your organizations. You can also customize the CSR names that are used when certificates are issued by the CA or add affiliations. These are just a few suggestions of customizations you might want to make but the full list of parameters is provided below. This list contains all of fields that can be overridden by editing the `JSON` when a CA is deployed. For more information about what each field is used for you can refer to the [Fabric CA documentation](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/serverconfig.html){: external}.
+
+```json
+{
+	"ca": {
+		"cors": {
+			"enabled": false,
+			"origins": [
+				"*"
+			]
+		},
+		"debug": false,
+		"crlsizelimit": 512000,
+		"tls": {
+			"certfile": null,
+			"keyfile": null,
+			"clientauth": {
+				"type": "noclientcert",
+				"certfiles": null
+			}
+		},
+		"ca": {
+			"keyfile": null,
+			"certfile": null,
+			"chainfile": null
+		},
+		"crl": {
+			"expiry": "24h"
+		},
+		"registry": {
+			"maxenrollments": -1,
+			"identities": [
+				{
+					"name": "<<<adminUserName>>>",
+					"pass": "<<<adminPassword>>>",
+					"type": "client",
+					"attrs": {
+						"hf.Registrar.Roles": "*",
+						"hf.Registrar.DelegateRoles": "*",
+						"hf.Revoker": true,
+						"hf.IntermediateCA": true,
+						"hf.GenCRL": true,
+						"hf.Registrar.Attributes": "*",
+						"hf.AffiliationMgr": true
+					}
+				}
+			]
+		},
+		"db": {
+			"type": "sqlite3",
+			"datasource": "fabric-ca-server.db",
+			"tls": {
+				"enabled": false,
+				"certfiles": null,
+				"client": {
+					"certfile": null,
+					"keyfile": null
+				}
+			}
+		},
+		"affiliations": {
+      	"ibp": []
+    	},
+		"csr": {
+			"cn": "ca",
+			"keyrequest": {
+				"algo": "ecdsa",
+				"size": 256
+			},
+			"names": [
+				{
+					"C": "US",
+					"ST": "North Carolina",
+					"L": null,
+					"O": "Hyperledger",
+					"OU": "Fabric"
+				}
+			],
+			"hosts": [
+				"<<<MYHOST>>>",
+				"localhost"
+			],
+			"ca": {
+				"expiry": "131400h",
+				"pathlength": "<<<PATHLENGTH>>>"
+			}
+		},
+		"idemix": {
+			"rhpoolsize": 1000,
+			"nonceexpiration": "15s",
+			"noncesweepinterval": "15m"
+		},
+		"bccsp": {
+			"default": "SW",
+			"sw": {
+				"hash": "SHA2",
+				"security": 256,
+				"filekeystore": null
+			}
+		},
+		"intermediate": {
+			"parentserver": {
+				"url": null,
+				"caname": null
+			},
+			"enrollment": {
+				"hosts": null,
+				"profile": null,
+				"label": null
+			},
+			"tls": {
+				"certfiles": null,
+				"client": {
+					"certfile": null,
+					"keyfile": null
+				}
+			}
+		},
+		"cfg": {
+			"identities": {
+				"passwordattempts": 10
+			}
+		},
+		"metrics": {
+			"provider": "prometheus",
+			"statsd": {
+				"network": "udp",
+				"address": "127.0.0.1:8125",
+				"writeInterval": "10s",
+				"prefix": "server"
+			}
+		}
+	}
+}
+```        
+{: codeblock}
+
 
 
 #### Providing your own customizations when you create a CA
@@ -305,6 +436,97 @@ After a CA is deployed, a subset of the fields can be updated as well. Click the
 Only the following fields can be updated:
 
 
+```json
+{
+	"ca":{
+		"cors": {
+			"enabled": false,
+			"origins": [
+				"*"
+			]
+		},
+		"debug": false,
+		"crlsizelimit": 512000,
+		"tls": {
+			"certfile": null,
+			"keyfile": null,
+			"clientauth": {
+				"type": "noclientcert",
+				"certfiles": null
+			}
+		},
+		"crl": {
+			"expiry": "24h"
+		},
+		"db": {
+			"type": "sqlite3",
+			"datasource": "fabric-ca-server.db",
+			"tls": {
+				"enabled": false,
+				"certfiles": null,
+				"client": {
+					"certfile": null,
+					"keyfile": null
+				}
+			}
+		},
+		"csr": {
+			"cn": "ca",
+			"keyrequest": {
+				"algo": "ecdsa",
+				"size": 256
+			},
+			"names": [
+				{
+					"C": "US",
+					"ST": "North Carolina",
+					"L": "Location",
+					"O": "Hyperledger",
+					"OU": "Fabric"
+				}
+			],
+			"hosts": [
+				"<<<MYHOST>>>",
+				"localhost"
+			],
+			"ca": {
+				"expiry": "131400h",
+				"pathlength": "<<<PATHLENGTH>>>"
+			}
+		},
+		"idemix": {
+			"rhpoolsize": 1000,
+			"nonceexpiration": "15s",
+			"noncesweepinterval": "15m"
+		},
+		"bccsp": {
+			"default": "SW",
+			"sw": {
+				"hash": "SHA2",
+				"security": 256,
+				"filekeystore": null
+			}
+		},
+		"cfg": {
+			"identities": {
+				"passwordattempts": 10
+			}
+		},
+		"metrics": {
+			"provider": "prometheus",
+			"statsd": {
+				"network": "udp",
+				"address": "127.0.0.1:8125",
+				"writeInterval": "10s",
+				"prefix": "server"
+			}
+		}
+	}
+}
+```
+{: codeblock}
+
+
 
 
 Paste the modified `JSON` that contains only the parameters that you want to update into the **Configuration JSON** box. For example, if you only needed to update the value for the `passwordattempts` field you would paste in this `JSON`:
@@ -360,7 +582,7 @@ If your Kubernetes cluster is configured across multiple zones, when you deploy 
 
 If you are deploying a redundant node (that is, another peer when you already have one), it is a best practice to deploy this node into a different zone. You can determine the zone that the other node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy a peer or orderer to a specific zone. For more information on how to do this with the APIs, see [Creating a node within a specific zone](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-zone).
 
-If **multizone-capable storage** is configured for your Kubernetes cluster, when a zone failure occurs, the nodes can come up in another zone with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy a peer, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**.
+If **multizone-capable storage** is configured for your Kubernetes cluster, when a zone failure occurs, the nodes can come up in another zone with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy a peer, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**. 
 
 ### Sizing a peer during creation
 {: #ibp-console-adv-deployment-peers-sizing-creation}
@@ -722,7 +944,7 @@ If your Kubernetes cluster is configured across multiple zones, when you deploy 
 
 For a five node ordering service, these nodes will be distributed into multiple zones by default, depending on the relative space available in each zone. You also have the ability to distribute a five node ordering service yourself by clearing the default option to have the zones that are chosen for you and distributing these nodes into the zones you have available. You can check which zone a node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy an ordering node to a specific zone. For more information on how to do this with the APIs, see [Creating a node within a specific zone](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-zone).
 
-If **multizone-capable storage** is configured for your Kubernetes cluster when a zone failure occurs, the nodes can come up in another zone, with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy an ordering service or an ordering node, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**.
+If **multizone-capable storage** is configured for your Kubernetes cluster when a zone failure occurs, the nodes can come up in another zone, with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy an ordering service or an ordering node, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**. 
 
 ### Sizing an ordering node during creation
 {: #ibp-console-adv-deployment-orderer-sizing-creation}
@@ -1088,9 +1310,6 @@ You have gathered all of your peer or ordering service certificates from your th
 ## Configuring a node to use a Hardware Security Module (HSM)
 {: #ibp-console-adv-deployment-cfg-hsm}
 
-{{site.data.keyword.blockchainfull}} Platform 2.5.1 is now available and includes a simpler and faster HSM solution. Upgrade your environment and [configure an HSM client image](/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-adv-deployment#ibp-console-adv-deployment-cfg-hsm) instead of using the PKCS #11 proxy. For upgrade instructions, see upgrading your console and components for [Openshift](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-ocp) or [Kubernetes](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-k8).
-{: note}
-
 Key management is a critical aspect of managing a blockchain network. Because private keys are not stored by the platform, users are responsible for downloading and securing the private key of their node identities. In a production network, when a higher level of security is required for private keys, an HSM is an optional hardware appliance that performs cryptographic operations and provides the capability to ensure that the private keys never leave the HSM. Currently, Hyperledger Fabric supports HSM devices that implement the [PKCS #11 standard](http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html){: external}.  PKCS #11 is a cryptographic standard for secure operations, generation, and storage of keys.
 
 ### What capability does HSM add to my blockchain node?
@@ -1110,11 +1329,301 @@ When a CA, peer, or ordering node is configured to use an HSM, their private key
 
 Configuring a node to use HSM is a three-part process:
 1. **Deploy an HSM**. Utilize the HSM appliance that is available in [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/infrastructure/hardware-security-module){: external} or configure your own HSM. Record the value of the HSM `partition` and `PIN` to be used in the subsequent steps.
-	-  If you plan to use {{site.data.keyword.cloud_notm}} HSM see this [tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-hsm-gemalto) for an example of how to configure {{site.data.keyword.cloud_notm}} HSM 6.0 with the {{site.data.keyword.blockchainfull_notm}} Platform. After that is completed you can skip to Part 3 **Configure the node to use HSM**.
+	-  If you plan to use {{site.data.keyword.cloud_notm}} HSM see this [tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-hsm-gemalto) for an example of how to configure {{site.data.keyword.cloud_notm}} HSM 6.0 with the {{site.data.keyword.blockchainfull_notm}} Platform including the PKCS #11 proxy. After that is completed you can skip to Part 3 **Configure the node to use HSM**.
 	- If you want to use the [openCryptoki HSM](https://www.ibm.com/support/knowledgecenter/linuxonibm/com.ibm.linux.z.lxce/lxce_stackoverview.html){: external} with your Z environment, you should complete these [instructions in GitHub](https://github.com/IBM-Blockchain/HSM/tree/master/Z-HSM) and then skip to Part 3 **Configure the node to use HSM**.
+	- If you want to try out SoftHSM or learn more about the PCKS #11 proxy, continue to Part 2 **Set up a PKCS #11 proxy**.  
+2. **Set up a PKCS #11 proxy**. The proxy enables the node to communicate with the HSM. [See Setting up a PKCS #11 proxy for HSM](#ibp-console-adv-deployment-pkcs11-proxy) for your HSM.
 3. **Configure the node to use HSM**.  From the APIs or the console, when you deploy a peer, CA, or ordering node, you can select the advanced option to use an HSM. See [Configure the node to use the HSM](#ibp-console-adv-deployment-cfg-hsm-node).
 
 
+
+### Setting up a PKCS #11 proxy for your HSM
+{: #ibp-console-adv-deployment-pkcs11-proxy}
+
+An HSM is a hardware appliance that provides cryptographic processing services. In the context of a blockchain network, an HSM is used to generate and store private keys inside a tamper-resistent device. After you deploy the HSM, you need to also deploy a PKCS #11 proxy that allows the blockchain node to communicate with the HSM.  These instructions describe how to build the proxy image, how to deploy it to your cluster, and how to configure it.
+
+The HSM and the proxy can reside anywhere, but, assuming your cluster has access to the same private network where your HSM is found, a best practice would be for the proxy to be running on the same cluster as your blockchain network.
+{: tip}
+
+Before attempting these instructions you should already have a [DockerHub login](https://hub.docker.com/signup/){: external}.
+{: important}
+
+#### Why is a proxy required?
+{: #ibp-console-adv-deployment-pkcs11-proxy-why}
+
+The {{site.data.keyword.blockchainfull_notm}} Platform HSM implementation is based on Hyperledger Fabric which supports devices that use the [PKCS #11 standard](http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html){: external}. Therefore, after deploying an HSM, you need to configure a PKCS #11 proxy to set up the communications between the appliance and the nodes on the network. One PKCS #11 proxy can communicate with multiple partitions on an HSM. When a user is enrolled, their private key is generated by the HSM and stored in the partition. A single partition can store multiple keys, although the exact number varies by HSM provider. Organizations can share a slot or partition, but it is more likely that each organization would want their own partition or potentially even their own HSM.
+
+#### Building the proxy image
+{: #ibp-console-adv-deployment-pkcs11-proxy-build-img}
+
+The first step is to build a Docker image for the PKCS #11 proxy and add the HSM-specific library to the image.
+
+- The following example shows the process for adding the `SoftHSM` drivers to the image. (`SoftHSM` is a software version of HSM that can be used for HSM simulation and testing, but if you are using your own HSM, you need to replace it with the library from your HSM provider.)  If you are using {{site.data.keyword.cloud_notm}} HSM, the proxy instructions are included in the [tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-hsm-gemalto).
+
+If you are running the platform behind a firewall, you need to pull the proxy image to a machine that has internet access and then push the image to a docker registry that you can access from behind your firewall.
+{: note}
+
+Starting under `### YOUR HSM LIBRARY BUILD GOES HERE ###`, edit the code for your HSM, and save it to a file named `Dockerfile`. If you are not using `SoftHSM` to try out the process, you should remove the section that starts with the label `### EXAMPLE CONFIGURATION FOR SOFTHSM ###` and ends with `### EXAMPLE CONFIGURATION FOR SOFTHSM ENDS HERE###`.
+
+```
+
+########## Build the pkcs11 proxy ##########
+FROM registry.access.redhat.com/ubi8/ubi-minimal as builder
+ARG ARCH=amd64
+
+ARG VERSION=2032875
+
+RUN microdnf install -y \
+	git \
+	make \
+	cmake \
+	openssl-devel \
+	gcc;
+
+RUN if [ "${ARCH}" == "amd64" ]; then ARCH="x86_64"; fi && \
+	rpm -ivh https://kojipkgs.fedoraproject.org/packages/libseccomp/2.4.2/2.fc30/${ARCH}/libseccomp-2.4.2-2.fc30.${ARCH}.rpm && \
+	rpm -ivh https://kojipkgs.fedoraproject.org/packages/libseccomp/2.4.2/2.fc30/${ARCH}/libseccomp-devel-2.4.2-2.fc30.${ARCH}.rpm
+
+
+RUN git clone https://github.com/SUNET/pkcs11-proxy && \
+	cd pkcs11-proxy && \
+	git checkout ${VERSION} && \
+	cmake . && \
+	make && \
+	make install
+
+########## FINAL image - Build softhsm client ##########
+
+FROM registry.access.redhat.com/ubi8/ubi-minimal
+ARG ARCH=amd64
+
+RUN microdnf install -y \
+	shadow-utils \
+	&& microdnf clean all \
+	&& groupadd -g 7051 ibp-user \
+	&& useradd -u 7051 -g ibp-user -s /bin/bash ibp-user \
+	&& mkdir /licenses \
+	&& if [ "${ARCH}" == "amd64" ]; then ARCH="x86_64"; fi \
+	&& rpm -ivh https://kojipkgs.fedoraproject.org/packages/libseccomp/2.4.2/2.fc30/${ARCH}/libseccomp-2.4.2-2.fc30.${ARCH}.rpm \
+	&& microdnf remove shadow-utils \
+	&& microdnf clean all;
+
+COPY --from=builder /usr/local/bin/pkcs11-daemon /usr/local/bin/pkcs11-daemon
+COPY --from=builder /usr/local/lib/libpkcs11-proxy.so.0.1 /usr/local/lib/libpkcs11-proxy.so.0.1
+COPY --from=builder /usr/local/lib/libpkcs11-proxy.so.0 /usr/local/lib/libpkcs11-proxy.so.0
+COPY --from=builder /usr/local/lib/libpkcs11-proxy.so /usr/local/lib/libpkcs11-proxy.so
+
+ENV PKCS11_DAEMON_SOCKET="tcp://0.0.0.0:2345"
+# ENV PKCS11_PROXY_TLS_PSK_FILE="/tls.psk"
+EXPOSE 2345
+
+### YOUR HSM LIBRARY BUILD GOES HERE ###
+
+ENV LIBRARY_LOCATION="/usr/lib64/softhsm/libsofthsm.so"
+
+### YOUR HSM LIBRARY BUILD ENDS HERE ###
+
+### EXAMPLE CONFIGURATION FOR SOFTHSM ###
+
+ENV SLOT 0
+ENV LABEL test
+ENV PIN 5678
+ENV SO_PIN 5678
+ENV ARCH x86_64
+ENV DEBUG_OUTPUT 1
+
+RUN microdnf update && \
+    microdnf install -y shadow-utils && \
+    rpm -ivh https://kojipkgs.fedoraproject.org/packages/softhsm/2.5.0/4.fc30/${ARCH}/softhsm-2.5.0-4.fc30.${ARCH}.rpm
+RUN mkdir -p /var/lib/softhsm/tokens/
+RUN softhsm2-util --slot ${SLOT} --init-token --label ${LABEL} --pin ${PIN} --so-pin ${SO_PIN}
+
+### EXAMPLE CONFIGURATION FOR SOFTHSM ENDS HERE###
+
+### ###
+
+CMD ["sh", "-c", "pkcs11-proxy $LIBRARY_LOCATION -"]
+```
+{: codeblock}
+
+Run the following command to build the image:
+
+```
+docker build -t pkcs11-proxy:v1 -f Dockerfile .
+```
+{: codeblock}
+After the image is built, the next step is to push the image to your docker registry (for example, Docker Hub). This command will look similar to:
+
+```
+docker login -u <DOCKER_HUB_ID> -p <DOCKER_HUB_PWD>
+docker tag pkcs11-proxy:v1 <DOCKER_HUB_ID>/pkcs11-proxy:v1
+docker push <DOCKER_HUB_ID>/pkcs11-proxy:v1
+```
+{: codeblock}
+
+- Replace `<DOCKER_HUB_ID>` with your Docker Hub id.
+- Replace `<DOCKER_HUB_PWD>` with your Docker Hub password.
+
+#### Deploying the proxy to your cluster
+{: #ibp-console-adv-deployment-pkcs11-proxy-deploy}
+
+In order to use HSM with any blockchain node, you need to configure a PKCS #11 proxy that enables communications between the HSM and your blockchain nodes. The following steps guide you through the process of building an image for the proxy, deploying it, and configuring the communications with your blockchain node.
+
+##### **Step one:**  Create a new namespace
+{: #ibp-console-adv-deployment-pkcs11-proxy-deploy-s1}
+
+
+On your Kubernetes cluster you need to create a namespace for HSM.
+```
+kubectl create ns hsm
+```
+{: codeblock}
+
+
+If your cluster is on OpenShift, you need to run the command:
+```
+oc new-project hsm
+```
+{: codeblock}
+
+
+##### **Step two:** Create a Kubernetes secret
+{: #ibp-console-adv-deployment-pkcs11-proxy-deploy-s2}
+
+Create an image pull secret for pulling the image from my.repo.docker.hub. The command might look something like:
+
+```
+kubectl create secret docker-registry docker-pull-secret --docker-username=<DOCKER_HUB_ID> --docker-password=<DOCKER_HUB_PWD> --docker-email=<EMAIL> --docker-server=<<DOCKER_HUB_ID>:pkcs11-proxy:v1
+```
+{: codeblock}
+
+- Replace `<DOCKER_HUB_ID>` with the Docker user name.
+- Replace `<DOCKER_HUB_PWD>` with the Docker password.
+- Replace `<EMAIL>` with your Docker Hub email address.
+
+For example:
+```
+kubectl create secret docker-registry docker-pull-secret --docker-username=dockeruser --docker-password=dockerpwd --docker-email=dockeruser@example.com --docker-server=dockeruser/pkcs11-proxy:v1 -n hsm
+```
+{: codeblock}
+
+##### **Step three:** Deploy the proxy pod
+{: #ibp-console-adv-deployment-pkcs11-proxy-deploy-s3}
+
+After the secret is created with the name `docker-pull-secret`, you can use the following file to deploy the proxy pod. Copy and edit the `yaml` below and save it to a file named `pod.yaml`.
+
+- Replace `<DOCKER_HUB_ID>` with your DockerHub login.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkcs11-proxy
+  namespace: hsm
+  labels:
+    app: pkcs11
+spec:
+  imagePullSecrets:
+  - name: docker-pull-secret
+  containers:
+  - name: proxy
+    command:
+      - sh
+      - -c
+      - pkcs11-daemon $LIBRARY_LOCATION
+    image: <DOCKER_HUB_ID>/pkcs11-proxy:v1
+    imagePullPolicy: Always
+    readinessProbe:
+      tcpSocket:
+        port: 2345
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    livenessProbe:
+      tcpSocket:
+        port: 2345
+      initialDelaySeconds: 15
+      periodSeconds: 20
+```
+{: codeblock}
+
+Deploy the file on the cluster in the `hsm` namespace by running the following command:
+
+```
+kubectl create -f pod.yaml -n hsm
+```
+{: codeblock}
+
+Verify that the pod is running and passes the liveliness and readiness probes by running the command:
+```
+kubectl describe pod pkcs11-proxy -n hsm
+```
+{: codeblock}
+
+If the pod starts successfully you will see something similar to:
+
+```
+Type    Reason     Age   From                  Message
+  ----    ------     ----  ----                  -------
+  Normal  Scheduled  19s   default-scheduler     Successfully assigned hsm/pkcs11-proxy to 10.95.42.51
+  Normal  Pulling    18s   kubelet, 10.95.42.51  pulling image "pamaibm/pkcs11-proxy:v1"
+  Normal  Pulled     7s    kubelet, 10.95.42.51  Successfully pulled image "pamaibm/pkcs11-proxy:v1"
+  Normal  Created    7s    kubelet, 10.95.42.51  Created container
+  Normal  Started    7s    kubelet, 10.95.42.51  Started container
+```
+{: codeblock}
+
+
+##### **Step four:** Configure communication between the proxy and the blockchain components
+{: #ibp-console-adv-deployment-pkcs11-proxy-deploy-s4}
+
+After verifying that the pod is running, we need to configure communications between the proxy and the blockchain components by using the Kubernetes service. The `ClusterIP` service is used to ensure that the proxy is not exposed to outside the cluster. If required, you can add networking rules for all members who can access the proxy. Copy the `yaml` below and save it to a file named `service.yaml`.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: pkcs11-proxy
+  namespace: hsm
+  labels:
+    app: pkcs11
+spec:
+  ports:
+  - name: http
+    port: 2345
+    protocol: TCP
+    targetPort: 2345
+  selector:
+    app: pkcs11
+  type: ClusterIP
+```
+{: codeblock}
+
+Create the `ClusterIP` service by running the command:
+
+```
+kubectl create -f service.yaml -n hsm
+```
+{: codeblock}
+
+When this command is successful you should see something similar to:
+```
+service/pkcs11-proxy created
+```
+
+
+After creating the service you need to get the ClusterIP address by running the command:
+```
+kubectl get service -n hsm pkcs11-proxy -o wide
+```
+{: codeblock}
+
+You will see results similar to:
+```
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+pkcs11-proxy   ClusterIP   172.21.106.217   <none>        2345/TCP   16s   app=pkcs11
+```
+
+Save the value of the  `CLUSTER-IP` address and `PORT` because they will be used to form the `HSM proxy endpoint` in the next step.
 
 ### Configuring a CA, peer, or ordering node to use the HSM
 {: #ibp-console-adv-deployment-cfg-hsm-node}
@@ -1126,7 +1635,15 @@ Before attempting these steps you should have:
 
 Then you are ready to deploy a new CA, peer, or ordering node that uses the HSM.
 
-When you deploy a new node from the console, ensure that you select the advanced deployment option **Hardware security module (HSM)**.
+When you deploy a new node from the console, ensure that you select the advanced deployment option **Hardware security module (HSM)**. 
+
+![Configuring a node to use HSM](../images/hsm-cfg.png "Configuring a node to use HSM"){: caption="Figure 1. Configuring a node to use HSM" caption-side="bottom"}
+
+On the HSM configuration panel, enter the following values:
+- **HSM proxy endpoint** -Enter the URL for the PKCS #11 proxy that begins with `tcp://` and includes the `CLUSTER-IP` address and `PORT`. For example, `tcp://172.21.106.217:2345`.
+- **HSM label** - Enter the name of the HSM partition to be used for this node.
+- **HSM PIN** - Enter the PIN for the HSM slot.  
+
 
 
 
@@ -1136,3 +1653,4 @@ Because the HSM implementation currently only supports HSMs that implement the P
 {: note}
 
 When the node is deployed, a private key for the specified node enroll ID and secret is generated by the HSM and stored securely in the appliance.
+
