@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-30"
 
 keywords: deployment, advanced, CouchDB, LevelDB, external CA, HSM, resource allocation
 
@@ -22,7 +22,13 @@ subcollection: blockchain-sw-25
 # Advanced deployment options
 {: #ibp-console-adv-deployment}
 
-
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-adv-deployment">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-adv-deployment">2.5.1 (latest)</a>
+    </p>
+</div>
 
 When you deploy a node from the console, there are various advanced deployment options available for each node type. This topic provides more details about each of those options.
 {:shortdesc}
@@ -87,7 +93,7 @@ The **Resource allocation** panel in the console provides default values for the
 After you have deployed the node, you need to **monitor the resource consumption of the node**. Configure a monitoring tool such as [Sysdig](https://sysdig.com/secure-devops-platform/){: external} to observe the nodes and ensure that adequate resources are available to the node containers when processing transactions.
 {: important}
 
-All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage). 
+All of the containers that are associated with a node have **CPU** and **memory**, while certain containers that are associated with the peer, ordering node, and CA also have **storage**. For more information about storage, see [storage](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-ocp-getting-started#deploy-ocp-storage).
 
 You are responsible for monitoring your CPU, memory, and storage consumption in your cluster. If you do happen to request more resources for a blockchain node than are available, the node will not start. However, existing nodes will not be affected. For information about how to increase the CPU, memory, and storage, consult the documentation of your cloud provider.
 {:note}
@@ -136,7 +142,7 @@ For more details on the resource allocation panel in the console see [Allocating
 #### Creating highly available CAs
 {: #ibp-console-adv-deployment-CA-HA}
 
-For information about creating highly available CAs through the use of replica sets, see [how to configure CA replica sets](/docs/blockchain?topic=blockchain-ibp-console-ha-ca).
+For information about creating highly available CAs through the use of replica sets, see [how to configure CA replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha-ca).
 
 ### Customizing a CA configuration
 {: #ibp-console-adv-deployment-ca-customization}
@@ -582,7 +588,7 @@ If your Kubernetes cluster is configured across multiple zones, when you deploy 
 
 If you are deploying a redundant node (that is, another peer when you already have one), it is a best practice to deploy this node into a different zone. You can determine the zone that the other node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy a peer or orderer to a specific zone. For more information on how to do this with the APIs, see [Creating a node within a specific zone](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-zone).
 
-If **multizone-capable storage** is configured for your Kubernetes cluster, when a zone failure occurs, the nodes can come up in another zone with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy a peer, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**. 
+If **multizone-capable storage** is configured for your Kubernetes cluster, when a zone failure occurs, the nodes can come up in another zone with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy a peer, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**.
 
 ### Sizing a peer during creation
 {: #ibp-console-adv-deployment-peers-sizing-creation}
@@ -944,7 +950,7 @@ If your Kubernetes cluster is configured across multiple zones, when you deploy 
 
 For a five node ordering service, these nodes will be distributed into multiple zones by default, depending on the relative space available in each zone. You also have the ability to distribute a five node ordering service yourself by clearing the default option to have the zones that are chosen for you and distributing these nodes into the zones you have available. You can check which zone a node was deployed to by opening the tile of the node and looking under the Node location. Alternatively, you can use the APIs to deploy an ordering node to a specific zone. For more information on how to do this with the APIs, see [Creating a node within a specific zone](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-zone).
 
-If **multizone-capable storage** is configured for your Kubernetes cluster when a zone failure occurs, the nodes can come up in another zone, with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy an ordering service or an ordering node, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**. 
+If **multizone-capable storage** is configured for your Kubernetes cluster when a zone failure occurs, the nodes can come up in another zone, with their associated storage intact, ensuring high availability of the node. In order to leverage this capability with the {{site.data.keyword.blockchainfull_notm}} Platform, you need to configure your cluster to use **SDS (Portworx)** storage. And when you deploy an ordering service or an ordering node, select the advanced deployment option labeled **Deployment zone selection** and then select **Across all zones**.
 
 ### Sizing an ordering node during creation
 {: #ibp-console-adv-deployment-orderer-sizing-creation}
@@ -1635,7 +1641,7 @@ Before attempting these steps you should have:
 
 Then you are ready to deploy a new CA, peer, or ordering node that uses the HSM.
 
-When you deploy a new node from the console, ensure that you select the advanced deployment option **Hardware security module (HSM)**. 
+When you deploy a new node from the console, ensure that you select the advanced deployment option **Hardware security module (HSM)**.
 
 ![Configuring a node to use HSM](../images/hsm-cfg.png "Configuring a node to use HSM"){: caption="Figure 1. Configuring a node to use HSM" caption-side="bottom"}
 
@@ -1653,4 +1659,3 @@ Because the HSM implementation currently only supports HSMs that implement the P
 {: note}
 
 When the node is deployed, a private key for the specified node enroll ID and secret is generated by the HSM and stored securely in the appliance.
-

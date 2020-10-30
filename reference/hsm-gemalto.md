@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-03"
+lastupdated: "2020-10-30"
 
 keywords: HSM, Gemalto, IBM Cloud
 
@@ -95,7 +95,8 @@ subcollection: blockchain-sw-25
 {: help}
 {: support}
 
-
+{{site.data.keyword.blockchainfull}} Platform 2.5.1 is now available and includes a simpler and faster HSM solution. Upgrade your environment and [configure an HSM client image](/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-hsm-gemalto) instead of using the PKCS #11 proxy. For upgrade instructions, see upgrading your console and components for [Openshift](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-ocp) or [Kubernetes](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-k8).
+{: note}
 
 {{site.data.keyword.cloud_notm}} includes an [HSM](#x6704988){: term}
 service that provides cryptographic processing for key generation, encryption, decryption, and key storage. This document describes how to use that service with the {{site.data.keyword.blockchainfull}} Platform.
@@ -633,4 +634,3 @@ When the node is deployed, a private key for the specified node enroll ID and se
 {: #ibp-hsm-gemalto-multiple-partitions}
 
 If your HSM has multiple partitions, only one PKCS #11 proxy is required to communicate with the HSM.
-

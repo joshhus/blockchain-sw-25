@@ -273,7 +273,7 @@ USE_WEBSOCKETS=true
 
 The console needs to check the health of any node being imported into the console. As a result, you need to enable the operations service for every node that is connected to a web proxy. For more information, see [The Operations Service](https://hyperledger-fabric.readthedocs.io/en/latest/operations_service.html).
 
-After the web proxy container is deployed, you can import the node into a console by creating a node JSON file. For more information about how to create the node file, see [Importing nodes from a locally deployed network](/docs/blockchain?topic=blockchain-ibp-console-import-nodes#ibp-console-import-icp). You need to use the following values when you create the file:
+After the web proxy container is deployed, you can import the node into a console by creating a node JSON file. For more information about how to create the node file, see [Importing nodes from a locally deployed network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-icp). You need to use the following values when you create the file:
 - Use the web proxy URL and port for the `"grpcwp_url"` field. You specified these values with the `EXTERNAL_ADDRESS` and `SERVER_HTTP_TLS_PORT` environment variables.
 - Use the node endpoint URL and port for the `"api_url"` field. You specified these values with the `BACKEND_ADDRESS` environment variable.
 - Encode the public TLS certificate of the node in base64 format and paste it in the`"pem"` field. This certificate was referenced by the `SERVER_TLS_CLIENT_CA_FILES` environment variable.
