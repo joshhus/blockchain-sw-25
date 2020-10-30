@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-10-30"
 
 keywords: admin certificate, Node OU, admin identity, expiration
 
@@ -92,6 +92,13 @@ subcollection: blockchain-sw-25
 
 # Managing certificates
 {: #cert-mgmt}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-cert-mgmt">2.5.1 (latest)</a>
+    </p>
+</div>
 
 {{site.data.keyword.blockchainfull}} Platform is based on Hyperledger Fabric and builds permissioned blockchain networks. Participants are known as members of the network, and their activities and access to network resources are verified continuously. Learn how to manage a member's identity in the form of a trusted x509 digital certificate.
 {:shortdesc}
@@ -259,7 +266,7 @@ The following diagram summarizes the process for updating orderer organization a
 <area href="/docs/blockchain-sw-25?topic=blockchain-sw-25-cert-mgmt#cert-mgmt-manual-update-channel" alt="Update orderer member MSP on channel" title="Update orderer member MSP on channel" shape="rect" coords="669, 112, 754, 182" />
 <area href="/docs/blockchain-sw-25?topic=blockchain-sw-25-cert-mgmt#ibp-console-identities-expired-certs-orderer-override" alt="Override NoExpirationChecks on each ordering node" title="Override NoExpirationChecks on each ordering node" shape="rect" coords="405, 255, 534, 338" /></map>
 
-
+<!--![Ordering service admin certificate renewal process](../images/orderer-admin-cert-renewal.png "Ordering service admin certificate renewal process"){: caption="Figure 6. Ordering service admin certificate renewal process" caption-side="bottom"} -->
 
 | Certificate |	 Description |	How generated	| Default expiration| How to view expiration	| How to renew|  Update MSP | Update node admin | Update system channel |	Share with network | What to do if expired|
 |-----|-----|-----|-----|-----|-----|-----|
@@ -516,4 +523,3 @@ Share the JSON file with all of the members of the network who must import it in
 {: #cert-mgmt-import-msp}
 
 When another organization member shares their MSP with you, importing it into your console is important to ensure you are using the latest version of their organization MSP. Navigate to the **Organizations** tab and click **Import MSP definition**. Browse to the MSP definition that was shared with you and click **Import MSP definition**.
-

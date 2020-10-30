@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-28"
+lastupdated: "2020-10-30"
 
 keywords: IBM Blockchain Platform, system requirements, Kubernetes, behind a firewall, azure, multicloud
 
@@ -93,11 +93,12 @@ subcollection: blockchain-sw-25
 # About {{site.data.keyword.blockchainfull_notm}} Platform 2.5
 {: #console-ocp-about}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-console-ocp-about">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-console-ocp-about">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-console-ocp-about">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-console-ocp-about">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -175,7 +176,7 @@ The {{site.data.keyword.blockchainfull_notm}} Platform includes the following ke
 - **Simplified DevOps** allows you to move from development to test to production in a single environment by scaling up your Kubernetes resources to add more components.
 - **Up-to-date Fabric key features**. Choose which version of Hyperledger Fabric you want to use when deploying peers or ordering nodes. Leverage the latest features of Hyperledger Fabric v1.4.7 and v2.x:
   - [Raft ordering service](https://hyperledger-fabric.readthedocs.io/en/release-1.4/orderer/ordering_service.html#raft){: external}
-  - [Private data collections](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-private-data) that provide increased data privacy by ensuring that ledger data is shared to only authorized peers via the gossip protocol.
+  - [Private data collections](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-private-data) that provide increased data privacy by ensuring that ledger data is shared to only authorized peers via the gossip protocol.
   - [Fabric Node OUs](https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html#node-ou-roles-and-msps){: external}
   - [Service discovery](https://hyperledger-fabric.readthedocs.io/en/release-1.4/discovery-overview.html){: external}, allowing you to dynamically discover and update how your application interacts with your network.
   - [Channel access control lists](https://hyperledger-fabric.readthedocs.io/en/release-1.4/access_control.html){: external} that allow you additional control of the governance of your channels and smart contracts.
@@ -207,20 +208,11 @@ Have questions and want to speak to an {{site.data.keyword.blockchainfull_notm}}
 {: #console-ocp-about-prerequisites}
 
 The {{site.data.keyword.blockchainfull_notm}} Platform 2.5 can be deployed with the Kubernetes distributions on the following Platforms:
-
-| Kubernetes distribution | Version | Hardware |  Tested configuration|
-|----|----|----|-----|
-| OpenShift Container Platform | 4.3 |  x86_64 | ![Checkmark icon](../icons/checkmark-icon.svg) |
-| OpenShift Container Platform on {{site.data.keyword.cloud_notm}} | 4.3 | x86_64 | ![Checkmark icon](../icons/checkmark-icon.svg)  |
-| OpenShift Container Platform on LinuxONE | 4.3 | s390x | ![Checkmark icon](../icons/checkmark-icon.svg) |
-| Kubernetes ***    | v1.15 - v1.18 | x86_64 | ![Checkmark icon](../icons/checkmark-icon.svg) v1.15, v1.16, v1.17|
-{: caption="Table 1. Supported platforms" caption-side="bottom"}
-
 *** If you want to use {{site.data.keyword.IBM_notm}} Kubernetes Service, we recommend that you check out the [IBM Blockchain Platform for IBM Cloud](/docs/blockchain?topic=blockchain-ibp-v2-deploy-iks){: external} offering unless you specifically require this offering. See [Is IBM Blockchain Platform 2.5 suitable for you](/docs/blockchain-sw-25?topic=blockchain-sw-25-get-started-console-ocp#get-started-console-ocp-suitable).    
 
 If you are running on Azure Kubernetes Service, Amazon Web Services, Rancher, Amazon Elastic Kubernetes Service, or Google Kubernetes Engine, then you need to set up the NGINX Ingress controller and it needs to be running in [SSL passthrough mode](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough){: external}. For more information, see [Considerations when using Kubernetes distributions](/docs/blockchain-sw-25?topic=blockchain-sw-25-deploy-k8#console-deploy-k8-considerations).
 {: important}
-
+<!-- See [Bringing your own Ingress controller](https://cloud.ibm.com/docs/containers?topic=containers-ingress-user_managed){: external} for instructions on how to do this on {{site.data.keyword.IBM_notm}} Kubernetes Service.-->
 
 ## License and pricing
 {: #console-ocp-about-license}

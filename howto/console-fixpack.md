@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-01"
+lastupdated: "2020-10-30"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, fix pack, multicloud
 
@@ -22,7 +22,10 @@ subcollection: blockchain-sw-25
 # Installing the 2.5 fix pack
 {: #install-fixpack}
 
-Use these instructions if you have already installed or upgraded to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 before October 1, 2020 and want to apply the latest 2.5 fix pack. This fix pack contains important bug fixes and should be applied to your network as soon as possible.  If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after October 1, 2020, the platform will contain all the bug fixes and improvements included in this fix pack, and you do not need to apply it.
+{{site.data.keyword.blockchainfull}} Platform 2.5.1 is now available. To take advantage of the latest features and for upgrade instructions, see upgrading your console and components for [OpenShift](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-ocp) or [Kubernetes](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-k8).
+{: note}
+
+Use these instructions if you have already installed or upgraded to the {{site.data.keyword.blockchainfull} Platform 2.5 before October 1, 2020 and want to apply the latest 2.5 fix pack. This fix pack contains important bug fixes and should be applied to your network as soon as possible.  If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after October 1, 2020, the platform will contain all the bug fixes and improvements included in this fix pack, and you do not need to apply it.
 {:shortdesc}
 
 You can install the fix pack by updating the {{site.data.keyword.blockchainfull_notm}} Platform deployment on your Kubernetes cluster to pull the latest images from the {{site.data.keyword.IBM_notm}} entitlement registry. You can apply the fix pack by using the following steps:
@@ -48,6 +51,16 @@ To upgrade your network, you need to [retrieve your entitlement key](/docs/block
 
 You can start applying the fix pack to your network by updating the {{site.data.keyword.blockchainfull_notm}} operator. Log in to your cluster by using the kubectl CLI. You will need to provide the name of the Kubernetes namespace that you created to deploy your {{site.data.keyword.blockchainfull_notm}} network. If you deployed your network on Kubernetes, you can use the `kubectl get namespace` command to find the name of your namespace. If you deployed the platform on the OpenShift Container Platform, log in to your cluster using the oc CLI. You can find the name of your OpenShift project using the `oc get project` command. Use the project name as the value for `<namespace>`.
 
+Before updating the operator image, you need to stop the console by running the following command. Replace <namespace> with the name of your OpenShift project or Kubernetes namespace:
+```
+kubectl patch ibpconsole ibpconsole -n <namespace> -p='[{"op": "replace", "path":"/spec/replicas", "value":0}]' --type=json
+```
+{: codeblock}
+
+Wait a few minutes for the console to stop.
+
+While the console is stopped you are unable to deploy or manage your blockchain components.
+{: note}
 Run the following command to download the operator deployment spec to your local file system. The default name of the operator deployment is `ibp-operator`. If you changed the name during the deployment process, you can use the `kubectl get deployment -n <namespace>` command to get the name of the deployments on your namespace. Replace `<namespace>` with the name of your namespace or OpenShift project:
 ```
 kubectl get deployment ibp-operator -n <namespace> -o yaml > operator.yaml
@@ -95,7 +108,14 @@ kubectl delete deployment -n <namespace> ibpconsole
 ```
 {:codeblock}
 
-After you delete the console deployment and ConfigMap, the console will restart and download the new images and configuration settings provided by the 2.5 fix pack from the updated operator. You can use the following commands to confirm that the console has been updated with the latest images and configuration. The new images used by the console and your blockchain nodes will have the tags with the date `20201001`.
+After you delete the console deployment and ConfigMap, you need to restart the console which downloads the new images and configuration settings provided by the 2.5 fix pack from the updated operator. Run the following command to
+restart the console:
+```
+kubectl patch ibpconsole ibpconsole -n <namespace> -p='[{"op": "replace", "path":"/spec/replicas", "value":1}]' --type=json
+```
+{:codeblock}
+
+You can use the following commands to confirm that the console has been updated with the latest images and configuration. The new images used by the console and your blockchain nodes will have the tags with the date `20201001`.
 ```
 kubectl get deployment -n <namespace> ibpconsole -o yaml
 kubectl get configmap -n <namespace> ibpconsole-deployer -o yaml
@@ -324,7 +344,7 @@ NAME           READY     UP-TO-DATE   AVAILABLE   AGE
 ibpconsole     1/1       1            1           1m
 ```
 
-If your console experiences an image pull error, you may need to update the console deployment spec with local registry that you used to download the images. Run the following command to download the deployment spec of the console:
+If your console experiences an image pull error, you may need to update the console CR spec with local registry that you used to download the images. Run the following command to download the CR spec of the console:
 ```
 kubectl get ibpconsole ibpconsole -o yaml > console.yaml
 ```

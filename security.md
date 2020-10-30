@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-30"
 
 keywords: security, encryption, storage, tls, iam, roles, keys, multicloud
 
@@ -23,11 +23,12 @@ subcollection: blockchain-sw-25
 # Security
 {: #ibp-security}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-security">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-security">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-security">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-security">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -41,7 +42,7 @@ subcollection: blockchain-sw-25
 
 **Audience:** Tasks in this section are typically performed by **blockchain network operators**.  
 
- Configuration of an {{site.data.keyword.blockchainfull_notm}} Platform network includes deploying the blockchain console that can then be used to create blockchain nodes that reside in the customer Kubernetes cluster. 
+ Configuration of an {{site.data.keyword.blockchainfull_notm}} Platform network includes deploying the blockchain console that can then be used to create blockchain nodes that reside in the customer Kubernetes cluster.
 
 Considerations include:
 - [IAM (Identity and Access Management)](#ibp-security-ibp-iam)
@@ -218,7 +219,6 @@ Because {{site.data.keyword.blockchainfull_notm}} Platform is based on Hyperledg
 
 - **Ledger data:** Implicit in the blockchain permissioned network is the notion that an agreed upon policy of multiple endorsers is required to sign (approve) a transaction before it can be committed to the ledger. Before any information can be added to the ledger, a clear and well-established process for defining the ledger information must exist. Data on the ledger is immutable.
 
-- **Smart contracts:** All smart contracts should be reviewed by channel members before they are installed and executed on peers in their organization. Likewise, all updates to smart contract should be reviewed before the updates are applied to a peer. See this topic on [Upgrading a smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-upgrade) for the steps that are required.
+- **Smart contracts:** All smart contracts should be reviewed by channel members before they are installed and executed on peers in their organization. Likewise, all updates to smart contract should be reviewed before the updates are applied to a peer. See this topic on [Upgrading a smart contract](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-upgrade) for the steps that are required.
 
 - **HSM integration:** After you have configured an HSM for your environment, you have the option of configuring your nodes to use the HSM to generate and store private keys. See [Configuring a CA, peer, or ordering node to use the HSM](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-cfg-hsm) for more information.
-

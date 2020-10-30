@@ -2,9 +2,9 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-10-30"
 
-keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy, 
+keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy,
 
 subcollection: blockchain-sw-25
 
@@ -22,6 +22,13 @@ subcollection: blockchain-sw-25
 
 # Getting started with Ansible playbooks on the IBM Blockchain Platform
 {: #ansible}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ansible">2.5.1 (latest)</a>
+    </p>
+</div>
 
 Customers who are interested in automating their {{site.data.keyword.blockchainfull}} Platform network deployments can use Ansible playbooks to deploy an instance of the service and build out their networks.
 {:shortdesc}
@@ -112,4 +119,3 @@ Advanced users can review the [Ansible collection documentation](https://ibm-blo
 {: #ansible-support}
 
 Ansible is an open source technology, therefore the Ansible playbooks are not officially supported by {{site.data.keyword.IBM_notm}}. For support related to the usage of the {{site.data.keyword.blockchainfull_notm}} Platform and Ansible playbooks open an issue in the [GitHub repository](https://github.com/IBM-Blockchain/ansible-role-blockchain-platform-manager/issues){: external}
-

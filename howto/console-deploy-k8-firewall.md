@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-01"
+lastupdated: "2020-10-30"
 
 keywords: IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -22,11 +22,12 @@ subcollection: blockchain-sw-25
 # Deploying {{site.data.keyword.blockchainfull_notm}} Platform 2.5 behind a firewall
 {: #deploy-k8-firewall}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-deploy-k8-firewall">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8-firewall">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-deploy-k8-firewall">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-deploy-k8-firewall">2.5.1 (latest)</a>
     </p>
 </div>
 

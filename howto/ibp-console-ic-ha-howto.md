@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-30"
 
 keywords: HA, highly availability, multiregion
 
@@ -22,11 +22,12 @@ subcollection: blockchain-sw-25
 # Setting up multiregion High Availability (HA) deployments for peers
 {: #ibp-console-hadr-mr}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-hadr-mr">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-hadr-mr">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-hadr-mr">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-hadr-mr">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -59,7 +60,7 @@ This tutorial assumes that an ordering service exists with a channel defined tha
 2. After the CA tile status indicator is green, `Running`, follow the instructions to [Register identities with your CA](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-use-CA-org1). In those instructions, you create two identities, one for the peer and another for the peer's organization admin identity.
 3. [Create the peer's organization MSP definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-create-peers-org1) for the peer's organization in the first cluster.
 4. [Create a peer](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network-peer-create) in the first cluster.
-5. [Install your smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-install) on your peer.
+5. [Install your smart contract](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-install) on your peer.
 
 Before you can instantiate the smart contract on the channel, you need to follow these steps to join the peer to the channel on the ordering service:
 - [Export the peer's organization definition](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-join-network#ibp-console-join-network-add-org2-remote) and share it with an ordering service admin.
@@ -68,7 +69,7 @@ Before you can instantiate the smart contract on the channel, you need to follow
 - [Join your peer to the channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-join-network#ibp-console-join-network-join-peer-org2).
 - Finally, if you use service discovery, private data, and peer gossip, the ordering service admin needs to [configure anchor peers](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-govern#ibp-console-govern-channels-anchor-peers) on the channel. For HA, it is recommended that you add each redundant peer as an anchor peer. That way if one of the peers is unavailable, gossip between organizations can continue.   
 
-Now that the peers are joined to the channel, you can [instantiate the smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-instantiate) on the channel.
+Now that the peers are joined to the channel, you can [instantiate the smart contract](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-instantiate) on the channel.
 
 ### Step two: Export the metadata and identities from cluster one
 {: #ibp-console-hadr-export-meta1}
@@ -111,4 +112,3 @@ Your network is now configured such that a failure in any single region will not
 To maximize your HA even further, consider the following additional options:
 - Export the peers that you created in clusters two and three and import them into the console in cluster one. Then, everything can be managed from a single cluster.
 - However, cluster one can fail. Therefore, to further account for a cluster failure, you can import all your peers into each of the three consoles. Then if a cluster containing any one console fails, everything can still be managed from the consoles in the other two clusters.
-

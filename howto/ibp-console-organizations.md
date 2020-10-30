@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-10-30"
 
 keywords: organizations, MSPs, create an MSP, MSP JSON file, consortium, system channel, remove an organization, multicloud
 
@@ -24,11 +24,12 @@ subcollection: blockchain-sw-25
 # Managing organizations
 {: #ibp-console-organizations}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-organizations">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-organizations">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-organizations">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-organizations">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -400,7 +401,7 @@ Over time you might need to update the certificates in an MSP definition that is
 
 If you want to stop using an instance of the {{site.data.keyword.blockchainfull_notm}} Platform, you need to remove your organization from the blockchain network before you delete your service instance. This ensures that the removed organization is not affecting the governance of the network after it has left the network. You can remove your organization by using the following steps:
 
-1. **Remove your organization from channels that you joined**. You need to [update the endorsement policy](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-endorse) of the smart contracts that are instantiated on the channel to remove your organization from the policy. If you do not update the endorsement policy, your organization might be required to endorse transactions after you have left the channel, causing transactions to fail.
+1. **Remove your organization from channels that you joined**. You need to [update the endorsement policy](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-endorse) of the smart contracts that are instantiated on the channel to remove your organization from the policy. If you do not update the endorsement policy, your organization might be required to endorse transactions after you have left the channel, causing transactions to fail.
 
   You can then update to the channel to remove your organization from the list of channel members. Navigate to the **Channels** tab and click the **Settings** icon. You can use the **Organizations** section to remove your organization from the channel. The channel **update policy** is updated to remove your organization automatically. When you are ready, click **Update channel** to submit a channel update request. The request starts the [process for collecting the signatures](https://test.cloud.ibm.com/docs/blockchain?topic=blockchain-ibp-console-govern#ibp-console-govern-update-channel-signature-collection) that are required to update the channel, depending on your update policy.
 
@@ -416,5 +417,4 @@ If you want to stop using an instance of the {{site.data.keyword.blockchainfull_
 
   After you remove your ordering nodes from the consenter set of each channel, you can remove your nodes from the ordering service. Navigate to the **Nodes** tab and click the ordering service of your network. On the **Ordering service** panel, click the **Ordering nodes** tab. Click your ordering node and then click **Delete**. Because Raft consensus requires that a majority of ordering nodes are up to maintain a quorum, you need to remove one ordering node at a time. After you have deleted your ordering nodes, you can remove your organization from the set of ordering service administrators. Find your organization MSP definition on the list of **Orderer administrators** and click the **Delete** icon in the corner of the organization definition tile.
 
-After you complete these steps, your organization will no longer affect the governance of the network. 
-
+After you complete these steps, your organization will no longer affect the governance of the network.

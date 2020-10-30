@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-10-30"
 
 keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy
 
@@ -23,6 +23,13 @@ subcollection: blockchain-sw-25
 
 # Building an IBM Blockchain Platform network using Ansible playbooks
 {: #ansible-build}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ansible-build">2.5.1 (latest)</a>
+    </p>
+</div>
 
 Customers can use Ansible playbooks to automate the setup and tear down of {{site.data.keyword.blockchainfull}} Platform network components.
 {:shortdesc}
@@ -258,4 +265,3 @@ Using the wallet identities from the preceeding table, you can now follow the st
 {: #ansible-build-summary}
 
 Congratulations. You have used the Ansible playbooks to configure {{site.data.keyword.blockchainfull_notm}} Platform components on your cluster. You know how to run a playbook individually and have some sample shell scripts that show how to run the playbooks together to build a reproducible network and tear it back down. You can explore further by building your own playbooks that call the Ansible [modules](https://ibm-blockchain.github.io/ansible-collection/modules.html){: external} or build your own custom scripts according to your network use case.
-

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-30"
 
 keywords: ansible playbooks, docker image, blockchain network, APIs, ansible galaxy
 
@@ -23,6 +23,13 @@ subcollection: blockchain-sw-25
 
 # Deploy the service from an Ansible playbook
 {: #ansible-install-ibp}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ansible-install-ibp">2.5.1 (latest)</a>
+    </p>
+</div>
 
 Customers can use an Ansible playbook to automate their installation of the {{site.data.keyword.blockchainfull}} Platform network deployments on a Kubernetes distribution.
 {:shortdesc}
@@ -77,6 +84,3 @@ The first time you log in, you are required to change your password, and then lo
 If you are simply interested in automating the process of installing the {{site.data.keyword.blockchainfull_notm}} Platform, you are done. You can use the console UI or APIs to create your blockchain components. If you are not familiar with the process to build a network using the console, check out the [tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network) that walks you through the steps of building a sample network.
 
 Already familiar with how to build a network and want to continue to learn more about the available Ansible playbooks? Then take a look at the tutorial on [Building an {{site.data.keyword.blockchainfull_notm}} Platform network using Ansible playbooks](/docs/blockchain-sw-25?topic=blockchain-sw-25-ansible-build).
-
-
-

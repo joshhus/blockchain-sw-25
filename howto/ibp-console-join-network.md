@@ -3,7 +3,7 @@
 copyright:
   years: 2019
 
-lastupdated: "2020-09-08"
+lastupdated: "2020-10-30"
 
 keywords: getting started tutorials, create a CA, enroll, register, create an MSP, wallet, create a peer, create ordering service, Raft, join a network, system channel, multicloud
 
@@ -23,11 +23,12 @@ subcollection: blockchain-sw-25
 # Join a network
 {: #ibp-console-join-network}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-join-network">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-join-network">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-join-network">2.1.3</a>, 
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-join-network">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -48,7 +49,7 @@ You need to pay close attention to the resources at your disposal when you choos
 ## Sample network tutorial series
 {: #ibp-console-join-network-structure}
 
-You are currently on the second part of our three-part tutorial series. This tutorial guides you through the process of using the console to create and join a peer node to an existing {{site.data.keyword.blockchainfull_notm}} Platform network. 
+You are currently on the second part of our three-part tutorial series. This tutorial guides you through the process of using the console to create and join a peer node to an existing {{site.data.keyword.blockchainfull_notm}} Platform network.
 
 * [Build a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-network#ibp-console-build-network) guides you through the process of hosting a network by creating an ordering service and a peer.
 * **Join a network tutorial** (Current tutorial) Guides you through the process of joining an existing network by creating a peer and joining it to a channel.
@@ -96,7 +97,7 @@ Perform the following steps from your console:
 2. In this tutorial, we're creating nodes, so make sure the option to **Create a Certificate Authority** is selected. Then click **Next**.
 3. Use the side panel to give your CA a **display name**. Our recommended value for this CA is `Org2 CA`. Then give your CA admin credentials by specifying a **CA administrator enroll ID** of `admin` and a secret of `adminpw`.
 4. The **Advanced deployment options** can be safely ignored for purposes of this tutorial. For more information about these options, see the links below.
-   * [Database and replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-ha-ca#ibp-console-build-ha-ca-create) (Creating an HA CA) 
+   * [Database and replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-ha-ca#ibp-console-build-ha-ca-create) (Creating an HA CA)
    * [Hardware Security Module (HSM)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-cfg-hsm)
    * [Deployment zone selection](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone) (Multizone HA) This option is only visible when your cluster is configured with multiple zones.
    * [Resource allocation](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-allocate-resources)
@@ -244,7 +245,7 @@ Use your console to perform the following steps:
    * Select the **Enroll ID** for the peer identity that you created for your peer from the drop-down list, `peer2`, and enter its associated **secret**, `peer2pw`.
    * Then, select `Org2 MSP` from the drop-down list
    * The **TLS Certificate Signing Request (CSR) hostname** is an option available to advanced users who want to specify a custom domain name that can be used to address the peer endpoint. Custom domain names are not a part of this tutorial, so leave the **TLS CSR hostname** blank for now.
-   * In the **Fabric version** drop down list, the best practice is to select the **highest available version**, as it will contain the latest bug fixes. It might also be necessary to select the highest version in order to have access to the latest features. Note that if you select any version higher than v2.0, no smart contract container will be deployed along with your peer. Instead, each smart contract will be deployed into its own pod when it is instantiated on the channel or invoked for the first time. With the exception of smart contracts that run Go chaincode, peer nodes running Fabric v1.4.7 and v2.1.1 are compatible with each other. See this [topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-write-package) on vendoring the shim for more information on what is required.
+   * In the **Fabric version** drop down list, the best practice is to select the **highest available version**, as it will contain the latest bug fixes. It might also be necessary to select the highest version in order to have access to the latest features. Note that if you select any version higher than v2.0, no smart contract container will be deployed along with your peer. Instead, each smart contract will be deployed into its own pod when it is instantiated on the channel or invoked for the first time. With the exception of smart contracts that run Go chaincode, peer nodes running Fabric v1.4.7 and v2.1.1 are compatible with each other. See this [topic](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-write-package) on vendoring the shim for more information on what is required.
    * Click **Next**.
 7. The last side panel asks you to **Associate an identity** to make it the admin of your peer. For the purpose of this tutorial, make your organization admin, `Org2 MSP Admin`, the admin of your peer as well. It is possible to register and enroll a different identity with the `Org2 CA` and make that identity the admin of your peer, but this tutorial uses the `Org2 MSP Admin` identity.
 8. Review the summary and click **Add peer**.  The **Edit configuration JSON** button allows you to override configuration settings for the peer. For this tutorial, the default settings are sufficient. See [Customizing a peer configuration](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-peer-create-json) to learn more about the options that are available.
@@ -424,6 +425,5 @@ The next step is to join a peer to this channel. Click the pending tile and sele
 After you have joined your peer to a channel, use the following steps to deploy a smart contract and begin submitting transactions to the blockchain:
 
 - [Deploy a smart contract on your network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts) using the console.
-- After you have installed and instantiated your smart contract, you can [submit transactions using your client application](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-connect-to-SDK).
+- After you have installed and instantiated your smart contract, you can [submit transactions using your client application](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-connect-to-SDK).
 - Use [the commercial paper sample](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-app#ibp-console-app-commercial-paper) to deploy an example smart contract and submit transactions from sample application code.
-

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-10-30"
 keywords: troubleshooting, debug, why, what does this mean, how can I, when I
 
 subcollection: blockchain-sw-25
@@ -25,11 +25,12 @@ subcollection: blockchain-sw-25
 # Troubleshooting
 {: #ibp-v2-troubleshooting}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-v2-troubleshooting">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-v2-troubleshooting">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-v2-troubleshooting">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -545,7 +546,7 @@ When I invoke a smart contract to submit a transaction, the transaction returns 
 returned error: VSCC error: endorsement policy failure, err: signature set did not satisfy policy
 ```
 
-If you have recently joined a channel and installed the smart contract, this error occurs if you have not added your organization to the endorsement policy. Because your organization is not on the list of organizations who can endorse a transaction from the smart contract, the endorsement from your peers is rejected by the channel. If you encounter this problem, you can change the endorsement policy by upgrading the smart contract. For more information, see [Specifying an endorsement policy](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-endorse) and [Upgrading a smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-upgrade).
+If you have recently joined a channel and installed the smart contract, this error occurs if you have not added your organization to the endorsement policy. Because your organization is not on the list of organizations who can endorse a transaction from the smart contract, the endorsement from your peers is rejected by the channel. If you encounter this problem, you can change the endorsement policy by upgrading the smart contract. For more information, see [Specifying an endorsement policy](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-endorse) and [Upgrading a smart contract](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-upgrade).
 {: tsCauses}
 
 ## Why are the transactions I submit from VS Code failing with a No endorsement plan available error?
@@ -562,7 +563,7 @@ Error submitting transaction: No endorsement plan available for {"chaincodes":[{
 This error occurs if you are using the Fabric Service Discovery feature but did not configure any anchor peers on your channel.
 {: tsCauses}
 
-Follow step three of the [private data topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-private-data) in the Deploy a smart contract tutorial to configure your anchor peers.
+Follow step three of the [private data topic](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-private-data) in the Deploy a smart contract tutorial to configure your anchor peers.
 {: tsResolve}
 
 ## Why are the transactions I submit from VS Code failing with an endorsement failure?
@@ -607,6 +608,3 @@ All contracts were lost after the procedure to upgrade the smart contract contai
 
 [Delete all the peer pods](#ibp-troubleshooting-delete-peer). This deletion triggers the peer to be created again and restarts the proxy.
 {: tsResolve}
-
-
-

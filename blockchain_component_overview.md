@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-30"
 
 keywords: blockchain components, ca, certificate authorities, peer, ordering service, orderer, channel, smart contract, applications, multicloud
 
@@ -22,11 +22,12 @@ subcollection: blockchain-sw-25
 # Blockchain component overview
 {: #blockchain-component-overview}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-blockchain-component-overview">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-component-overview">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-component-overview">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-blockchain-component-overview">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -111,4 +112,3 @@ For a look at how applications interact with a network based on Fabric, check ou
 **Figure 1** depicts an example of a deployed blockchain network that consists of four organizations, Org A, Org B, Org C, and Org D. Each organization has their own Certificate Authority that is responsible for distributing cryptographic identity material. There is also an ordering service with five Raft nodes that defines policies and network participants. Channel X includes all four organizations, but Channel Y is restricted to Org C and Org D.  Lastly, client applications in possession of a properly signed x509 certificate can send calls to their associated peers on the network.
 
 ![Blockchain Network](images/blockchain_network_2-01.svg "Example blockchain network"){: caption="Figure 1. An example blockchain network with four members that leverage channels to isolate data" caption-side="bottom"}
-
