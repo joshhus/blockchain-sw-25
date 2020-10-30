@@ -69,7 +69,7 @@ Before you can instantiate the smart contract on the channel, you need to follow
 - [Join your peer to the channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-join-network#ibp-console-join-network-join-peer-org2).
 - Finally, if you use service discovery, private data, and peer gossip, the ordering service admin needs to [configure anchor peers](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-govern#ibp-console-govern-channels-anchor-peers) on the channel. For HA, it is recommended that you add each redundant peer as an anchor peer. That way if one of the peers is unavailable, gossip between organizations can continue.   
 
-Now that the peers are joined to the channel, you can [instantiate the smart contract](/docs/blockchain?topic=blockchain-ibp-console-smart-contracts#ibp-console-smart-contracts-instantiate) on the channel.
+Now that the peers are joined to the channel, you can [instantiate the smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-instantiate) on the channel.
 
 ### Step two: Export the metadata and identities from cluster one
 {: #ibp-console-hadr-export-meta1}
