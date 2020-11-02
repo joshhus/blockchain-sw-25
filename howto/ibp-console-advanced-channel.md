@@ -184,20 +184,7 @@ To edit these capabilities, click on the **Settings** button inside the ordering
 #### Capabilities in application channels
 {: #ibp-console-govern-capabilities-application-channels}
 
-Application capabilities define the way transactions are handled exclusively by the peers. As a result, these capabilities are not inherited from the system channel (which is managed by the ordering service) and you will see the full list of capabilities, starting with `1.1`, when creating a channel. Note that the Fabric version of all peers in the channel must be at least at the level of the application capability level and the channel capability level inherited from the ordering service. When creating a channel, the default application capability might be lower than the highest available level. This is done in cases where a new Fabric version with a new application capability has been released but it is not expected that most peers will be at the new Fabric version. You will see the default application capability in the **Review channel information** screen before creating the channel.
-
-The following table shows the compatibility levels of peer image versions with the application capability level of a channel and which smart contract deployment process is used:
-
-| | Channel application capability 1.4 |  Channel application capability 2.x |
-|-| -----------------------------------|-------------------------------------|
-| **Peer image 1.4.x** | ![Checkmark icon](../../icons/checkmark-icon.svg) Uses legacy smart contract deployment flow and requires smart contract in .cds file format. |  Not possible |
-| **Peer image 2.x** | ![Checkmark icon](../../icons/checkmark-icon.svg) Uses legacy smart contract deployment flow and requires smart contract in .cds file format.  | ![Checkmark icon](../../icons/checkmark-icon.svg) Uses Fabric 2.x smart contract lifecycle and requires smart contract in .tgz file format. |
-{: caption="Table 1. Peer image version vs. channel application capability level" caption-side="bottom"}
-
-- A peer that runs a Fabric 1.4.x image can join a channel that is configured with application capability 1.4.x. But that peer cannot join a channel that is configured with application capability 2.x.
-- If a channel application capability level is upgraded to 2.x before the peer 1.4.x image is upgraded to 2.x, the peer stops functioning and needs to be upgraded to the 2.x image.
-- It is possible for a peer that is running a 2.x image to join a channel with application capability 1.4 and another channel with application capability 2.x at the same time. But smart contracts on the peer in `.cds` format use the [legacy smart contract deployment](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts-v14) process where they have to be instantiated on the channel with application capability 1.4. Smart contracts on the peer in `.tgz` format follow  the [Fabric 2.x smart contract lifecycle](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts-v2) process on the channel with application capability 2.x.
-
+Application capabilities define the way transactions are handled exclusively by the peers. As a result, these capabilities are not inherited from the system channel (which is managed by the ordering service) and you will see the full list of capabilities, starting with `1.1`, when creating a channel. Note that the Fabric version of all peers in the channel must be at least at the level of the application capability level and the channel capability level inherited from the ordering service. When creating a channel, the default application capability might be lower than the highest available level. This is done in cases where a new Fabric version with a new application capability has been released but it is not expected that most peers will be at the new Fabric version.
 
 Like the orderer and channel capabilities, the application capability level can be edited through a channel configuration update. The orderer capability can also be specified during the creation of a channel, but will require the approval of the ordering service.
 
