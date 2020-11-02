@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-02"
+lastupdated: "2020-10-30"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters
 
@@ -22,16 +22,11 @@ subcollection: blockchain-sw-25
 # Upgrading your console and components
 {: #upgrade-k8}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
-    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
-    <a href="/docs/blockchain-sw?topic=blockchain-sw-upgrade-k8">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-upgrade-k8">2.1.3</a>
-    </p>
-</div>
+{{site.data.keyword.blockchainfull}} Platform 2.5.1 is now available. To take advantage of the latest features and for upgrade instructions, see [upgrading your console and components](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-k8).
+{: note}
 
 
-You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform. You can use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
+You can upgrade the {{site.data.keyword.blockchainfull}} Platform without disrupting a running network. Because the platform is deployed by using a Kubernetes operator, you can pull the latest {{site.data.keyword.blockchainfull_notm}} Platform images from the {{site.data.keyword.IBM_notm}} Entitlement registry without having to reinstall the platform.You can only use these instructions to upgrade to the {{site.data.keyword.blockchainfull_notm}} Platform 2.5.
 {:shortdesc}
 
 ## {{site.data.keyword.blockchainfull_notm}} Platform overview
@@ -1731,7 +1726,7 @@ ibpconsole     1         1         1            1           8m
 
 If you experience a problem while you are upgrading the operator, go to this [troubleshooting topic](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-v2-troubleshooting#ibp-v2-troubleshooting-deployment-cr) for a list of commonly encountered problems.
 
-If your console experiences an image pull error, you may need to update the console deployment spec with local registry that you used to download the images. Run the following command to download the deployment spec of the console:
+If your console experiences an image pull error, you may need to update the console CR spec with local registry that you used to download the images. Run the following command to download the CR spec of the console:
 ```
 kubectl get ibpconsole ibpconsole -o yaml > console.yaml
 ```

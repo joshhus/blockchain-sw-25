@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-17"
+lastupdated: "2020-10-30"
 
 
 keywords: vs code extension, Visual Studio Code extension, smart contract, development tools, multicloud
@@ -24,11 +24,12 @@ subcollection: blockchain-sw-25
 # Developing smart contracts with {{site.data.keyword.blockchainfull_notm}} Platform Developer Tools
 {: #develop-vscode}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-develop-vscode">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-develop-vscode">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-develop-vscode">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-develop-vscode">2.5.1</a>
     </p>
 </div>
 
@@ -401,7 +402,7 @@ Use the following steps to debug your smart contract:
         "CORE_CHAINCODE_ID_NAME": <name>:<version>
       }    
   ```
-  `name` is the name of your smart contract. `version` needs to be a different value to the previous version used. Alternatively if you are using JavaScript or TypeScript, then you can update the `version` in the package.json file. 
+  `name` is the name of your smart contract. `version` needs to be a different value to the previous version used. Alternatively if you are using JavaScript or TypeScript, then you can update the `version` in the package.json file.
 
 6. Add breakpoints to the smart contract by clicking the relevant line numbers in your smart contract files.
 7. On the debug toolbar, click the **Blockchain** button to instantiate the smart contract.
@@ -527,4 +528,3 @@ You can also add new users to the wallets that have already been created:
   - If you are connecting to a network on the {{site.data.keyword.blockchainfull_notm}} Platform, you can download an identity from your {{site.data.keyword.blockchainfull_notm}} console, either by exporting an identity from your wallet or by enrolling and then exporting an identity using your Certificate Authority. You can then upload the JSON file directly to VS Code.
   - If you use a certificate and private key, browse to the certificate and private key.
   - If you use an enrollment ID and secret, choose the gateway to enroll with and enter the enrollment ID and secret.
-

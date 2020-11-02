@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-01"
+lastupdated: "2020-10-30"
 
 keywords: IBM Blockchain Platform, administrate, add user, remove user, password, APIs, authentication, view logs
 
@@ -24,11 +24,12 @@ subcollection: blockchain-sw-25
 # Administering your console
 {: #console-icp-manage}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-console-icp-manage">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-console-icp-manage">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-console-icp-manage">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -64,7 +65,7 @@ You need to share the default password, or the default password that you reset, 
 
 Users with the manager role can reset passwords for other users. In the **Users** tab of the console, click the three vertical dots at the end of the row for a specific user, and then click **Reset password**. The console resets that user's password to the default password, which you can check and confirm in the right panel. Users with any role can change their own password at any time. Click the avatar icon in the upper right corner, and then click **Change password**.
 
-After you add new users to the console, the users might not be able to view all the nodes, channels, or chaincode, which other users deploy. To work with these components, each user needs to import the associated identities into their own console wallet. For more information, see [Storing identities in your console wallet](/docs/blockchain?topic=blockchain-ibp-console-identities#ibp-console-identities-wallet).
+After you add new users to the console, the users might not be able to view all the nodes, channels, or chaincode, which other users deploy. To work with these components, each user needs to import the associated identities into their own console wallet. For more information, see [Storing identities in your console wallet](/docs/blockchain?topic=blockchain-sw-25-ibp-console-identities#ibp-console-identities-wallet).
 {:important}
 
 ### Modifying a user's role
@@ -308,7 +309,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJraWQ.....zJPsw
 ```
 
-You can use the APIs to create nodes on the cluster where your console is deployed, and to import nodes from other clusters or {{site.data.keyword.cloud_notm}}. For more information, see [Build a network by using APIs](/docs/blockchain?topic=blockchain-ibp-v2-apis#ibp-v2-apis-build-with-apis) and [Import a network by using APIs](/docs/blockchain?topic=blockchain-ibp-v2-apis#ibp-v2-apis-import-with-apis).
+You can use the APIs to create nodes on the cluster where your console is deployed, and to import nodes from other clusters or {{site.data.keyword.cloud_notm}}. For more information, see [Build a network by using APIs](/docs/blockchain?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-build-with-apis) and [Import a network by using APIs](/docs/blockchain?topic=blockchain-sw-25-ibp-v2-apis#ibp-v2-apis-import-with-apis).
 
 ## Viewing your logs
 {: #icp-console-manage-logs}
@@ -424,7 +425,7 @@ Replace
 ## Installing patches for your nodes
 {: #ibp-console-manage-patch}
 
-The underlying {{site.data.keyword.IBM_notm}} Hyperledger Fabric docker images for the peer, CA, and ordering nodes might need to be updated over time, for example, with security updates or to a new Fabric point release. The **Patch available** text on a node tile is the indicator that such a patch is available and can be installed on the node whenever you are ready. Unless otherwise noted in the [Release notes](/docs/blockchain?topic=blockchain-release-notes-saas-20), these patches are optional, but recommended.
+The underlying {{site.data.keyword.IBM_notm}} Hyperledger Fabric docker images for the peer, CA, and ordering nodes might need to be updated over time, for example, with security updates or to a new Fabric point release. The **Patch available** text on a node tile is the indicator that such a patch is available and can be installed on the node whenever you are ready. Unless otherwise noted in the [Release notes](/docs/blockchain?topic=blockchain-sw-25-release-notes-saas-20), these patches are optional, but recommended.
 
 Patches are applied to nodes one at a time. While the patch is being applied, the node is unavailable to process requests or transactions. Therefore, to avoid any disruption of service, whenever possible you should ensure another node of the same type is available to process requests. Installing patches on a node takes about a minute to complete and when the update is complete, the node is ready to process requests.
 {:note}

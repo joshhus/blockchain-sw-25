@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-18"
+lastupdated: "2020-10-30"
 
 keywords: getting started tutorials, create a CA, enroll, register, create an MSP, wallet, create a peer, create ordering service, Raft, ordering service, blockchain network, multicloud
 
@@ -93,11 +93,12 @@ subcollection: blockchain-sw-25
 # Build a network
 {: #ibp-console-build-network}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-build-network">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-build-network">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-build-network">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-build-network">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -225,7 +226,7 @@ To create the CA that will issue certificates for your first organization, perfo
 2. In this tutorial, we're creating nodes, as opposed to importing them, so make sure the option to **Create a Certificate Authority** is selected. Then click **Next**.
 3. Use the side panel to give your CA a **display name**. Our recommended value for this CA is `Org1 CA`. Then give your CA admin credentials by specifying a **CA administrator enroll ID** of `admin` and a secret of `adminpw`. Again, these are **recommended values**.
 4. The **Advanced deployment options** can be safely ignored for purposes of this tutorial. For more information about these options, see the links below.
-   * [Database and replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-ha-ca#ibp-console-build-ha-ca-create) (Creating an HA CA) 
+   * [Database and replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-ha-ca#ibp-console-build-ha-ca-create) (Creating an HA CA)
    * [Hardware Security Module (HSM)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-cfg-hsm)
    * [Deployment zone selection](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone) (Multizone HA) This option is only visible when your cluster is configured with multiple zones.
    * [Resource allocation](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-allocate-resources)
@@ -467,7 +468,7 @@ The process for creating a CA for an ordering service is identical to creating i
 2. In this tutorial, we're creating nodes, as opposed to importing them, so make sure the option to **Create a Certificate Authority**  is selected. Then click **Next**
 3. Give this CA a unique display name, `Ordering Service CA`. You're free to reuse the **CA administrator enroll ID** of `admin` and a secret of `adminpw`. As this is a different CA, this identity is distinct from the CA admin identity for created for the `Org1 CA`, even though the ID and secret are identical.
 4. The **Advanced deployment options** can be safely ignored for purposes of this tutorial. For more information about these options, see the links below.
-   * [Database and replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-ha-ca#ibp-console-build-ha-ca-create) (Creating an HA CA) 
+   * [Database and replica sets](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-build-ha-ca#ibp-console-build-ha-ca-create) (Creating an HA CA)
    * [Multizone Kubernetes cluster](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-ha#ibp-console-ha-multi-zone) (Multizone HA) This option is only visible when your cluster is configured with multiple zones.
    * [Hardware Security Module (HSM)](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-cfg-hsm)
    * [Resource allocation](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-adv-deployment#ibp-console-adv-deployment-allocate-resources)
@@ -745,4 +746,3 @@ After you have created and joined your peer to a channel, you have a basic, thou
 - Use [the commercial paper sample](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-app#ibp-console-app-commercial-paper) to deploy an example smart contract and submit transactions by using sample application code.
 
 You can also create another peer organization by using the [Join a network tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-join-network#ibp-console-join-network-structure). You can add the second organization to your channel to simulate a distributed network, with two peers that share a single channel ledger.
-

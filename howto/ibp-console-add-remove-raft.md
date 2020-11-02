@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-10-30"
 
 keywords: network components, Kubernetes, channel update, channels, governance, channel configuration, orderer, ordering node, ordering service, raft, tutorial
 
@@ -21,6 +21,15 @@ subcollection: blockchain-sw-25
 
 # Adding and removing ordering service nodes
 {: #ibp-console-add-remove-orderer}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-add-remove-orderer">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-add-remove-orderer">2.5.1 (latest)</a>
+    </p>
+</div>
+
 
 In this tutorial, we'll talk about the process for creating ordering nodes to add to an existing ordering service and to existing channels. This will cover the instructions for adding nodes using the same organization that created the ordering service as well as the steps when using a separate ordering organization that is added as an ordering service admin.
 
@@ -127,7 +136,7 @@ After Console 2 has imported the `Ordering Service`, they will be able to create
 ### Create the node
 {: #ibp-console-add-remove-orderer-add-orderer-create-node}
 
-While it is not possible to ensure that the ordering service is available (that is, that a quorum of nodes are up and that a leader has been elected) without [Viewing your node logs](/docs/blockchain?topic=blockchain-ibp-console-manage-console#ibp-console-manage-console-node-logs), it is a best practice to minimally ensure the likelihood that a quorum exists by verifying that the pods where the nodes have been deployed are available. This can be done by checking to make sure the relevant pods are active in the Kubernetes dashboard or by issuing `kubectl get pods -n <namespace>` and checking on the pods. If you do not have access to the cluster where all of the ordering nodes were created, contact the administrator of the relevant clusters. **If a quorum of nodes is not available, it will not be possible to add another node to the ordering service**.
+While it is not possible to ensure that the ordering service is available (that is, that a quorum of nodes are up and that a leader has been elected) without [Viewing your node logs](/docs/blockchain?topic=blockchain-sw-25-ibp-console-manage-console#ibp-console-manage-console-node-logs), it is a best practice to minimally ensure the likelihood that a quorum exists by verifying that the pods where the nodes have been deployed are available. This can be done by checking to make sure the relevant pods are active in the Kubernetes dashboard or by issuing `kubectl get pods -n <namespace>` and checking on the pods. If you do not have access to the cluster where all of the ordering nodes were created, contact the administrator of the relevant clusters. **If a quorum of nodes is not available, it will not be possible to add another node to the ordering service**.
 {:tip}
 
 To add a node, click on the tile representing the ordering service in the **Nodes** panel. Then click on the **Ordering nodes** panel and the **Add another node** tile. Then click **Create an ordering node**. This will open a series of panels similar to the process for creating an ordering service.
@@ -280,4 +289,3 @@ Note that you may have to edit the configuration of a peer multiple times, depen
 
 Don't copy the configuration snippet used as an override for one peer and use it on any other peers. Similarly, don't open the configuration of the peer and copy the section from that peer into another peer. **Use the code snippet provided on the Join a peer to a channel screen and paste it into the peer configuration** for each peer. This will ensure that the orderer override will work properly.
 {: important}
-

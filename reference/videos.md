@@ -135,6 +135,13 @@ subcollection: blockchain-sw-25
 # {{site.data.keyword.blockchainfull_notm}} Platform getting started videos
 {: #ibp-videos}
 
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-blockchain-ibp-videos">2.5.1 (latest)</a>
+    </p>
+</div>
+
 You can watch the getting started video series to learn more about how to use {{site.data.keyword.blockchainfull}} Platform.
 {:shortdesc}
 
@@ -172,4 +179,3 @@ Watch the following [video series]( http://ibm.biz/BlockchainPlatformSeries) to 
     </a>
   </div>
 </div>
-

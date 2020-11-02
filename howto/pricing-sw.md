@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-30"
 
 keywords: pricing model, VPC, CPU, vCPU, virtual core, cost, scalability, estimation, optimize your cost
 
@@ -23,16 +23,17 @@ subcollection: blockchain-sw-25
 # Pricing
 {: #ibp-sw-pricing}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-sw-pricing">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-sw-pricing">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-sw-pricing">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-sw-pricing">2.5.1 (latest)</a>
     </p>
 </div>
 
 
-This guide helps you understand the pricing model for {{site.data.keyword.blockchainfull}} Platform 2.5, and how much you will pay when you develop and grow your blockchain network of Certificate Authorities, peers, and ordering service components, that are based on Hyperledger Fabric v1.4.7 and v2.x.
+This guide helps you understand the pricing model for {{site.data.keyword.blockchainfull}} Platform 2.5, and how much you will pay when you develop and grow your blockchain network of Certificate Authorities (CAs), peers, and ordering service components, that are based on Hyperledger Fabric v1.4.7 and v2.x.
 {:shortdesc}
 
 ## License
@@ -43,7 +44,7 @@ This guide helps you understand the pricing model for {{site.data.keyword.blockc
 ## Pricing
 {: #ibp-software-pricing-pricing}
 
-The pricing of {{site.data.keyword.blockchainfull_notm}} Platform 2.5 is based on the number of Virtual Processor Cores (VPCs) used. A VPC, or vCPU, can be either a virtual core that is assigned to a virtual server, or a physical processor core in a non-partitioned server. You must obtain a licensed entitlement for each VPC made available to the {{site.data.keyword.blockchainfull_notm}} Platform. The number of vCPU or CPUs that are required can vary depending on your infrastructure, network design and performance requirements.
+The pricing of {{site.data.keyword.blockchainfull_notm}} Platform 2.5 is based on the number of Virtual Processor Cores (VPCs) used. A VPC, or vCPU, can be either a virtual core that is assigned to a virtual server, or a physical processor core in a non-partitioned server. You must obtain a licensed entitlement for each VPC made available to the {{site.data.keyword.blockchainfull_notm}} Platform. The number of vCPU or CPUs that are required can vary depending on your infrastructure, network design and performance requirements. You are only charged for the VPCs used by your CA, peer, and ordering nodes. Specifically, for the peer, you are only charged for the VPCs used by the peer container itself. You are not charged for the VPCs used by the CouchDB, chaincode launcher (and associated chaincode pod), and gRPC proxy containers. Similarly, for an ordering service node, you are not charged for the gRPC proxy container.
 
 If you are using the Red Hat OpenShift Container Platform, you can read more about  VPCs (CPUs) in that platform, see  [Allocating Node Resources](https://docs.openshift.com/container-platform/4.3/nodes/nodes/nodes-nodes-resources-configuring.html){: external}.
 Note that 1 `core` in OpenShift is equivalent to 1 vCPU in {{site.data.keyword.blockchainfull_notm}} Platform.

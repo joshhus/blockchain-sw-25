@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-10-30"
 
 keywords: network components, IBM Cloud Kubernetes Service, backup, restore, disaster, peer, orderer, ordering node, LevelDB, CouchDB
 
@@ -21,6 +21,13 @@ subcollection: blockchain-sw-25
 
 # Backing up and restoring components and networks
 {: #backup-restore}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-backup-restore">2.5.1 (latest)</a>
+    </p>
+</div>
 
 Users might want to back up their components individually or the network generally for a number of reasons. While it's a best practice to back up components before upgrading them to a new Fabric version, network backups can be useful for cases in which a flawed smart contract causes invalid transactions to be written to the ledger. While a proper development and testing cycle for a smart contract catches these errors, it might be necessary to reinstate a previous version of the network before the invalid transactions were written.
 
@@ -61,7 +68,7 @@ Consult the following chart to help you plan your strategy for taking backups:
 
 |  Backup  | Transaction processing | Private data considerations |
 |:---------|:-----------------------|:----------------------------|
-| Ideally, all peers in the network should be backed up daily at the same time. If the peers have a CouchDB state database, CouchDB must be backed up before the peer pod. Ordering nodes should be backed up after the peers. If peers have data that the ordering service does not, synchronization of components cannot occur. | Unless the peers are scaled down to zero as part of backing up private data, transaction processing can continue. | If the peers include private data collections, the peer and ordering nodes must be using Fabric version v.2.2.1 or higher, otherwise every node must be backed up at exactly the same ledger height. This can be achieved by scaling down the resources of the peers to zero as part of the backup. For more information, see [Scheduling snapshots](#backup-restore-schedule-snapshot). |
+| Ideally, all peers in the network should be backed up daily at the same time. If the peers have a CouchDB state database, CouchDB must be backed up before the peer pod. Ordering nodes should be backed up after the peers. If peers have data that the ordering service does not, synchronization of components cannot occur. | Unless the peers are scaled down to zero as part of backing up private data, transaction processing can continue. | If the peers include private data collections, the peer and ordering nodes must be using Fabric version v.2.2.1 or higher, otherwise every node must be backed up at exactly the same ledger height. This can be achieved by scaling down the resources of the peers to zero as part of the backup. For more information, see [Scheduling snapshots](#backup-restore-schedule-snapshot). See Upgrading your console and components on [OpenShift](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-ocp) or [Kubernetes](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-k8) to {{site.data.keyword.blockchainfull_notm}} Platform 2.5.1 if you require this capability. |
 {: caption="Table 3. Considerations for node back up and restore" caption-side="top"}
 {: #simpletabtable2}
 {: tab-title="Peers"}
@@ -94,7 +101,7 @@ For the peer pods:
 For the ordering node pods:
 - Ordering node snapshots daily at 5:00 a.m. The two-hour gap allows sufficient time for all of the peers to be snapshotted from every organization before ordering nodes are snapshotted.
 
-If you are using **private data collections** in your applications, your nodes must be running Hyperledger Fabric 2.2.1 or higher in order to back up peer and ordering nodes while they are running. When restoring from a backup, the peers must be restored from a lower block height than the ordering nodes. While peers can catch up to the block height of the ordering service, the ordering service does not have the actual private data corresponding (in a private data transaction, only hashes of the data are committed to the public ledger), rendering the data for these blocks unavailable. Fabric v2.2.1 and higher has a configurable option to lower the priority for the reconciliation of missing private data. Earlier versions constantly attempt to reconcile the missing private data, potentially blocking out reconciliation of other private data. On earlier versions of Hyperledger Fabric, you must back up ordering nodes and peers at exactly the same block heights to avoid this issue. This can be accomplished by scaling the both the peer and ordering node pods to 0 before taking the backup.
+If you are using **private data collections** in your applications, your nodes must be running Hyperledger Fabric 2.2.1 or higher in order to back up peer and ordering nodes while they are running. When restoring from a backup, the peers must be restored from a lower block height than the ordering nodes. While peers can catch up to the block height of the ordering service, the ordering service does not have the actual private data corresponding (in a private data transaction, only hashes of the data are committed to the public ledger), rendering the data for these blocks unavailable. Fabric v2.2.1 and higher has a configurable option to lower the priority for the reconciliation of missing private data. Earlier versions constantly attempt to reconcile the missing private data, potentially blocking out reconciliation of other private data. On earlier versions of Hyperledger Fabric, you must back up ordering nodes and peers at exactly the same block heights to avoid this issue. This can be accomplished by scaling the both the peer and ordering node pods to 0 before taking the backup. See Upgrading your console and components on [OpenShift](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-ocp) or [Kubernetes](/docs/blockchain-sw-251?topic=blockchain-sw-251-upgrade-k8) to {{site.data.keyword.blockchainfull_notm}} Platform 2.5.1 if you are using private data collections.
 
 ## Taking snapshots
 {: #backup-restore-take-snapshot}
@@ -427,4 +434,3 @@ In our example, the flow you would take is:
 3.  Restore each ordering node to its 5:00 a.m. snapshot taken the same day as the peer snapshots you restored.
 4.  Scale all five ordering service deployments up to `1` and wait for five minutes after they have started to sync up.
 5.  Scale all peer deployments up to `1`.
-

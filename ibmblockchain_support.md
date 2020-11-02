@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-30"
 
 keywords: IBM Blockchain Platform, support case, Hyperledger Fabric Community, Cloud tickets, Rocket Chat, dWAnswers, multicloud
 
@@ -22,11 +22,12 @@ subcollection: blockchain-sw-25
 # Getting support
 {: #blockchain-support}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-blockchain-support">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-support">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-support">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-blockchain-support">2.5.1 (latest)</a>
     </p>
 </div>
 

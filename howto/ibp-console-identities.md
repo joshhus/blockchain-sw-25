@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-21"
+lastupdated: "2020-11-01"
 
 keywords: create identities, manage identities, Certificate Authorities, register, enroll, TLS CA, wallet, certificate expiration
 
@@ -21,22 +21,21 @@ subcollection: blockchain-sw-25
 # Creating and managing identities
 {: #ibp-console-identities}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-identities">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-identities">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-identities">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-identities">2.5.1 (latest)</a>
     </p>
 </div>
-
-
 
 The nodes of the {{site.data.keyword.blockchainfull_notm}} Platform are based on Hyperledger Fabric and builds permissioned blockchain networks. This means that all participants of the blockchain consortium need to have identities that are continuously verified by Public Key Infrastructure. The {{site.data.keyword.blockchainfull_notm}} Platform console allows you to create these identities by using your organization's Certificate Authorities (CAs). You need to store these identities in your console wallet so you can use them to operate your network.
 {:shortdesc}
 
 **Target audience:** This topic is designed for network operators who are responsible for creating, monitoring, and managing the blockchain network.
 
-
+<!-- ![A CA overview panel in the {{site.data.keyword.blockchainfull_notm}} Platform Console](../images/console_CA_overview.png " CA overview panel in the {{site.data.keyword.blockchainfull_notm}} Platform Console"){: caption="Figure 1. You can use your CA to register identities and generate certificates"  caption-side="bottom"} -->
 
 
 ## Managing Certificate Authorities (CAs)
@@ -93,9 +92,6 @@ Clicking **Register user** opens a series of side panels:
 5. On the last side panel, add the **Attributes** of the identity you are creating.
 
 After you click **Register**, the new identity will be added to the list of **Authenticated users** that have been created by your CA. The identities are listed by their **Enroll ID**, along with their **Type** and **Affiliation**. Clicking on an identity in the table opens a side panel that displays the number of **Maximum Enrollments** and **Attributes** that were created during registration.
-
-
-
 
 ### Creating new CA admins
 {: #ibp-console-identities-ca-admin}
@@ -265,4 +261,3 @@ Certificate:
          02:20:7a:34:af:7b:fb:65:6c:b8:22:a2:39:78:5d:30:5c:3c:
          b0:9b:0e:14:d8:76:78:9a:34:2b:bb:d2:97:d4:ce:81
 ```   
-

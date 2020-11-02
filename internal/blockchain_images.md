@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-03"
+lastupdated: "2020-10-30"
 
 keywords: IBM Blockchain Platform, images, multicloud
 
@@ -93,11 +93,12 @@ subcollection: blockchain-sw-25
 # Using the {{site.data.keyword.blockchainfull_notm}} images
 {: #blockchain-images}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-blockchain-images">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-images">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-blockchain-images">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-blockchain-images">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -272,7 +273,7 @@ USE_WEBSOCKETS=true
 
 The console needs to check the health of any node being imported into the console. As a result, you need to enable the operations service for every node that is connected to a web proxy. For more information, see [The Operations Service](https://hyperledger-fabric.readthedocs.io/en/latest/operations_service.html).
 
-After the web proxy container is deployed, you can import the node into a console by creating a node JSON file. For more information about how to create the node file, see [Importing nodes from a locally deployed network](/docs/blockchain?topic=blockchain-ibp-console-import-nodes#ibp-console-import-icp). You need to use the following values when you create the file:
+After the web proxy container is deployed, you can import the node into a console by creating a node JSON file. For more information about how to create the node file, see [Importing nodes from a locally deployed network](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-import-nodes#ibp-console-import-icp). You need to use the following values when you create the file:
 - Use the web proxy URL and port for the `"grpcwp_url"` field. You specified these values with the `EXTERNAL_ADDRESS` and `SERVER_HTTP_TLS_PORT` environment variables.
 - Use the node endpoint URL and port for the `"api_url"` field. You specified these values with the `BACKEND_ADDRESS` environment variable.
 - Encode the public TLS certificate of the node in base64 format and paste it in the`"pem"` field. This certificate was referenced by the `SERVER_TLS_CLIENT_CA_FILES` environment variable.

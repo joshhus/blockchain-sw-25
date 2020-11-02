@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-08"
+lastupdated: "2020-10-30"
 
 keywords: import nodes, another console, import a CA, import a peer, import admin identities, import an ordering service node
 
@@ -22,11 +22,12 @@ subcollection: blockchain-sw-25
 # Importing nodes, MSPs, and identities
 {: #ibp-console-import-nodes}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-import-nodes">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-import-nodes">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-import-nodes">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-import-nodes">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -146,7 +147,7 @@ The exports and imports of MSPs are performed in the **Organizations** tab.
  2. Browse to the MSP JSON file and click **Add file**.
  3. Click **Import MSP**.  
 
-
+<!-- Remove this section in 2.5.1 -->
 **Note:** Node OU support should not be enabled when you import an MSP. To avoid problems you need to deselect the Node OU check box.
     ![Import MSP with Node OU enabled](../images/import-msp-nodeou.png "Import MSP with Node OU enabled"){: caption="Figure 2. Import MSP with Node OU enabled" caption-side="bottom"}
 
@@ -262,4 +263,3 @@ As an example, you can find the JSON file of a peer below. To communicate with t
 }
 ```
 {: codeblock}
-

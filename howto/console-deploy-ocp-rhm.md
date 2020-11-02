@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-27"
+lastupdated: "2020-10-30"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, Red Hat Marketplace, subscription, operators
 
@@ -22,6 +22,13 @@ subcollection: blockchain-sw-25
 
 # Deploy from Red Hat Marketplace
 {: #deploy-ocp-rhm}
+
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
+    <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-deploy-ocp-rhm">2.5.1 (latest)</a>
+    </p>
+</div>
 
 The Red Hat Marketplace can be used to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 operator onto a Kubernetes cluster on OpenShift Container Platform 4.3+. This operator can be used to deploy instances of the Certificate Authority (CA), peer, and ordering nodes, as well as the {{site.data.keyword.blockchainfull_notm}} Platform console that can be used to manage the blockchain components on your network. This deployment option is available for OpenShift clusters that are running in {{site.data.keyword.cloud_notm}} or your cloud.
 {:shortdesc}
@@ -44,7 +51,7 @@ To learn more about the Marketplace see the [Red Hat documentation](https://mark
 {: #deploy-ocp-rhm-limitations}
 
 - This deployment option is not available on OpenShift Container Platform on LinuxONE.
-- This deployment option is only available for {{site.data.keyword.blockchainfull_notm}} Platform 2.5 and higher. 
+- This deployment option is only available for {{site.data.keyword.blockchainfull_notm}} Platform 2.5 and higher.
 - This deployment option is not available for on-prem installations.
 - IBM Blockchain Platform 2.5. is only supported on Red Hat OpenShift 4.3+.
 - You are responsible for the management of health monitoring, logging, and resource usage of your blockchain components.
@@ -225,7 +232,17 @@ You also need to make additional edits to the file depending on your choices in 
 If you are running OpenShift on Azure, you also need to change the storage class from `default` to `azure-standard`, unless you created your own storage class.
 {: tip}
 
-
+<!-- If you are deploying on OpenShift Container Platform 4.3 on LinuxONE, you need to replace:
+```yaml
+arch:
+- amd64
+```
+in the `spec:` section with:
+```yaml
+arch:
+- s390x
+```
+-->
 When you are satisfied with your edits to the specification, click **Create**.
 
 The console can take a few minutes to deploy.
@@ -506,4 +523,3 @@ You can also use the CLI to find the available storage classes for your namespac
 kubectl get storageclasses
 ```
 {:codeblock}
-

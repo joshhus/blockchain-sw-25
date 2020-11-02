@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-10-30"
 
 keywords: client application, Commercial Paper, SDK, wallet, generate a certificate, generate a private key, fabric gateway, APIs, smart contract
 
@@ -23,11 +23,12 @@ subcollection: blockchain-sw-25
 # Creating applications
 {: #ibp-console-app}
 
-<div style="background-color: #f4f4f4; padding-left: 20px; border-bottom: 2px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
-  <p style="line-height: 10px;">
+<div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
+  <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
     <a href="/docs/blockchain-sw?topic=blockchain-sw-ibp-console-app">2.1.2</a>,
-    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-app">2.1.3</a>
+    <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-ibp-console-app">2.1.3</a>,
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-console-app">2.5.1 (latest)</a>
     </p>
 </div>
 
@@ -64,22 +65,97 @@ The connection profile that you downloaded from the {{site.data.keyword.blockcha
 
 The application developer can use two programming models to interact with the network:
 
-**High-Level Fabric SDK APIs**
+### High-Level Fabric contract APIs
+{: #ibp-console-app-high-level}
 
 Starting with Fabric v1.4, users can take advantage of a simplified application and smart contract programming model. The new model reduces the number of steps and amount of code that is required to submit a transaction. This model is supported for applications that are written in **Node.js**, **Java**, and **Go**.
 
 Client applications can leverage the capabilities of the Go SDK, but currently only the high-level programming model in the [gateway package](https://godoc.org/github.com/hyperledger/fabric-sdk-go/pkg/gateway) is supported. Direct usage of the rest of the Go SDK is not yet supported.
 {: note}
 
-If you want to take advantage of the High-Level Fabric SDK APIs, you can use this tutorial to complete the following actions on an {{site.data.keyword.blockchainfull_notm}} Platform network:
+If you want to take advantage of the High-Level Fabric contract-APIs, you can use this tutorial to complete the following actions on an {{site.data.keyword.blockchainfull_notm}} Platform network:
 
-- [Generate certificates for your application](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-app#ibp-console-app-enroll) by using the SDK.
-- [Invoke a smart contract from the SDK](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-app#ibp-console-app-invoke).
-- Learn about application development by deploying the [commercial paper tutorial](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-app#ibp-console-app-commercial-paper) to the nodes managed from your console. This tutorial provides more background on how to use Fabric Wallets and Gateways.
+- [Generate certificates for your application](#ibp-console-app-enroll) by using the SDK.
+- [Invoke a smart contract from the SDK](#ibp-console-app-invoke).
+- Learn about application development by deploying the [commercial paper tutorial](#ibp-console-app-commercial-paper) to the nodes managed from your console. This tutorial provides more background on how to use Fabric Wallets and Gateways.
 
-**Low-Level Fabric SDK APIs**
+### Low-Level Fabric SDK APIs**
+{: #ibp-console-app-low-level}
 
-If you want to continue to use your existing smart contract and application code, or use the other Fabric SDK languages that are provided by the Hyperledger community, you can use the [low-level Fabric SDK APIs](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-app#ibp-console-app-low-level) to connect to your network.
+If you want to continue to use your existing smart contract and application code, or use the other Fabric SDK languages that are provided by the Hyperledger community, you can use the [low-level Fabric SDK APIs](#ibp-console-app-low-level) to connect to your network.
+
+### Network considerations
+{: #ibp-console-app-networking}
+
+Regardless of whether you choose to use the high-Level Fabric contract APIs, or the  low-Level Fabric SDK APIs, both require network access to the following components:
+
+- The CA for your organization. (You should never need to access the CA for another organization).
+- All organizations peers (where all organizations are the organizations required for endorsing transactions).
+- All ordering service nodes for all channels that you are transacting on.
+
+You must ensure that the hostnames of these components are resolvable by DNS lookup (or `/etc/hosts` if you cannot correctly configure DNS). You must also ensure that all of the network ports for these components are accessible to the systems that are running your applications that are using the Hyperledger Fabric SDKs.
+
+## Application compatibility
+{: #ibp-console-app-compat}
+
+For your planning purposes, the following SDK and smart contract compatibility matrices have been tested and validated.
+
+### SDKs
+{: #ibp-console-app-compat-sdk}
+
+Click the **Java SDK** or **Node SDK** tab for details.
+
+| Version |Peer Fabric image  | Java |
+|:--------|:------------------|:-----|
+|[Java SDK Version 2.2](https://github.com/hyperledger/fabric-gateway-java/tree/release-2.2) | 2.2 | Java 8<br><br>Java 11|
+|[Java SDK Version 1.4](https://github.com/hyperledger/fabric-gateway-java/tree/release-2.2) | 1.4 | Java 8<br><br>Java 11|
+{: caption="Table 1. Java SDK" caption-side="top"}
+{: #simpletabtable1}
+{: tab-title="Java SDK"}
+{: tab-group="IAM-simple"}
+{: class="simple-tab-table"}
+
+| Version |Peer Fabric image  | Node |
+|:--------|:------------------|:-----|
+|[Node SDK Version 2.2](https://github.com/hyperledger/fabric-sdk-node/tree/release-2.2) | 2.2 | Node 10 LTS<br><br> Node 12 LTS|
+|[Node SDK Version 1.4](https://github.com/hyperledger/fabric-sdk-node/tree/release-1.4)| 2.2, 1.4  | Node 10 LTS<br><br> Node 12 LTS|
+{: caption="Table 1. Node SDK" caption-side="top"}
+{: #simpletabtable1}
+{: tab-title="Node SDK"}
+{: tab-group="IAM-simple"}
+{: class="simple-tab-table"}
+
+### Smart contracts
+{: #ibp-console-app-compat-sc}
+
+Click the **Java Smart contract** or **Node Smart contract** tab for details.
+
+|Contract API | Peer Fabric image  | Java runtime   |
+|:-------------------|:---------------|:-------------|
+|[v1.4](https://github.com/hyperledger/fabric-chaincode-java/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-java/tree/release-2.x)|v2.2 | Java 11 runtime |
+|[v1.4](https://github.com/hyperledger/fabric-chaincode-java/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-java/tree/release-2.x)|v1.4 | Java 11 runtime |
+{: caption="Table 2. Java Smart contract" caption-side="top"}
+{: #simpletabtable2}
+{: tab-title="Java Smart contract"}
+{: tab-group="IAM-simple2"}
+{: class="simple-tab-table"}
+
+| Contract API       | Peer Fabric image  | Node runtime    |
+|:-------------------|:---------------|:--------------------|
+| [v1.4](https://github.com/hyperledger/fabric-chaincode-node/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-node/tree/release-2.x) |v2.2  | Node 12 runtime|
+| [v1.4](https://github.com/hyperledger/fabric-chaincode-node/tree/release-1.4) |v1.4| Node 8 runtime |
+{: caption="Table 2. Node Smart contract" caption-side="top"}
+{: #simpletabtable2}
+{: tab-title="Node Smart contract"}
+{: tab-group="IAM-simple2"}
+{: class="simple-tab-table"}
+
+Java and Node runtime versions are determined by {{site.data.keyword.blockchainfull_notm}} Platform peer Fabric image and cannot be changed. Be aware that these runtimes are different from the default Hyperledger Fabric runtimes.
+{: note}
+
+For more details on smart contract-API compatibility, see:
+- [Java smart contract-API compatibility](https://github.com/hyperledger/fabric-chaincode-java/blob/master/COMPATIBILITY.md)
+- [Node smart contract-API compatibility](https://github.com/hyperledger/fabric-chaincode-node/blob/master/COMPATIBILITY.md)
 
 ## Registering an application identity
 {: #ibp-console-app-identities}
@@ -343,7 +419,7 @@ npm install
 
 You can find the commercial paper smart contract inside the `contract` folder of the `digibank` and `magnetocorp` directory. You need to install this smart contract on all the peers of the organizations that use the tutorial. You then need to instantiate the commercial paper contract on a channel. The smart contract needs to be packaged in [.cds format](https://hyperledger-fabric.readthedocs.io/en/release-1.4/chaincode4noah.html#packaging){: external} to be installed by using the console.
 
-You can use the [{{site.data.keyword.blockchainfull_notm}} VS code extension](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode) to package the smart contract. After you install the extension, use Visual Studio Code to open the `contracts` folder in your workspace. Open the _{{site.data.keyword.blockchainfull_notm}} Platform_ tab. In the _{{site.data.keyword.blockchainfull_notm}} Platform_ pane, go to the smart contract packages section and click **Package Open Project**. The VS code extension uses the files in the `contracts` folder to create a new package named `papernet-js@.0.0.1.cds`. Right-click this package to export it to your local file system. You can then use your console to [install the smart contracts on your peers](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-install) and then [instantiate the smart contract on a channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-instantiate).
+You can use the [{{site.data.keyword.blockchainfull_notm}} VS code extension](/docs/blockchain-sw-25?topic=blockchain-sw-25-develop-vscode) to package the smart contract. After you install the extension, use Visual Studio Code to open the `contracts` folder in your workspace. Open the _{{site.data.keyword.blockchainfull_notm}} Platform_ tab. In the _{{site.data.keyword.blockchainfull_notm}} Platform_ pane, go to the smart contract packages section and click **Package Open Project**. The VS code extension uses the files in the `contracts` folder to create a new package named `papernet-js@.0.0.1.cds`. Right-click this package to export it to your local file system. You can then use your console to [install the smart contracts on your peers](/docs/blockchain?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-install) and then [instantiate the smart contract on a channel](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts#ibp-console-smart-contracts-instantiate).
 
 ### Step three: Generate certificates for your wallet
 
@@ -589,4 +665,3 @@ If you are using low level SDK APIs to connect to your network, there are additi
 {: #console-app-couchdb}
 
 If you use CouchDB as your state database, you can perform JSON data queries from your smart contracts against the channel's state data. It is strongly recommended that you create indexes for your JSON queries and use them in your smart contracts. Indexes allow your applications to retrieve data efficiently when your network adds additional blocks of transactions and entries in the world state. To learn how to use indexes with your smart contracts and your applications, see [Best practices when using CouchDB](/docs/blockchain-sw-25?topic=blockchain-sw-25-best-practices-app#best-practices-app-couchdb-indices).
-
