@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-11-09"
 
 keywords: IBM Blockchain Platform, video series, videos, getting started videos, demo videos
 
@@ -138,7 +138,7 @@ subcollection: blockchain-sw-25
 <div style="background-color: #6fdc8c; padding-left: 20px; padding-right: 20px; border-bottom: 4px solid #0f62fe; padding-top: 12px; padding-bottom: 4px; margin-bottom: 16px;">
   <p style="line-height: 20px;">
     <strong>Running a different version of IBM Blockchain Platform?</strong> Switch to version
-    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-blockchain-ibp-videos">2.5.1 (latest)</a>
+    <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-ibp-videos">2.5.1 (latest)</a>
     </p>
 </div>
 
