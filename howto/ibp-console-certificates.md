@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-30"
+lastupdated: "2020-11-17"
 
 keywords: admin certificate, Node OU, admin identity, expiration
 
@@ -139,7 +139,7 @@ Because this functionality was not yet available when the {{site.data.keyword.bl
 If your certificates have already expired, you are not able to complete these steps, but should come back and do this after you renew the certificates.
 {: note}
 
-**Pre-requisite:** Before you can take advantage of Node OU support, ensure that your CAs are at Fabric v1.4.3 or higher. Open the CA tile to view the Fabric version. If the CA is not at v1.4.3 or higher, you should [upgrade](/docs/blockchain?topic=blockchain-sw-25-ibp-console-manage-console#ibp-console-manage-patch) it now.
+**Pre-requisite:** Before you can take advantage of Node OU support, ensure that your CAs are at Fabric v1.4.3 or higher. Open the CA tile to view the Fabric version. If the CA is not at v1.4.3 or higher, you should [upgrade](/docs/blockchain-sw-25?topic=blockchain-sw-25-console-icp-manage#ibp-console-manage-patch) it now.
 
   ![View CA Fabric version](../images/ca-fabric-version.png "View CA Fabric version"){: caption="Figure 2. View CA Fabric version" caption-side="bottom"}
 

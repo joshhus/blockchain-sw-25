@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-30"
+lastupdated: "2020-11-17"
 
 keywords: network components, Kubernetes, batch timeout, channel update, channels, governance, channel configuration, access control
 
@@ -71,10 +71,6 @@ If the signature of an ordering service org admin is required, you will not see 
 {:tip}
 
 * **Capabilities**. If you're unfamiliar with capabilities, see [Channel capabilities](https://hyperledger-fabric.readthedocs.io/en/release-1.4/capabilities_concept.html){: external} in the Fabric documentation. Currently, only **application** and **orderer** capabilities can be set during channel creation. For information about **channel** capabilities (which are a level of capabilities that span both ordering nodes and peers and do not refer to "capabilities on the channel") and how to change them, check out the [Capabilities](#ibp-console-govern-capabilities) section below.
-
-* **Lifecycle endorsement policy**. This defines how many channel members must approve a smart contract definition before the smart contract can be used on the channel. This is different from the endorsement policy of the smart contract itself as it has nothing to do with the transactions invoke against the smart contract. Rather, the lifecycle endorsement policy is the criteria by which the organizations on the channel collaboratively decide to use a particular smart contract and agree on certain parameters. It is possible to make the lifecycle endorsement policy **ALL**, **ANY**, or to define a specific set of organizations. Note that if you don't specify a lifecycle endorsement policy, it defaults to **MAJORITY**, which means that a majority of **Admins** on the channel will have to approve smart contract definitions. For more information about lifecycle endorsement, see [Deploy a smart contract using Fabric v2.x](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts-v2).
-
-* **Endorsement policy**. If a smart contract definition does not define an endorsement policy for its transactions, the endorsement policy defined here will become the endorsement policy of the smart contract. By default this policy is **MAJORITY**, which means a majority of endorsing organizations will have to approve transactions that are invoked against this smart contract. However, as with the lifecycle endorsement policy, it is possible to make the endorsement policy **ALL**, **ANY**, or to define a specific set of organizations. For more information about default endorsement policies, see [Install and propose a smart contract](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-smart-contracts-v2#ibp-console-smart-contracts-v2-install-propose).
 
 * **Block cutting parameters**. These fields determine the conditions under which the ordering service cuts a new block. For information on how these fields affect when blocks are cut, see the [Block cutting parameters](/docs/blockchain-sw-25?topic=blockchain-sw-25-ibp-console-govern#ibp-console-govern-orderer-tuning-batch-size) section below. Note that changing these parameters will require the signature of an ordering service admin. If you are an ordering service admin, you can sign this update using the **Ordering service organization** panel.
 
