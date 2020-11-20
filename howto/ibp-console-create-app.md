@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-11-17"
+lastupdated: "2020-11-20"
 
 keywords: client application, Commercial Paper, SDK, wallet, generate a certificate, generate a private key, fabric gateway, APIs, smart contract
 
@@ -132,8 +132,8 @@ Click the **Java Smart contract** or **Node Smart contract** tab for details.
 
 |Contract API | Peer Fabric image  | Java runtime   |
 |:-------------------|:---------------|:-------------|
-|[v1.4](https://github.com/hyperledger/fabric-chaincode-java/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-java/tree/release-2.x)|v2.2 | Java 11 runtime |
-|[v1.4](https://github.com/hyperledger/fabric-chaincode-java/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-java/tree/release-2.x)|v1.4 | Java 11 runtime |
+|[v1.4](https://github.com/hyperledger/fabric-chaincode-java/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-java/tree/release-2.2)|v2.2 | Java 11 runtime |
+|[v1.4](https://github.com/hyperledger/fabric-chaincode-java/tree/release-1.4),  [v2.2](https://github.com/hyperledger/fabric-chaincode-java/tree/release-2.2)|v1.4 | Java 11 runtime |
 {: caption="Table 2. Java Smart contract" caption-side="top"}
 {: #simpletabtable2}
 {: tab-title="Java Smart contract"}
