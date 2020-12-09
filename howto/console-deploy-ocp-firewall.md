@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-10-30"
+lastupdated: "2020-12-09"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, firewall, on-premises, air-gapped, on-prem, multicloud, on-prem
 
@@ -236,22 +236,25 @@ NAME                                STATUS    AGE
 ibpinfra                            Active    2m
 ```
 
-## Create a secret for your entitlement key
-{: #deploy-ocp-secret-ibpinfra}
+## Set up the entitlement for your local registry
+{: #deploy-ocp-secret-ibpinfra-fw}
 
-After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Kubernetes secrets are used to securely store the key on your cluster and pass it to the operator and the console deployments.
+After you push the {{site.data.keyword.blockchainfull_notm}} Platform images to your own Docker registry, you need to store the password to that registry on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Using a Kubernetes secret allows you to securely store the key on your cluster and pass it to the operator and the console deployments.
 
 Run the following command to create the secret and add it to your `ibpinfra` namespace or project:
 ```
-kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n ibpinfra
+kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_REGISTRY> --docker-username=<USER> --docker-password=<LOCAL_REGISTRY_PASSWORD> --docker-email=<EMAIL> -n <NAMESPACE>
 ```
 {:codeblock}
-- Replace `<KEY>` with your entitlement key.
+
+- Replace `<USER>` with your username
 - Replace `<EMAIL>` with your email address.
+- Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
+- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<NAMESPACE>` with `ibpinfra`.
 
-The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. You can only use the key once per deployment. You can refresh the key before you attempt another deployment and use that value here.
+The name of the secret that you are creating is `docker-key-secret`. It is required by the webhook that you will deploy later. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
-
 
 ## Deploy the webhook and custom resource definitions to your OpenShift cluster
 {: #deploy-k8s-webhook-crd}
@@ -822,19 +825,22 @@ kubectl get storageclasses
 ```
 {:codeblock}
 
-## Create a secret for your entitlement key
-{: #deploy-ocp-docker-registry-secret}
+## Set up the entitlement for your local registry
+{: #deploy-ocp-docker-registry-secret-fw}
 
-You've already created a secret for the entitlement key in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project. After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Kubernetes secrets are used to securely store the key on your cluster and pass it to the operator and the console deployments.
+You've already set up the entitlement for a local registry in the `ibpinfra` namespace or project, now you need to create one in your {{site.data.keyword.blockchainfull_notm}} Platform namespace or project. After you purchase the {{site.data.keyword.blockchainfull_notm}} Platform, you can access the [My IBM dashboard](https://myibm.ibm.com/dashboard/){: external} to obtain your entitlement key for the offering. You need to store the entitlement key on your cluster by creating a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/){: external}. Kubernetes secrets are used to securely store the key on your cluster and pass it to the operator and the console deployments.
 
-Run the following command to create the secret and add it to your namespace or project:
+Run the following command to create the secret and add it to your namespace:
 ```
-kubectl create secret docker-registry docker-key-secret --docker-server=cp.icr.io --docker-username=cp --docker-password=<KEY> --docker-email=<EMAIL> -n <NAMESPACE>
+kubectl create secret docker-registry docker-key-secret --docker-server=<LOCAL_REGISTRY> --docker-username=<USER> --docker-password=<LOCAL_REGISTRY_PASSWORD> --docker-email=<EMAIL> -n <NAMESPACE>
 ```
 {:codeblock}
-- Replace `<KEY>` with your entitlement key.
+
+- Replace `<USER>` with your username
 - Replace `<EMAIL>` with your email address.
-- Replace `<NAMESPACE>` with the name of your {{site.data.keyword.blockchainfull_notm}} Platform deployment namespace or OpenShift project.
+- Replace `<LOCAL_REGISTRY_PASSWORD>` with the password to your registry.
+- Replace `<LOCAL_REGISTRY>` with the url of your local registry.
+- Replace `<NAMESPACE>` with the name of your project or namespace.
 
 The name of the secret that you are creating is `docker-key-secret`. This value is used by the operator to deploy the offering in future steps. If you change the name of any of secrets that you create, you need to change the corresponding name in future steps.
 {: note}
