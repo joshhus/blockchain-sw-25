@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2021-04-07"
+lastupdated: "2021-04-16"
 
 keywords: Kubernetes, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, fix pack, multicloud
 
@@ -105,7 +105,7 @@ subcollection: blockchain-sw-25
 {{site.data.keyword.blockchainfull}} Platform 2.5.2 is now available. To take advantage of the latest features and for upgrade instructions, see upgrading your console and components for [OpenShift](/docs/blockchain-sw-252?topic=blockchain-sw-252-upgrade-ocp) or [Kubernetes](/docs/blockchain-sw-252?topic=blockchain-sw-252-upgrade-k8).
 {: note}
 
-Use these instructions if you have already installed or upgraded to the {{site.data.keyword.blockchainfull} Platform 2.5 before October 1, 2020 and want to apply the latest 2.5 fix pack. This fix pack contains important bug fixes and should be applied to your network as soon as possible.  If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after October 1, 2020, the platform will contain all the bug fixes and improvements included in this fix pack, and you do not need to apply it.
+Use these instructions if you have already installed or upgraded to the {{site.data.keyword.blockchainfull}} Platform 2.5 before October 1, 2020 and want to apply the latest 2.5 fix pack. This fix pack contains important bug fixes and should be applied to your network as soon as possible.  If you install the {{site.data.keyword.blockchainfull_notm}} Platform 2.5 after October 1, 2020, the platform will contain all the bug fixes and improvements included in this fix pack, and you do not need to apply it.
 {:shortdesc}
 
 You can install the fix pack by updating the {{site.data.keyword.blockchainfull_notm}} Platform deployment on your Kubernetes cluster to pull the latest images from the {{site.data.keyword.IBM_notm}} entitlement registry. You can apply the fix pack by using the following steps:
