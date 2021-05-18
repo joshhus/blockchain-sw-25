@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2021-05-17"
+lastupdated: "2021-05-18"
 
 keywords: network components, IBM Cloud Kubernetes Service, backup, restore, disaster, peer, orderer, ordering node, LevelDB, CouchDB
 
@@ -126,7 +126,7 @@ Because an ordering node cannot pull blocks from a peer, **all peers must be bac
 
 If you're using CouchDB, which is mounted in a separate pod than the peer, back up the persistent volume associated with CouchDB before the volume associated with the peer pod. This is because the peer checks on CouchDB after booting and if anything is missing from CouchDB, the peer can push transactions to it which CouchDB integrates into the database. However, any transactions in the state database cannot be pushed back to the peer.
 
-As a rule, it is a good practice to schedule backups (also known as "snapshots") to happen at the same time across the network. For example, if all of the peers in the network are using CouchDB, schedule all of the CouchDB persistent volumes to be backed up at the same time, followed by all of the peer persistent volumes (again, at the same time), and then the ordering node persistent volumes (if multiple organizations are contributing ordering nodes, these snapshots must be coordinated with other organizations). For an example of a backup schedule a network might choose to adopt, check out [Example snapshot schedule](/docs/FileStorage?topic=FileStorage-managingSnapshots#addschedule).
+As a rule, it is a good practice to schedule backups (also known as "snapshots") to happen at the same time across the network. For example, if all of the peers in the network are using CouchDB, schedule all of the CouchDB persistent volumes to be backed up at the same time, followed by all of the peer persistent volumes (again, at the same time), and then the ordering node persistent volumes (if multiple organizations are contributing ordering nodes, these snapshots must be coordinated with other organizations). For an example of a backup schedule a network might choose to adopt, check out [Example snapshot schedule](/docs/FileStorage?topic=FileStorage-managingSnapshots#addscheduleUI).
 
 While it is a best practice to periodically back up your Certificate Authority, these backups do not have to be coordinated with the rest of the network. CAs with a local database have a single persistent volume. If you are using `PostGreSQL`, the CA has an additional persistent volume associated with it that must also be backed up. For information about how to take backups of a `PostGreSQL` database, check out [Managing Backups](/docs/databases-for-postgresql?topic=cloud-databases-dashboard-backups){: external} from the Databases for PostgreSQL documentation.
 
@@ -292,7 +292,7 @@ You might need more or less than 5 GB of space, depending on the size of the pod
 Taking a snapshot incurs charges on your account. Press `y` to accept the charges and order the snapshot.
 
 Alternatively, you can enable snapshots to be taken on a regular schedule for a particular volume. For information on how to set of a snapshot schedule, see
-[Adding a Snapshot schedule](https://cloud.ibm.com/docs/FileStorage?topic=FileStorage-managingSnapshots#addscheduleUI){: external}.
+[Adding a Snapshot schedule](/docs/FileStorage?topic=FileStorage-managingSnapshots#addscheduleUI){: external}.
 
 Again, for our example, we use the CLI to set up a daily snapshot of a CouchDB volume at 3:00 a.m. and retain seven snapshots.
 
