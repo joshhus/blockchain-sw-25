@@ -236,7 +236,7 @@ Java and Node runtime versions are determined by {{site.data.keyword.blockchainf
 
 For more details on smart contract-API compatibility, see:
 - [Java smart contract-API compatibility](https://github.com/hyperledger/fabric-chaincode-java/blob/main/COMPATIBILITY.md)
-- [Node smart contract-API compatibility](https://github.com/hyperledger/fabric-chaincode-node/blob/master/COMPATIBILITY.md)
+- [Node smart contract-API compatibility](https://github.com/hyperledger/fabric-chaincode-node/blob/main/COMPATIBILITY.md)
 
 ## Registering an application identity
 {: #ibp-console-app-identities}
