@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2021-05-18"
+lastupdated: "2021-05-25"
 
 keywords: network components, IBM Cloud Kubernetes Service, backup, restore, disaster, peer, orderer, ordering node, LevelDB, CouchDB
 
@@ -274,7 +274,7 @@ Source:
 Events:        <none>
 ```
 
-You can then order snapshots for that volume, which can be done by using either the CLI or the cluster UI. For information on how to take the snapshot, see [Ordering Snapshots](https://cloud.ibm.com/docs/FileStorage?topic=FileStorage-ordering-snapshots){: external}.
+You can then order snapshots for that volume, which can be done by using either the CLI or the cluster UI. For information on how to take the snapshot, see [Ordering Snapshots](/docs/FileStorage?topic=FileStorage-ordering-snapshots){: external}.
 
 In this case, "ordering" refers to the "order to take snapshots" and not "ordering nodes").
 {: tip}

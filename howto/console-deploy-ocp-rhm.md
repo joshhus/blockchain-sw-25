@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2021-04-07"
+lastupdated: "2021-05-25"
 
 keywords: OpenShift, IBM Blockchain Platform console, deploy, resource requirements, storage, parameters, Red Hat Marketplace, subscription, operators
 
@@ -103,4 +103,4 @@ subcollection: blockchain-sw-25
 # Deploy from Red Hat Marketplace
 {: #deploy-ocp-rhm}
 
-The Red Hat Marketplace can no longer be used to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 operator onto a Kubernetes cluster on OpenShift Container Platform, but it can be used to deploy {{site.data.keyword.blockchainfull}} Platform 2.5.2 operator. Refer to the [Deploy from Red Hat Marketplace](https://cloud.ibm.com/docs/blockchain-sw-252?topic=blockchain-sw-252-deploy-ocp-rhm) for instructions.
+The Red Hat Marketplace can no longer be used to deploy the {{site.data.keyword.blockchainfull}} Platform 2.5 operator onto a Kubernetes cluster on OpenShift Container Platform, but it can be used to deploy {{site.data.keyword.blockchainfull}} Platform 2.5.2 operator. Refer to the [Deploy from Red Hat Marketplace](/docs/blockchain-sw-252?topic=blockchain-sw-252-deploy-ocp-rhm) for instructions.
