@@ -180,7 +180,7 @@ subcollection: blockchain-sw-25
     <a href="/docs/blockchain-sw-213?topic=blockchain-sw-213-get-started-console-ocp">2.1.3</a>, 2.5, 
     <a href="/docs/blockchain-sw-251?topic=blockchain-sw-251-get-started-console-ocp">2.5.1</a>,
     <a href="/docs/blockchain-sw-252?topic=blockchain-sw-252-get-started-console-ocp">2.5.2 (latest)</a>
-    </p>
+    <strong>However, it is strongly suggested that you upgrade to the latest version of the product as soon as possible.</strong> Upgrading ensures that you are using the latest product features and fixes, such as improved product stability, automated certificate renewal, and current security patches. <strong>Security patches are not applied to older versions of the product that are no longer supported.</strong> The **Supported Environments** described in documentation for earlier releases, such as a previously supported Kubernetes version, are not updated and may no longer be accurate. Do not rely upon support for any product versions listed in earlier releases of the product. </p>
 </div>
 
 
